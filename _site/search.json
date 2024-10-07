@@ -7,16 +7,20 @@
     "text": "ramp.library is an R-package available from github.",
     "crumbs": [
       "Home",
-      "R Packages",
+      "R packages",
       "`ramp.library`"
     ]
   },
   {
-    "objectID": "Contributors.html",
-    "href": "Contributors.html",
-    "title": "Contributors",
+    "objectID": "Rpackages.html",
+    "href": "Rpackages.html",
+    "title": "R packages",
     "section": "",
-    "text": "Professor David L Smith\nSean Wu"
+    "text": "The RAMP-SimBA software suite includes",
+    "crumbs": [
+      "Home",
+      "R packages"
+    ]
   },
   {
     "objectID": "ramp.forcing.html",
@@ -26,7 +30,7 @@
     "text": "ramp.forcing is an R-package available from github.:",
     "crumbs": [
       "Home",
-      "R Packages",
+      "R packages",
       "`ramp.forcing`"
     ]
   },
@@ -35,10 +39,22 @@
     "href": "ramp.xds.html",
     "title": "ramp.xds",
     "section": "",
-    "text": "ramp.xds is an R-package available from github.",
+    "text": "ramp.xds is an R-package available from github. To install the latest version of ramp.xds from GitHub, run the following lines of code in an R session.\nlibrary(devtools)\ndevtools::install_github(\"dd-harp/ramp.xds\")\nA good place to get started is the ramp.xds vignette Getting Started.",
     "crumbs": [
       "Home",
-      "R Packages",
+      "R packages",
+      "`ramp.xds`"
+    ]
+  },
+  {
+    "objectID": "ramp.xds.html#modular-dynamics",
+    "href": "ramp.xds.html#modular-dynamics",
+    "title": "ramp.xds",
+    "section": "Modular Dynamics",
+    "text": "Modular Dynamics",
+    "crumbs": [
+      "Home",
+      "R packages",
       "`ramp.xds`"
     ]
   },
@@ -50,16 +66,34 @@
     "text": "ramp.work is an R-package available from github.",
     "crumbs": [
       "Home",
-      "R Packages",
+      "R packages",
       "`ramp.work`"
     ]
+  },
+  {
+    "objectID": "malaria_epidemiology.html",
+    "href": "malaria_epidemiology.html",
+    "title": "Malaria Epidemiology",
+    "section": "",
+    "text": "The",
+    "crumbs": [
+      "Home",
+      "Malaria Epidemiology"
+    ]
+  },
+  {
+    "objectID": "model534.html",
+    "href": "model534.html",
+    "title": "The 5-3-4 Model",
+    "section": "",
+    "text": "cat"
   },
   {
     "objectID": "index.html",
     "href": "index.html",
     "title": "SimBA",
     "section": "",
-    "text": "We have developed software to support SIMulation-Based Analytics for malaria and other mosquito-borne pathogens, or SimBA. The software was designed to help users build dynamical systems models describing malaria transmission dynamics and control to support Robust Analytics for Malaria Policy (RAMP) and Adaptive Malaria Control."
+    "text": "We have developed software to support robust SIMulation-Based Analytics for malaria and other mosquito-borne pathogens, or SimBA. The software has been designed for research scientists and policy analysts, with several goals.\nTo accomplish these goals, we first developed a rigorous mathematical framework for modular model building described here:\nThe software was designed to help users build dynamical systems models describing malaria transmission dynamics and control to support Robust Analytics for Malaria Policy (RAMP) and Adaptive Malaria Control."
   },
   {
     "objectID": "index.html#complexity",
@@ -83,6 +117,31 @@
     "text": "Five core software packages comprise SimBA"
   },
   {
+    "objectID": "model_zoo.html",
+    "href": "model_zoo.html",
+    "title": "Model Zoo",
+    "section": "",
+    "text": "dogs\ncats"
+  },
+  {
+    "objectID": "mosquito_ecology.html",
+    "href": "mosquito_ecology.html",
+    "title": "Mosquito Ecology",
+    "section": "",
+    "text": "This is fun",
+    "crumbs": [
+      "Home",
+      "Mosquito Ecology"
+    ]
+  },
+  {
+    "objectID": "Contributors.html",
+    "href": "Contributors.html",
+    "title": "Contributors",
+    "section": "",
+    "text": "Professor David L Smith\nSean Wu"
+  },
+  {
     "objectID": "ramp.control.html",
     "href": "ramp.control.html",
     "title": "ramp.control",
@@ -90,7 +149,7 @@
     "text": "ramp.control is an R-package available from github.:",
     "crumbs": [
       "Home",
-      "R Packages",
+      "R packages",
       "`ramp.control`"
     ]
   }

@@ -2,24 +2,40 @@ project:
   type: website
 
 website:
-  title: "simba"
+  title: "SimBA"
   navbar:
     left:
       - href: index.qmd
         text: Home
-      - about.qmd
-      - Contributors.qmd
+      - text: "Zoo" 
+        menu:
+        - model534.qmd 
+        - demo.qmd 
+      - text: "etc." 
+        menu:
+        - about.qmd
+        - Contributors.qmd
   sidebar:
+    -title: "Software"
     style: "docked"
     search: true
     contents:
-      - section: "R Packages"
+      - section: Rpackages.qmd 
         contents:
           - ramp.xds.qmd
           - ramp.library.qmd
           - ramp.control.qmd
           - ramp.forcing.qmd
           - ramp.work.qmd
+      - section: malaria_epidemiology.qmd 
+        contents:
+          - ramp.falciparum.qmd
+      - section: transmission.qmd  
+        contents:
+          - blood_feeding.qmd
+      - section: mosquito_ecology.qmd 
+        contents:
+          - egg_laying.qmd
           
 format:
   html:

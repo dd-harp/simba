@@ -2,4 +2,13 @@
 title: "`ramp.xds`"
 ---
 
-[**`ramp.xds`**](https://dd-harp.github.io/ramp.xds/) is an R-package available from github. 
+[**`ramp.xds`**](https://dd-harp.github.io/ramp.xds/) is an R-package available from github. To install the latest version of **`ramp.xds`** from GitHub, run the following lines of code in an R session.
+
+```{r, eval=F}
+library(devtools)
+devtools::install_github("dd-harp/ramp.xds")
+```
+
+A good place to get started is the **`ramp.xds`** vignette [*Getting Started*](https://dd-harp.github.io/ramp.xds/articles/GettingStarted.html).
+
+## Modular Dynamics

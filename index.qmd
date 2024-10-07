@@ -1,32 +1,48 @@
 ---
 title: "SimBA"
-subtitle: "Software to support Robust, Simulation-Based Analytics for Malaria and other Mosquito-Transmitted Pathogens"
+subtitle: "Nimble Model Building and Robust, Simulation-Based Analytics for Malaria and other Mosquito-Transmitted Pathogens"
 ---
 
-We have developed software to support **SIM**ulation-**B**ased **A**nalytics for malaria and other mosquito-borne pathogens, or **SimBA**. The software was designed to help users build dynamical systems models describing malaria transmission dynamics and control to support **R**obust **A**nalytics for **M**alaria **P**olicy (RAMP) and Adaptive Malaria Control. 
+We have developed software to support robust **SIM**ulation-**B**ased **A**nalytics for malaria and other mosquito-borne pathogens, or **SimBA.**  The software has been designed for research scientists and policy analysts, with several goals. 
 
-## Complexity 
++ The software was designed to lower the costs of building, analyzing, solving, and using dynamical systems models describing the epidemiology, spatial transmission dynamics, and control of malaria and other mosquito-transmitted pathogens. The software was also designed to handle models for mosquito ecology and responses to vector control, with the capability to handle forcing by weather and other exogenous variables.
 
-Malaria is a managed, complex adaptive system. The complexity of these systems can be understood as a set of interacting domains: 
++ The software should facilitate development of models with unbounded complexity. The software should support nimble model building and scalable complexity.  
 
-+ Mosquito ecology including exogenous forcing by weather and climate
+To accomplish these goals, we first developed a rigorous mathematical framework for modular model building described here:
 
-+ Adult mosquito blood feeding behavior and malaria transmission dynamics 
+> [Wu SL, *et al.* (2023) Spatial Dynamics of Malaria Transmission. PLoS Computational Biology 19(6):e1010684.](https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1010684). 
 
-+ Malaria epidemiology, including infection dynamics and immunity 
 
-+ Malaria managers 
+***
 
-+ Human behavior, genetics and demography 
+![Figure](./Figures/ModularGeneralized.png)
 
-+ Malaria parasite biology and genetics
+***
 
-Mathematical models are one tool for dealing with complex adaptive systems.  
 
-## Peculiarity 
+The software was designed to help users build dynamical systems models describing malaria transmission dynamics and control to support **R**obust **A**nalytics for **M**alaria **P**olicy (RAMP) and Adaptive Malaria Control.
 
-Another challenge for managing malaria is that malaria transmission dynamics might vary from place to place in ways that affect the outcomes of malaria control. The tendency for local systems to be *peculiar* was described in 1937 by Lewis Hackett: 
+## Complexity
+
+Malaria is a managed, complex adaptive system. The complexity of these systems can be understood as a set of interacting domains:
+
+-   Mosquito ecology including exogenous forcing by weather and climate
+
+-   Adult mosquito blood feeding behavior and malaria transmission dynamics
+
+-   Malaria epidemiology, including infection dynamics and immunity
+
+-   Malaria managers
+
+-   Human behavior, genetics and demography
+
+-   Malaria parasite biology and genetics
+
+Mathematical models are one tool for dealing with complex adaptive systems.
+
+## Peculiarity
+
+Another challenge for managing malaria is that malaria transmission dynamics might vary from place to place in ways that affect the outcomes of malaria control. The tendency for local systems to be *peculiar* was described in 1937 by Lewis Hackett:
 
 > …malaria is so moulded and altered by local conditions that it becomes a thousand different diseases and epidemiological puzzles. Like chess, it is played with a few pieces, but is capable of an infinite variety of situations.
-
-
