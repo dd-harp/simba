@@ -1,0 +1,5 @@
+---
+title: "`ramp.work`"
+---
+
+[**`ramp.work`**](https://dd-harp.github.io/ramp.work/) is an R-package available from github.

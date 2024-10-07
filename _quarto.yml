@@ -1,0 +1,31 @@
+project:
+  type: website
+
+website:
+  title: "simba"
+  navbar:
+    left:
+      - href: index.qmd
+        text: Home
+      - about.qmd
+      - Contributors.qmd
+  sidebar:
+    style: "docked"
+    search: true
+    contents:
+      - section: "R Packages"
+        contents:
+          - ramp.xds.qmd
+          - ramp.library.qmd
+          - ramp.control.qmd
+          - ramp.forcing.qmd
+          - ramp.work.qmd
+          
+format:
+  html:
+    theme: simplex 
+    css: styles.css
+    toc: true
+
+editor: visual
+

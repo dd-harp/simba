@@ -1,0 +1,97 @@
+[
+  {
+    "objectID": "ramp.library.html",
+    "href": "ramp.library.html",
+    "title": "ramp.library",
+    "section": "",
+    "text": "ramp.library is an R-package available from github.",
+    "crumbs": [
+      "Home",
+      "R Packages",
+      "`ramp.library`"
+    ]
+  },
+  {
+    "objectID": "Contributors.html",
+    "href": "Contributors.html",
+    "title": "Contributors",
+    "section": "",
+    "text": "Professor David L Smith\nSean Wu"
+  },
+  {
+    "objectID": "ramp.forcing.html",
+    "href": "ramp.forcing.html",
+    "title": "ramp.forcing",
+    "section": "",
+    "text": "ramp.forcing is an R-package available from github.:",
+    "crumbs": [
+      "Home",
+      "R Packages",
+      "`ramp.forcing`"
+    ]
+  },
+  {
+    "objectID": "ramp.xds.html",
+    "href": "ramp.xds.html",
+    "title": "ramp.xds",
+    "section": "",
+    "text": "ramp.xds is an R-package available from github.",
+    "crumbs": [
+      "Home",
+      "R Packages",
+      "`ramp.xds`"
+    ]
+  },
+  {
+    "objectID": "ramp.work.html",
+    "href": "ramp.work.html",
+    "title": "ramp.work",
+    "section": "",
+    "text": "ramp.work is an R-package available from github.",
+    "crumbs": [
+      "Home",
+      "R Packages",
+      "`ramp.work`"
+    ]
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "SimBA",
+    "section": "",
+    "text": "We have developed software to support SIMulation-Based Analytics for malaria and other mosquito-borne pathogens, or SimBA. The software was designed to help users build dynamical systems models describing malaria transmission dynamics and control to support Robust Analytics for Malaria Policy (RAMP) and Adaptive Malaria Control."
+  },
+  {
+    "objectID": "index.html#complexity",
+    "href": "index.html#complexity",
+    "title": "SimBA",
+    "section": "Complexity",
+    "text": "Complexity\nMalaria is a managed, complex adaptive system. The complexity of these systems can be understood as a set of interacting domains:\n\nMosquito ecology including exogenous forcing by weather and climate\nAdult mosquito blood feeding behavior and malaria transmission dynamics\nMalaria epidemiology, including infection dynamics and immunity\nMalaria managers\nHuman behavior, genetics and demography\nMalaria parasite biology and genetics\n\nMathematical models are one tool for dealing with complex adaptive systems."
+  },
+  {
+    "objectID": "index.html#peculiarity",
+    "href": "index.html#peculiarity",
+    "title": "SimBA",
+    "section": "Peculiarity",
+    "text": "Peculiarity\nAnother challenge for managing malaria is that malaria transmission dynamics might vary from place to place in ways that affect the outcomes of malaria control. The tendency for local systems to be peculiar was described in 1937 by Lewis Hackett:\n\n…malaria is so moulded and altered by local conditions that it becomes a thousand different diseases and epidemiological puzzles. Like chess, it is played with a few pieces, but is capable of an infinite variety of situations."
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "Five core software packages comprise SimBA"
+  },
+  {
+    "objectID": "ramp.control.html",
+    "href": "ramp.control.html",
+    "title": "ramp.control",
+    "section": "",
+    "text": "ramp.control is an R-package available from github.:",
+    "crumbs": [
+      "Home",
+      "R Packages",
+      "`ramp.control`"
+    ]
+  }
+]

@@ -1,0 +1,5 @@
+---
+title: "`ramp.control`"
+---
+
+[**`ramp.control`**](https://dd-harp.github.io/ramp.control/) is an R-package available from github.:

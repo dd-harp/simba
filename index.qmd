@@ -1,0 +1,32 @@
+---
+title: "SimBA"
+subtitle: "Software to support Robust, Simulation-Based Analytics for Malaria and other Mosquito-Transmitted Pathogens"
+---
+
+We have developed software to support **SIM**ulation-**B**ased **A**nalytics for malaria and other mosquito-borne pathogens, or **SimBA**. The software was designed to help users build dynamical systems models describing malaria transmission dynamics and control to support **R**obust **A**nalytics for **M**alaria **P**olicy (RAMP) and Adaptive Malaria Control. 
+
+## Complexity 
+
+Malaria is a managed, complex adaptive system. The complexity of these systems can be understood as a set of interacting domains: 
+
++ Mosquito ecology including exogenous forcing by weather and climate
+
++ Adult mosquito blood feeding behavior and malaria transmission dynamics 
+
++ Malaria epidemiology, including infection dynamics and immunity 
+
++ Malaria managers 
+
++ Human behavior, genetics and demography 
+
++ Malaria parasite biology and genetics
+
+Mathematical models are one tool for dealing with complex adaptive systems.  
+
+## Peculiarity 
+
+Another challenge for managing malaria is that malaria transmission dynamics might vary from place to place in ways that affect the outcomes of malaria control. The tendency for local systems to be *peculiar* was described in 1937 by Lewis Hackett: 
+
+> …malaria is so moulded and altered by local conditions that it becomes a thousand different diseases and epidemiological puzzles. Like chess, it is played with a few pieces, but is capable of an infinite variety of situations.
+
+
