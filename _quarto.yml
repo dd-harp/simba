@@ -42,6 +42,7 @@ website:
         contents:
           - blood_feeding.qmd
           - behavioral_states.qmd
+          - macdonald.qmd
       - section: mosquito_ecology.qmd 
         contents:
           - egg_laying.qmd

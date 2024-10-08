@@ -1,30 +1,31 @@
 ---
 title: "SimBA"
-subtitle: "**Sim**ulation-**B**ased **A**nalytics for Malaria and other Mosquito-Transmitted Pathogens"
+subtitle: "**Software for Sim**ulation-**B**ased **A**nalytics for Malaria and other Mosquito-Transmitted Pathogens"
 ---
 
-We have developed software -- R packages available from github --  to support **Sim**ulation-**B**ased **A**nalytics (**SimBA**) and research for malaria and other mosquito-borne pathogens. The **SimBA** software suite was developed around 
-the R package [**`ramp.xds`**](ramp.xds.html): 
+This website describes software -- a suite R packages available from github --  to support **Sim**ulation-**B**ased **A**nalytics (**SimBA**) and research for malaria and other mosquito-borne pathogens. The **SimBA** software suite was developed around an R package called [**`ramp.xds`**](ramp.xds.html): 
 
-+ `ramp` stands for **R**obust **A**nalytics for **M**alaria **P**olicy. RAMP is a set of workflows and concepts that rely on **SimBA** software to develop robust analytics for Adaptive Malaria Control. 
++ `ramp` stands for **R**obust **A**nalytics for **M**alaria **P**olicy. RAMP is a set of concepts and workflows that use **SimBA** software for Adaptive Malaria Control. 
 
 + `xds` stands for *e**X**tensible **D**ynamical **S**ystems* 
 
 The **SimBA** software suite includes four satellite packages: 
 
-+ [**`ramp.library`**](ramp.library.html) is a code library for **`ramp.xds`** that holds model families or modules for the core dynamical components.  
++ [**`ramp.library`**](ramp.library.html) is a code library for **`ramp.xds`** with model families or modules for the core dynamical components.  
 
-+ [**`ramp.control`**](ramp.control.html) is a code library for **`ramp.xds`** that holds a set of algorithms to implement various models of vector control and health-based malaria interventions   
++ [**`ramp.control`**](ramp.control.html) is a code library for **`ramp.xds`** with algorithms to implement various models of vector control and health-based malaria interventions   
 
-+ [**`ramp.forcing`**](ramp.forcing.html) is a set of algorithms to implement exogenous forcing by weather 
++ [**`ramp.forcing`**](ramp.forcing.html) is a code library for **`ramp.xds`** with algorithms to implement exogenous forcing by weather 
 
 + [**`ramp.work`**](ramp.work.html) is a set of algorithms and functions to apply the models to various tasks 
 
-Each one of the R packages documents its own code and functionality. **SimBA** extends the package-specific documentation to demonstrate the capabilities of the whole package. On this website, we also discuss several related [R packages](Rpackages.html) and other software that we've been involved with over the years but that are not part of **SimBA.** 
+Each one of the R packages documents its own code, and some vignettes have been written that describe each individual software package. 
+This website, **SimBA,** extends the package-specific documentation to demonstrate the capabilities of the whole package. The website also discusses some related [R packages](Rpackages.html) and other software that were developed by some of us over the years that are not part formally of **SimBA.** 
+
 
 ## Design 
 
-The **SimBA** software is based on a rigorous mathematical framework for modular model building for mosquito-transmitted pathogens, published as [*Spatial Dynamics of Malaria Transmission*](https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1010684) and inherits its code base and core ideas from `exDE` (see below). 
+The **SimBA** software is based on a rigorous mathematical framework for modular model building for mosquito-transmitted pathogens, published as [*Spatial Dynamics of Malaria Transmission*](https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1010684). It inherits its code base and core ideas from `exDE` (see below). 
 
 **SimBA** was designed with several goals: 
 
@@ -34,7 +35,9 @@ The **SimBA** software is based on a rigorous mathematical framework for modular
 
 + The software should be *extensible* to facilitate development of models with unbounded complexity. The software should support nimble model building and scalable complexity.  
 
-+ The software libraries should eventually include verified code replicating the models from most published studies. 
++ The software libraries should eventually include verified code replicating the models from most published studies.
+
+The vignettes and documents on this website are designed to demonstrate the capabilities of the **SimBA** suite of R packages. 
 
 ## History 
 
