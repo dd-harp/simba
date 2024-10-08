@@ -11,4 +11,5 @@ devtools::install_github("dd-harp/ramp.xds")
 
 A good place to get started is the **`ramp.xds`** vignette [*Getting Started*](https://dd-harp.github.io/ramp.xds/articles/GettingStarted.html).
 
-## Modular Dynamics
+
+

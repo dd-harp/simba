@@ -1,0 +1,16 @@
+---
+title: "`exDE`"
+---
+
+[`exDE`](https://dd-harp.github.io/exDE/) is the R-package that was released with [Wu SL, *et al.* (2023) Spatial Dynamics of Malaria Transmission. PLoS Computational Biology 19(6):e1010684.](https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1010684)
+
+To install `exDE,` run the following lines of code in an R session:
+ 
+```{r, eval=F}
+library(devtools)
+devtools::install_github("dd-harp/exDE")
+```
+
+`exDE` is no longer under active development. It has been superceded by **`ramp.xds`.**
+
+

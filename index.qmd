@@ -1,48 +1,46 @@
 ---
 title: "SimBA"
-subtitle: "Nimble Model Building and Robust, Simulation-Based Analytics for Malaria and other Mosquito-Transmitted Pathogens"
+subtitle: "**Sim**ulation-**B**ased **A**nalytics for Malaria and other Mosquito-Transmitted Pathogens"
 ---
 
-We have developed software to support robust **SIM**ulation-**B**ased **A**nalytics for malaria and other mosquito-borne pathogens, or **SimBA.**  The software has been designed for research scientists and policy analysts, with several goals. 
+We have developed software -- R packages available from github --  to support **Sim**ulation-**B**ased **A**nalytics (**SimBA**) and research for malaria and other mosquito-borne pathogens. The **SimBA** software suite was developed around 
+the R package [**`ramp.xds`**](ramp.xds.html): 
 
-+ The software was designed to lower the costs of building, analyzing, solving, and using dynamical systems models describing the epidemiology, spatial transmission dynamics, and control of malaria and other mosquito-transmitted pathogens. The software was also designed to handle models for mosquito ecology and responses to vector control, with the capability to handle forcing by weather and other exogenous variables.
++ `ramp` stands for **R**obust **A**nalytics for **M**alaria **P**olicy. RAMP is a set of workflows and concepts that rely on **SimBA** software to develop robust analytics for Adaptive Malaria Control. 
 
-+ The software should facilitate development of models with unbounded complexity. The software should support nimble model building and scalable complexity.  
++ `xds` stands for *e**X**tensible **D**ynamical **S**ystems* 
 
-To accomplish these goals, we first developed a rigorous mathematical framework for modular model building described here:
+The **SimBA** software suite includes four satellite packages: 
 
-> [Wu SL, *et al.* (2023) Spatial Dynamics of Malaria Transmission. PLoS Computational Biology 19(6):e1010684.](https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1010684). 
++ [**`ramp.library`**](ramp.library.html) is a code library for **`ramp.xds`** that holds model families or modules for the core dynamical components.  
 
++ [**`ramp.control`**](ramp.control.html) is a code library for **`ramp.xds`** that holds a set of algorithms to implement various models of vector control and health-based malaria interventions   
 
-***
++ [**`ramp.forcing`**](ramp.forcing.html) is a set of algorithms to implement exogenous forcing by weather 
 
-![Figure](./Figures/ModularGeneralized.png)
++ [**`ramp.work`**](ramp.work.html) is a set of algorithms and functions to apply the models to various tasks 
 
-***
+Each one of the R packages documents its own code and functionality. **SimBA** extends the package-specific documentation to demonstrate the capabilities of the whole package. On this website, we also discuss several related [R packages](Rpackages.html) and other software that we've been involved with over the years but that are not part of **SimBA.** 
 
+## Design 
 
-The software was designed to help users build dynamical systems models describing malaria transmission dynamics and control to support **R**obust **A**nalytics for **M**alaria **P**olicy (RAMP) and Adaptive Malaria Control.
+The **SimBA** software is based on a rigorous mathematical framework for modular model building for mosquito-transmitted pathogens, published as [*Spatial Dynamics of Malaria Transmission*](https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1010684) and inherits its code base and core ideas from `exDE` (see below). 
 
-## Complexity
+**SimBA** was designed with several goals: 
 
-Malaria is a managed, complex adaptive system. The complexity of these systems can be understood as a set of interacting domains:
++ The software should lower the costs of building, analyzing, solving, and using dynamical systems models describing the epidemiology, spatial transmission dynamics, and control of malaria and other mosquito-transmitted pathogens. 
 
--   Mosquito ecology including exogenous forcing by weather and climate
++ The models should also serve as a basis for exploring mosquito ecology and responses to vector control, with the capability to handle forcing by weather and other exogenous variables.
 
--   Adult mosquito blood feeding behavior and malaria transmission dynamics
++ The software should be *extensible* to facilitate development of models with unbounded complexity. The software should support nimble model building and scalable complexity.  
 
--   Malaria epidemiology, including infection dynamics and immunity
++ The software libraries should eventually include verified code replicating the models from most published studies. 
 
--   Malaria managers
+## History 
 
--   Human behavior, genetics and demography
+Publication of [*Spatial Dynamics of Malaria Transmission*](https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1010684) was accompanied by a software package called  [`exDE`](https://dd-harp.github.io/exDE/). After publication, we began the work to extend `exDE` to handle exogenous forcing motivated by the need to understand malaria transmission as a *changing baseline* that has been *modified by malaria control.* By April 2024, we had added new features and found good solutions for most of the technical challenges, so we turned our attention to updating 
+[`MicroMoB`](https://dd-harp.github.io/MicroMoB/), software published before `exDE` that was developed to handle discrete-time systems. We soon recognized the benefit of merging the two, giving rise to **`ramp.xds`,** which is under active development. The two older software packages, `exDE` and `MicroMoB` are no longer under active development. 
 
--   Malaria parasite biology and genetics
+*** 
 
-Mathematical models are one tool for dealing with complex adaptive systems.
-
-## Peculiarity
-
-Another challenge for managing malaria is that malaria transmission dynamics might vary from place to place in ways that affect the outcomes of malaria control. The tendency for local systems to be *peculiar* was described in 1937 by Lewis Hackett:
-
-> …malaria is so moulded and altered by local conditions that it becomes a thousand different diseases and epidemiological puzzles. Like chess, it is played with a few pieces, but is capable of an infinite variety of situations.
+[Wu SL, *et al.* (2023) Spatial Dynamics of Malaria Transmission. PLoS Computational Biology 19(6): e1010684.](https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1010684) 

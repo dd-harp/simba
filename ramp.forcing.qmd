@@ -2,4 +2,12 @@
 title: "`ramp.forcing`"
 ---
 
-[**`ramp.forcing`**](https://dd-harp.github.io/ramp.forcing/) is an R-package available from github.:
+[**`ramp.forcing`**](https://dd-harp.github.io/ramp.forcing/) is an R-package available from github.
+To install the latest version of **`ramp.forcing`** from GitHub, run the following lines of code in an R session.
+
+```{r, eval=F}
+library(devtools)
+devtools::install_github("dd-harp/ramp.forcing")
+```
+
+**`ramp.forcing`** depends on [**`ramp.xds`**](ramp.xds.html)

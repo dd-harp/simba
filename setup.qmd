@@ -1,0 +1,13 @@
+---
+title: "Setup"
+---
+
+A function family in **`ramp.xds`** called `xds_setup()` was developed to construct **`xds`** objects. This is covered in the  **`ramp.xds`** vignette called [Basic Setup](https://dd-harp.github.io/ramp.xds/articles/BasicSetup.html). 
+
+## Advanced Options
+
+***
+
+![Figure](./Figures/ModularGeneralized.png)
+
+***

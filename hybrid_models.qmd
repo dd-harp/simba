@@ -1,0 +1,9 @@
+---
+title: "Hybrid Models"
+---
+
+
+```{r}
+library(ramp.falciparum)
+```
+

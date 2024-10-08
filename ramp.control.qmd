@@ -2,4 +2,13 @@
 title: "`ramp.control`"
 ---
 
-[**`ramp.control`**](https://dd-harp.github.io/ramp.control/) is an R-package available from github.:
+[**`ramp.control`**](https://dd-harp.github.io/ramp.control/) is an R-package available from github. It extends **`ramp.xds`** with algorithms and functions to model the distribution, effects and sizes of various forms of vector control. 
+
+To install the latest version of **`ramp.control`** from GitHub, run the following lines of code in an R session.
+
+```{r, eval=F}
+library(devtools)
+devtools::install_github("dd-harp/ramp.control")
+```
+
+**`ramp.control`** depends on [**`ramp.xds`**](ramp.xds.html)

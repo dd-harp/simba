@@ -1,3 +1,10 @@
 ---
 title: "`ramp.falciparum`"
 ---
+
+Malaria epidemiology, including exposure, infection, disease, immunity, infectiousness, human behavior and genetics, and malaria diagnostics & detection comprise a difficult and set of issues. Some of this is explored in a software package that implements some ideas and algorithms developed by John Henry as part of his PhD research at the University of Washington.
+
+The software is available for download at github: [dd-harp/ramp.falciparum](https://dd-harp.github.io/ramp.falciparum/)
+
+***
+[John M. Henry. PhD Thesis. University of Washington, 2023. The Age of Infection: A Semi-Markov Framework for Developing Mechanistic Models of Malaria Epidemiology](https://www.proquest.com/docview/2838160693?fromopenview=true&pq-origsite=gscholar&sourcetype=Dissertations%20&%20Theses)

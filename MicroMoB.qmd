@@ -1,0 +1,14 @@
+---
+title: "`MicroMoB`"
+---
+
+[`MicroMoB`](https://dd-harp.github.io/MicroMoB/) is an R-package available from github. It was the first R package that we developed with a modular design. `MicroMoB` is still available from github, but it is not under active development. 
+
+To install `MicroMoB,` run the following lines of code in an R session:
+ 
+```{r, eval=F}
+library(devtools)
+devtools::install_github("dd-harp/MicroMoB")
+```
+
+`MicroMoB` is no longer under active development. It has been superceded by **`ramp.xds`.**

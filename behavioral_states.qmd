@@ -1,0 +1,9 @@
+---
+title: "Behavioral State Models"
+---
+
+The mosquito model developed by Macdonald, used by so many publications since then, reduced most of mosquito ecology to three parameters. It was a model for parasite infection dynamics in mosquitoes in a single population. In **SimBA,** we have developed several new models and algorithms, including *behavioral state models.* 
+
+## *References*
+
++ [Menach, A.L., McKenzie, F.E., Flahault, A. et al. The unexpected importance of mosquito oviposition behaviour for malaria: non-productive larval habitats can be sources for malaria transmission. Malar J 4, 23 (2005).](https://doi.org/10.1186/1475-2875-4-23)

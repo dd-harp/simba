@@ -7,14 +7,12 @@ website:
     left:
       - href: index.qmd
         text: Home
+      - href: demo.qmd 
+      - href: setup.qmd
       - text: "Zoo" 
         menu:
         - model534.qmd 
-        - demo.qmd 
-      - text: "etc." 
-        menu:
-        - about.qmd
-        - Contributors.qmd
+      - Contributors.qmd
   sidebar:
     -title: "Software"
     style: "docked"
@@ -27,12 +25,23 @@ website:
           - ramp.control.qmd
           - ramp.forcing.qmd
           - ramp.work.qmd
+          - ramp.micro.qmd
+          - ramp.falciparum.qmd
+          - exDE.qmd
+          - MicroMoB.qmd
+      - section: model_building.qmd 
+        contents:
+          - progressive.qmd
+      - section: malaria_intelligence.qmd 
+        contents:
+          - scaling.qmd
       - section: malaria_epidemiology.qmd 
         contents:
-          - ramp.falciparum.qmd
+          - hybrid_models.qmd
       - section: transmission.qmd  
         contents:
           - blood_feeding.qmd
+          - behavioral_states.qmd
       - section: mosquito_ecology.qmd 
         contents:
           - egg_laying.qmd

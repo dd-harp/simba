@@ -2,7 +2,12 @@
 title: "Contributors"
 ---
 
-+ [Professor David L Smith](https://faculty.washington.edu/smitdave/)
+- [Professor David L Smith](https://faculty.washington.edu/smitdave/)
 
-+ Sean Wu
+- Sean L Wu
 
+- Sophie Libkind 
+
+- Juliet Nsumba Nakakawa
+
+- Doreen Mbabazi Ssebuliba 
