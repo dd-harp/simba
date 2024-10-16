@@ -2,5 +2,4 @@
 title: "About"
 ---
 
-Five core software packages comprise **SimBA**
-
+SimBA is maintained by [Professor David L Smith](https://faculty.washington.edu/smitdave/)

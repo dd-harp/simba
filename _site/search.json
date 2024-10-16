@@ -12,11 +12,23 @@
     ]
   },
   {
-    "objectID": "macdonald.html#macdonalds-model",
-    "href": "macdonald.html#macdonalds-model",
+    "objectID": "macdonald.html#mosquito-model",
+    "href": "macdonald.html#mosquito-model",
     "title": "Macdonald’s Model",
-    "section": "Macdonald’s Model",
-    "text": "Macdonald’s Model\nIf Macdonald’s analysis were presented as a mathematical model, it would almost certainly look something like the following. Consider a simple system of differential equations the sporozoite rate has three parameters and one term:\n\nthe human blood feeding rate, \\(a\\)\nthe extrinsic incubation period, \\(\\tau\\)\nthe mosquito death rate, \\(g\\); or the probability of surviving one day, \\(p=e^{-g}\\), so \\(g=-\\ln p\\)\nthe fraction of bites on humans that infect a mosquito, \\(\\kappa\\)\n\nLet \\(y\\) denote the fraction of mosquitoes that are infected. The dynamics are given by: \\[\\frac{dy}{dt} = a \\kappa (1-y) - g y\\] Let \\(z\\) denote the fraction of mosquitoes that are infectious. The model is a delay differential equation. Let \\(y_\\tau\\) denote the value of \\(y\\) at time \\(t-\\tau.\\) If the parameters and terms are constant, then:\n\\[\\frac{dz}{dt} = e^{-g\\tau} a \\kappa (1-y_\\tau) - g z\\] The model has a steady state for the fraction infected: \\[\\bar y = \\frac{a \\kappa} {a \\kappa + g}\\] The fraction infectious, also called the sporozoite rate, is \\[\\bar z = \\frac{a \\kappa} {a \\kappa + g}e^{-g\\tau}.\\] Macdonald used \\(p\\) so his formula was: \\[\\bar z = \\frac{a \\kappa} {a \\kappa -\\ln p}e^{-p\\tau}\\]\nTo generate the formula for \\(R_0,\\) Macdonald introduces another variable and three additional parameters:\n\nthe ratio of mosquitoes to humans, \\(m\\)\nthe rate infections clear, \\(r\\)\nthe fraction of infectious bites that infect a human, \\(b\\)\n\nThe fraction of infected and infectious humans, \\(x,\\) is given by the equation:\n\\[\\frac{dx}{dt} = m a z (1-y) - r x\\] and the model assumes that \\(\\kappa = x.\\) The formula for \\(R_0\\) in this system is: \\[R_0 = \\frac{m b a^2}{gr} e^{-g\\tau} = \\frac{m b a^2}{(-\\ln p)r} e^{-p\\tau}\\] In this form, Macdonald’s model is difficult to use or extend.",
+    "section": "Mosquito Model",
+    "text": "Mosquito Model\nIf Macdonald’s analysis were presented as a mathematical model, it would almost certainly look something like the following. Consider a simple system of differential equations the sporozoite rate has three parameters and one term:\n\nthe human blood feeding rate, \\(a\\)\nthe extrinsic incubation period, \\(\\tau\\)\nthe mosquito death rate, \\(g\\); or the probability of surviving one day, \\(p=e^{-g}\\), so \\(g=-\\ln p\\)\nthe fraction of bites on humans that infect a mosquito, \\(x\\)\n\nLet \\(y\\) denote the fraction of mosquitoes that are infected. The dynamics are given by: \\[\\frac{dy}{dt} = a x (1-y) - g y\\] Let \\(z\\) denote the fraction of mosquitoes that are infectious. The model is a delay differential equation. Let \\(y_\\tau\\) denote the value of \\(y\\) at time \\(t-\\tau.\\) If the parameters and terms are constant, then:\n\\[\\frac{dz}{dt} = e^{-g\\tau} a x (1-y_\\tau) - g z\\] The model has a steady state for the fraction infected: \\[\\bar y = \\frac{a x} {a x + g}\\] The fraction infectious, also called the sporozoite rate, is \\[\\bar z = \\frac{a x} {a x + g}e^{-g\\tau}.\\] Macdonald used \\(p\\) so his formula was: \\[\\bar z = \\frac{a x} {a x -\\ln p}e^{-p\\tau}\\]",
+    "crumbs": [
+      "Home",
+      "Transmission",
+      "Macdonald's Model"
+    ]
+  },
+  {
+    "objectID": "macdonald.html#r_0",
+    "href": "macdonald.html#r_0",
+    "title": "Macdonald’s Model",
+    "section": "\\(R_0\\)",
+    "text": "\\(R_0\\)\nTo generate the formula for \\(R_0,\\) we need another equation, coupled to the first, to model infection dynamics in humans. Macdonald had introduced a model for superinfection in 1950, but under the conditions that were relevant for \\(R_0,\\) his model reduced to a standard SIS compartmental model. To formulate that model here, we need three additional parameters:\n\nthe ratio of mosquitoes to humans, \\(m\\)\nthe rate infections clear, \\(r\\)\nthe fraction of infectious bites that infect a human, \\(b\\)\n\nThe fraction of infected and infectious humans, \\(x,\\) is given by the equation:\n\\[\\frac{dx}{dt} = m a z (1-y) - r x.\\] Notably, the model assumes that the fraction of mosquitoes becoming infected after blood feeding on a human is \\(x.\\) The formula for \\(R_0\\) in this system is: \\[R_0 = \\frac{m b a^2}{gr} e^{-g\\tau} = \\frac{m b a^2}{(-\\ln p)r} e^{-p\\tau}\\]\nIn this form, Macdonald’s model is difficult to use and extend.",
     "crumbs": [
       "Home",
       "Transmission",
@@ -36,11 +48,11 @@
     ]
   },
   {
-    "objectID": "macdonald.html#macdonald",
-    "href": "macdonald.html#macdonald",
+    "objectID": "macdonald.html#the-macdonald-module",
+    "href": "macdonald.html#the-macdonald-module",
     "title": "Macdonald’s Model",
-    "section": "macdonald",
-    "text": "macdonald\nThe module called macdonald has been extended beyond the Aron & May formulation to include spatial dynamics and parity. To formulate the spatial model, a spatial domain is sub-divided into a set of patches. Variable and parameter names do not change, but they can now represent vectors of length \\(n_p.\\) To formulate the demographic matrix, denoted \\(\\Omega,\\) that describes mosquito mortality, emigration, and other loss from the system. We let \\(\\sigma\\) denote the emigration rate and \\(\\cal K\\) the mosquito dispersal matrix. We also introduce a parameter, \\(\\mu\\) to model the fraction of mosquitoes that are lost to emigration from each patch. \\[\\Omega = \\mbox{diag} \\left(g\\right) + \\left(\\mbox{diag} \\left(1-\\mu\\right)  - \\cal K\\right) \\cdot \\mbox{diag} \\left(\\sigma\\right)\n\\]\n\nDynamics\n\\[\\begin{array}{rl}\n\\dot{M} & = \\Lambda - \\Omega\\cdot M  \\\\\n\\dot{P} & = \\mbox{diag}(f) \\cdot (M-P) -  \\Omega \\cdot P\\\\\n\\dot{Y} & = \\mbox{diag}(fq\\kappa) \\cdot (M-Y) - \\Omega \\cdot Y \\\\\n\\dot{Z} & =\n\\dot{Z} = e^{-\\Omega \\tau} \\cdot \\mbox{diag}(fq\\kappa_{t-\\tau}) \\cdot (M_{t-\\tau}-Y_{t-\\tau}) - \\Omega \\cdot Z\n\\end{array}\n\\]",
+    "section": "The macdonald Module",
+    "text": "The macdonald Module\nThe module called macdonald has been extended beyond the Aron & May formulation to include spatial dynamics and parity. To formulate the spatial model, a spatial domain is sub-divided into a set of patches. Variable and parameter names do not change, but they can now represent vectors of length \\(n_p.\\) To formulate the demographic matrix, denoted \\(\\Omega,\\) that describes mosquito mortality, emigration, and other loss from the system. We let \\(\\sigma\\) denote the emigration rate and \\(\\cal K\\) the mosquito dispersal matrix. We also introduce a parameter, \\(\\mu\\) to model the fraction of mosquitoes that are lost to emigration from each patch. \\[\\Omega = \\mbox{diag} \\left(g\\right) + \\left(\\mbox{diag} \\left(1-\\mu\\right)  - \\cal K\\right) \\cdot \\mbox{diag} \\left(\\sigma\\right)\n\\]\n\nDynamics\n\\[\\begin{array}{rl}\n\\dot{M} & = \\Lambda - \\Omega\\cdot M  \\\\\n\\dot{P} & = \\mbox{diag}(f) \\cdot (M-P) -  \\Omega \\cdot P\\\\\n\\dot{Y} & = \\mbox{diag}(fq\\kappa) \\cdot (M-Y) - \\Omega \\cdot Y \\\\\n\\dot{Z} & =\n\\dot{Z} = e^{-\\Omega \\tau} \\cdot \\mbox{diag}(fq\\kappa_{t-\\tau}) \\cdot (M_{t-\\tau}-Y_{t-\\tau}) - \\Omega \\cdot Z\n\\end{array}\n\\]",
     "crumbs": [
       "Home",
       "Transmission",
@@ -122,27 +134,219 @@
     ]
   },
   {
-    "objectID": "ramp.micro.html",
-    "href": "ramp.micro.html",
-    "title": "ramp.micro",
+    "objectID": "nimble.html",
+    "href": "nimble.html",
+    "title": "Nimble Model Building",
     "section": "",
-    "text": "We have developed software to implement microsimulation for mosquitoes and transmission. It is available from github: dd-harp/ramp.micro\n\n\nSee: Perkins TA, Scott TW, Le Menach A, Smith DL (2013) Heterogeneity, Mixing, and the Spatial Scales of Mosquito-Borne Pathogen Transmission. PLoS Comput Biol 9(12): e1003327.",
+    "text": "Nimble model building is about making it easy to translate an idea into a well-formed mathematical model that is computable.",
     "crumbs": [
       "Home",
-      "R packages",
-      "`ramp.micro`"
+      "Model Building",
+      "Nimble Model Building"
     ]
   },
   {
-    "objectID": "ramp.falciparum.html",
-    "href": "ramp.falciparum.html",
-    "title": "ramp.falciparum",
+    "objectID": "ramp.control.html",
+    "href": "ramp.control.html",
+    "title": "ramp.control",
     "section": "",
-    "text": "Malaria epidemiology, including exposure, infection, disease, immunity, infectiousness, human behavior and genetics, and malaria diagnostics & detection comprise a difficult and set of issues. Some of this is explored in a software package that implements some ideas and algorithms developed by John Henry as part of his PhD research at the University of Washington.\nThe software is available for download at github: dd-harp/ramp.falciparum\n\nJohn M. Henry. PhD Thesis. University of Washington, 2023. The Age of Infection: A Semi-Markov Framework for Developing Mechanistic Models of Malaria Epidemiology",
+    "text": "ramp.control is an R-package available from github. It extends ramp.xds with algorithms and functions to model the distribution, effects and sizes of various forms of vector control.\nTo install the latest version of ramp.control from GitHub, run the following lines of code in an R session.\n\nlibrary(devtools)\ndevtools::install_github(\"dd-harp/ramp.control\")\n\nramp.control depends on ramp.xds",
     "crumbs": [
       "Home",
       "R packages",
-      "`ramp.falciparum`"
+      "`ramp.control`"
+    ]
+  },
+  {
+    "objectID": "Contributors.html",
+    "href": "Contributors.html",
+    "title": "Contributors",
+    "section": "",
+    "text": "Professor David L Smith\nSean L Wu\nSophie Libkind\nJuliet Nsumba Nakakawa\nDoreen Mbabazi Ssebuliba"
+  },
+  {
+    "objectID": "mosquito_ecology.html",
+    "href": "mosquito_ecology.html",
+    "title": "Mosquito Ecology",
+    "section": "",
+    "text": "This is fun",
+    "crumbs": [
+      "Home",
+      "Mosquito Ecology"
+    ]
+  },
+  {
+    "objectID": "blood_feeding.html",
+    "href": "blood_feeding.html",
+    "title": "Blood Feeding",
+    "section": "",
+    "text": "Mosquito Search\nTime Spent / Time at Risk\nSearch Weights and Availability\nThe Mixing Matrix",
+    "crumbs": [
+      "Home",
+      "Transmission",
+      "Blood Feeding"
+    ]
+  },
+  {
+    "objectID": "hybrid_models.html",
+    "href": "hybrid_models.html",
+    "title": "Hybrid Models",
+    "section": "",
+    "text": "library(ramp.falciparum)",
+    "crumbs": [
+      "Home",
+      "Malaria Epidemiology",
+      "Hybrid Models"
+    ]
+  },
+  {
+    "objectID": "ramp.forcing.html",
+    "href": "ramp.forcing.html",
+    "title": "ramp.forcing",
+    "section": "",
+    "text": "ramp.forcing is an R-package available from github. To install the latest version of ramp.forcing from GitHub, run the following lines of code in an R session.\n\nlibrary(devtools)\ndevtools::install_github(\"dd-harp/ramp.forcing\")\n\nramp.forcing depends on ramp.xds",
+    "crumbs": [
+      "Home",
+      "R packages",
+      "`ramp.forcing`"
+    ]
+  },
+  {
+    "objectID": "heterogeneous_transmission.html",
+    "href": "heterogeneous_transmission.html",
+    "title": "Heterogeneous Transmission",
+    "section": "",
+    "text": "Infectiousness\nSearch weights and relative biting rates\nHeterogeneity and thresholds\nHeterogeneous mosquito populations\nEnvironmental heterogeneity\nMixing\n\nDispersal by Mosquitoes\nDispersal by Humans",
+    "crumbs": [
+      "Home",
+      "Transmission",
+      "Heterogeneous Transmission"
+    ]
+  },
+  {
+    "objectID": "model_building.html",
+    "href": "model_building.html",
+    "title": "Model Building",
+    "section": "",
+    "text": "For our purposes, a model is an abstract representation of something. A statistical model is any\na matheamtical model is a model that",
+    "crumbs": [
+      "Home",
+      "Model Building"
+    ]
+  },
+  {
+    "objectID": "ramp.xds.html",
+    "href": "ramp.xds.html",
+    "title": "ramp.xds",
+    "section": "",
+    "text": "ramp.xds is an R-package available from github. To install the latest version of ramp.xds from GitHub, run the following lines of code in an R session.\n\nlibrary(devtools)\ndevtools::install_github(\"dd-harp/ramp.xds\")\n\nA good place to get started is the ramp.xds vignette Getting Started.",
+    "crumbs": [
+      "Home",
+      "R packages",
+      "`ramp.xds`"
+    ]
+  },
+  {
+    "objectID": "scaling-environmental_heterogeneity.html",
+    "href": "scaling-environmental_heterogeneity.html",
+    "title": "Scaling Relationships",
+    "section": "",
+    "text": "library(ramp.xds)\nlibrary(ramp.work)\n\n\nxds_setup_cohort(Xname = \"SIS\") -&gt; sis\n\n\nsis_het &lt;- setup_exposure_nb(sis, 1/50)\n\n\nxde_scaling_eir(sis, 25) -&gt; sis\nxde_scaling_eir(sis_het, 25) -&gt; sis_het\n\n\nplot_eirpr(sis)\nlines_eirpr(sis_het, \"darkblue\")",
+    "crumbs": [
+      "Home",
+      "Scaling Relationships",
+      "Scaling Relationships"
+    ]
+  },
+  {
+    "objectID": "malaria_epidemiology.html",
+    "href": "malaria_epidemiology.html",
+    "title": "Malaria Epidemiology",
+    "section": "",
+    "text": "The",
+    "crumbs": [
+      "Home",
+      "Malaria Epidemiology"
+    ]
+  },
+  {
+    "objectID": "ramp.work.html",
+    "href": "ramp.work.html",
+    "title": "ramp.work",
+    "section": "",
+    "text": "ramp.work is an R-package available from github. To install the latest version of ramp.work from GitHub, run the following lines of code in an R session.\n\nlibrary(devtools)\ndevtools::install_github(\"dd-harp/ramp.work\")\n\nramp.work depends on ramp.xds",
+    "crumbs": [
+      "Home",
+      "R packages",
+      "`ramp.work`"
+    ]
+  },
+  {
+    "objectID": "demo.html#my-first-model",
+    "href": "demo.html#my-first-model",
+    "title": "Demo",
+    "section": "My First Model",
+    "text": "My First Model\nWith ramp.xds it’s this easy to build and solve a model:\n\nmod &lt;- xds_setup()\nmod &lt;- xds_solve(mod)\n\nmod is called an xds model object."
+  },
+  {
+    "objectID": "demo.html#basic-visualization",
+    "href": "demo.html#basic-visualization",
+    "title": "Demo",
+    "section": "Basic Visualization",
+    "text": "Basic Visualization\nIt’s also easy to visualize the outputs:\n\npar(mfrow = c(1,2))\nxds_plot_EIR(mod)\nxds_plot_PR(mod)"
+  },
+  {
+    "objectID": "model534.html",
+    "href": "model534.html",
+    "title": "The 5-3-4 Model",
+    "section": "",
+    "text": "cat"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "SimBA",
+    "section": "",
+    "text": "This website describes software – a suite R packages available from github – to support Simulation-Based Analytics (SimBA) and research for malaria and other mosquito-borne pathogens. The SimBA software suite was developed around an R package called ramp.xds:\nThe SimBA software suite includes four satellite packages for ramp.xds:\nEach one of the R packages documents its own code, and some vignettes have been written that describe each individual software package. This website, SimBA, extends the package-specific documentation to demonstrate the capabilities of the whole package. The website also discusses some related R packages and other software that were developed by some of us over the years that are not part formally of SimBA."
+  },
+  {
+    "objectID": "index.html#design",
+    "href": "index.html#design",
+    "title": "SimBA",
+    "section": "Design",
+    "text": "Design\nThe SimBA software is based on a rigorous mathematical framework for modular model building for mosquito-transmitted pathogens, published as Spatial Dynamics of Malaria Transmission. It inherits its code base and core ideas from exDE (see below).\nSimBA was designed with several goals:\n\nThe software should lower the costs of building, analyzing, solving, and using dynamical systems models describing the epidemiology, spatial transmission dynamics, and control of malaria and other mosquito-transmitted pathogens.\nThe models should also serve as a basis for exploring mosquito ecology and responses to vector control, with the capability to handle forcing by weather and other exogenous variables.\nThe software should be extensible to facilitate development of models with unbounded complexity. The software should support nimble model building and scalable complexity.\nThe software libraries should eventually include verified code replicating the models from most published studies.\n\nThe vignettes and documents on this website are designed to demonstrate the capabilities of the SimBA suite of R packages."
+  },
+  {
+    "objectID": "index.html#history",
+    "href": "index.html#history",
+    "title": "SimBA",
+    "section": "History",
+    "text": "History\nPublication of Spatial Dynamics of Malaria Transmission was accompanied by a software package called exDE. After publication, we began the work to extend exDE to handle exogenous forcing motivated by the need to understand malaria transmission as a changing baseline that has been modified by malaria control. By April 2024, we had added new features and found good solutions for most of the technical challenges, so we turned our attention to updating MicroMoB, software published before exDE that was developed to handle discrete-time systems. We soon recognized the benefit of merging the two, giving rise to ramp.xds, which is under active development. The two older software packages, exDE and MicroMoB are no longer under active development.\n\nWu SL, et al. (2023) Spatial Dynamics of Malaria Transmission. PLoS Computational Biology 19(6): e1010684."
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "SimBA is maintained by Professor David L Smith"
+  },
+  {
+    "objectID": "model_zoo.html",
+    "href": "model_zoo.html",
+    "title": "Model Zoo",
+    "section": "",
+    "text": "dogs\ncats"
+  },
+  {
+    "objectID": "MicroMoB.html",
+    "href": "MicroMoB.html",
+    "title": "MicroMoB",
+    "section": "",
+    "text": "MicroMoB is an R-package available from github. It was the first R package that we developed with a modular design. MicroMoB is still available from github, but it is not under active development.\nTo install MicroMoB, run the following lines of code in an R session:\n\nlibrary(devtools)\ndevtools::install_github(\"dd-harp/MicroMoB\")\n\nMicroMoB is no longer under active development. It has been superceded by ramp.xds.",
+    "crumbs": [
+      "Home",
+      "R packages",
+      "`MicroMoB`"
     ]
   },
   {
@@ -201,160 +405,60 @@
     ]
   },
   {
-    "objectID": "mosquito_ecology.html",
-    "href": "mosquito_ecology.html",
-    "title": "Mosquito Ecology",
+    "objectID": "ramp.falciparum.html",
+    "href": "ramp.falciparum.html",
+    "title": "ramp.falciparum",
     "section": "",
-    "text": "This is fun",
-    "crumbs": [
-      "Home",
-      "Mosquito Ecology"
-    ]
-  },
-  {
-    "objectID": "about.html",
-    "href": "about.html",
-    "title": "About",
-    "section": "",
-    "text": "Five core software packages comprise SimBA"
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "SimBA",
-    "section": "",
-    "text": "This website describes software – a suite R packages available from github – to support Simulation-Based Analytics (SimBA) and research for malaria and other mosquito-borne pathogens. The SimBA software suite was developed around an R package called ramp.xds:\nThe SimBA software suite includes four satellite packages:\nEach one of the R packages documents its own code, and some vignettes have been written that describe each individual software package. This website, SimBA, extends the package-specific documentation to demonstrate the capabilities of the whole package. The website also discusses some related R packages and other software that were developed by some of us over the years that are not part formally of SimBA."
-  },
-  {
-    "objectID": "index.html#design",
-    "href": "index.html#design",
-    "title": "SimBA",
-    "section": "Design",
-    "text": "Design\nThe SimBA software is based on a rigorous mathematical framework for modular model building for mosquito-transmitted pathogens, published as Spatial Dynamics of Malaria Transmission. It inherits its code base and core ideas from exDE (see below).\nSimBA was designed with several goals:\n\nThe software should lower the costs of building, analyzing, solving, and using dynamical systems models describing the epidemiology, spatial transmission dynamics, and control of malaria and other mosquito-transmitted pathogens.\nThe models should also serve as a basis for exploring mosquito ecology and responses to vector control, with the capability to handle forcing by weather and other exogenous variables.\nThe software should be extensible to facilitate development of models with unbounded complexity. The software should support nimble model building and scalable complexity.\nThe software libraries should eventually include verified code replicating the models from most published studies.\n\nThe vignettes and documents on this website are designed to demonstrate the capabilities of the SimBA suite of R packages."
-  },
-  {
-    "objectID": "index.html#history",
-    "href": "index.html#history",
-    "title": "SimBA",
-    "section": "History",
-    "text": "History\nPublication of Spatial Dynamics of Malaria Transmission was accompanied by a software package called exDE. After publication, we began the work to extend exDE to handle exogenous forcing motivated by the need to understand malaria transmission as a changing baseline that has been modified by malaria control. By April 2024, we had added new features and found good solutions for most of the technical challenges, so we turned our attention to updating MicroMoB, software published before exDE that was developed to handle discrete-time systems. We soon recognized the benefit of merging the two, giving rise to ramp.xds, which is under active development. The two older software packages, exDE and MicroMoB are no longer under active development.\n\nWu SL, et al. (2023) Spatial Dynamics of Malaria Transmission. PLoS Computational Biology 19(6): e1010684."
-  },
-  {
-    "objectID": "model534.html",
-    "href": "model534.html",
-    "title": "The 5-3-4 Model",
-    "section": "",
-    "text": "cat"
-  },
-  {
-    "objectID": "demo.html#my-first-model",
-    "href": "demo.html#my-first-model",
-    "title": "Demo",
-    "section": "My First Model",
-    "text": "My First Model\nWith ramp.xds it’s this easy to build and solve a model:\n\nmod &lt;- xds_setup()\nmod &lt;- xds_solve(mod)\n\nmod is called an xds model object."
-  },
-  {
-    "objectID": "demo.html#basic-visualization",
-    "href": "demo.html#basic-visualization",
-    "title": "Demo",
-    "section": "Basic Visualization",
-    "text": "Basic Visualization\nIt’s also easy to visualize the outputs:\n\npar(mfrow = c(1,2))\nxds_plot_EIR(mod)\nxds_plot_PR(mod)"
-  },
-  {
-    "objectID": "malaria_epidemiology.html",
-    "href": "malaria_epidemiology.html",
-    "title": "Malaria Epidemiology",
-    "section": "",
-    "text": "The",
-    "crumbs": [
-      "Home",
-      "Malaria Epidemiology"
-    ]
-  },
-  {
-    "objectID": "ramp.work.html",
-    "href": "ramp.work.html",
-    "title": "ramp.work",
-    "section": "",
-    "text": "ramp.work is an R-package available from github. To install the latest version of ramp.work from GitHub, run the following lines of code in an R session.\n\nlibrary(devtools)\ndevtools::install_github(\"dd-harp/ramp.work\")\n\nramp.work depends on ramp.xds",
+    "text": "Malaria epidemiology, including exposure, infection, disease, immunity, infectiousness, human behavior and genetics, and malaria diagnostics & detection comprise a difficult and set of issues. Some of this is explored in a software package that implements some ideas and algorithms developed by John Henry as part of his PhD research at the University of Washington.\nThe software is available for download at github: dd-harp/ramp.falciparum\n\nJohn M. Henry. PhD Thesis. University of Washington, 2023. The Age of Infection: A Semi-Markov Framework for Developing Mechanistic Models of Malaria Epidemiology",
     "crumbs": [
       "Home",
       "R packages",
-      "`ramp.work`"
+      "`ramp.falciparum`"
     ]
   },
   {
-    "objectID": "ramp.xds.html",
-    "href": "ramp.xds.html",
-    "title": "ramp.xds",
+    "objectID": "ramp.micro.html",
+    "href": "ramp.micro.html",
+    "title": "ramp.micro",
     "section": "",
-    "text": "ramp.xds is an R-package available from github. To install the latest version of ramp.xds from GitHub, run the following lines of code in an R session.\n\nlibrary(devtools)\ndevtools::install_github(\"dd-harp/ramp.xds\")\n\nA good place to get started is the ramp.xds vignette Getting Started.",
+    "text": "We have developed software to implement microsimulation for mosquitoes and transmission. It is available from github: dd-harp/ramp.micro\n\n\nSee: Perkins TA, Scott TW, Le Menach A, Smith DL (2013) Heterogeneity, Mixing, and the Spatial Scales of Mosquito-Borne Pathogen Transmission. PLoS Comput Biol 9(12): e1003327.",
     "crumbs": [
       "Home",
       "R packages",
-      "`ramp.xds`"
+      "`ramp.micro`"
     ]
   },
   {
-    "objectID": "ramp.forcing.html",
-    "href": "ramp.forcing.html",
-    "title": "ramp.forcing",
+    "objectID": "scaling.html",
+    "href": "scaling.html",
+    "title": "Scaling Relationships",
     "section": "",
-    "text": "ramp.forcing is an R-package available from github. To install the latest version of ramp.forcing from GitHub, run the following lines of code in an R session.\n\nlibrary(devtools)\ndevtools::install_github(\"dd-harp/ramp.forcing\")\n\nramp.forcing depends on ramp.xds",
+    "text": "Load the required packages:\nlibrary(ramp.xds)\nlibrary(ramp.library)\nlibrary(ramp.work)\nlibrary(deSolve)\nlibrary(rootSolve)\nlibrary(graphics)",
     "crumbs": [
       "Home",
-      "R packages",
-      "`ramp.forcing`"
+      "Scaling Relationships"
     ]
   },
   {
-    "objectID": "hybrid_models.html",
-    "href": "hybrid_models.html",
-    "title": "Hybrid Models",
-    "section": "",
-    "text": "library(ramp.falciparum)",
+    "objectID": "scaling.html#xde_scaling",
+    "href": "scaling.html#xde_scaling",
+    "title": "Scaling Relationships",
+    "section": "xde_scaling",
+    "text": "xde_scaling\nThe function xde_scaling() defines the relationship between the EIR and the PR, and it outputs stable orbits for each value of aEIR in a mesh from \\(10^{-1}\\) up to \\(10^{3}\\)\nThe cohort trace functions in ramp.xds take the form of F(a, bday=0, scale=1).\n\ntt &lt;- seq(0, 730, by=5) \np1 &lt;- makepar_F_sin(floor=0.1)\nFsin &lt;- make_function(p1)\nplot(tt, Fsin(tt), type=\"l\")\n\n\n\n\n\n\n\n\n\nxds_setup_cohort(Xname = \"SIS\", F_season=Fsin) -&gt; sis\n\n\nxds_solve_cohort(sis) -&gt; sis\n\n\nxde_scaling_eir(sis, 25) -&gt; sis\n\n\nplot_eirpr(sis)\n\n\n\n\n\n\n\n\n\nrequire(viridis)\n\nLoading required package: viridis\n\n\nLoading required package: viridisLite\n\nclrs = turbo(25)\n\n\nplot_eirpr(sis)\n\nwith(sis$output$eirpr,{\n  points(aeir, pr, col = clrs)\n  lines(scaling[[5]]$aeir, scaling[[5]]$pr, col = clrs[5])\n  lines(scaling[[10]]$aeir, scaling[[10]]$pr, col = clrs[10])\n  lines(scaling[[15]]$aeir, scaling[[15]]$pr, col = clrs[15])\n  lines(scaling[[20]]$aeir, scaling[[20]]$pr, col = clrs[20])\n})",
     "crumbs": [
       "Home",
-      "Malaria Epidemiology",
-      "Hybrid Models"
+      "Scaling Relationships"
     ]
   },
   {
-    "objectID": "model_zoo.html",
-    "href": "model_zoo.html",
-    "title": "Model Zoo",
-    "section": "",
-    "text": "dogs\ncats"
-  },
-  {
-    "objectID": "MicroMoB.html",
-    "href": "MicroMoB.html",
-    "title": "MicroMoB",
-    "section": "",
-    "text": "MicroMoB is an R-package available from github. It was the first R package that we developed with a modular design. MicroMoB is still available from github, but it is not under active development.\nTo install MicroMoB, run the following lines of code in an R session:\n\nlibrary(devtools)\ndevtools::install_github(\"dd-harp/MicroMoB\")\n\nMicroMoB is no longer under active development. It has been superceded by ramp.xds.",
+    "objectID": "scaling.html#scaling-1",
+    "href": "scaling.html#scaling-1",
+    "title": "Scaling Relationships",
+    "section": "Scaling",
+    "text": "Scaling\n\nSeasonality\n\nsis0 &lt;- xds_setup_cohort(Xname = \"SIS\", F_season = Fsin)\nxde_scaling_eir(sis0, 25) -&gt; sis0\n\n\nclrs = turbo(25)\nwith(sis$outputs$eirpr, plot(aeir, pr, type = \"l\", log = \"x\", xaxt= \"n\", xlab = \"aEIR\", ylab = \"PR\"))\naxis(1, 10^(-1:3), c(0.1, 1, 10, 100, 1000))\nlines(sis$outputs$eirpr$aeir, sis0$outputs$eirpr$pr, col = \"tomato\", lwd=2) \n\nwith(sis0$outputs$eirpr, points(aeir, pr, col = clrs))\nwith(sis0$outputs$eirpr, lines(scaling[[5]]$aeir, scaling[[5]]$pr, col = clrs[5]))\nwith(sis0$outputs$eirpr, lines(scaling[[10]]$aeir, scaling[[10]]$pr, col = clrs[10]))\nwith(sis0$outputs$eirpr, lines(scaling[[15]]$aeir, scaling[[15]]$pr, col = clrs[15]))\nwith(sis0$outputs$eirpr, lines(scaling[[20]]$aeir, scaling[[20]]$pr, col = clrs[20]))\n\n\n\nDrug taking\n\nsip = xds_setup_cohort(Xname = \"SIP\", F_season=Fsin)\nsip$Xpar[[1]]$eta = 1/40\nxde_scaling_eir(sip, 25) -&gt; sip\n\n\nsip1 = setup_exposure_nb(sip, 1/50)\nxde_scaling_eir(sip1, 25) -&gt; sip1\n\n\nwith(sis$outputs$eirpr, plot(aeir, pr, type = \"l\", log = \"x\", xaxt= \"n\", xlab = \"aEIR\", ylab = \"PR\"))\naxis(1, 10^(-1:3), c(0.1, 1, 10, 100, 1000))\nwith(sip$outputs$eirpr, lines(aeir, pr, col = \"darkorange\"))\nwith(sip1$outputs$eirpr, lines(aeir, pr, col = \"brown\"))\n\n\n\nTravel\n\nsis5 &lt;- setup_static_travel(sis, 0.05)\nsis5 &lt;- setup_travel_eir(sis5,  travelEIR = 5/365)\n\nxde_scaling_eir(sis5, 25) -&gt; sis5\n\n\nwith(sis$outputs$eirpr, plot(aeir, pr, type = \"l\", log = \"x\", xaxt= \"n\", xlab = \"aEIR\", ylab = \"PR\"))\naxis(1, 10^(-1:3), c(0.1, 1, 10, 100, 1000))\nwith(sis5$outputs$eir, lines(aeir, pr, col = \"darkgreen\"))",
     "crumbs": [
       "Home",
-      "R packages",
-      "`MicroMoB`"
-    ]
-  },
-  {
-    "objectID": "Contributors.html",
-    "href": "Contributors.html",
-    "title": "Contributors",
-    "section": "",
-    "text": "Professor David L Smith\nSean L Wu\nSophie Libkind\nJuliet Nsumba Nakakawa\nDoreen Mbabazi Ssebuliba"
-  },
-  {
-    "objectID": "ramp.control.html",
-    "href": "ramp.control.html",
-    "title": "ramp.control",
-    "section": "",
-    "text": "ramp.control is an R-package available from github. It extends ramp.xds with algorithms and functions to model the distribution, effects and sizes of various forms of vector control.\nTo install the latest version of ramp.control from GitHub, run the following lines of code in an R session.\n\nlibrary(devtools)\ndevtools::install_github(\"dd-harp/ramp.control\")\n\nramp.control depends on ramp.xds",
-    "crumbs": [
-      "Home",
-      "R packages",
-      "`ramp.control`"
+      "Scaling Relationships"
     ]
   },
   {
@@ -394,51 +498,14 @@
     ]
   },
   {
-    "objectID": "macdonald.html#macdonalds-mosquito-model",
-    "href": "macdonald.html#macdonalds-mosquito-model",
-    "title": "Macdonald’s Model",
-    "section": "Macdonald’s Mosquito Model",
-    "text": "Macdonald’s Mosquito Model\nIf Macdonald’s analysis were presented as a mathematical model, it would almost certainly look something like the following. Consider a simple system of differential equations the sporozoite rate has three parameters and one term:\n\nthe human blood feeding rate, \\(a\\)\nthe extrinsic incubation period, \\(\\tau\\)\nthe mosquito death rate, \\(g\\); or the probability of surviving one day, \\(p=e^{-g}\\), so \\(g=-\\ln p\\)\nthe fraction of bites on humans that infect a mosquito, \\(\\kappa\\)\n\nLet \\(y\\) denote the fraction of mosquitoes that are infected. The dynamics are given by: \\[\\frac{dy}{dt} = a \\kappa (1-y) - g y\\] Let \\(z\\) denote the fraction of mosquitoes that are infectious. The model is a delay differential equation. Let \\(y_\\tau\\) denote the value of \\(y\\) at time \\(t-\\tau.\\) If the parameters and terms are constant, then:\n\\[\\frac{dz}{dt} = e^{-g\\tau} a \\kappa (1-y_\\tau) - g z\\] The model has a steady state for the fraction infected: \\[\\bar y = \\frac{a \\kappa} {a \\kappa + g}\\] The fraction infectious, also called the sporozoite rate, is \\[\\bar z = \\frac{a \\kappa} {a \\kappa + g}e^{-g\\tau}.\\] Macdonald used \\(p\\) so his formula was: \\[\\bar z = \\frac{a \\kappa} {a \\kappa -\\ln p}e^{-p\\tau}\\]\nTo generate the formula for \\(R_0,\\) Macdonald introduces another variable and three additional parameters:\n\nthe ratio of mosquitoes to humans, \\(m\\)\nthe rate infections clear, \\(r\\)\nthe fraction of infectious bites that infect a human, \\(b\\)\n\nThe fraction of infected and infectious humans, \\(x,\\) is given by the equation:\n\\[\\frac{dx}{dt} = m a z (1-y) - r x\\] and the model assumes that \\(\\kappa = x.\\) The formula for \\(R_0\\) in this system is: \\[R_0 = \\frac{m b a^2}{gr} e^{-g\\tau} = \\frac{m b a^2}{(-\\ln p)r} e^{-p\\tau}\\] In this form, Macdonald’s model is difficult to use or extend.",
+    "objectID": "scaling.html#scaling",
+    "href": "scaling.html#scaling",
+    "title": "Scaling Relationships",
+    "section": "Scaling",
+    "text": "Scaling\n\nSeasonality\n\nsis0 &lt;- xds_setup_cohort(Xname = \"SIS\", F_season = Fsin)\nxde_scaling_eir(sis0, 25) -&gt; sis0\n\n\nclrs = turbo(25)\nwith(sis$outputs$eirpr, plot(aeir, pr, type = \"l\", log = \"x\", xaxt= \"n\", xlab = \"aEIR\", ylab = \"PR\"))\naxis(1, 10^(-1:3), c(0.1, 1, 10, 100, 1000))\nlines(sis$outputs$eirpr$aeir, sis0$outputs$eirpr$pr, col = \"tomato\", lwd=2) \n\nwith(sis0$outputs$eirpr, points(aeir, pr, col = clrs))\nwith(sis0$outputs$eirpr, lines(scaling[[5]]$aeir, scaling[[5]]$pr, col = clrs[5]))\nwith(sis0$outputs$eirpr, lines(scaling[[10]]$aeir, scaling[[10]]$pr, col = clrs[10]))\nwith(sis0$outputs$eirpr, lines(scaling[[15]]$aeir, scaling[[15]]$pr, col = clrs[15]))\nwith(sis0$outputs$eirpr, lines(scaling[[20]]$aeir, scaling[[20]]$pr, col = clrs[20]))\n\n\n\nDrug taking\n\nsip = xds_setup_cohort(Xname = \"SIP\", F_season=Fsin)\nsip$Xpar[[1]]$eta = 1/40\nxde_scaling_eir(sip, 25) -&gt; sip\n\n\nsip1 = setup_exposure_nb(sip, 1/50)\nxde_scaling_eir(sip1, 25) -&gt; sip1\n\n\nwith(sis$outputs$eirpr, plot(aeir, pr, type = \"l\", log = \"x\", xaxt= \"n\", xlab = \"aEIR\", ylab = \"PR\"))\naxis(1, 10^(-1:3), c(0.1, 1, 10, 100, 1000))\nwith(sip$outputs$eirpr, lines(aeir, pr, col = \"darkorange\"))\nwith(sip1$outputs$eirpr, lines(aeir, pr, col = \"brown\"))\n\n\n\nTravel\n\nsis5 &lt;- setup_static_travel(sis, 0.05)\nsis5 &lt;- setup_travel_eir(sis5,  travelEIR = 5/365)\n\nxde_scaling_eir(sis5, 25) -&gt; sis5\n\n\nwith(sis$outputs$eirpr, plot(aeir, pr, type = \"l\", log = \"x\", xaxt= \"n\", xlab = \"aEIR\", ylab = \"PR\"))\naxis(1, 10^(-1:3), c(0.1, 1, 10, 100, 1000))\nwith(sis5$outputs$eir, lines(aeir, pr, col = \"darkgreen\"))",
     "crumbs": [
       "Home",
-      "Transmission",
-      "Macdonald's Model"
-    ]
-  },
-  {
-    "objectID": "macdonald.html#mosquito-model",
-    "href": "macdonald.html#mosquito-model",
-    "title": "Macdonald’s Model",
-    "section": "Mosquito Model",
-    "text": "Mosquito Model\nIf Macdonald’s analysis were presented as a mathematical model, it would almost certainly look something like the following. Consider a simple system of differential equations the sporozoite rate has three parameters and one term:\n\nthe human blood feeding rate, \\(a\\)\nthe extrinsic incubation period, \\(\\tau\\)\nthe mosquito death rate, \\(g\\); or the probability of surviving one day, \\(p=e^{-g}\\), so \\(g=-\\ln p\\)\nthe fraction of bites on humans that infect a mosquito, \\(x\\)\n\nLet \\(y\\) denote the fraction of mosquitoes that are infected. The dynamics are given by: \\[\\frac{dy}{dt} = a x (1-y) - g y\\] Let \\(z\\) denote the fraction of mosquitoes that are infectious. The model is a delay differential equation. Let \\(y_\\tau\\) denote the value of \\(y\\) at time \\(t-\\tau.\\) If the parameters and terms are constant, then:\n\\[\\frac{dz}{dt} = e^{-g\\tau} a x (1-y_\\tau) - g z\\] The model has a steady state for the fraction infected: \\[\\bar y = \\frac{a x} {a x + g}\\] The fraction infectious, also called the sporozoite rate, is \\[\\bar z = \\frac{a x} {a x + g}e^{-g\\tau}.\\] Macdonald used \\(p\\) so his formula was: \\[\\bar z = \\frac{a x} {a x -\\ln p}e^{-p\\tau}\\]",
-    "crumbs": [
-      "Home",
-      "Transmission",
-      "Macdonald's Model"
-    ]
-  },
-  {
-    "objectID": "macdonald.html#r_0",
-    "href": "macdonald.html#r_0",
-    "title": "Macdonald’s Model",
-    "section": "\\(R_0\\)",
-    "text": "\\(R_0\\)\nTo generate the formula for \\(R_0,\\) we need another equation, coupled to the first, to model infection dynamics in humans. Macdonald had introduced a model for superinfection in 1950, but under the conditions that were relevant for \\(R_0,\\) his model reduced to a standard SIS compartmental model. To formulate that model here, we need three additional parameters:\n\nthe ratio of mosquitoes to humans, \\(m\\)\nthe rate infections clear, \\(r\\)\nthe fraction of infectious bites that infect a human, \\(b\\)\n\nThe fraction of infected and infectious humans, \\(x,\\) is given by the equation:\n\\[\\frac{dx}{dt} = m a z (1-y) - r x.\\] Notably, the model assumes that the fraction of mosquitoes becoming infected after blood feeding on a human is \\(x.\\) The formula for \\(R_0\\) in this system is: \\[R_0 = \\frac{m b a^2}{gr} e^{-g\\tau} = \\frac{m b a^2}{(-\\ln p)r} e^{-p\\tau}\\]\nIn this form, Macdonald’s model is difficult to use and extend.",
-    "crumbs": [
-      "Home",
-      "Transmission",
-      "Macdonald's Model"
-    ]
-  },
-  {
-    "objectID": "macdonald.html#the-macdonald-module",
-    "href": "macdonald.html#the-macdonald-module",
-    "title": "Macdonald’s Model",
-    "section": "The macdonald Module",
-    "text": "The macdonald Module\nThe module called macdonald has been extended beyond the Aron & May formulation to include spatial dynamics and parity. To formulate the spatial model, a spatial domain is sub-divided into a set of patches. Variable and parameter names do not change, but they can now represent vectors of length \\(n_p.\\) To formulate the demographic matrix, denoted \\(\\Omega,\\) that describes mosquito mortality, emigration, and other loss from the system. We let \\(\\sigma\\) denote the emigration rate and \\(\\cal K\\) the mosquito dispersal matrix. We also introduce a parameter, \\(\\mu\\) to model the fraction of mosquitoes that are lost to emigration from each patch. \\[\\Omega = \\mbox{diag} \\left(g\\right) + \\left(\\mbox{diag} \\left(1-\\mu\\right)  - \\cal K\\right) \\cdot \\mbox{diag} \\left(\\sigma\\right)\n\\]\n\nDynamics\n\\[\\begin{array}{rl}\n\\dot{M} & = \\Lambda - \\Omega\\cdot M  \\\\\n\\dot{P} & = \\mbox{diag}(f) \\cdot (M-P) -  \\Omega \\cdot P\\\\\n\\dot{Y} & = \\mbox{diag}(fq\\kappa) \\cdot (M-Y) - \\Omega \\cdot Y \\\\\n\\dot{Z} & =\n\\dot{Z} = e^{-\\Omega \\tau} \\cdot \\mbox{diag}(fq\\kappa_{t-\\tau}) \\cdot (M_{t-\\tau}-Y_{t-\\tau}) - \\Omega \\cdot Z\n\\end{array}\n\\]",
-    "crumbs": [
-      "Home",
-      "Transmission",
-      "Macdonald's Model"
+      "Scaling Relationships"
     ]
   }
 ]

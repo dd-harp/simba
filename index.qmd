@@ -5,11 +5,11 @@ subtitle: "**Software for Sim**ulation-**B**ased **A**nalytics for Malaria and o
 
 This website describes software -- a suite R packages available from github --  to support **Sim**ulation-**B**ased **A**nalytics (**SimBA**) and research for malaria and other mosquito-borne pathogens. The **SimBA** software suite was developed around an R package called [**`ramp.xds`**](ramp.xds.html): 
 
-+ `ramp` stands for **R**obust **A**nalytics for **M**alaria **P**olicy. RAMP is a set of concepts and workflows that use **SimBA** software for Adaptive Malaria Control. 
++ `ramp` stands for **R**obust **A**nalytics for **M**alaria **P**olicy (RAMP). RAMP is a bespoke inferential system for malaria policy, a broad set of concepts and workflows designed around **SimBA** software to develop [Robust Analytics for Adaptive Malaria Control](https://faculty.washington.edu/smitdave/ramp/_site/index.html). 
 
 + `xds` stands for *e**X**tensible **D**ynamical **S**ystems* 
 
-The **SimBA** software suite includes four satellite packages: 
+The **SimBA** software suite includes four satellite packages for **`ramp.xds`**: 
 
 + [**`ramp.library`**](ramp.library.html) is a code library for **`ramp.xds`** with model families or modules for the core dynamical components.  
 

@@ -53,3 +53,5 @@ rsconnect/
 /_site
 _site/about.html
 /_site
+/_site
+*.html

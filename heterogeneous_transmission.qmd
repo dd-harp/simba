@@ -1,0 +1,19 @@
+---
+title: "Heterogeneous Transmission"
+---
+
++ Infectiousness 
+
++ Search weights and relative biting rates
+
++ Heterogeneity and thresholds
+
++ Heterogeneous mosquito populations
+
++ Environmental heterogeneity
+
++ Mixing
+
+    - Dispersal by Mosquitoes
+    
+    - Dispersal by Humans

@@ -13,6 +13,7 @@ website:
         menu:
         - model534.qmd 
       - Contributors.qmd
+      - about.qmd
   sidebar:
     -title: "Software"
     style: "docked"
@@ -31,18 +32,22 @@ website:
           - MicroMoB.qmd
       - section: model_building.qmd 
         contents:
+          - nimble.qmd
           - progressive.qmd
-      - section: malaria_intelligence.qmd 
+      - section: scaling.qmd 
         contents:
-          - scaling.qmd
+          - scaling-environmental_heterogeneity.qmd
+          - href: scaling-seasonality.html
+            text: "Seasonality"
       - section: malaria_epidemiology.qmd 
         contents:
           - hybrid_models.qmd
       - section: transmission.qmd  
         contents:
           - blood_feeding.qmd
-          - behavioral_states.qmd
+          - heterogeneous_transmission.qmd
           - macdonald.qmd
+          - behavioral_states.qmd
       - section: mosquito_ecology.qmd 
         contents:
           - egg_laying.qmd
@@ -52,6 +57,8 @@ format:
     theme: simplex 
     css: styles.css
     toc: true
+    grid: 
+      sidebar-width: 350px 
 
 editor: visual
 
