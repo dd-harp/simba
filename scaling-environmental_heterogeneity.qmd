@@ -9,7 +9,7 @@ library(ramp.work)
 ```
 
 ```{r sis}
-xds_setup_cohort(Xname = "SIS") -> sis
+load("sis.rda")
 ```
 
 ```{r}
@@ -17,7 +17,6 @@ sis_het <- setup_exposure_nb(sis, 1/50)
 ```
 
 ```{r scaling}
-xde_scaling_eir(sis, 25) -> sis
 xde_scaling_eir(sis_het, 25) -> sis_het
 ```
 

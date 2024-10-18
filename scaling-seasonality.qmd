@@ -2,3 +2,43 @@
 title: "Scaling Relationships"
 subtitle: "Seasonality"
 ---
+
+```{r}
+library(ramp.xds)
+library(ramp.library)
+library(ramp.work)
+```
+
+
+```{r}
+load("sis.rda")
+```
+
+```{r}
+sin_par1 <- makepar_F_sin(floor=0.2)
+F_s1 = make_function(sin_par1)
+sis_seas1 <- xds_setup_cohort(Xname = "SIS", F_season = F_s1) 
+```
+
+```{r}
+xde_scaling_eir(sis_seas1, 25) -> sis_seas1
+```
+
+
+```{r}
+require(viridis)
+clrs = turbo(25)
+```
+
+```{r, fig.height=3.5, fig.width=5}
+plot_eirpr(sis, grey(0.5))
+lines_eirpr(sis_seas1, "darkblue")
+
+with(sis_seas1$output$eirpr,{
+  points(aeir, pr, col = clrs)
+  lines(scaling[[5]]$aeir, scaling[[5]]$pr, col = clrs[5])
+  lines(scaling[[10]]$aeir, scaling[[10]]$pr, col = clrs[10])
+  lines(scaling[[15]]$aeir, scaling[[15]]$pr, col = clrs[15])
+  lines(scaling[[20]]$aeir, scaling[[20]]$pr, col = clrs[20])
+})
+```

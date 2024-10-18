@@ -18,6 +18,7 @@ website:
     -title: "Software"
     style: "docked"
     search: true
+    collapse-level: 1
     contents:
       - section: Rpackages.qmd 
         contents:
@@ -36,9 +37,14 @@ website:
           - progressive.qmd
       - section: scaling.qmd 
         contents:
-          - scaling-environmental_heterogeneity.qmd
+          - href: scaling-drugs.html
+            text: "Anti-Malarial Drugs"
           - href: scaling-seasonality.html
             text: "Seasonality"
+          - href: scaling-environmental_heterogeneity.html
+            text: "Environmental Heterogeneity"
+          - href: scaling-malaria_importation.html
+            text: "Travel Malaria"
       - section: malaria_epidemiology.qmd 
         contents:
           - hybrid_models.qmd

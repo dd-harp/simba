@@ -251,11 +251,11 @@
     "href": "scaling-environmental_heterogeneity.html",
     "title": "Scaling Relationships",
     "section": "",
-    "text": "library(ramp.xds)\nlibrary(ramp.work)\n\n\nxds_setup_cohort(Xname = \"SIS\") -&gt; sis\n\n\nsis_het &lt;- setup_exposure_nb(sis, 1/50)\n\n\nxde_scaling_eir(sis, 25) -&gt; sis\nxde_scaling_eir(sis_het, 25) -&gt; sis_het\n\n\nplot_eirpr(sis)\nlines_eirpr(sis_het, \"darkblue\")",
+    "text": "library(ramp.xds)\nlibrary(ramp.work)\n\n\nload(\"sis.rda\")\n\n\nsis_het &lt;- setup_exposure_nb(sis, 1/50)\n\n\nxde_scaling_eir(sis_het, 25) -&gt; sis_het\n\n\nplot_eirpr(sis)\nlines_eirpr(sis_het, \"darkblue\")",
     "crumbs": [
       "Home",
       "Scaling Relationships",
-      "Scaling Relationships"
+      "Environmental Heterogeneity"
     ]
   },
   {
@@ -444,7 +444,7 @@
     "href": "scaling.html#xde_scaling",
     "title": "Scaling Relationships",
     "section": "xde_scaling",
-    "text": "xde_scaling\nThe function xde_scaling() defines the relationship between the EIR and the PR, and it outputs stable orbits for each value of aEIR in a mesh from \\(10^{-1}\\) up to \\(10^{3}\\)\nThe cohort trace functions in ramp.xds take the form of F(a, bday=0, scale=1).\n\ntt &lt;- seq(0, 730, by=5) \np1 &lt;- makepar_F_sin(floor=0.1)\nFsin &lt;- make_function(p1)\nplot(tt, Fsin(tt), type=\"l\")\n\n\n\n\n\n\n\n\n\nxds_setup_cohort(Xname = \"SIS\", F_season=Fsin) -&gt; sis\n\n\nxds_solve_cohort(sis) -&gt; sis\n\n\nxde_scaling_eir(sis, 25) -&gt; sis\n\n\nplot_eirpr(sis)\n\n\n\n\n\n\n\n\n\nrequire(viridis)\n\nLoading required package: viridis\n\n\nLoading required package: viridisLite\n\nclrs = turbo(25)\n\n\nplot_eirpr(sis)\n\nwith(sis$output$eirpr,{\n  points(aeir, pr, col = clrs)\n  lines(scaling[[5]]$aeir, scaling[[5]]$pr, col = clrs[5])\n  lines(scaling[[10]]$aeir, scaling[[10]]$pr, col = clrs[10])\n  lines(scaling[[15]]$aeir, scaling[[15]]$pr, col = clrs[15])\n  lines(scaling[[20]]$aeir, scaling[[20]]$pr, col = clrs[20])\n})",
+    "text": "xde_scaling\nThe function xde_scaling() defines the relationship between the EIR and the PR, and it outputs stable orbits for each value of aEIR in a mesh from \\(10^{-1}\\) up to \\(10^{3}\\)\n\nxds_setup_cohort(Xname = \"SIS\") -&gt; sis\n\n\nxde_scaling_eir(sis, 25) -&gt; sis\n\n\nplot_eirpr(sis)",
     "crumbs": [
       "Home",
       "Scaling Relationships"
@@ -507,5 +507,48 @@
       "Home",
       "Scaling Relationships"
     ]
+  },
+  {
+    "objectID": "scaling-malaria_importation.html",
+    "href": "scaling-malaria_importation.html",
+    "title": "Scaling Relationships",
+    "section": "",
+    "text": "library(ramp.xds)\nlibrary(ramp.work)\n\n\nload(\"sis.rda\")\n\n\nsis_trv &lt;- sis \nsis_trv &lt;- setup_travel_eir(sis_trv, 5/365)\nsis_trv &lt;- setup_static_travel(sis_trv, 0.05, 1) \n\n\nxde_scaling_eir(sis_trv, 25) -&gt; sis_trv\n\n\nplot_eirpr(sis, grey(.8))\nlines_eirpr(sis_trv, \"darkgreen\")",
+    "crumbs": [
+      "Home",
+      "Scaling Relationships",
+      "Travel Malaria"
+    ]
+  },
+  {
+    "objectID": "scaling-seasonality.html",
+    "href": "scaling-seasonality.html",
+    "title": "Scaling Relationships",
+    "section": "",
+    "text": "library(ramp.xds)\nlibrary(ramp.library)\nlibrary(ramp.work)\n\n\nload(\"sis.rda\")\n\n\nsin_par1 &lt;- makepar_F_sin(floor=0.2)\nF_s1 = make_function(sin_par1)\nsis_seas1 &lt;- xds_setup_cohort(Xname = \"SIS\", F_season = F_s1) \n\n\nxde_scaling_eir(sis_seas1, 25) -&gt; sis_seas1\n\n\nrequire(viridis)\n\nLoading required package: viridis\n\n\nLoading required package: viridisLite\n\nclrs = turbo(25)\n\n\nplot_eirpr(sis, grey(0.5))\nlines_eirpr(sis_seas1, \"darkblue\")\n\nwith(sis_seas1$output$eirpr,{\n  points(aeir, pr, col = clrs)\n  lines(scaling[[5]]$aeir, scaling[[5]]$pr, col = clrs[5])\n  lines(scaling[[10]]$aeir, scaling[[10]]$pr, col = clrs[10])\n  lines(scaling[[15]]$aeir, scaling[[15]]$pr, col = clrs[15])\n  lines(scaling[[20]]$aeir, scaling[[20]]$pr, col = clrs[20])\n})",
+    "crumbs": [
+      "Home",
+      "Scaling Relationships",
+      "Seasonality"
+    ]
+  },
+  {
+    "objectID": "scaling-drugs.html",
+    "href": "scaling-drugs.html",
+    "title": "Scaling Relationships",
+    "section": "",
+    "text": "library(ramp.xds)\nlibrary(ramp.library)\nlibrary(ramp.work)\n\n\nload(\"sis.rda\")\n\n\nXo = list(xi=2/365, rho=0.1)\nsip &lt;- xds_setup_cohort(Xname = \"SIP\", Xopts=Xo)\n\n\nsip &lt;- xds_setup_cohort(Xname = \"SIP\", Xopts=Xo)\nxde_scaling_eir(sip, 25) -&gt; sip \n\n\nsipd &lt;- xds_setup_cohort(Xname = \"SIPd\", Xopts=Xo)\nxde_scaling_eir(sipd, 25) -&gt; sipd \n\n\nplot_eirpr(sis, grey(.8))\nlines_eirpr(sip, \"darkviolet\")\nlines_eirpr(sipd, \"darkblue\")",
+    "crumbs": [
+      "Home",
+      "Scaling Relationships",
+      "Anti-Malarial Drugs"
+    ]
+  },
+  {
+    "objectID": "scaling-heterogeneous_biting.html",
+    "href": "scaling-heterogeneous_biting.html",
+    "title": "Scaling",
+    "section": "",
+    "text": "library(ramp.xds)\nlibrary(ramp.library)\nlibrary(ramp.work)"
   }
 ]

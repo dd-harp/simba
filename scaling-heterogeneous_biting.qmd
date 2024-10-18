@@ -1,0 +1,11 @@
+---
+title: "Scaling Relationships"
+subtitle: "Heterogeneous Biting"
+---
+
+
+```{r}
+library(ramp.xds)
+library(ramp.library)
+library(ramp.work)
+```

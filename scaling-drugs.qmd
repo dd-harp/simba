@@ -1,0 +1,57 @@
+---
+title: "Scaling Relationships"
+subtitle: "Antimalarial Drugs"
+---
+
+
+```{r}
+library(ramp.xds)
+library(ramp.library)
+library(ramp.work)
+```
+
+```{r sis}
+load("sis.rda")
+```
+
+```{r}
+Xo = list(xi=2/365, rho=0.1)
+sip <- xds_setup_cohort(Xname = "SIP", Xopts=Xo)
+```
+
+```{r, eval=F}
+sip <- xds_setup_cohort(Xname = "SIP", Xopts=Xo)
+xde_scaling_eir(sip, 25) -> sip 
+```
+
+```{r sip scaling, echo=F}
+if(file.exists("sip.rda")){
+  load("sip.rda")
+} else {
+  sip <- xds_setup_cohort(Xname = "SIP", Xopts=Xo)
+  xde_scaling_eir(sip, 25) -> sip 
+  save(sip, file="sip.rda")
+}
+```
+
+```{r, eval=F}
+sipd <- xds_setup_cohort(Xname = "SIPd", Xopts=Xo)
+xde_scaling_eir(sipd, 25) -> sipd 
+```
+
+
+```{r sipd scaling, echo=F}
+if(file.exists("sipd.rda")){
+  load("sipd.rda")
+} else {
+  sipd <- xds_setup_cohort(Xname = "SIPd", Xopts=Xo)
+  xde_scaling_eir(sipd, 25) -> sipd 
+  save(sipd, file="sipd.rda")
+}
+```
+
+```{r}
+plot_eirpr(sis, grey(.8))
+lines_eirpr(sip, "darkviolet")
+lines_eirpr(sipd, "darkblue")
+```

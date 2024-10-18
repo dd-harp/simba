@@ -1,0 +1,30 @@
+---
+title: "Scaling Relationships"
+subtitle: "Travel Malaria"
+---
+
+```{r}
+library(ramp.xds)
+library(ramp.work)
+```
+
+```{r sis}
+load("sis.rda")
+```
+
+
+```{r}
+sis_trv <- sis 
+sis_trv <- setup_travel_eir(sis_trv, 5/365)
+sis_trv <- setup_static_travel(sis_trv, 0.05, 1) 
+```
+
+```{r}
+xde_scaling_eir(sis_trv, 25) -> sis_trv
+```
+
+```{r}
+plot_eirpr(sis, grey(.8))
+lines_eirpr(sis_trv, "darkgreen")
+```
+
