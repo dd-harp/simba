@@ -2,18 +2,38 @@
 title: "Heterogeneous Transmission"
 ---
 
-+ Infectiousness 
+-   Infectiousness
 
-+ Search weights and relative biting rates
+-   Search weights and relative biting rates
 
-+ Heterogeneity and thresholds
+-   Heterogeneity and thresholds
 
-+ Heterogeneous mosquito populations
+-   Heterogeneous mosquito populations
 
-+ Environmental heterogeneity
+-   Environmental heterogeneity
 
-+ Mixing
+-   Mixing
 
-    - Dispersal by Mosquitoes
-    
-    - Dispersal by Humans
+    -   Dispersal by Mosquitoes
+
+    -   Dispersal by Humans
+
+### Mosquitoes
+
+We assume mosquito density within a given spatial domain is highly spatially heterogeneous. We let $Z_i(t)$ denote a vector of functions describing the expected density of mosquitoes over time in the $i^{th}$ patch. For this analysis, we assume that $Z_i(t) =Z_i(t+365)$ for all patches (there is a canonical seasonal signal with no trend across years). Mosquito density is highly heterogeneous within a patch over time, and it can vary enormously among patches and throughout the year. We also assume the number of humans and other blood hosts varies over time. 
+
+### Heterogeneous Local Exposure
+
+A human population is subdivided into multiple strata, $H$. We think of each stratum as having a home, or a residence where they spend their time, but they move around, spending time among the patches. Each stratum also has a *search weight* that describes how available they are to blood feeding mosquitoes, and a vector describes time spent in the patches by time of day. Since blood feeding activity can vary over the course of a day, time spent by time of day is converted into time at risk, which is a matrix $\Psi(t).$ Human availability is $$W= \Psi \cdot w H$$
+Other hosts may also be available (denoted $O$), and blood feeding rates by mosquitoes are computed as a function of availability: $$f(t) = F_f(W(t)+O(t))$$ and bites are allocated in proportion to  availability so the human fraction: $$q(t) = \frac{W(t)}{W(t)+O(t)}$$ From these assumptions, we can generate the expected daily EIR by computing a matrix, $\beta$. The daily EIR in the strata is $$E(t) = \beta(t) \cdot  f(t)\; q(t)\; Z(t)$$
+The dEIR is thus computed as an interaction among humans and mosquitoes.  
+
+While $E(t)$ returns a vector describing the *expected* number of infected bites per person over time. We are also interested in its *distribution* of $E(t)$for a homogenous population stratum.  We imagine that human exposure is actually quite noisy. On the one hand, mosquito populations are distributed heterogeneously within a patch and over time, driven by wind, searching, resources and other factors. Similarly, human time spent can vary over time. We imagine that blood feeding rates vary among individuals depending on the *specific* path they walked during a day, as well as the number of other humans who were also available. This heterogeneity involving encounters between humans and mosquitoes is called *environmental heterogeneity.* 
+
+The mathematical formulation for environmental heterogeneity assumes that $E(t)$ has a distribution for an otherwise homogeneous population stratum. The null assumption is that $E(t)$ has no variance; in this case, the number of bites per person would be a Poisson. If, on the other hand, we assume that $E(t)$ is gamma distributed, then the number of infective bites per person would be a negative binomial (Appendix.) The *daily force of infection,*  dFoI or $h$, is modeled as a function: $$h(t) = F_h(b, E(t))$$where $b$ is a vector describing the probability of infection per bite, which includes inefficient transmission of sporozoites during the infective bite and effects of immunity.  This represents a fully specified model for heterogeneous local exposure. 
+
+There are multiple ways of computing local exposure. One way that is highly convenient  acknowledges that whatever we assume about mosquito density, human behavior, and blood feeding, the relevant measure of exposure is the set of dEIR values and the derived dFoI values from the shape of $F_h.$ 
+
+If we let $\bar E(t)$ denote the mean EIR in a population, then we can write $$E(t) = \omega(t) S(t) \bar E$$where the $\omega$ is a vector of *frailties:* heterogeneous biting quantified through relative rates of exposure. The function $S(t)$ describes the seasonal pattern. The function $F_h$ fixes environmental heterogeneity. 
+
+We are interested in understanding the *Pf*PR as we change $\bar E$ subject to assumptions about heterogeneous biting frailties, seasonality, and environmental heterogeneity.

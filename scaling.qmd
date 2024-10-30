@@ -1,6 +1,7 @@
 ---
 title: "Scaling Relationships"
 subtitle: "Exploring the *Pf*EIR and the *Pf*PR"
+bibliography: ../refs/refs.bib
 ---
 
 Load the required packages:
@@ -14,10 +15,9 @@ library(rootSolve)
 library(graphics)
 ```
 
-## xde_scaling 
+## xde_scaling
 
-The function `xde_scaling()` defines the relationship between the EIR and the PR, and it outputs stable orbits for each value of aEIR in a mesh from $10^{-1}$ up to $10^{3}$ 
-
+The function `xde_scaling()` defines the relationship between the EIR and the PR, and it outputs stable orbits for each value of aEIR in a mesh from $10^{-1}$ up to $10^{3}$
 
 ```{r sis, eval=F}
 xds_setup_cohort(Xname = "SIS") -> sis
@@ -31,7 +31,7 @@ xde_scaling_eir(sis, 25) -> sis
 if(file.exists("sis.rda")){
   load("sis.rda")
 } else {
-  sis <- xds_setup_cohort(Xname = "SIS", Xopts=Xo)
+  sis <- xds_setup_cohort(Xname = "SIS")
   xde_scaling_eir(sis, 25) -> sis 
   save(sis, file="sis.rda")
 }

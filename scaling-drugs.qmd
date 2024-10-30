@@ -3,7 +3,6 @@ title: "Scaling Relationships"
 subtitle: "Antimalarial Drugs"
 ---
 
-
 ```{r}
 library(ramp.xds)
 library(ramp.library)
@@ -16,6 +15,9 @@ load("sis.rda")
 
 ```{r}
 Xo = list(xi=2/365, rho=0.1)
+```
+
+```{r, eval=F}
 sip <- xds_setup_cohort(Xname = "SIP", Xopts=Xo)
 ```
 
@@ -38,7 +40,6 @@ if(file.exists("sip.rda")){
 sipd <- xds_setup_cohort(Xname = "SIPd", Xopts=Xo)
 xde_scaling_eir(sipd, 25) -> sipd 
 ```
-
 
 ```{r sipd scaling, echo=F}
 if(file.exists("sipd.rda")){

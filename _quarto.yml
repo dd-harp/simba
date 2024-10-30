@@ -15,7 +15,6 @@ website:
       - Contributors.qmd
       - about.qmd
   sidebar:
-    -title: "Software"
     style: "docked"
     search: true
     collapse-level: 1

@@ -57,3 +57,6 @@ _site/about.html
 *.html
 /_site
 *.rda
+*.html
+/_site
+*.html

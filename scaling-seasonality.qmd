@@ -9,7 +9,6 @@ library(ramp.library)
 library(ramp.work)
 ```
 
-
 ```{r}
 load("sis.rda")
 ```
@@ -23,7 +22,6 @@ sis_seas1 <- xds_setup_cohort(Xname = "SIS", F_season = F_s1)
 ```{r}
 xde_scaling_eir(sis_seas1, 25) -> sis_seas1
 ```
-
 
 ```{r}
 require(viridis)

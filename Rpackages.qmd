@@ -2,39 +2,36 @@
 title: "R packages"
 ---
 
+## SimBA
 
+The SimBA suite includes five R packages:
 
-## SimBA 
+-   [ramp.xds](ramp.xds.html) includes core computation to build and solve dynamical systems models for the epidemiology, transmission dynamics, and control of malaria and other mosquito-transmitted pathogens.
 
-The SimBA suite includes five R packages: 
+    -   `ramp` stands for **R**obust **A**nalytics for **M**alaria **P**olicy. RAMP is a set of workflows and concepts that rely on **SimBA** software to develop robust analytics for Adaptive Malaria Control.
 
-+ [ramp.xds](ramp.xds.html) includes core computation to build and solve dynamical systems models for the epidemiology, transmission dynamics, and control of malaria and other mosquito-transmitted pathogens. 
+    -   `xds` stands for *e**X**tensible **D**ynamical **S**ystems*
 
-    + `ramp` stands for **R**obust **A**nalytics for **M**alaria **P**olicy. RAMP is a set of workflows and concepts that rely on **SimBA** software to develop robust analytics for Adaptive Malaria Control. 
+-   [**`ramp.library`**](ramp.library.html) is a code library for **`ramp.xds`** that has encoded model families or modules for the core dynamical components.
 
-    + `xds` stands for *e**X**tensible **D**ynamical **S**ystems* 
-    
-+ [**`ramp.library`**](ramp.library.html) is a code library for **`ramp.xds`** that has encoded model families or modules for the core dynamical components.  
+-   [**`ramp.control`**](ramp.control.html) is a code library for **`ramp.xds`** that holds a set of algorithms to implement various models of vector control and health-based malaria interventions
 
-+ [**`ramp.control`**](ramp.control.html) is a code library for **`ramp.xds`** that holds a set of algorithms to implement various models of vector control and health-based malaria interventions   
+-   [**`ramp.forcing`**](ramp.forcing.html) is a set of algorithms to implement exogenous forcing by weather
 
-+ [**`ramp.forcing`**](ramp.forcing.html) is a set of algorithms to implement exogenous forcing by weather 
-
-+ [**`ramp.work`**](ramp.work.html) is a set of algorithms and functions to apply the models to various tasks 
-
+-   [**`ramp.work`**](ramp.work.html) is a set of algorithms and functions to apply the models to various tasks
 
 ## Microsimulation
 
-+ [ramp.micro](ramp.micro.html)
+-   [ramp.micro](ramp.micro.html)
 
-+ MBITES 
+-   MBITES
 
-## Memory  
+## Memory
 
-+ [ramp.falciparum](ramp.falciparum.html)
+-   [ramp.falciparum](ramp.falciparum.html)
 
 ## Deprecated
 
-- [exDE](exDE.html)
+-   [exDE](exDE.html)
 
-- [MicroMoB](MicroMoB.html)
+-   [MicroMoB](MicroMoB.html)
