@@ -7,33 +7,45 @@ website:
     left:
       - href: index.qmd
         text: Home
-      - href: demo.qmd 
-      - href: setup.qmd
-      - text: "Zoo" 
+      - text: "Software" 
+        menu: 
+        - Rpackages.qmd
+        - ramp.xds.qmd
+        - ramp.library.qmd
+        - ramp.control.qmd
+        - ramp.forcing.qmd
+        - ramp.work.qmd
+        - ramp.micro.qmd
+        - ramp.falciparum.qmd
+        - exDE.qmd
+        - MicroMoB.qmd
+      - text: "Getting Started" 
+        menu: 
+        - text: "Demo (Slideshow)"
+          href: demo.html
+        - href: setup.qmd
+      - text: "Models" 
         menu:
         - model534.qmd 
-      - Contributors.qmd
       - about.qmd
   sidebar:
     style: "docked"
     search: true
     collapse-level: 1
     contents:
-      - section: Rpackages.qmd 
-        contents:
-          - ramp.xds.qmd
-          - ramp.library.qmd
-          - ramp.control.qmd
-          - ramp.forcing.qmd
-          - ramp.work.qmd
-          - ramp.micro.qmd
-          - ramp.falciparum.qmd
-          - exDE.qmd
-          - MicroMoB.qmd
       - section: model_building.qmd 
         contents:
           - nimble.qmd
           - progressive.qmd
+      - section: transmission.qmd  
+        contents:
+          - blood_feeding.qmd
+          - heterogeneous_transmission.qmd
+          - macdonald.qmd
+          - behavioral_states.qmd
+      - section: malaria_epidemiology.qmd 
+        contents:
+          - hybrid_models.qmd
       - section: scaling.qmd 
         contents:
           - href: scaling-drugs.html
@@ -44,18 +56,21 @@ website:
             text: "Environmental Heterogeneity"
           - href: scaling-malaria_importation.html
             text: "Travel Malaria"
-      - section: malaria_epidemiology.qmd 
-        contents:
-          - hybrid_models.qmd
-      - section: transmission.qmd  
-        contents:
-          - blood_feeding.qmd
-          - heterogeneous_transmission.qmd
-          - macdonald.qmd
-          - behavioral_states.qmd
       - section: mosquito_ecology.qmd 
         contents:
           - egg_laying.qmd
+      ***
+      - section: Rpackages.qmd
+        contents:
+        - ramp.xds.qmd
+        - ramp.library.qmd
+        - ramp.control.qmd
+        - ramp.forcing.qmd
+        - ramp.work.qmd
+        - ramp.micro.qmd
+        - ramp.falciparum.qmd
+        - exDE.qmd
+        - MicroMoB.qmd
           
 format:
   html:

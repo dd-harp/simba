@@ -7,18 +7,18 @@ format: revealjs
 library(ramp.xds)
 ```
 
-## My First Model 
+## My First Model
 
-With **`ramp.xds`** it's this easy to build and solve a model: 
+With **`ramp.xds`** it's this easy to build and solve a model:
 
 ```{r, echo=T}
 mod <- xds_setup()
 mod <- xds_solve(mod)
 ```
 
-`mod` is called an **`xds`** model object. 
+`mod` is called an **`xds`** model object.
 
-## Basic Visualization 
+## Basic Visualization
 
 It's also easy to visualize the outputs:
 
@@ -27,4 +27,3 @@ par(mfrow = c(1,2))
 xds_plot_EIR(mod)
 xds_plot_PR(mod)
 ```
-

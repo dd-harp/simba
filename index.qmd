@@ -1,9 +1,18 @@
 ---
 title: "SimBA"
-subtitle: "**Software for Sim**ulation-**B**ased **A**nalytics for Malaria and other Mosquito-Transmitted Pathogens"
+subtitle: "Nimble Model Building & **Sim**ulation-**B**ased **A**nalytics for Malaria and other Mosquito-Transmitted Pathogens"
 ---
 
-This website describes software -- a suite R packages available from github -- to support **Sim**ulation-**B**ased **A**nalytics (**SimBA**) and research for malaria and other mosquito-borne pathogens. The **SimBA** software suite was developed around an R package called [**`ramp.xds`**](ramp.xds.html):
+This website was developed to support nimble model building and computation for malaria and other mosquito-transmitted pathogens using a suite R packages available from github. The software was designed for **Sim**ulation-**B**ased **A**nalytics (**SimBA**) and research for malaria and other mosquito-borne pathogens. For more information about malaria analytics -- using models for policy support -- please see the companion website,
+[Robust Analytics for Malaria Policy and Adaptive Malaria Control](https://faculty.washington.edu/smitdave/ramp/_site/index.html).
+
+The material on this site is designed around the topics needed to support model building for malaria analytics: mosquito ecology and malaria epidemiology, transmission dynamics and control. The sidebar presents an organized set of vignettes describing concepts and algorithms to support nimble model building. Many of the vignettes have examples with working code. The navigation bar (at the top) has some quick links, including a guide to some models.
+
+*This site is under construction. Please forgive the mess.*  
+
+## Software
+
+The **SimBA** software suite was developed around an R package called [**`ramp.xds`**](ramp.xds.html):
 
 -   `ramp` stands for **R**obust **A**nalytics for **M**alaria **P**olicy (RAMP). RAMP is a bespoke inferential system for malaria policy, a broad set of concepts and workflows designed around **SimBA** software to develop [Robust Analytics for Adaptive Malaria Control](https://faculty.washington.edu/smitdave/ramp/_site/index.html).
 
@@ -21,7 +30,7 @@ The **SimBA** software suite includes four satellite packages for **`ramp.xds`**
 
 Each one of the R packages documents its own code, and some vignettes have been written that describe each individual software package. This website, **SimBA,** extends the package-specific documentation to demonstrate the capabilities of the whole package. The website also discusses some related [R packages](Rpackages.html) and other software that were developed by some of us over the years that are not part formally of **SimBA.**
 
-## Design
+### Design
 
 The **SimBA** software is based on a rigorous mathematical framework for modular model building for mosquito-transmitted pathogens, published as [*Spatial Dynamics of Malaria Transmission*](https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1010684). It inherits its code base and core ideas from `exDE` (see below).
 
@@ -37,7 +46,7 @@ The **SimBA** software is based on a rigorous mathematical framework for modular
 
 The vignettes and documents on this website are designed to demonstrate the capabilities of the **SimBA** suite of R packages.
 
-## History
+### History
 
 Publication of [*Spatial Dynamics of Malaria Transmission*](https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1010684) was accompanied by a software package called [`exDE`](https://dd-harp.github.io/exDE/). After publication, we began the work to extend `exDE` to handle exogenous forcing motivated by the need to understand malaria transmission as a *changing baseline* that has been *modified by malaria control.* By April 2024, we had added new features and found good solutions for most of the technical challenges, so we turned our attention to updating [`MicroMoB`](https://dd-harp.github.io/MicroMoB/), software published before `exDE` that was developed to handle discrete-time systems. We soon recognized the benefit of merging the two, giving rise to **`ramp.xds`,** which is under active development. The two older software packages, `exDE` and `MicroMoB` are no longer under active development.
 
