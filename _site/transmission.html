@@ -88,10 +88,68 @@ ul.task-list li input[type="checkbox"] {
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
-  <li class="nav-item">
-    <a class="nav-link" href="./index.html"> 
-<span class="menu-text">Home</span></a>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-software" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Software</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-software">    
+        <li>
+    <a class="dropdown-item" href="./Rpackages.html">
+ <span class="dropdown-text">R packages</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="./ramp.xds.html">
+ <span class="dropdown-text"><em>ramp.xds</em></span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./ramp.library.html">
+ <span class="dropdown-text"><em>ramp.library</em></span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./ramp.control.html">
+ <span class="dropdown-text"><em>ramp.control</em></span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./ramp.forcing.html">
+ <span class="dropdown-text"><em>ramp.forcing</em></span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./ramp.work.html">
+ <span class="dropdown-text"><em>ramp.work</em></span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./ramp.micro.html">
+ <span class="dropdown-text"><em>ramp.micro</em></span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./ramp.falciparum.html">
+ <span class="dropdown-text"><em>ramp.falciparum</em></span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./exDE.html">
+ <span class="dropdown-text"><em>exDE</em></span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./MicroMoB.html">
+ <span class="dropdown-text"><em>MicroMoB</em></span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-getting-started" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Getting Started</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-getting-started">    
+        <li>
+    <a class="dropdown-item" href="./demo.html">
+ <span class="dropdown-text">Demo</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./setup.html">
+ <span class="dropdown-text">Setup</span></a>
+  </li>  
+    </ul>
+  </li>
   <li class="nav-item dropdown ">
     <a class="nav-link dropdown-toggle" href="#" id="nav-menu-zoo" role="link" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text">Zoo</span>
@@ -101,27 +159,16 @@ ul.task-list li input[type="checkbox"] {
     <a class="dropdown-item" href="./model534.html">
  <span class="dropdown-text">The 5-3-4 Model</span></a>
   </li>  
-        <li>
-    <a class="dropdown-item" href="./demo.html">
- <span class="dropdown-text">Demo</span></a>
-  </li>  
     </ul>
   </li>
-  <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-etc." role="link" data-bs-toggle="dropdown" aria-expanded="false">
- <span class="menu-text">etc.</span>
-    </a>
-    <ul class="dropdown-menu" aria-labelledby="nav-menu-etc.">    
-        <li>
-    <a class="dropdown-item" href="./about.html">
- <span class="dropdown-text">About</span></a>
+  <li class="nav-item">
+    <a class="nav-link" href="./Contributors.html"> 
+<span class="menu-text">Contributors</span></a>
   </li>  
-        <li>
-    <a class="dropdown-item" href="./Contributors.html">
- <span class="dropdown-text">Contributors</span></a>
+  <li class="nav-item">
+    <a class="nav-link" href="./about.html"> 
+<span class="menu-text">About</span></a>
   </li>  
-    </ul>
-  </li>
 </ul>
           </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
@@ -157,11 +204,11 @@ ul.task-list li input[type="checkbox"] {
       <div class="sidebar-item-container"> 
             <a href="./Rpackages.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">R packages</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./ramp.xds.html" class="sidebar-item-text sidebar-link">
@@ -192,21 +239,68 @@ ul.task-list li input[type="checkbox"] {
  <span class="menu-text"><code>ramp.work</code></span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ramp.micro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><code>ramp.micro</code></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ramp.falciparum.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><code>ramp.falciparum</code></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./exDE.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><code>exDE</code></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./MicroMoB.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><code>MicroMoB</code></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./model_building.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Model Building</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./nimble.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Nimble Model Building</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./progressive.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Progressive Model Building</span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a href="./malaria_epidemiology.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Malaria Epidemiology</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./ramp.falciparum.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><code>ramp.falciparum</code></span></a>
+  <a href="./hybrid_models.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Hybrid Models</span></a>
   </div>
 </li>
       </ul>
@@ -215,15 +309,85 @@ ul.task-list li input[type="checkbox"] {
       <div class="sidebar-item-container"> 
             <a href="./transmission.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Transmission</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./blood_feeding.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Blood Feeding</span></a>
+  </div>
+</li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./heterogeneous_transmission.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Heterogeneous Transmission</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./environmental_heterogeneity.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Environmental Heterogeneity</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./heterogeneous_biting.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Heterogeneous Biting</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./macdonald.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Macdonald’s Model</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./behavioral_states.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Behavioral State Models</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./scaling.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Scaling Relationships</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./scaling-drugs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Anti-Malarial Drugs</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./scaling-seasonality.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Seasonality</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./scaling-environmental_heterogeneity.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Environmental Heterogeneity</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./scaling-malaria_importation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Travel Malaria</span></a>
   </div>
 </li>
       </ul>
@@ -232,11 +396,11 @@ ul.task-list li input[type="checkbox"] {
       <div class="sidebar-item-container"> 
             <a href="./mosquito_ecology.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Mosquito Ecology</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./egg_laying.html" class="sidebar-item-text sidebar-link">

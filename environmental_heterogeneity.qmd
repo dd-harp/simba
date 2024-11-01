@@ -1,0 +1,95 @@
+---
+title: "Environmental Heterogeneity"
+---
+
+We assume that humans in a stratum have the same expected number of infective bites per day, $E(t),$ but we also assume that the expectation has a distribution, called *environmental heterogeneity*. Environmental heterogeneity arises because mosquitoes can be distributed heterogeneously within each patch; and humans can allocate their time at risk at places with different levels of risk within the patch. 
+
+We let $b$ denote a vector describing the probability of infection per infectious bite (from an **X**-component module). The expected number of infections, per person, per day is called the daily force of infection (FoI). The `Exposure` algorithm in `ramp.xds` calls a function that computes either the daily FoI for continuous time models, the daily hazard rate for infection: 
+$$h = F_h(bE).$$
+Or the attack rate for discrete time models, the fraction infected each time step. 
+
+In the following, we walk through derivations for the *Poisson* and *Negative Binomial* cases of $F_h.$  
+
+## Poisson Hazard 
+
+We let $E$ denote the EIR, the expected number of bites per person over a day. If we assume that the distribution of the daily EIR is Poisson, and if a fraction $b$ of infective bites cause an infection, then the relationship between the between EIR and the FoI is a Poisson compounded with a binomial, which is also Poisson: 
+
+\begin{equation}
+Z \sim F_E(z) = \mbox{Poisson}(z, \mbox{mu} = bE(t))
+\end{equation}
+
+Over a day, the daily attack rate, $\alpha$, is the fraction of individuals who received at least one infection, or: 
+
+\begin{equation} 
+\begin{array}{rl}
+\alpha &= 1-F_E(0) \\ &= 1-\mbox{Poisson}(0, \mbox{mu} = bE(t)) \\ 
+&= 1- e^{-bE(t)} \\
+\end{array}
+\end{equation}
+The daily FoI, $h$, is given by a generic formula: 
+\begin{equation}
+\alpha = 1 - e^{-h} \mbox{ or equivalently } h = -\ln (1-\alpha)
+\end{equation}
+
+In this case, the relationship between the FoI and the EIR is:
+\begin{equation}
+   h(t) = b E(t)
+\end{equation}
+
+It is highly mathematically convenient that the relationship is invariant with respect to the sampling period.  
+
+## Negative Binomial Hazard
+
+If we assume the number of infective bites, per person, per day, has a Gamma distribution in a population, then we could model the number of infective bites as a Gamma - Poisson mixture process, or a negative binomial distribution. Under this model, the counts for bites by sporozoite positive mosquitoes over one day, $Z$, would be a negative binomial random variable with mean $E$:
+
+\begin{equation}
+Z \sim F_E(z) = \mbox{NB}(z, \mbox{mu} = bE(t), \mbox{size} = 1/\phi)
+\end{equation}
+
+Assuming an infectious bite causes an infection with probability $b$, the daily attack rate is: 
+
+\begin{equation} 
+\begin{array}{rl}
+\alpha &= 1-F_E(0) \\ &= 1-\mbox{NB}(0, \mbox{mu} = b E(t), \mbox{size} = 1/\phi) \\
+ &= 1- \left(1+b E(t)\phi \right)^{-1/\phi}
+\end{array}
+\end{equation}
+
+This is consistent with a formula that has a continuous daily FoI: 
+
+\begin{equation}
+    h = \frac{\ln \left(1 + bE(t)\phi \right)} {\phi}
+\end{equation}
+
+
+## Generalized NB Hazards 
+
+This basic negative binomial model for daily exposure rates raises several questions. Why does the expectation have a Gamma distribution? What determines the shape of that distribution over various time scales? What are some good time scales over which to characterize variance in risk?
+
+While it is tempting to characterize risk over daily intervals, it is possible that variance in exposure among individuals varies over longer time scales due to all the factors that drive mosquito blood feeding: noisy mosquito population dynamics driven by wind and weather affecting the search for heterogeneously distributed resources; and human mobility patterns driven by behavioral cycles over weeks or longer. 
+
+We thus consider a related family of distributions where we assume that mean and the variance are functions of time. We let $E_\tau(t)$ denote the expectation over an interval of length $\tau$: 
+
+\begin{equation}
+E_\tau(t) = \int_{t-\tau}^{t}  E(s) ds
+\end{equation}
+
+and the distribution of bites per person is determined by a negative binomial with a size parameter that varies with the interval $\phi(\tau)$:
+
+\begin{equation}
+Z(t,\tau) \sim F_E(z) = \mbox{NB}\left(z, \mbox{mu} = E_\tau(t), \mbox{size} = 1/\phi(\tau)\right)
+\end{equation}
+
+The attack rate is $\tau$-dependent:
+
+\begin{equation} 
+\alpha(\tau) =  1- \left(1+b E_\tau(t) \phi\left(\tau \right)\right)^{-1/\phi(\tau)}
+\end{equation}
+
+In this model, the \textit{average} daily FoI could be computed for any value $\tau$:
+
+\begin{equation}
+    h_\tau(t) = \frac{\ln \left(1 + bE_\tau(t) \phi\left(\tau\right) \right)} { \tau \; \phi(\tau)}
+\end{equation}
+
+The formula is mainly motivational -- the code keys in on  
