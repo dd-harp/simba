@@ -32,7 +32,7 @@ Each one of the R packages documents its own code, and some vignettes have been 
 
 ### Design
 
-The **SimBA** software is based on a rigorous mathematical framework for modular model building for mosquito-transmitted pathogens, published as [*Spatial Dynamics of Malaria Transmission*](https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1010684). It inherits its code base and core ideas from `exDE` (see below).
+The **SimBA** software is based on a rigorous mathematical framework for modular model building for mosquito-transmitted pathogens, published as [*Spatial Dynamics of Malaria Transmission*](https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1010684). **`ramp.xds`** inherits its code base and core ideas from `exDE` (see below).
 
 **SimBA** was designed with several goals:
 
@@ -48,7 +48,7 @@ The vignettes and documents on this website are designed to demonstrate the capa
 
 ### History
 
-Publication of [*Spatial Dynamics of Malaria Transmission*](https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1010684) was accompanied by a software package called [`exDE`](https://dd-harp.github.io/exDE/). After publication, we began the work to extend `exDE` to handle exogenous forcing motivated by the need to understand malaria transmission as a *changing baseline* that has been *modified by malaria control.* By April 2024, we had added new features and found good solutions for most of the technical challenges, so we turned our attention to updating [`MicroMoB`](https://dd-harp.github.io/MicroMoB/), software published before `exDE` that was developed to handle discrete-time systems. We soon recognized the benefit of merging the two, giving rise to **`ramp.xds`,** which is under active development. The two older software packages, `exDE` and `MicroMoB` are no longer under active development.
+Publication of [*Spatial Dynamics of Malaria Transmission*](https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1010684) was accompanied by a software package called [`exDE`](https://dd-harp.github.io/exDE/). After publication, we began the work to extend `exDE` motivated by the need to understand malaria transmission as a *changing baseline* that has been *modified by malaria control.* By April 2024, we had added new features and found good solutions for most of the technical challenges, so we turned our attention to updating [`MicroMoB`](https://dd-harp.github.io/MicroMoB/), software published before `exDE` that was developed to handle discrete-time systems. We soon recognized the benefit of merging the two, giving rise to **`ramp.xds`,** which is under active development. The two older software packages, `exDE` and `MicroMoB` are no longer under active development.
 
 ------------------------------------------------------------------------
 

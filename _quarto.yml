@@ -59,7 +59,6 @@ website:
       - section: mosquito_ecology.qmd 
         contents:
           - egg_laying.qmd
-      ***
       - section: Rpackages.qmd
         contents:
         - ramp.xds.qmd
