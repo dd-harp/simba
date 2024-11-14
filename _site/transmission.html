@@ -80,10 +80,33 @@ ul.task-list li input[type="checkbox"] {
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
-  <li class="nav-item">
-    <a class="nav-link" href="./index.html" rel="" target="">
- <span class="menu-text">Home</span></a>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-ramp" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">RAMP</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-ramp">    
+        <li>
+    <a class="dropdown-item" href="./ramp.html" rel="" target="">
+ <span class="dropdown-text">What is RAMP?</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="https://faculty.washington.edu/smitdave/theory/_site/index.html" rel="" target="">
+ <span class="dropdown-text">Malaria Theory</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="https://faculty.washington.edu/smitdave/Malaria_Data/MalariaData.html" rel="" target="">
+ <span class="dropdown-text">Malaria Data</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./index.html" rel="" target="">
+ <span class="dropdown-text">SimBA (Software)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="https://faculty.washington.edu/smitdave/ramp/_site/index.html" rel="" target="">
+ <span class="dropdown-text">Adaptive Malaria Control</span></a>
+  </li>  
+    </ul>
+  </li>
   <li class="nav-item dropdown ">
     <a class="nav-link dropdown-toggle" href="#" id="nav-menu-software" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
  <span class="menu-text">Software</span>
@@ -192,142 +215,21 @@ ul.task-list li input[type="checkbox"] {
         </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ramp.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">RAMP</span></a>
+  </div>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="./model_building.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Model Building</span></a>
+            <a href="./Rpackages.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">R packages</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./nimble.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Nimble Model Building</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./progressive.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Progressive Model Building</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a href="./transmission.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Transmission</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./blood_feeding.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Blood Feeding</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./heterogeneous_transmission.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Heterogeneous Transmission</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./macdonald.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Macdonald’s Model</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./behavioral_states.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Behavioral State Models</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a href="./malaria_epidemiology.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Malaria Epidemiology</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./hybrid_models.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Hybrid Models</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a href="./scaling.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Scaling Relationships</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="false" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./scaling-drugs.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Anti-Malarial Drugs</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./scaling-seasonality.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Seasonality</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./scaling-environmental_heterogeneity.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Environmental Heterogeneity</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./scaling-malaria_importation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Travel Malaria</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a href="./mosquito_ecology.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Mosquito Ecology</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="false" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 ">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./egg_laying.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Egg Laying</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a href="./Rpackages.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">R packages</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="false" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./ramp.xds.html" class="sidebar-item-text sidebar-link">
@@ -380,6 +282,133 @@ ul.task-list li input[type="checkbox"] {
   <div class="sidebar-item-container"> 
   <a href="./MicroMoB.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><code>MicroMoB</code></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./model_building.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Model Building</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./nimble.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Nimble Model Building</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./progressive.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Progressive Model Building</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./transmission.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Transmission</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./blood_feeding.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Blood Feeding</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./heterogeneous_transmission.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Heterogeneous Transmission</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./macdonald.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Macdonald’s Model</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./behavioral_states.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Behavioral State Models</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./malaria_epidemiology.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Malaria Epidemiology</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./hybrid_models.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Hybrid Models</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./scaling.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Scaling Relationships</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./scaling-drugs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Anti-Malarial Drugs</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./scaling-seasonality.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Seasonality</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./scaling-environmental_heterogeneity.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Environmental Heterogeneity</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./scaling-malaria_importation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Travel Malaria</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./mosquito_ecology.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Mosquito Ecology</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./egg_laying.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Egg Laying</span></a>
   </div>
 </li>
       </ul>

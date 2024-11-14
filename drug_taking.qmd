@@ -1,0 +1,6 @@
+---
+title: "Antimalarial Drugs"
+subtitle: "A Probabilistic Synthesis of Malaria Epidemiology"
+bibliography: ../refs/refs.bib
+csl: ../refs/plos.csl
+---

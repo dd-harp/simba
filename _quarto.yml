@@ -4,9 +4,20 @@ project:
 website:
   title: "SimBA"
   navbar:
+    background: lightgray 
     left:
-      - href: index.qmd
-        text: Home
+      - text: "RAMP"
+        menu:
+        - text: What is RAMP? 
+          href: ramp.html 
+        - text: Malaria Theory 
+          href: https://faculty.washington.edu/smitdave/theory/_site/index.html
+        - text: Malaria Data 
+          href: https://faculty.washington.edu/smitdave/Malaria_Data/MalariaData.html 
+        - text: SimBA (Software)
+          href: index.html 
+        - text: Adaptive Malaria Control 
+          href: https://faculty.washington.edu/smitdave/ramp/_site/index.html
       - text: "Software" 
         menu: 
         - Rpackages.qmd
@@ -33,6 +44,18 @@ website:
     search: true
     collapse-level: 1
     contents:
+      - ramp.qmd
+      - section: Rpackages.qmd
+        contents:
+        - ramp.xds.qmd
+        - ramp.library.qmd
+        - ramp.control.qmd
+        - ramp.forcing.qmd
+        - ramp.work.qmd
+        - ramp.micro.qmd
+        - ramp.falciparum.qmd
+        - exDE.qmd
+        - MicroMoB.qmd
       - section: model_building.qmd 
         contents:
           - nimble.qmd
@@ -59,25 +82,18 @@ website:
       - section: mosquito_ecology.qmd 
         contents:
           - egg_laying.qmd
-      - section: Rpackages.qmd
-        contents:
-        - ramp.xds.qmd
-        - ramp.library.qmd
-        - ramp.control.qmd
-        - ramp.forcing.qmd
-        - ramp.work.qmd
-        - ramp.micro.qmd
-        - ramp.falciparum.qmd
-        - exDE.qmd
-        - MicroMoB.qmd
+     
           
 format:
   html:
-    theme: simplex 
+    theme: spacelab 
     css: styles.css
     toc: true
+    toc-depth: 2 
     grid: 
       sidebar-width: 350px 
+      margin-width: 300px 
+      
 
 editor: visual
 

@@ -1,10 +1,12 @@
 ---
 title: "SimBA"
-subtitle: "Nimble Model Building & **Sim**ulation-**B**ased **A**nalytics for Malaria and other Mosquito-Transmitted Pathogens"
+subtitle: "Nimble Model Building for Malaria and other Mosquito-Transmitted Pathogens"
 ---
 
-This website was developed to support nimble model building and computation for malaria and other mosquito-transmitted pathogens using a suite R packages available from github. The software was designed for **Sim**ulation-**B**ased **A**nalytics (**SimBA**) and research for malaria and other mosquito-borne pathogens. For more information about malaria analytics -- using models for policy support -- please see the companion website,
-[Robust Analytics for Malaria Policy and Adaptive Malaria Control](https://faculty.washington.edu/smitdave/ramp/_site/index.html).
+This website was developed to support nimble model building and computation for malaria and other mosquito-transmitted pathogens using a suite R packages available from github. The software was designed for **Sim**ulation-**B**ased **A**nalytics (**SimBA**) and research for malaria and other mosquito-borne pathogens. This website is focused on the software and model building. A companion website was developed to introduce 
+[**Malaria Theory**](https://faculty.washington.edu/smitdave/theory/_site/index.html) 
+For more information about malaria analytics -- using models for policy support -- please see the companion website,
+[Adaptive Malaria Control](https://faculty.washington.edu/smitdave/ramp/_site/index.html).
 
 The material on this site is designed around the topics needed to support model building for malaria analytics: mosquito ecology and malaria epidemiology, transmission dynamics and control. The sidebar presents an organized set of vignettes describing concepts and algorithms to support nimble model building. Many of the vignettes have examples with working code. The navigation bar (at the top) has some quick links, including a guide to some models.
 
@@ -14,7 +16,9 @@ The material on this site is designed around the topics needed to support model 
 
 The **SimBA** software suite was developed around an R package called [**`ramp.xds`**](ramp.xds.html):
 
--   `ramp` stands for **R**obust **A**nalytics for **M**alaria **P**olicy (RAMP). RAMP is a bespoke inferential system for malaria policy, a broad set of concepts and workflows designed around **SimBA** software to develop [Robust Analytics for Adaptive Malaria Control](https://faculty.washington.edu/smitdave/ramp/_site/index.html).
+-   `ramp` stands for **R**obust **A**nalytics for **M**alaria **P**olicy (RAMP). RAMP is a bespoke inferential system for malaria policy, a broad set of concepts and workflows designed around **SimBA** software to develop 
+[RAMP](ramp.html) and 
+[Adaptive Malaria Control](https://faculty.washington.edu/smitdave/ramp/_site/index.html).
 
 -   `xds` stands for *e**X**tensible **D**ynamical **S**ystems*
 
