@@ -80,33 +80,14 @@ ul.task-list li input[type="checkbox"] {
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
-  <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-ramp" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
- <span class="menu-text">RAMP</span>
-    </a>
-    <ul class="dropdown-menu" aria-labelledby="nav-menu-ramp">    
-        <li>
-    <a class="dropdown-item" href="./ramp.html" rel="" target="">
- <span class="dropdown-text">What is RAMP?</span></a>
+  <li class="nav-item">
+    <a class="nav-link active" href="./index.html" rel="" target="" aria-current="page">
+ <span class="menu-text">Home</span></a>
   </li>  
-        <li>
-    <a class="dropdown-item" href="https://faculty.washington.edu/smitdave/theory/_site/index.html" rel="" target="">
- <span class="dropdown-text">Malaria Theory</span></a>
+  <li class="nav-item">
+    <a class="nav-link" href="./ramp.html" rel="" target="">
+ <span class="menu-text">Robust Analytics</span></a>
   </li>  
-        <li>
-    <a class="dropdown-item" href="https://faculty.washington.edu/smitdave/Malaria_Data/MalariaData.html" rel="" target="">
- <span class="dropdown-text">Malaria Data</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="./index.html" rel="" target="">
- <span class="dropdown-text">SimBA (Software)</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="https://faculty.washington.edu/smitdave/ramp/_site/index.html" rel="" target="">
- <span class="dropdown-text">Adaptive Malaria Control</span></a>
-  </li>  
-    </ul>
-  </li>
   <li class="nav-item dropdown ">
     <a class="nav-link dropdown-toggle" href="#" id="nav-menu-software" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
  <span class="menu-text">Software</span>
@@ -424,6 +405,8 @@ ul.task-list li input[type="checkbox"] {
    
   <ul class="collapse">
   <li><a href="#software" id="toc-software" class="nav-link active" data-scroll-target="#software">Software</a></li>
+  <li><a href="#design" id="toc-design" class="nav-link" data-scroll-target="#design">Design</a></li>
+  <li><a href="#history" id="toc-history" class="nav-link" data-scroll-target="#history">History</a></li>
   </ul>
 </nav>
     </div>
@@ -448,9 +431,9 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<p>This website was developed to support nimble model building and computation for malaria and other mosquito-transmitted pathogens using a suite R packages available from github. The software was designed for <strong>Sim</strong>ulation-<strong>B</strong>ased <strong>A</strong>nalytics (<strong>SimBA</strong>) and research for malaria and other mosquito-borne pathogens. This website is focused on the software and model building. A companion website was developed to introduce <a href="https://faculty.washington.edu/smitdave/theory/_site/index.html"><strong>Malaria Theory</strong></a> For more information about malaria analytics – using models for policy support – please see the companion website, <a href="https://faculty.washington.edu/smitdave/ramp/_site/index.html">Adaptive Malaria Control</a>.</p>
-<p>The material on this site is designed around the topics needed to support model building for malaria analytics: mosquito ecology and malaria epidemiology, transmission dynamics and control. The sidebar presents an organized set of vignettes describing concepts and algorithms to support nimble model building. Many of the vignettes have examples with working code. The navigation bar (at the top) has some quick links, including a guide to some models.</p>
-<p><em>This site is under construction. Please forgive the mess.</em></p>
+<p>This website was developed as a primer to support nimble model building and computation for malaria and other mosquito-transmitted pathogens using a suite R packages available from github called <strong>SimBA,</strong> which stands for <strong>Sim</strong>ulation-<strong>B</strong>ased <strong>A</strong>nalytics. The software was designed to support research and analytics for malaria and other mosquito-borne pathogens.</p>
+<p>The material on this site is designed around the topics needed to support model building, robust analytics for malaria policy <a href="ramp.html">(<strong>RAMP</strong>)</a>, and <a href="https://faculty.washington.edu/smitdave/ramp/_site/"><strong>Adaptive Malaria Control</strong></a>. We have also developed an introduction to <a href="https://faculty.washington.edu/smitdave/theory/_site/"><strong>malaria theory</strong></a> that can delve into some material in greater depth. <strong>SimBA</strong> includes modules and methods to model mosquito ecology and malaria epidemiology, transmission dynamics and control.</p>
+<p>The sidebar presents an organized set of vignettes describing concepts and algorithms to support nimble model building. To avoid duplication, some of the links point to vignettes on the github software repositories or <a href="ramp.html">RAMP</a> websites, which should link back to the referring page. Many of the vignettes have examples with working code. The navigation bar (at the top) has some quick links, including a guide to some models.</p>
 <section id="software" class="level2">
 <h2 class="anchored" data-anchor-id="software">Software</h2>
 <p>The <strong>SimBA</strong> software suite was developed around an R package called <a href="ramp.xds.html"><strong><code>ramp.xds</code></strong></a>:</p>
@@ -466,8 +449,9 @@ ul.task-list li input[type="checkbox"] {
 <li><p><a href="ramp.work.html"><strong><code>ramp.work</code></strong></a> is a set of algorithms and functions to apply the models to various tasks</p></li>
 </ul>
 <p>Each one of the R packages documents its own code, and some vignettes have been written that describe each individual software package. This website, <strong>SimBA,</strong> extends the package-specific documentation to demonstrate the capabilities of the whole package. The website also discusses some related <a href="Rpackages.html">R packages</a> and other software that were developed by some of us over the years that are not part formally of <strong>SimBA.</strong></p>
-<section id="design" class="level3">
-<h3 class="anchored" data-anchor-id="design">Design</h3>
+</section>
+<section id="design" class="level2">
+<h2 class="anchored" data-anchor-id="design">Design</h2>
 <p>The <strong>SimBA</strong> software is based on a rigorous mathematical framework for modular model building for mosquito-transmitted pathogens, published as <a href="https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1010684"><em>Spatial Dynamics of Malaria Transmission</em></a>. <strong><code>ramp.xds</code></strong> inherits its code base and core ideas from <code>exDE</code> (see below).</p>
 <p><strong>SimBA</strong> was designed with several goals:</p>
 <ul>
@@ -478,14 +462,16 @@ ul.task-list li input[type="checkbox"] {
 </ul>
 <p>The vignettes and documents on this website are designed to demonstrate the capabilities of the <strong>SimBA</strong> suite of R packages.</p>
 </section>
-<section id="history" class="level3">
-<h3 class="anchored" data-anchor-id="history">History</h3>
+<section id="history" class="level2">
+<h2 class="anchored" data-anchor-id="history">History</h2>
 <p>Publication of <a href="https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1010684"><em>Spatial Dynamics of Malaria Transmission</em></a> was accompanied by a software package called <a href="https://dd-harp.github.io/exDE/"><code>exDE</code></a>. After publication, we began the work to extend <code>exDE</code> motivated by the need to understand malaria transmission as a <em>changing baseline</em> that has been <em>modified by malaria control.</em> By April 2024, we had added new features and found good solutions for most of the technical challenges, so we turned our attention to updating <a href="https://dd-harp.github.io/MicroMoB/"><code>MicroMoB</code></a>, software published before <code>exDE</code> that was developed to handle discrete-time systems. We soon recognized the benefit of merging the two, giving rise to <strong><code>ramp.xds</code>,</strong> which is under active development. The two older software packages, <code>exDE</code> and <code>MicroMoB</code> are no longer under active development.</p>
 <hr>
 <p><a href="https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1010684">Wu SL, <em>et al.</em> (2023) Spatial Dynamics of Malaria Transmission. PLoS Computational Biology 19(6): e1010684.</a></p>
+<hr>
+<p><em>This site is under construction. Please excuse the mess.</em></p>
+<hr>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->

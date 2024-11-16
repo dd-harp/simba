@@ -6,18 +6,10 @@ website:
   navbar:
     background: lightgray 
     left:
-      - text: "RAMP"
-        menu:
-        - text: What is RAMP? 
-          href: ramp.html 
-        - text: Malaria Theory 
-          href: https://faculty.washington.edu/smitdave/theory/_site/index.html
-        - text: Malaria Data 
-          href: https://faculty.washington.edu/smitdave/Malaria_Data/MalariaData.html 
-        - text: SimBA (Software)
-          href: index.html 
-        - text: Adaptive Malaria Control 
-          href: https://faculty.washington.edu/smitdave/ramp/_site/index.html
+      - text: Home 
+        href: index.html
+      - text: "Robust Analytics"
+        href: ramp.html
       - text: "Software" 
         menu: 
         - Rpackages.qmd
@@ -87,6 +79,7 @@ website:
 format:
   html:
     theme: spacelab 
+    citations-hover: true
     css: styles.css
     toc: true
     toc-depth: 2 

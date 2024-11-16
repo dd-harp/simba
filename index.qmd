@@ -3,14 +3,11 @@ title: "SimBA"
 subtitle: "Nimble Model Building for Malaria and other Mosquito-Transmitted Pathogens"
 ---
 
-This website was developed to support nimble model building and computation for malaria and other mosquito-transmitted pathogens using a suite R packages available from github. The software was designed for **Sim**ulation-**B**ased **A**nalytics (**SimBA**) and research for malaria and other mosquito-borne pathogens. This website is focused on the software and model building. A companion website was developed to introduce 
-[**Malaria Theory**](https://faculty.washington.edu/smitdave/theory/_site/index.html) 
-For more information about malaria analytics -- using models for policy support -- please see the companion website,
-[Adaptive Malaria Control](https://faculty.washington.edu/smitdave/ramp/_site/index.html).
+This website was developed as a primer to support nimble model building and computation for malaria and other mosquito-transmitted pathogens using a suite R packages available from github called **SimBA,** which stands for **Sim**ulation-**B**ased **A**nalytics. The software was designed to support research and analytics for malaria and other mosquito-borne pathogens. 
 
-The material on this site is designed around the topics needed to support model building for malaria analytics: mosquito ecology and malaria epidemiology, transmission dynamics and control. The sidebar presents an organized set of vignettes describing concepts and algorithms to support nimble model building. Many of the vignettes have examples with working code. The navigation bar (at the top) has some quick links, including a guide to some models.
+The material on this site is designed around the topics needed to support model building, robust analytics for malaria policy [(**RAMP**)](ramp.html), and [**Adaptive Malaria Control**](https://faculty.washington.edu/smitdave/ramp/_site/). We have also developed an introduction to [**malaria theory**](https://faculty.washington.edu/smitdave/theory/_site/) that can delve into some material in greater depth. **SimBA** includes modules and methods to model mosquito ecology and malaria epidemiology, transmission dynamics and control. 
 
-*This site is under construction. Please forgive the mess.*  
+The sidebar presents an organized set of vignettes describing concepts and algorithms to support nimble model building. To avoid duplication, some of the links point to vignettes on the github software repositories or [RAMP](ramp.html) websites, which should link back to the referring page. Many of the vignettes have examples with working code. The navigation bar (at the top) has some quick links, including a guide to some models.
 
 ## Software
 
@@ -34,7 +31,7 @@ The **SimBA** software suite includes four satellite packages for **`ramp.xds`**
 
 Each one of the R packages documents its own code, and some vignettes have been written that describe each individual software package. This website, **SimBA,** extends the package-specific documentation to demonstrate the capabilities of the whole package. The website also discusses some related [R packages](Rpackages.html) and other software that were developed by some of us over the years that are not part formally of **SimBA.**
 
-### Design
+## Design
 
 The **SimBA** software is based on a rigorous mathematical framework for modular model building for mosquito-transmitted pathogens, published as [*Spatial Dynamics of Malaria Transmission*](https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1010684). **`ramp.xds`** inherits its code base and core ideas from `exDE` (see below).
 
@@ -50,10 +47,16 @@ The **SimBA** software is based on a rigorous mathematical framework for modular
 
 The vignettes and documents on this website are designed to demonstrate the capabilities of the **SimBA** suite of R packages.
 
-### History
+## History
 
 Publication of [*Spatial Dynamics of Malaria Transmission*](https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1010684) was accompanied by a software package called [`exDE`](https://dd-harp.github.io/exDE/). After publication, we began the work to extend `exDE` motivated by the need to understand malaria transmission as a *changing baseline* that has been *modified by malaria control.* By April 2024, we had added new features and found good solutions for most of the technical challenges, so we turned our attention to updating [`MicroMoB`](https://dd-harp.github.io/MicroMoB/), software published before `exDE` that was developed to handle discrete-time systems. We soon recognized the benefit of merging the two, giving rise to **`ramp.xds`,** which is under active development. The two older software packages, `exDE` and `MicroMoB` are no longer under active development.
 
-------------------------------------------------------------------------
+***
 
 [Wu SL, *et al.* (2023) Spatial Dynamics of Malaria Transmission. PLoS Computational Biology 19(6): e1010684.](https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1010684)
+
+***
+
+*This site is under construction. Please excuse the mess.* 
+
+***

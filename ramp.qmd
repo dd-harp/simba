@@ -5,9 +5,19 @@ subtitle: "Robust Analytics for Malaria Policy"
 
 ***
 
-*RAMP is a bespoke inferential framework that uses conventional and simulation-based analytics to develop malaria policy that has fully characterized, quantified, and propagated uncertainty.*
+[**Home**](https://faculty.washington.edu/smitdave/simba/_site/index.html) 
+$\mapsto$ 
+[Malaria Theory](https://faculty.washington.edu/smitdave/theory/_site/index.html) -- [Malaria Data](https://faculty.washington.edu/smitdave/Malaria_Data/MalariaData.html) -- 
+[Adaptive Malaria Control](https://faculty.washington.edu/smitdave/ramp/_site/index.html) 
 
 ***
+
+*RAMP is a bespoke inferential framework that uses conventional and simulation-based analytics to develop malaria policy that has fully characterized, quantified, and propagated uncertainty.*
+
+
+*** 
+
+
 
 ## Robust Analytics
 
