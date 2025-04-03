@@ -1,0 +1,5 @@
+---
+title: "Scaling for Heterogeneous Transmission"
+subtitle: "Modeling Heterogeneous"
+bibliography: ../refs/refs.bib
+---

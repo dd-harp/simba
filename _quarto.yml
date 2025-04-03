@@ -1,27 +1,36 @@
 project:
   type: website
-
+  output-dir: ../UW/simba
+  
 website:
   title: "SimBA"
   navbar:
     background: lightgray 
     left:
+      - icon: github
+        menu:
+        - text: ramp.xds
+          href: https://dd-harp.github.io/ramp.xds/
+        - text: ramp.library
+          href: https://dd-harp.github.io/ramp.library/
+        - text: ramp.control
+          href: https://dd-harp.github.io/ramp.control/
+        - text: ramp.forcing
+          href: https://dd-harp.github.io/ramp.forcing/
+        - text: ramp.work
+          href: https://dd-harp.github.io/ramp.work/
+        - text: ramp.falciparum
+          href: https://dd-harp.github.io/ramp.falciparum/
+        - text: ramp.micro
+          href: https://dd-harp.github.io/ramp.micro/
       - text: Home 
         href: index.html
-      - text: "Robust Analytics"
-        href: ramp.html
-      - text: "Software" 
+      - text: "Related Content" 
         menu: 
-        - Rpackages.qmd
-        - ramp.xds.qmd
-        - ramp.library.qmd
-        - ramp.control.qmd
-        - ramp.forcing.qmd
-        - ramp.work.qmd
-        - ramp.micro.qmd
-        - ramp.falciparum.qmd
-        - exDE.qmd
-        - MicroMoB.qmd
+        - text: "Malaria Theory"
+          href:  https://faculty.washington.edu/smitdave/theory/
+        - text: "Robust Analytics"
+          href: ramp.html
       - text: "Getting Started" 
         menu: 
         - text: "Demo (Slideshow)"
@@ -36,7 +45,6 @@ website:
     search: true
     collapse-level: 1
     contents:
-      - ramp.qmd
       - section: Rpackages.qmd
         contents:
         - ramp.xds.qmd
@@ -63,14 +71,8 @@ website:
           - hybrid_models.qmd
       - section: scaling.qmd 
         contents:
-          - href: scaling-drugs.html
-            text: "Anti-Malarial Drugs"
-          - href: scaling-seasonality.html
-            text: "Seasonality"
-          - href: scaling-environmental_heterogeneity.html
-            text: "Environmental Heterogeneity"
-          - href: scaling-malaria_importation.html
-            text: "Travel Malaria"
+          - scaling_eir-pr.qmd
+          - scaling_transmission.qmd
       - section: mosquito_ecology.qmd 
         contents:
           - egg_laying.qmd
@@ -79,7 +81,6 @@ website:
 format:
   html:
     theme: spacelab 
-    citations-hover: true
     css: styles.css
     toc: true
     toc-depth: 2 

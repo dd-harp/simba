@@ -1,0 +1,6 @@
+---
+title: "Scaling Exposure and Infection"
+subtitle: "Modeling the Relationship between the EIR and the PR"
+bibliography: ../refs/refs.bib
+---
+

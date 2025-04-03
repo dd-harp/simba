@@ -1,0 +1,58 @@
+---
+title: "*Models* and *Model Building*"
+subtitle: "Disambiguation"
+---
+
+For our purposes, a *model* is an abstract representation of something in the natural world. For malaria analytics, we usually mean *statistical* or *mechanistic, mathematical* models. The mathematical models are usually formulated as dynamical systems describing mechanisms and processes affecting malaria in populations: human behavior and demography, mosquito behavior and ecology, or malaria epidemiology, transmission dynamics and control.  A *statistical model* is any quantitative construct that is used to understand patterns in data; for most people, the term invokes generalized linear models, structural equation models, or something like that. There is some overlap: we could also find ourselves using mechanistic models for statistical analysis. 
+
+## Model 
+
+It's pretty easy to just slip into using the term *model* to mean something, but when we want to be a bit more precise, we can try to disambiguate the term *model.* 
+
++ System of differential equations representing malaria transmission are called *mechanistic, mathematical models.* 
+
+    - One example is the [Ross-Macdonald model](macdonald.html), but if we leave parameters unspecified, we would call it the Ross-Macdonald *model family.*
+    
+    - In the narrowest sense, a model has specified all the parameter values so that it can be solved and produce output. 
+
++ Some part of a system of differential equations. 
+
+    + In **`ramp.xds`,** we have identified 5 closely related processes organized into three chunks that we call dynamical components. A model family in **`ramp.xds`** or **`ramp.library`** that satisfies the requirements of one chunks is called a *module.* For example, the human infection part of Ross-Macdonald model is an *SIS* compartmental model; we can refer to its implementation in **`ramp.xds`** as the *SIS* module for the **XH** dynamical component.
+
+    + We have developed models to compute mosquito bionomics in relation to available resources or for exogenous forcing by weather variables using *functional responses;*
+    
+    + In **`ramp.control,`** we developed models for vector control distribution, durability, coverage, effects, and control effect sizes in relation to coverage. 
+    
++ We could use *model* to describe **`ramp.xds`** or all of `**SimBA,**  the code base we developed to set up and solve *initial value problems* for differential equations describing mosquito-transmitted pathogens, and to analyze and apply the models; in our case, we refer to a *mathematical framework* for model building that we designed, and the software that instantiates it.  
+
++ Any particular encoded object that is capable of being solved is called a model: we often call it a **`ramp.xds`** *model object.*
+
+## Model Building 
+
+At the same time, we can ask the question, *What does it mean to build a model?* In a nutshell, we mean someone who is trying to develop abstract, quantitative representations of the world, usually with an explicit goal. 
+
+For meachanistic models, we can attempt to grapple with the range of activities by making a distinction between *primary,* *secondary,* and *tertiary* model building and modeling *frameworks:* 
+
++ *Primary* model building -- the sort of thing done by Ross, Martini, and early pioneers -- involves translating basic concepts, often represented as flow diagrams, into systems of equations, or new *model families* that represent a *qualitative shift* in thinking: the endpoint of model building is a new *class* of models 
+
++ *Secondary* model building involves modifying an existing model in some minor way, usually as part of scientific research, to address a failing in another model that was previously developed: new variants of a model within an existing *class*
+
++ *Modeling frameworks,* or systems for model building, involve some combination of primary and secondary model building that make it possible to build lots of models belonging to some class of models. They come in two main modes: 
+  
+  - Developing [mathematical frameworks](https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1010684) and accompanying software to facilitate model building, like SimBA or [VCOM](https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0187680)
+  
+  - Developing individual-based simulation models
+
++ *Tertiary* model building involves developing models using an existing modeling framework 
+
+This scheme is imperfect, but it provides a kind of high-level overview of model building as an activity and the sorts of people who are engaged in various kinds of activities, who include:
+
++ Research scientists build models to answer a specific focused question
+
++ Mathematicians often try to *analyze* the system to *prove* conjectures: for example, to develop threshold conditions and prove that they are globally asymptotically stable.  
+
++ Malaria analysts build models with the goal of systematically analyzing data to give policy advice  
+
++ Some kind of programming is needed to translate equations from an abstract representation on *paper* into something that can be computed
+
++ Applied mathematicians develop numerical methods required for computation to *solve* the equations using computers

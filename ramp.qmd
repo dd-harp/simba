@@ -3,56 +3,42 @@ title: "RAMP"
 subtitle: "Robust Analytics for Malaria Policy"
 ---
 
-***
+------------------------------------------------------------------------
 
-[**Home**](https://faculty.washington.edu/smitdave/simba/_site/index.html) 
-$\mapsto$ 
-[Malaria Theory](https://faculty.washington.edu/smitdave/theory/_site/index.html) -- [Malaria Data](https://faculty.washington.edu/smitdave/Malaria_Data/MalariaData.html) -- 
-[Adaptive Malaria Control](https://faculty.washington.edu/smitdave/ramp/_site/index.html) 
+Related: [Malaria Theory](https://faculty.washington.edu/smitdave/theory/) -- [Malaria Data](https://faculty.washington.edu/smitdave/malaria_data/) -- [SimBA (Software)](https://faculty.washington.edu/smitdave/simba/) -- [Adaptive Malaria Control](https://faculty.washington.edu/smitdave/ramp/) -- [Uganda](https://faculty.washington.edu/smitdave/uganda/)
 
-***
+------------------------------------------------------------------------
 
 *RAMP is a bespoke inferential framework that uses conventional and simulation-based analytics to develop malaria policy that has fully characterized, quantified, and propagated uncertainty.*
 
-
-*** 
-
-
+------------------------------------------------------------------------
 
 ## Robust Analytics
 
-Malaria analytics -- analysis to support decisions or policy -- needs a rigorous inferential framework developed around  malaria research and surveillance metrics, malaria theory and knowledge, conventional methods, and contemporary policy issues. To address this need, we developed RAMP as an eclectic set of methods motivated by adaptive management, a branch of applied ecology that originated as a way of managing natural resources with uncertainty. We are calling the methodology **Adaptive Malaria Control,** and a key feature is a focus on uncertainty. Adaptive malaria control is iterative, robust analytics.
+Malaria analytics -- analysis to support decisions or policy -- needs a rigorous inferential framework developed around malaria research and surveillance metrics, malaria theory and knowledge, conventional methods, and contemporary policy issues. To address this need, we developed RAMP as an eclectic set of methods motivated by adaptive management, a branch of applied ecology that originated as a way of managing natural resources with uncertainty. We are calling the methodology **Adaptive Malaria Control,** and a key feature is a focus on uncertainty. Adaptive malaria control is iterative, robust analytics.
 
-Given the complexity of malaria and the need for information, most policy decisions will be made despite enormous uncertainty. The guiding principle for robust analytics is that it should go to great lengths in its attempts to characterize and quantify uncertainty, and then to propagate that uncertainty through analysis to develop policy recommendations that have fully integrated the uncertainty. 
+Given the complexity of malaria and the need for information, most policy decisions will be made despite enormous uncertainty. The guiding principle for robust analytics is that it should go to great lengths in its attempts to characterize and quantify uncertainty, and then to propagate that uncertainty through analysis to develop policy recommendations that have fully integrated the uncertainty.
 
-We developed RAMP around the need to give policy advice on schedule using evidence that would be regarded with disdain by most statisticians. A different level of scrutiny is appropriate for analysis done to add to our collective knowledge about malaria, but the endpoint of malaria analytics is advice about what to do. 
-Since policy decisions are made on a schedule, 
-something will be done whether or not there is any evidence to support it. 
-It is better to pass along advice based on weak evidence than give no advice at all.
-A critical difference between research and analytics is that malaria policies, if properly designed, can be evaluated to fill critical gaps. The main difference between inference for malaria research and analytics is how to weigh uncertainty.
+We developed RAMP around the need to give policy advice on schedule using evidence that would be regarded with disdain by most statisticians. A different level of scrutiny is appropriate for analysis done to add to our collective knowledge about malaria, but the endpoint of malaria analytics is advice about what to do. Since policy decisions are made on a schedule, something will be done whether or not there is any evidence to support it. It is better to pass along advice based on weak evidence than give no advice at all. A critical difference between research and analytics is that malaria policies, if properly designed, can be evaluated to fill critical gaps. The main difference between inference for malaria research and analytics is how to weigh uncertainty.
 
 ## Websites
 
-RAMP, with its focus on uncertainty, is an umbrella concept. The background material required for malaria analytics is broad and deep, so we have developed a cluster of closely related websites to organize the information.  The dropdown menu for RAMP in the navigation bar makes it possible to access the other websites. 
+RAMP, with its focus on uncertainty, is an umbrella concept. The background material required for malaria analytics is broad and deep, so we have developed a cluster of closely related websites to organize the information. The dropdown menu for RAMP in the navigation bar makes it possible to access the other websites.
 
-### Malaria Theory 
+### Malaria Theory
 
-Malaria theory refers to the diverse set of concepts, principles, metrics, and models used measure malaria and to understand malaria in populations, including mosquito ecology and malaria epidemiology, transmission dynamics, and control. It is characterized by various mathematical, computational, and statistical approaches, including dynamical systems and individual-based models to simulate malaria. We developed a website on [**Malaria Theory**](https://faculty.washington.edu/smitdave/theory/_site/index.html) to provide important background for malaria policy.
+Malaria theory refers to the diverse set of concepts, principles, metrics, and models used measure malaria and to understand malaria in populations, including mosquito ecology and malaria epidemiology, transmission dynamics, and control. It is characterized by various mathematical, computational, and statistical approaches, including dynamical systems and individual-based models to simulate malaria. We developed a website on [**Malaria Theory**](https://faculty.washington.edu/smitdave/theory/) to provide important background for malaria policy.
 
+### Malaria Data
 
-### Malaria Data 
+An important complement to theory is a repository of [**Malaria Data.**](https://faculty.washington.edu/smitdave/malaria_data/)
 
-An important complement to theory is a repository of [**Malaria Data.**](https://faculty.washington.edu/smitdave/Malaria_Data/MalariaData.html) 
+### SimBA Software
 
-### SimBA Software 
+This website, [**SimBA**](https://faculty.washington.edu/smitdave/simba/) is focused on making the software more accessible to end users.
 
-This website, [**SimBA**](https://faculty.washington.edu/smitdave/simba/_site/index.html) is focused on making the software more accessible to end users.  
+### Adaptive Malaria Control
 
-### Adaptive Malaria Control 
+[**Adaptive Malaria Control,**](https://faculty.washington.edu/smitdave/ramp/) describes an iterative process of analysis and engagement to help malaria programs make operational decisions, optimize the allocation of resources, improve technical efficiency, and develop evidence-based policies to reduce burden and eliminate malaria. A goal for adaptive malaria control is to provide robust policy advice despite uncertainty. Through careful analysis of uncertainty and through consultation with program managers, surveillance systems are reviewed to identify key data gaps, and plans are made to fill those gaps and improve future decisions.
 
-[**Adaptive Malaria Control,**](https://faculty.washington.edu/smitdave/ramp/_site/index.html) describes an iterative process of analysis and engagement to help malaria programs make operational decisions, optimize the allocation of resources, improve technical efficiency, and develop evidence-based policies to reduce burden and eliminate malaria. A goal for adaptive malaria control is to provide robust policy advice despite uncertainty. Through careful analysis of uncertainty and through consultation with program managers, surveillance systems are reviewed to identify key data gaps, and plans are made to fill those gaps and improve future decisions.
-
-The methodology is explained at a sister website, called 
-[**Adaptive Malaria Control.**](https://faculty.washington.edu/smitdave/ramp/_site/index.html) 
-
-
+The methodology is explained at a sister website, called [**Adaptive Malaria Control.**](https://faculty.washington.edu/smitdave/ramp/)

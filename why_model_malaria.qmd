@@ -1,0 +1,20 @@
+---
+title: "Why model malaria?" 
+subtitle: "The use and misuse of models in malaria" 
+bibliography: ../refs/refs.bib
+csl: ../refs/plos.csl
+---
+
++ Ronald Ross wrote an essay about using mathematical models to understand malaria [@RossR1916ApplicationTheory] 
+
++ L. J. Bruce-Chwatt wrote a pair of lectures:
+
+    - *George Macdonald Memorial Lecture: Quantitative Epidemiology of Tropical Diseases* in 1969 [@Bruce-ChwattLJ1969QuantitativeEpidemiology]
+
+    - *Swellengrabel oration: Mathematical models in the epidemiology and control of malaria* in 1976 [@Bruce-ChwattLJ1976SwellengrabelOration]
+
++ *The pros and cons of modelling malaria transmission* by Louis Molineaux in 1985 [@MolineauxL1985ProsCons]
+
++ Ellis McKenzie wrote a nice essay called *Why model malaria?* in 2000 [@McKenzieFE2000WhyModel]
+
+

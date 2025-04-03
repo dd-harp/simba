@@ -2,7 +2,6 @@
 title: "Model Building"
 ---
 
-For our purposes, a *model* is an abstract representation of something. A *statistical model* is any 
+For our purposes, a *model* is an abstract representation of something. A *statistical model* is any
 
-a *matheamtical model* is a model that  
-
+a *matheamtical model* is a model that

@@ -1,36 +1,45 @@
 ---
 title: "R packages"
+bibliography: ../refs/refs.bib
+csl: ../refs/plos.csl
 ---
 
-## SimBA
+**RAMP** stands for **R**obust **A**nalytics for **M**alaria **P**olicy. RAMP is a set of workflows and concepts that rely on **SimBA** software to develop robust analytics for Adaptive Malaria Control.
 
-The SimBA suite includes five R packages:
+SimBA includes 5 software packages that do core computation built around [ramp.xds](ramp.xds.html) that implement a modular framework for model building describe in *Spatial Dynamics of Malaria Transmission* [@WuSL2023SpatialDynamics]. We also describe two supplementary packages that handle some aspects of malaria epidemiology and microsimulation, as well as some older software packages that are deprecated.   
+
+## Core Computation 
 
 -   [ramp.xds](ramp.xds.html) includes core computation to build and solve dynamical systems models for the epidemiology, transmission dynamics, and control of malaria and other mosquito-transmitted pathogens.
 
-    -   `ramp` stands for **R**obust **A**nalytics for **M**alaria **P**olicy. RAMP is a set of workflows and concepts that rely on **SimBA** software to develop robust analytics for Adaptive Malaria Control.
-
-    -   `xds` stands for *e**X**tensible **D**ynamical **S**ystems*
+    - all packages are `ramp` branded
+    
+    - `xds` stands for *e**X**tensible **D**ynamical **S**ystems*
 
 -   [**`ramp.library`**](ramp.library.html) is a code library for **`ramp.xds`** that has encoded model families or modules for the core dynamical components.
 
--   [**`ramp.control`**](ramp.control.html) is a code library for **`ramp.xds`** that holds a set of algorithms to implement various models of vector control and health-based malaria interventions
+-   [**`ramp.control`**](ramp.control.html) is a code library for **`ramp.xds`** that holds a set of algorithms to implement various models of malaria control, including vector control, mass drug administration, *etc.*
 
--   [**`ramp.forcing`**](ramp.forcing.html) is a set of algorithms to implement exogenous forcing by weather
+-   [**`ramp.forcing`**](ramp.forcing.html) is a set of algorithms to implement exogenous forcing by weather and other factors
 
 -   [**`ramp.work`**](ramp.work.html) is a set of algorithms and functions to apply the models to various tasks
 
 ## Microsimulation
 
--   [ramp.micro](ramp.micro.html)
+Two packages have been developed by our team for behavioral state models for mosquitoes and microsimulation: 
 
--   MBITES
++ [`ramp.micro`](ramp.micro.html) was developed to explore complexity in mosquito ecology through the development and analysis of simulation models describing mosquito behavioral & spatial dynamics on point sets representing resources, which we call micro-simulation [@PerkinsTA2013HeterogeneityMixing;@CastellanosHMS2025MosquitoDispersal]
 
-## Memory
++ [`MBITES`](https://github.com/dd-harp/MBITES) is an individual-based simulation model developed to explore mosquito behavioral states [@WuSL2020MBITES]. 
 
--   [ramp.falciparum](ramp.falciparum.html)
+
+## Malaria Epidemiology  
+
+In [`ramp.falciparum`](ramp.falciparum.html), we explore malaria epidemiology, defined in the narrow sense to describe human exposure to malaria and infection, immunity, disease, drug taking, diagnostics and detection, and infectiousness [@HenryJM2025ProbabilisticSynthesis]. 
 
 ## Deprecated
+
+Before [`ramp.xds`](ramp.xds.html), the basic development was happening in two other packages: 
 
 -   [exDE](exDE.html)
 

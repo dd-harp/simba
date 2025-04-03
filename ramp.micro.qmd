@@ -2,12 +2,14 @@
 title: "`ramp.micro`"
 ---
 
-
-We have developed software to implement microsimulation for mosquitoes and transmission. It is available from github: [dd-harp/ramp.micro](https://dd-harp.github.io/ramp.micro/)
+We have developed software to implement micro-simulation for mosquitoes and transmission. It is available from github: [dd-harp/ramp.micro](https://dd-harp.github.io/ramp.micro/)
 
 ![](Figures/DynamicsOnPoints.png)
 
+------------------------------------------------------------------------
 
-****
+See: 
 
-See: [Perkins TA, Scott TW, Le Menach A, Smith DL (2013) Heterogeneity, Mixing, and the Spatial Scales of Mosquito-Borne Pathogen Transmission. PLoS Comput Biol 9(12): e1003327.](https://doi.org/10.1371/journal.pcbi.1003327)
++ [Perkins TA, Scott TW, Le Menach A, Smith DL (2013) Heterogeneity, Mixing, and the Spatial Scales of Mosquito-Borne Pathogen Transmission. PLoS Comput Biol 9(12): e1003327.](https://doi.org/10.1371/journal.pcbi.1003327)
+
++ [Sánchez C HM, *et al.* (bioRxiv preprint), Mosquito dispersal in context.](https://www.biorxiv.org/content/10.1101/2025.03.22.642900v1). 

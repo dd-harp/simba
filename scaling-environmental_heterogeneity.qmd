@@ -9,7 +9,7 @@ library(ramp.work)
 ```
 
 ```{r sis}
-load("sis.rda")
+load("../models/sis.rda")
 ```
 
 ```{r}
