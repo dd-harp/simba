@@ -1,0 +1,25 @@
+---
+title: "Effect Sizes"
+subtitle: "Effect Sizes"
+format: html
+---
+
+In most models for the effect sizes of vector control, there is a parameter describing vector control *coverage.* The effects of vector control in the models occur because the presence of vector control has modified one or more of the mosquito blood feeding or demographic parameters: the overall blood feeding rate $f$; the human fraction, $q$; the mosquito mortality rate, $g$; or mosquito dispersal, through the emigration rate $\sigma$ or one of the associated parameters.
+
+There is a difference between the parameter describing *coverage* in models and the measures of *coverage* used by malaria programs.
+
+-   **Operational** -- Programmatic definitions of coverage describe quantities that are relevant for operations:
+
+    -   for IRS, the fraction of houses sprayed;
+
+    -   for bed nets, some measure of ownership and use.
+
+-   **Contact** -- Vector control *effects* are related to the fraction of potential encounters in which a mosquito comes into contact with the pesticide / device and modified mosquito bionomics:
+
+    -   for IRS, it is the fraction of times a mosquito lands and rests on a sprayed surface, making contact with the residual pesticide, after blood feeding; or it could represent the fraction of times a mosquito avoids entering a house because of IRS.
+
+    -   for bed nets, it is the fraction of times a mosquito attempts to approach a human only to have the encounter blocked by a net; ITN models could also stipulate whether the contact involves exposure to insecticide that would increase mosquito mortality.
+
+In developing a quantitative understanding of vector control in context, we *fix* some aspects of malaria control, including *coverage* as defined operationally, and measures of effects given contact as defined by the model. The parameter we fit translates operational measures of coverage into contact-based measures of *coverage.*
+
+# The Algorithm

@@ -1,0 +1,39 @@
+---
+title: "Style Guide"
+editor:
+  mode: source
+bibliography: data/refs.bib
+csl: data/plos.csl 
+format: html
+html-math-method:
+  method: mathjax
+  url: "https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
+---
+
+*** 
+
++ We use *human* in most cases. When the parasite or pathogen's vertebrate host is not human, we call it the *host,* or if some clarification is needed in context, the parasite or pathogen's *vertebrate host.* 
+
++ We use *mosquito* and *vector* interchangably in most cases. 
+
++ The extrinsic incubation period is abbreviated EIP
+
+
+*** 
+
+## $\cal X$ & $\cal H$ 
+
++ ${\cal X}$ is a shorthand way of describing the state space for infection and immunity in the host population; generically, the differential equations are: $$\frac{d {\cal X}}{dt}$$ 
+
++ ${\cal H}$ is a shorthand way of describing the state space for the host population
+
++ The $\cal XH$ Component 
+
++ An $\cal X$ Module is  
+
+
+For example, the `SIS` Module for the $\cal X$ Component. 
+
++ The state space describing host epidemiology -- the state space for infection and immunity --  of infections in the parasite / pathogen's vertebrate host, we call it the 
+
+

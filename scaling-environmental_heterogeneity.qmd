@@ -8,8 +8,12 @@ library(ramp.xds)
 library(ramp.work)
 ```
 
+
 ```{r sis}
 load("../models/sis.rda")
+sis$nHostSpecies <- 1
+sis$nVectorSpecies <- 1
+sis <- setup_other_variables(sis)
 ```
 
 ```{r}
@@ -24,3 +28,10 @@ xde_scaling_eir(sis_het, 25) -> sis_het
 plot_eirpr(sis)
 lines_eirpr(sis_het, "darkblue")
 ```
+
+```{r, eval=F, echo=F}
+load("../models/sis.rda")
+sis$Xpar[[1]]$F_treat = F_zero
+save(sis, file = "../models/sis.rda")
+```
+

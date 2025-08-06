@@ -1,0 +1,19 @@
+---
+title: "The **XH** Component"
+subtitle: "Human / Host Epidemiology and Demography" 
+format: html
+---
+
+The **XH** component handles two dynamical processes and an interface that are inextricably linked:
+
+-   Human / host epidemiology, the **X** component
+
+-   Human / host demography, the **H** component, including births, deaths, migration, and aging
+
+-   Principled stratification is an interface that implements a principled method for creating population strata with *flows* defined among strata that adhere to a set of principles that enforce rigor.
+
+In `ramp.xds`, a distinction is made between *state variables* and *population strata.* In a nutshell, we define a *model family* for the *epidemiology* of human malaria (or more generally, the host-specific elements of any host-pathogen interaction) to include a set of *state variables* as they would be defined for a model with a single population stratum.
+
+## The **X** Component
+
+## The **H** Component

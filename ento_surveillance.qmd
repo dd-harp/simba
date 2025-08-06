@@ -1,0 +1,6 @@
+---
+title: "Entomological Surveillance"
+format: html
+---
+
+In `ramp.xds`, the process of *trapping* mosquitoes can be simulated...

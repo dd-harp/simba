@@ -1,0 +1,157 @@
+---
+title: "Mass Treatment"
+format: html
+---
+
+```{r}
+library(ramp.xds)
+```
+
+Malaria models in SimBA are set up to handle mass treatment. Since each **X** module handles drug taking differently, each one must explain how to configure mass treatment, including mass drug administration and mass screen and treat, differently. Here,
+
+-   Mass drug administration (MDA) treats a population without testing first. Models can be configured to do MDA on a targeted segment of the population.
+
+-   Mass screen and treat (MSAT) involves testing (with RDT) and treatment. Malaria models are required to provide a function to compute test positivity by RDT; that function is used for MSAT.
+
+# SIS
+
+In the `SIS` **X** module, mass treatment clears infections, but since there is no chemo-protected class, treated people become susceptible. The SIS implementation, in math notation, looks like this:
+
+$$
+\begin{array}{rl}
+\frac{\textstyle{dH}}{\textstyle{dt}} &= B(t) - {\cal H}  \cdot H \\
+\frac{\textstyle{dI}}{\textstyle{dt}} &= h S - r I - \xi(t) I - {\cal H}  \cdot I
+\end{array}
+$$
+
+The function call to $\xi(t)$ is `F_treat(t)/H`. To see the actual function call, look at `dXdt.SIS` in `human-SIS.R` in `ramp.xds`.
+
+By calling it this way, the function that gets configured describes the capacity of a team to treat, described in the number of people treated per day over some time interval. Malaria analysts should be aware of the difference in the implementation betwen the **capacity** of a team and the fraction of the population that gets treated.
+
+## Basic Setup
+
+In the SIS model, implemented in a generalized form with demographic change, setup creates a function $\xi(t)$ to simulate mass treatment, but then sets it equal to zero (*i.e.* the function `F_zero`).
+
+```{r}
+model <- xds_setup_cohort(Xname = "SIS", eir=1/365, 
+                          season_par = makepar_F_sin()) 
+model <- xds_solve_cohort(model, A=5)
+model <- last_to_inits(model) 
+model <- xds_solve_cohort(model, A=2)
+xds_plot_PR(model)
+```
+
+## Advanced Setup
+
+There is no basic setup option that would allow a user to configure mass treatment at setup: it must be done through *advanced setup.* In a nutshell, a model gets modified after basic setup.
+
+The function `F_treat(t)` should return a function that describes the number of people treated each day over a simulation. This enforces a kind of discipline for malaria analysts for whom mass treatment must be costed. The question it begs is how much does it cost to send out a team for some number of days with the capacity to treat some number of people each day, and how many people they actually treat.
+
+The following function sets up mass drug administration to treat 65 people, per day, for 14 days. The model says we are sending out a team that has the capacity to treat around 910 people (actually, $\approx 911.7$).
+
+```{r}
+mda_par <- makepar_F_sharkfin(D = 180, L = 14, uk = 1, dk=1, mx = 65)
+mda <- make_function(mda_par)
+integrate(mda, 0, 365)$value -> capacity
+capacity
+```
+
+The number treated over time looks like this:
+
+```{r}
+tt <- seq(0, 365, by = 1) 
+plot(tt, mda(tt), type = "l", xlab = "Time", ylab = "# Treated")
+```
+
+In this case *advanced setup* just means modifying the function `F_treat`. A function call to `setup_mda` would make it easier, but this is what that setup call would do:
+
+We want to compare our model with mda to the model without, so we clone the base model and modify the clone, then solve it:
+
+```{r}
+mda_model <- model
+mda_model$Xpar[[1]]$F_treat = mda
+mda_model <- xds_solve_cohort(mda_model, A=2)
+```
+
+Now, we can compare the two models. The orbit for MDA is in `darkred`:
+
+```{r}
+xds_plot_PR(model)
+xds_plot_PR(mda_model, clrs = "darkred", add=TRUE)
+```
+
+## Capacity *vs.* Outcome
+
+The fraction of people is lower than 91%. In the default setup, $H$ is set to 1,000 people. The term in the model describes treatment of infected individuals at a per-capita rate of $65/H,$ and with $H=1000$, in the end about 59.8%, or $1-e^{-900/h}$, or $598$ unique individuals get treated. The functional forms could be interpreted to reflect a reality that a team will find it increasingly difficult to find individuals who have not been treated.
+
+```{r}
+frac = 1-exp(-capacity/1000) 
+frac 
+```
+
+## Calibration
+
+If a team is more technically efficient, an analyst can set up the analysis differently, understanding how the math works, how the costs work. Suppose we want to send out a team to treat 90% of the population, and the malaria program knows how much it costs. Now, the analyst must configure a model to treat 90%.
+
+This configures a model to treat 200 people a day for a week with the capacity to treat about $1,500$ people.
+
+(To kill two birds with the same stone, we will configure this model to treat when the PR peaks):
+
+```{r}
+mda_par <- makepar_F_sharkfin(D = 90, L = 7, uk = 1, dk=1, mx = 200)
+mda <- make_function(mda_par)
+integrate(mda, 0, 365)$value -> capacity
+capacity
+```
+
+Now, about $776$ people get treated.
+
+```{r}
+frac = 1-exp(-capacity/1000)
+frac
+```
+
+We can develop a function that makes all this easier:
+
+```{r}
+cap2frac = function(capacity, duration=7, H=1000){
+   mda_par <- makepar_F_sharkfin(D = 90, L = duration, uk = 1, dk=1, mx = capacity)
+   mda <- make_function(mda_par)
+  integrate(mda, 0, 365)$value -> capacity
+  c(capacity = capacity, frac = 1 - exp(-capacity/H)) 
+}
+```
+
+The function does the math:
+
+```{r}
+cap2frac(200, 7, 1000)
+```
+
+Now suppose I want to treat 90% of the population. I can simply adjust the number treated, per day, until I get 90% treated in a week:
+
+```{r}
+cap2frac(306, 7, 1000)
+```
+
+Now we can set up a new model:
+
+```{r}
+mda_par <- makepar_F_sharkfin(D = 90, L = 7, uk = 1, dk=1, mx = 306)
+mda <- make_function(mda_par)
+mda_model1 <- model
+mda_model1$Xpar[[1]]$F_treat = mda
+mda_model1 <- xds_solve_cohort(mda_model1, A=2)
+```
+
+...and we can visualize all three models:
+
+```{r}
+xds_plot_PR(model)
+xds_plot_PR(mda_model, clrs = "darkred", add=TRUE)
+xds_plot_PR(mda_model1, clrs = "purple", add=TRUE)
+```
+
+# SIP
+
+In the SIP model,...

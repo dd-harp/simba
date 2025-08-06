@@ -1,0 +1,31 @@
+---
+title: "Concept Cloud"
+format: html
+---
+
+In SimBA, we have developed algorithms to handle a very large set of features describing malaria and malaria modeling. The SimBA website is searchable, but this **concept cloud** is -- all in one place -- a long list of interrelated concepts that can be browsed and explored.
+
+## Malaria 
+
+[**Exposure**](exposure.qmd) | 
+[environmental heterogeneity](environmental_heterogeneity.qmd) | 
+[heterogeneous biting](heterogeneous_biting.qmd) | 
+[principled stratification](stratification.qmd) | 
+[**Heterogeneous Mixing**](heterogeneous_mixing.qmd) | 
+[**Spatial Dynamics**](spatial_dynamics.qmd) | 
+[**Malaria Importation**](malaria_importation.qmd) | 
+[travel malaria](travel_malaria.qmd) | 
+[visitors](visitors.qmd) | 
+[**Connectivity**](connectivity.qmd) | 
+[**Malaria Landscapes**](malaria_landscape.qmd) | 
+[**Mosquito Ecology**](mosquito_ecology.qmd) |
+
+## Modeling 
+
+[dynamical system](glossary.qmd) | 
+[functional response](functional_response.qmd) | 
+[skill set](skill_sets.qmd)
+
+## SimBA Jargon 
+
+[component](glossary.qmd)

@@ -1,0 +1,19 @@
+---
+title: "Aron's Malaria Model (1982)"
+format: html
+bibliography: data/refs.bib
+csl: data/plos.csl 
+---
+
+The mosquito module in **`ramp.xds`** called `macdonald` is based on a model first published in 1982 by Joan Aron and Robert May [@AronJL1982PopulationDynamics][^1]
+
+[^1]: We call it Aron's model because it is our policy to name models after the first author. Aron went on to do much more on malaria, so in retrospect, it is likely that she did all the work. In any case, Bob May was never called "kind" by anyone who knew him. Bob was brilliant, and polite when he needed to be, but he was unfailingly competitive and notoriously often rude. I don't feel bad about leaving Bob's name off this one. If Bob's listening, can I ask him if he regrets his behavior that day in Eno Hall?
+
+It includes state variables for total mosquito density $M$, infected mosquito density $Y$, and infectious mosquito density $Z$. In this model, the blood feeding rate is split into an overall blood feeding rate, $f$, and the human fraction, $q$ such that $$a=fq.$$ The Aron & May's equations are:
+
+$$\begin{array}{rl} 
+\frac{dM}{dt} &= \Lambda(t) - g M \\
+\frac{dY}{dt} &= fq\kappa(M-Y) - g Y \\
+\frac{dZ}{dt} &= e^{-g\tau}fq\kappa_\tau(M_\tau-Y_\tau) - g Z \\
+\end{array}
+$$

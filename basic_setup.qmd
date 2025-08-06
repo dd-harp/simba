@@ -1,0 +1,164 @@
+---
+title: "Basic Setup"
+editor:
+  mode: source
+format: html
+html-math-method:
+  method: mathjax
+  url: "https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
+---
+
+------------------------------------------------------------------------
+
+*In **basic setup,** we set up an object, that we called an `xds` model object.*
+
+*Model building involves making a set of choices: a dynamical system is set up choosing a model family from the [**model library**](model_library.qmd) for the components of a dynamical system: a model family for infection and immunity in humans or other host species; a model family for adult mosquito ecology and infection dynamics; a model family for aquatic mosquito ecology; or any sensible subset of these.*
+
+*During **basic setup,** the user also sets up the basic structure of the model. The user configures a **malaria landscape,** a set of patches and (if relevant) aquatic habitats that structure the mosquito population.*
+
+***Basic setup** can configure some basic human population strata, but it leaves setup for human demography, stratification by age, and other issues requiring stratification to [**advanced setup.**](advanced_setup.qmd) (see [Stratification](strafication.qmd))*
+
+------------------------------------------------------------------------
+
+The following discussion of **basic setup** includes some technical details and language that we use throughout the documentation. Some of it is *jargon,* but we hope it makes it easier to communicate.
+
+We will be using `ramp.xds,` so we load it:
+
+```{r}
+library(ramp.xds)
+```
+
+**Basic Setup** includes any option that can be configured with `xds_setup` family of functions. Basic setup sets up an object, that we called an `xds` model object, around a set of choices to configure:
+
+-   The dynamical system **COMPONENTS** -- model families describing three state spaces and their associated dynamics:
+
+    -   **XH** -- human demography or vertebrate host ecology, infection dynamics and immunity
+
+    -   **MY** -- adult mosquito ecology and infection dynamics; and
+
+    -   **L** -- aquatic ecology.
+
+-   Basic elements of the **INTERFACES.** These are the algorithms that handle the processes that link the dynamics of different agents:
+
+    -   *Blood Feeding* and *Transmission* establish a generic method to handle *infection dynamics* that link infection states and processes in humans/ hosts (the **X** part of **XH** component) to infection states and processes in mosquitoes (the **Y** part of the **MY** component).
+
+    -   *Egg Laying* and *Emergence* establish a generic method to handle *mosquito population dynamics* that link volant adult mosquito populations (the **M** part of the **MY** component) to aquatic mosquito populations in aquatic habitats (the **L** component).
+
+-   Basic setup establishes a model structure: the number of spatial patches; the number of human population strata; the number and location of the aquatic habitats.
+
+-   The number of vector species and the number host species -- are set to $1$.
+
+## The Components
+
+A first step is to choose the modules / model families. There are three **COMPONENTS:**
+
+-   A model for the dynamics of infection and immunity in the human / vertebrate host population -- the **X** part of the **XH** component -- is specified by passing an argument to `Xname`.
+
+```{r}
+sis_mod <- xds_setup(Xname = "SIS")
+```
+
+-   The model for human demography / host ecology -- the **H** part of the **XH** component -- is initially set to a trivial model with no vital dynamics. Human demography is configured later.
+
+-   A model for the adult mosquito ecology and infection dynamics, called the **MY** component, is specified by passing an argument to `MYZname`. For example:
+
+```{r}
+macdonald_mod <- xds_setup(MYZname = "macdonald")
+```
+
+-   A model for the aquatic mosquito ecology, called the **L** component, is specified by passing an argument to `Lname`. For example:
+
+```{r}
+aqua_mod <- xds_setup(Lname = "basicL")
+```
+
+If no names are provided, then `xds_setup()` uses the defaults:
+
+-   `Xname = "SIS"`
+
+-   `MYZname = "macdonald"`
+
+-   `Lname = "trivial"`
+
+## The Interfaces
+
+The interface for the model is built around a patch-based spatial dynamics (*i.e.*, metapopulation dynamics) with a flexible structure. A few structural parameters define how the rest of the model gets set up, and then the algorithms that compute blood feeding and transmission and
+
+### Structural Parameters
+
+Every model has three basic structural parameters:
+
+-   `nPatches` or $n_p$ is the number of spatial patches. By default `nPatches=1`. To specify a different number of patches, an argument is passed to `xds_setup()`:
+
+```{r}
+mod_with_2patches = xds_setup(nPatches=2)
+mod_with_2patches$nPatches 
+```
+
+-   `nHabitats` or $n_q$ is the number of aquatic habitats. The parameter can not (and should not) be set from the command line. Instead, the habitat `membership` vector is passed that gives the index of the patch (an integer) where habitat is found. If the first patch has 1 habitat, and the next patch has 2, then `membership` $=c(1,2,2)$ and `nHabitats`$=3$:
+
+```{r}
+mod_with_3habitats <- xds_setup(nPatches=2, membership = c(1,2,2))
+mod_with_3habitats$nHabitats
+```
+
+-   `nStrata` or $n_h$ is the number of human population strata. The number can not (and should not) be set from the command line. Instead, the human population size `HPop` is passed as a vector of values and `nStrata`$=\mbox{length}($`HPop`$)$. If `nPatches`$>1,$ then a `residence` vector must be passed that gives the index of the patch (an integer) where each population stratum resides. It must be true that $\mbox{length}($`residence`$)=$`nStrata` and that `max(residence)`$\leq$`nPatches`.
+
+```{r}
+mod_with_3strata <- xds_setup(nPatches = 3, 
+                              HPop = c(300, 100, 200), 
+                              residence = c(2,3,3))
+mod_with_3strata$nStrata
+```
+
+If `nPatches` is set to a value larger than one, then the user should also pass arguments to set up **mosquito dispersal**, and human **time spent**/**time at risk.** To configure these elements using `xds_setup()`, see [Spatial Dynamics](spatial_dynamics.html).
+
+### Blood Feeding and Transmission
+
+Most features of the interface for blood feeding and transmission are configurable; some of those options can be configured at **basic setup,** while others will need to be
+
+The search weights for human population strata used in the blood feeding intervace can be set in `xds_setup()` by setting the values of `searchB` where $\mbox{length}($`searchB`$)=$`nStrata`.
+
+### Egg Laying and Emergence
+
+The search weights for human population strata used in the blood feeding interface can be set in `xds_setup()` by setting the values of `searchQ` where $\mbox{length}($`searchQ`$)=$`nHabitats`.
+
+## Plug and Play Modularity
+
+The software was designed to be modular with *plug-and-play* functionality. The interfaces set a rule for passing information among components, but we also wanted to be able to set up models where it was possible to study each one of the components or combinations where the inputs from other components were known. Each one of the modules can thus be reduced to a `trivial` model; at setup, a function -- called a *trace function* -- is configured to compute the outputs required by other components.
+
+When any one of the modules is `trivial`, the outputs of that model are configured in a particular way, described in [Trace Functions.](trace.qmd)
+
+If the `MY` component is trivial, then we must choose to ignore either the **XH** component or the **L** component. To handle setup and computation for these special cases, the **xds** object is assigned a `frame` that dispatches methods to solve the appropriate sets of equations:
+
+-   `xds_setup()` -- sets up a full model.
+
+```{r}
+class(sis_mod$frame)
+```
+
+-   `xds_setup_human()` -- sets up a trivial **MY** component that passes the net blood feeding rates of infectious mosquitoes. If there is more than one patch, the model must set up a *time spent* matrix. These models lack an **L** component.
+
+```{r}
+class(xds_setup_human()$frame)
+```
+
+-   `xds_setup_mosy()` -- This sets up a model that lacks an **XH** component. It also lacks the **Y** part of the **MY** component as a way of studying vector ecology without infection dynamics.
+
+```{r}
+class(xds_setup_mosy()$frame)
+```
+
+-   `xds_setup_aquatic()` -- sets up a trivial **MY** component that passes habitat-specific egg laying rates. The model lacks an **XH** component.
+
+```{r}
+class(xds_setup_aquatic()$frame)
+```
+
+-   `xds_setup_cohort()` -- this model sets up the **XH** component, but it lacks an **MY** component and an **L** component. Instead, it configures a function $F_E(a,t, \tau)$ that computes the daily EIR for a cohort of humans born on day $\tau$ as it ages ($a$) over time ($t$). For more, see [Cohort Dynamics](cohort_dynamics.qmd).
+
+```{r}
+class(xds_setup_cohort()$frame)
+```
+
+All of the following explain the options for `xds_setup().` With some minor exceptions for `xds_setup_cohort(),` all setup functions follow the same conventions.

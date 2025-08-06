@@ -1,0 +1,46 @@
+---
+title: "Exogenous Forcing"
+format: html
+---
+
+In SimBA, we have modular software, which opens up the door to take on the question of *forcing* in a very generic way.
+
+# Forcing
+
+What is *exogenous forcing*?
+
+## EIR-PR
+
+A malaria *Pf*PR time series is the outcome of exposure. If we let $E(t)$ denote the daily EIR over time, $\cal X(t)$ the state of the system, and $x(t)$ the *Pf*PR. We have this picture:
+
+$$E(t) \rightarrow {\cal X}(t) \rightarrow x(t)$$ In this equation, the arrow denotes causation: infection is the result of exposure; given a model of malaria infection, the *Pf*PR is an observable state. Given the modular design of SimBA software, we can configure functions describing malaria exposure time series and fit the models to a data set.
+
+## Emergence-PR
+
+In some settings, it is worth thinking about malaria as a system that is *exogenously forced* by adult mosquito emergence. This point of view is particularly important for scenario planning. In these models, we now take $\Lambda(t)$ as our forcing function, we have a model for mosquito ecology (top line); we compute mosquito infection dynamics (middle line); an outcome of the model is the net blood feeding rate of mosquitoes and the EIR; in this model, malaria in humans (bottom) line is part of a model for transmission.
+
+$$ 
+\begin{array}{ccccc}
+\Lambda(t) \rightarrow & {\cal M}(t) \\
+& \downarrow \\
+& {\cal Y}(t) &\rightarrow & f q Z(t) & \rightarrow & E(t)   \\
+   &  \uparrow &   &&&\downarrow  \\
+   &  \kappa(t) &\leftarrow & X(t) & \leftarrow  & {\cal X}(t) & \rightarrow x(t)
+\end{array}
+$$
+
+## Carrying Capacity - PR
+
+We could go one step back and let the aquatic mosquito population be forced by carrying capacity:\
+$$ 
+\begin{array}{ccccc}
+K(t) \rightarrow &{\cal L}(t) \leftarrow & \Gamma(t) \\
+ &\downarrow & \uparrow \\
+& \Lambda(t) \rightarrow & {\cal M}
+(t) \\
+&& \downarrow \\
+&& {\cal Y}(t) &\rightarrow & f q Z(t) & \rightarrow & E(t)   \\
+&&  \uparrow &   &&&\downarrow  \\
+&   &  \kappa(t) &\leftarrow & X(t) & \leftarrow  & {\cal X}(t) & \rightarrow x(t)
+\end{array}
+$$

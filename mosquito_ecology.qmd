@@ -1,5 +1,4 @@
 ---
 title: "Mosquito Ecology"
+format: html
 ---
-
-This is fun

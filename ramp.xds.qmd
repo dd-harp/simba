@@ -1,6 +1,11 @@
 ---
 title: "`ramp.xds`"
+subtitle: "eXtensible Dynamical Systems"
+editor:
+  mode: source
 ---
+
+*** 
 
 [**`ramp.xds`**](https://dd-harp.github.io/ramp.xds/) is an R-package available from github. To install the latest version of **`ramp.xds`** from GitHub, run the following lines of code in an R session.
 
@@ -11,5 +16,10 @@ devtools::install_github("dd-harp/ramp.xds")
 
 A good place to get started is the **`ramp.xds`** vignette [*Getting Started*](https://dd-harp.github.io/ramp.xds/articles/GettingStarted.html).
 
+# Version History 
 
++ The current version is `ramp.xds-0.99-1` created on July 16, 2025. 
 
+# Planned Enhancements 
+
++ Enhanced Metrics - 

@@ -13,6 +13,8 @@ website:
           href: https://dd-harp.github.io/ramp.xds/
         - text: ramp.library
           href: https://dd-harp.github.io/ramp.library/
+        - text: ramp.demog
+          href: https://dd-harp.github.io/ramp.demog/
         - text: ramp.control
           href: https://dd-harp.github.io/ramp.control/
         - text: ramp.forcing
@@ -36,9 +38,20 @@ website:
         - text: "Demo (Slideshow)"
           href: demo.html
         - href: setup.qmd
-      - text: "Models" 
+      - text: "Concepts" 
         menu:
-        - model534.qmd 
+        - concept_cloud.qmd 
+        - nimble.qmd
+        - scalable_complexity.qmd
+        - progressive.qmd
+        - heterogeneous_transmission.qmd
+        - malaria_landscape.qmd
+        - behavioral_states.qmd
+        - zoo.qmd 
+      - text: "Reference" 
+        menu:
+        - glossary.qmd
+        - style_guide.qmd
       - about.qmd
   sidebar:
     style: "docked"
@@ -47,36 +60,138 @@ website:
     contents:
       - section: Rpackages.qmd
         contents:
-        - ramp.xds.qmd
+        - ramp.xds.qmd 
         - ramp.library.qmd
+        - ramp.demog.qmd
         - ramp.control.qmd
         - ramp.forcing.qmd
         - ramp.work.qmd
-        - ramp.micro.qmd
-        - ramp.falciparum.qmd
-        - exDE.qmd
-        - MicroMoB.qmd
+        - section: deep_dives.qmd
+          contents:
+          - ramp.micro.qmd
+          - ramp.falciparum.qmd
+        - section: deprecated.qmd
+          contents:
+          - exDE.qmd
+          - MicroMoB.qmd
       - section: model_building.qmd 
         contents:
-          - nimble.qmd
-          - progressive.qmd
-      - section: transmission.qmd  
+          - section: basic_setup.qmd 
+            contents:
+            - section: components.qmd 
+              contents:
+              - XHcomponent.qmd
+              - MYcomponent.qmd
+              - Lcomponent.qmd
+              - Vcomponent.qmd
+            - interface.qmd 
+          - section: advanced_setup.qmd 
+            contents:
+            - egg_laying.qmd
+            - blood_feeding.qmd
+            - demography.qmd
+            - section: stratification.qmd
+              contents:
+              - migration.qmd
+              - heterogeneity.qmd
+              - aging.qmd
+            - section: spatial_dynamics.qmd
+              contents:
+              - time_spent.qmd
+              - mosquito_dispersal.qmd
+              - indoors.qmd
+            - section: exposure.qmd
+              contents:
+              - heterogeneous_biting.qmd
+              - environmental_heterogeneity.qmd
+              - travel_malaria.qmd
+              - pe_immunity.qmd
+            - section: malaria_importation.qmd
+              contents:
+              - travel_malaria.qmd
+              - visitors.qmd
+            - section: vector_control.qmd
+              contents:
+              - itn.qmd
+              - irs.qmd
+              - lsm.qmd
+            - ento_surveillance.qmd 
+            - section: malaria_control.qmd
+              contents:
+              - mass_treat.qmd
+              - vaccines.qmd
+              - other_vaccines.qmd
+            - section: exogenous.qmd
+              contents: 
+              - weather.qmd
+              - resources.qmd
+            - host_species.qmd
+            - vector_species.qmd
+            - transmission.qmd
+      - section: model_library.qmd 
         contents:
-          - blood_feeding.qmd
-          - heterogeneous_transmission.qmd
-          - macdonald.qmd
-          - behavioral_states.qmd
-      - section: malaria_epidemiology.qmd 
+        - section: trace.qmd 
+          contents:
+          - sharkfin.qmd
+        - section: Xmodels.qmd 
+          contents:
+          - trivialX.qmd
+          - compartment_models.qmd 
+          - section: malaria_epidemiology.qmd 
+            contents:
+              - hybrid_models.qmd
+          - section: Xetc.qmd 
+            contents:
+              - dengue.qmd
+        - section: adult_mosquito.qmd 
+          contents:
+            - trivialMY.qmd
+            - macdonald.qmd
+        - section: aquatic_mosquito.qmd 
+          contents:
+            - trivialL.qmd
+            - basicL.qmd
+        - section: vector_control.qmd 
+          contents:
+          - section: irs.qmd 
+            contents:
+          - section: itn.qmd 
+            contents:
+        - section: weather.qmd 
+          contents:
+          - rainfall.qmd
+          - temperature.qmd
+      - section: analysis.qmd 
         contents:
-          - hybrid_models.qmd
-      - section: scaling.qmd 
+          - solving.qmd
+          - cohort_dynamics.qmd
+          - observation.qmd
+          - visualization.qmd
+          - thresholds.qmd
+          - scaling.qmd
+      - section: analytics.qmd 
         contents:
-          - scaling_eir-pr.qmd
-          - scaling_transmission.qmd
-      - section: mosquito_ecology.qmd 
+        - section: algorithms.qmd 
+          contents:
+          - fitting.qmd
+          - forcing.qmd
+          - history.qmd
+          - effect_size_estimation.qmd
+        - evaluation.qmd
+        - baseline.qmd
+        - forecasting.qmd
+        - scenario_planning.qmd 
+      - section: zoo.qmd 
         contents:
-          - egg_laying.qmd
-     
+        - section: rossmacdonald.qmd 
+          contents:
+          - ross1908.qmd
+          - ross1911.qmd
+          - macdonald1952.qmd
+          - aron1982.qmd
+        - model534.qmd 
+        - itn_lemenach.qmd 
+        - mda.qmd 
           
 format:
   html:

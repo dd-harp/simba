@@ -1,0 +1,6 @@
+---
+title: "Outdoor/Indoor Models"
+format: html
+---
+
+We can create a model with indoor/outdoor spaces. 

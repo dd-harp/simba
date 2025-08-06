@@ -1,0 +1,6 @@
+---
+title: "Malaria Landscapes"
+format: html
+---
+
+Two basic ideas in epidemiology and ecology are *populations* and *transmission.* In malaria epidemiology, any serious treatment of these two concepts must grapple with the spatial dimensions of the problem: 

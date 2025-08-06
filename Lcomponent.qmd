@@ -1,0 +1,7 @@
+---
+title: "The **L** Component"
+subtitle: "Immature Mosquito Dynamics and Aquatic Ecology"
+format: html
+---
+
+The **L** component

@@ -1,0 +1,25 @@
+---
+title: "Analysis"
+format: html
+---
+
+***
+
+***Analysis** is defined herein as an activity that focuses on understanding the models. [**Analytics**](analytics.qmd) is about using the models as a tool for the systematic analysis of data for malaria policy.*
+
+*** 
+
+After building a model, `ramp.xds` is designed to streamline analysis of the models. 
+
++ in [**Solving Dynamical Systems**](solving.qmd), we describe how `ramp.xds` solves systems of differential equations. The outputs are parsed, making it easy to use the dependent variables by name. 
+
++ in malaria, we understand malaria epidemiology in a population as a result of the history of exposure. An important tool we developed thus allows us to study the [**Dynamics of Malaria in Cohorts**](cohort_dynamics.qmd). 
+
++ Each model is required to supply functions that describe how the states get translated into observable quantities. In [**Observational Processes**](observation.qmd), we discuss a models *skill set,* and 
+
++ In [**Visualization**](visualization.qmd), we describe how to use built-in functions to visualize the outputs, making it easy to visualize model outputs.  
+
++ [**Qualitative Analysis**](thresholds.qmd) includes methods for understanding the behavior of systems without solving them. In `ramp.xds`, we include utilities to 
+compute steady states, attractors, threshold conditions, and measures of connectivity.  
+
++ Finally, we are intereseted in understanding [**Scaling Relationships**](scaling.qmd); how does the incidence of malaria by age scale with the average annual EIR and its seasonal pattern?  

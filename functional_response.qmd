@@ -1,0 +1,6 @@
+---
+title: "Functional Responses"
+format: html
+---
+
+In many contexts, a parameter describing a rate can vary, depending on some other contextual variables. In such cases, we will use a *functional response* to

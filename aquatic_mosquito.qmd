@@ -1,0 +1,12 @@
+---
+title: "Aquatic Mosquito: Model Library"
+format: html
+bibliography: data/refs.bib
+csl: data/plos.csl 
+---
+
+The library of models for immature mosquitoes: 
+
++ "trivial" -- The trivial model 
+
++ ["basicL"](basicL.qmd) in [`ramp.xds`](https://dd-harp.github.io/ramp.xds/reference/dLdt.basicL.html) - The model `basicL` is an implementation of a model published by [@SmithDL2013MosquitoPopulation], generalized slightly to include density-dependent maturation rates.  

@@ -1,0 +1,9 @@
+---
+title: "Mass Treatment"
+format: html
+html-math-method:
+  method: mathjax
+  url: "https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
+---
+
+Mass treatment, including mass drug administration (MDA) and mass screen and treat (MSAT), are handled differently by each $\cal X$ component. 

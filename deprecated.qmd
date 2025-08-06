@@ -1,0 +1,12 @@
+---
+title: "Deprecated"
+editor:
+  mode: source
+format: html
+---
+
+Before [`ramp.xds`](ramp.xds.html), the basic development was happening in two other packages:
+
+-   [exDE](exDE.html)
+
+-   [MicroMoB](MicroMoB.html)

@@ -1,0 +1,25 @@
+---
+title: "The **V** Component"
+subtitle: "Other Variables"
+format: html
+---
+
+The system for model building in `ramp.xds` includes a method to compute *other variables.* In a nutshell, any variables in the model that must be computed *endogenously* are indexed, computed by `dVdt(t, y, pars)`, and returned in the same way as the variables. Any *module* that uses one of these *other variables* must be set up through [**Advanced Setup**](advanced_setup.qmd) option.
+
+A port for `dVdt` is present in **Basic Setup,** by the command `setup_other_variables` and for an `xds` model object called `model`, it is executed like this:
+
+```         
+model <- setup_other_variables(model) 
+```
+
+This command sets up
+
+```         
+model$Vpar[[1]] 
+```
+
+as an empty list of class `setup,` and `dVdt.setup` returns `model` unmodified.
+
+Any model can use `dVdt` to extend the computational framework in some way. The best way to understand `dVdt` is through examples:
+
+-   none so far

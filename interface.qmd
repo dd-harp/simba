@@ -1,0 +1,34 @@
+---
+title: "The Interfaces"
+format: html
+bibliography: data/refs.bib
+csl: data/plos.csl 
+---
+
+In `ramp.xds`, interactions among dynamical components are highly structured. There are two interfaces: one for blood feeding and parasite transmission; and a second one for egg laying and emergence. We describe these as *interfaces,* and they are very rigid.
+
+## Blood Feeding
+
+Blood feeding is an interaction between mosquitoes and humans in which humans move around, while mosquitoes search and approach. This process of mosquito searching leads to heterogeneous exposure and it is one part of heterogeneous transmission. The other part is the density of available blood hosts.
+
+In `ramp.xds,` mosquitoes in patches blood feed on available hosts. In modeling jargon, the model for mosquitoes is Eulerian. The base model for humans is Lagrangian. The model handles humans' spatial location by assigning each stratum a *residence* and a vector (or function) describing *time spent* in each one of the patches. Time spent, weighted by relative mosquito activity rates, is called *time at risk.*
+
+With mosquito searching, each stratum is also assigned a *search weight.* The availability of each stratum in each patch is the product of a search weight and time at risk. If mosquito activity rates were constant through a day and search weights were all set to $1$, then availability would be equivalent to *ambient population density.* We can thus think of *availability* as a measure of ambient density modified to consider aspects of mosquito and human behaviors.
+
+From the mosquito's perspective, the two parameters affecting ecology and transmission are the blood feeding rate ($f$) and the human fraction ($q$). In *Spatial Dynamics of Malaria Transmission* [@WuSL2023SpatialDynamics], we go to great lengths to formulate a model for blood feeding that constrains these parameters to avoid a potential mathematical singularity (or absurdity): if $f>0$, then some vertebrate hosts must be available for blood feeding; and if $q>0$, then some humans must be available.
+
+In `ramp.xds`, we present a version of Macdonald's model for adult mosquitoes with constant parameters. Any user of the model *should* consider what it implies about exposure, especially if the density of hosts in any patch is *empty.*
+
+In **basic setup,** only some of these elements are configurable.
+
+-   `HPop` is a vector that sets the initial density of all the human population strata\
+
+-   `residence` describes the home where they reside
+
+-   `searchB` is a vector of length `nStrata`
+
+## Transmission
+
+## Egg Laying
+
+## References

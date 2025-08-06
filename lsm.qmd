@@ -1,0 +1,6 @@
+---
+title: "Larval Source Management"
+format: html
+bibliography: data/refs.bib
+csl: data/plos.csl 
+---

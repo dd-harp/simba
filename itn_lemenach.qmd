@@ -1,0 +1,116 @@
+---
+title: "An ITN Model"
+subtitle: "Modeling "
+format: html
+bibliography: data/refs.bib
+csl: data/plos.csl 
+---
+
+***
+
+*We start with a basic model of malaria transmission, and we add an **ITN** component using the algorithm published by Le Menach A [@LeMenachA2007ElaboratedFeeding].*
+
+***
+
+# Background 
+
+Macdonald's analysis of the sporozoite rate and his formula for $R_0$, both published in 1952, reframed the basic understanding of mosquitoes and malaria transmission [@MacdonaldG1952Sporozoite;@MacdonaldG1952Ro]. In 1964, Garrett-Jones isolated the mosquito-specific terms in the formula for $R_0$ and called it *vectorial capacity,* intending to use it as a basis for developing theory for vector control, including the effects of insecticide resistance [@Garrett-JonesC1964VC;@Garrett-JonesC1964HBI;@Garrett-JonesC1964AssessmentInsecticidal]. Most of this research was developed in the context of the Global Malaria Eradication Programme. 
+
+In 1987, chloroquine resistance was found in Africa, and during the 1990s, chloroquine resistance created a massive public health crisis. In 1999, African leaders called for help. The respose included a switch to artemisinin-combination therapies (ACTs) and the scale-up of insecticide-treated bed nets. Questions arose about bed net *effects* and *effect sizes* in relation to *coverage,* leading to a new generation of models [@LeMenachA2007ElaboratedFeeding;@SmithDL2009PredictingChanging]. Among those was a model by Arnaud Le Menach and collaborators, published in 2007 [@LeMenachA2007ElaboratedFeeding]. Here, we have implemented that 
+
+
+# Setting Up the *Le Menach* Bed Net Model
+
+## Basic Setup 
+
+We load `ramp.xds` and the satellite library that implements control, `ramp.control`. 
+
+```{r}
+library(ramp.xds)
+library(ramp.control)
+```
+
+Next, we set up the default model: 
+
+```{r}
+model <- xds_setup(MYZname = "SI")
+model <- xds_solve(model, 3650, 3650)
+model <- last_to_inits(model)
+```
+
+## Advanced Setup 
+
+Vector control is done through **advanced setup** options -- in a nutshell, we modify a base model.
+
+To add a bed net model, we need to use `setup_bednets`. That function is simple to use, if you know what you're doing. On encountering it for the first time, the number of options might seem confusing. The complexity was there to streamline *robust analytics* -- what are all the reasonable ways to implement a bed net model? In a nutshell, all these bednet models have two parts: 
+
++ **Bed Net Coverage** -- bed nets get distributed; ownership and use change over time; and we need a model that describes the fraction of *potential blood feeding encounters* between mosquitoes and humans that are modified by the presence of a bed net. We note that this definition of *coverage* is slightly different from *operational definitions* of malaria coverage that would be used by malaria programs -- there are some important human and mosquito behaviors affecting mosquito-human contact.
+
+
+
++ **Bed Net Effects & Effect Sizes** -- we need a model that translates *coverage* into a model for *effects* or *effect sizes.* An effect size, herein, is defined as a factor change in potential malaria transmission. 
+
+In this case, we configure a [*trace function*](trace.qmd) describing coverage. We pick a `sharkfin` function. To do this, we configure the options  
+
+```{r}
+cover_par <- list(trend_par = makepar_F_sharkfin())
+```
+
+```{r}
+itn_mod <- setup_bednets(model, 
+                         coverage_name = "func", 
+                         coverage_opts = cover_par, 
+                         effect_sizes_name = "lemenach")
+```
+
+```{r}
+tm = seq(0, 5*365, by = 5)
+cv <- itn_mod$bednets$coverage_mod$F_trend(tm)
+plot(tm, cv, type = "l")
+```
+
+
+```{r}
+model <- xds_solve(model, 5*365, 10) 
+itn_mod <- xds_solve(itn_mod, 5*365, 10)
+```
+
+```{r}
+xds_plot_aEIR(model)
+xds_plot_aEIR(itn_mod, clrs = "red", add=TRUE)
+```
+
+
+```{r}
+xds_plot_PR(model)
+xds_plot_PR(itn_mod, clrs = "darkred", add=TRUE)
+```
+
+# Implementation Notes 
+
+## A Sharkfin 
+
+In this example, we write a function that computes bed net coverage directly. Coverage was configured as a [*trace function*](trace.qmd). The function family is called `setup_bednet_coverage.func`. The coverage function *must* return a value between 0 and 1, so the function chops values returned by the function to be 0 if the value returned by the function is less than 0, and 1 if the value returned is greater than 1. 
+
+In the case of bed nets, we imagine a bed net mass distribution campaign, where the nets go out over a few weeks leading to a peak in coverage, but then ITN ownership wanes as the nets are torn or discarded. To construct a smooth function, we use the `sharkfin` family of functions. A `sharkfin` is the product of two sigmoidal functions with different shape parameters -- the first sigmoidal function describes the scale-up phase and the second describes the decay phase. 
+
+
+## Visualization 
+
+## Le Menach 
+
+The model developed by Le Menach *et al.* has been encoded in `ramp.control` with three functions: 
+
++ `BedNetEffectSizes.lemenach` calls the model `compute_bednet_effect_sizes_lemenach`
+
++ `compute_bednet_effect_sizes_lemenach` returns an effect size for each bionomic parameter.  
++ `setup_bednet_effectsizes.lemenach` dispatches the `S3` model `setup_bednet_effectsizes` and calls `setup_bednet_effectsizes_lemenach`. 
+
++ `setup_bednet_effectsizes_lemenach` configures and returns a bed net model object, with default parameters and user overwritable options. 
+
+
+
+## Implementation Notes 
+
+
+## References

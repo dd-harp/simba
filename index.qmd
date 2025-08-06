@@ -1,13 +1,30 @@
 ---
-title: "SimBA"
+title: "The SimBA Project"
 subtitle: "Nimble Model Building for Malaria and other Mosquito-Transmitted Pathogens"
-bibliography: ../refs/refs.bib
-csl: ../refs/plos.csl
+bibliography: data/refs.bib
+csl: data/plos.csl 
+html-math-method:
+  method: mathjax
+  url: "https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
 ---
 
-This website supports development and dissemination of several GitHub R packages to support **Sim**ulation-**B**ased **A**nalytics (**SimBA**) for malaria and other mosquito-transmitted pathogens. Core computation is handled in [**`ramp.xds`**](ramp.xds.html), which is supplemented by four satellite packages. There are also two  supplementary stand-alone packages [(see R packages)](Rpackages.html). 
+***
 
-The software implements a rigorous mathematical framework for building models that is modular, flexible, and extensible [@WuSL2023SpatialDynamics]. It was designed to lower the costs of building and analyzing models for malaria research and analytics. The guiding design principles were *nimble model building* and *scalable complexity.*
+***SimBA** software was developed to support robust analytics for malaria policy (RAMP). The software is designed around a few core goals:* 
+
++ *Build mechanistic models fit for purpose;*
+
++ *Understand the models and their limitations;*
+
++ *Use models to develop robust policy advice for malaria programs.*
+
+*This software was designed with features to improve simulation-based analytics while lowering costs, including time spent by humans building models, computational requirements, and human time required post-processing to interpret the output of the models.*
+
+*** 
+
+This website supports development and dissemination of several GitHub R packages to support **Sim**ulation-**B**ased **A**nalytics (**SimBA**) for malaria and other mosquito-transmitted pathogens. Core computation is handled in [**`ramp.xds`**](ramp.xds.html), which is supplemented by five satellite packages. There are also two  supplementary stand-alone packages [(see R packages)](Rpackages.html). 
+
+The software implements a rigorous mathematical framework for building models that is modular, flexible, and extensible [@WuSL2023SpatialDynamics]. It was designed to lower the costs of building and analyzing models for malaria research and analytics. The guiding design principles were [*nimble model building*](nimble.qmd) and [*scalable complexity.*](scalable_complexity.qmd)
 
 The material on this site is designed around the topics needed to support model building for malaria research and analytics: mosquito ecology and malaria epidemiology, transmission dynamics and control. The sidebar presents an organized set of vignettes describing concepts and algorithms to support nimble model building. Many of the vignettes have examples with working code. The navigation bar (at the top) has some quick links, including a guide to some models.
 
@@ -21,13 +38,15 @@ The **SimBA** software suite was developed around an R package called [**`ramp.x
 
 -   `xds` stands for *e**X**tensible **D**ynamical **S**ystems*
 
-The **SimBA** software suite includes four satellite packages for **`ramp.xds`**:
+The **SimBA** software suite includes five satellite packages for **`ramp.xds`**:
 
 -   [**`ramp.library`**](ramp.library.html) is a code library for **`ramp.xds`** with model families or modules for the core dynamical components.
 
 -   [**`ramp.control`**](ramp.control.html) is a code library for **`ramp.xds`** with algorithms to implement various models of vector control and health-based malaria interventions
 
 -   [**`ramp.forcing`**](ramp.forcing.html) is a code library for **`ramp.xds`** with algorithms to implement exogenous forcing by weather
+
+-   [**`ramp.demog`**](ramp.demog.html) is is a supplementary code library for **`ramp.xds`** that handles human demography and stratification, including vital dynamics and age structure 
 
 -   [**`ramp.work`**](ramp.work.html) is a set of algorithms and functions to apply the models to various tasks
 

@@ -1,0 +1,43 @@
+---
+title: "Epidemiology: Model Library"
+subtitle: "The SimBA Model Library for Human / Host Epidemiology" 
+format: html
+---
+
+The **X** component is a model for the dynamics of infection and immunity for the parasite or pathogen's host(s). These components are
+
+## Generic Compartment Models 
+
+
+## Dengue
+
+Dengue Virus has 4 distinct strains.
+
+
+## Malaria Epidemiology
+
+In **`ramp.xds`**
+
+-   `SIS`
+
+-   `hMoI`
+
+In **`ramp.library`**
+
+-   `SIP`
+
+### Compartmental Models
+
+**`ramp.library`**
+
+-   `SIR`
+
+-   `SIRS`
+
+-   `SEIR`
+
+-   `SEIRV`
+
+### Arboviruses, Filariasis, ...
+
+For other diseases, we have developed

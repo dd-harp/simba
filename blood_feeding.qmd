@@ -1,11 +1,4 @@
 ---
 title: "Blood Feeding"
+format: html
 ---
-
-+ Mosquito Search
-
-+ Time Spent / Time at Risk 
-
-+ Search Weights and Availability
-
-+ The Mixing Matrix

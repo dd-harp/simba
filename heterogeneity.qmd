@@ -1,0 +1,12 @@
+---
+title: "Heterogeneity"
+subtitle: "Heterogeneous Exposure and Mixing in SimBA"
+editor:
+  mode: source
+bibliography: data/refs.bib
+csl: data/plos.csl 
+format: html
+html-math-method:
+  method: mathjax
+  url: "https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
+---

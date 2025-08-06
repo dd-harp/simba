@@ -1,0 +1,5 @@
+---
+title: "Adult Mosquitoes: Model Library" 
+subtitle: "Model Families for Adult Mosquito Ecology and Infection Dynamics"
+format: html
+---

@@ -1,0 +1,4 @@
+---
+title: "Trivial: **L**"
+format: html
+---

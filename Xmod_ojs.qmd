@@ -1,0 +1,29 @@
+---
+title: "Xmod: GuI Setup"
+format: html
+---
+
+```{r}
+library(ramp.xds)
+library(ramp.library)
+```
+
+```{r, echo=F}
+if(!file.exists("model_list.rds")){
+  default <- list(name = "default", owner = "noone")
+  model_list <- list() 
+  model_list$default <- default 
+  default <- xds_setup()
+  default$model_name <- "default"
+  saveRDS(model_list, "model_list.rds")
+  saveRDS(default, "default.rds")
+} 
+
+readRDS("model_list.rds")
+```
+
+## **X** Component
+
+``` {eval="F"}
+const Xname = Inputs.select(["SIS", "SIP"], {label: "Xname"}) 
+```

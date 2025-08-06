@@ -1,0 +1,26 @@
+---
+title: "Model Library"
+subtitle: "A Catalogue of Modules"
+format: html
+---
+
+***
+
+*To run a module in SimBA, it must be added to the **model library.** In SimBA, a **model family** that has been encoded and added to the model library is called a **module.***
+
+*** 
+
+The model catalogue for SimBA
+
+## **X** Modules 
+
+
+- [Generic Compartment Models](compartment_models.qmd)
+
+- [Malaria Epidemiology](malaria_epidemiology.qmd)
+
+- [Other](Xetc.qmd)
+
+## **MY** -- Adult Mosquitoes 
+
+## **L** -- Aquatic Mosquitoes 

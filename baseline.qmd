@@ -1,0 +1,402 @@
+---
+title: "Counterfactual Baseline"
+subtitle: "A Changing Baseline Modified by Vector Control"
+format: html
+---
+
+------------------------------------------------------------------------
+
+*Given a time series describing the parasite rate in a population, we fit a model to a PR time series to understand malaria as a changing baseline that has been modified by vector control.*
+
+------------------------------------------------------------------------
+
+Suppose we start with a time series that we want to analyze. We have two bits of data: the imputed *Pf*PR over some time period, and the timing of vector control. We start out with a model that has been fitted to data (see [The History of Malaria](history.qmd)). At this point, the model was fit without using any information about the history of vector control. What we want to do now is to construct a model that reconstructs this time series as a **counterfactual baseline** with that includes interventions with estimated effect sizes.
+
+```{r}
+library(ramp.xds)
+library(ramp.uganda)
+library(ramp.control)
+library(ramp.work)
+fit_mod <- readRDS("fit_mod.rds")
+```
+
+```{r}
+#devtools::load_all("~/git/ramp.control")
+#devtools::load_all("~/git/ramp.work")
+```
+
+Consider the following example. The green vertical lines are mass distributions of ITNs, the type listed above (PBO or Royal Guard); the blue vertical lines are IRS, the insecticide tagged above (Fludora Fusion or Actellic). We note that the first ITN distribution, with PBO nets called `PBO 0` was about a year before our time series starts. The next two ITN distributions, called `PBO 1` and `PBO 2` occurred on days 776 and 2175, respectively. Another ITN distribution, with Royal Guard nets, `RG` occurred on day 3240. This district also got IRS on days 2861, 3256, and 3622: the first one, `Flu Fu` was done with Fludora Fusion; the next two, called `Act 1` and `Act 2` used Actellic. This is a picture of what happened: the data in black with a fitted model in red:
+
+```{r, echo=F}
+dname = "Terego District"
+prts <- get_district_pfpr(dname)
+with(prts, {
+  plot(jdate, pfpr, xlim = range(jdate, -250), ylim = c(0,0.7), main = "Example District", xlab = "Julian Date (day 1 is Jan 1, 2015)", ylab = "PR") 
+  lines(jdate, pfpr)
+  
+  irs <- get_irs_jdates(dname, 2015)
+  irs_type = c("Flu Fu", "Act 1", "Act 2") 
+  for(i in 1:length(irs)){
+    segments(irs[i], 0, irs[i], .55, col = "darkblue")
+    text(irs[i], 0.6, irs_type[i], col = "darkblue")
+  }
+  
+  itn <- sort(get_itn_jdates(dname, 2015))
+  itn_type= c("PBO 0", "PBO 1", "PBO 2", "RG") 
+  for(i in 1:length(itn)){
+    segments(itn[i], 0, itn[i], .55, col = "darkgreen")
+    text(itn[i], 0.65, itn_type[i], col = "darkgreen")
+  }
+})
+
+fit_mod <- readRDS("fit_mod.rds")
+xds_plot_PR(fit_mod, add=TRUE, clrs = "darkred")
+```
+
+The analysis we present is largely *descriptive.* These are all the data we have to describe malaria in a population of around 200,000 people. Our goal is to do the best we can with the data we've got so that we can develop sensible policy advice. Constructive criticism is welcome, but we've got a round file for other kinds of comments.
+
+# A Counterfactual Baseline
+
+To reconstruct the counterfactual baseline, we will go through the list of interventions one at a time, and we need to make a determination of the effect size of the intervention, contingent on what would have happened otherwise.
+
+The core challenge is that we need to estimate **two** things from *one* time series, so there is some intrinsic *uncertainty.*
+
+The time series that was observed *could* have happened in many ways. We thus need an algorithm capable of propagating that uncertainty. The algorithm works like this:
+
+-   Build a model and fit it to the data.
+
+-   For the first intervention, reconstruct history as a baseline, modified by control:
+
+    -   Impute a baseline
+
+    -   Contingent on the imputed baseline, estimate the effect size
+
+-   For the next intervation, estimate the effect size, contingent on the previous
+
+To show how this works, we will walk through the time series for the district above.
+
+Our goal here is to walk through the analysis to draw attention to the issues.
+
+## PBO 1
+
+The first ITN distribution, `PBO 0` occurred 351 days before our first data point, so it is possible that what we're seeing at the beginning is a result of that distribution. The second ITN distribution, the one we want to assess, occurred on day 776.
+
+In this model, the trend is configured as a spline that modifies a signal with a mean and a seasonal pattern. The spline knots and nodes are:
+
+```{r}
+rbind(fit_mod$Lpar[[1]]$trend_par$tt[2:5], 
+round(1000*fit_mod$Lpar[[1]]$trend_par$yy[2:5])/1000)
+```
+
+That third node is the one we want to consider replacing. The mean value of the two that precede it are:
+
+```{r}
+mean(fit_mod$Lpar[[1]]$trend_par$yy[c(2,3)])
+```
+
+The fitted value we would want to replace is:
+
+```{r}
+fit_mod$Lpar[[1]]$trend_par$yy[4]
+```
+
+Based on this, we conclude it is pointless to try and fit an effect size to an intervention model. The model fitting would surely return *no effect.* For this reconstruction, we thus conclude that `PBO 1` did not have any effect, and we move on.
+
+## PBO 2
+
+The next ITN distribution, called `PBO 1` is on day 2,175.
+
+Now, our task of reconstructing a baseline is more complicated. The fitted values from the first 6 years of data, and it looks like we've got a trend:
+
+```{r}
+knots <- fit_mod$Lpar[[1]]$trend_par$yy[2:7]
+tm <- c(1:6)
+plot(tm, knots)
+llm <- lm(knots~tm)
+abline(llm)
+```
+
+Malaria prevalence has increased by about 25% over six years of observation. Using a linear model, the trend is already statistically significant.
+
+```{r}
+summary(llm)
+```
+
+With only six years, it's hard to have a lot of confidence about what we would expect to happen next.
+
+In fact, the upward trend does not continue, but the inflection point coincides with `PBO 2`. What happened? Did the trend stop on its own, or did `PBO 2` reverse the upwards trend?
+
+At this point, after the nets go out, the upward trend stops. Was the trend real?
+
+We don't learn a ton more with hindsight, because what happens next is also modified by vector control: a little less than two years later, the district implements IRS with Fludora Fusion. a year after that, after mass distributing Royal Guard nets and IRS with Actellic, malaria prevalence falls to around 20% of its long-term average. Here, we contrast two baseline scenarios: the projected linear trend (red); and regression to the mean (blue). These are compared to the fitted model (black). The solid vertical line segment marks the day of the intervention, and the dashed vertical line is one year later.
+
+```{r}
+impute_baseline_linear = function(ix, model){
+  yy <- head(model$Lpar[[1]]$trend_par$yy, ix-1)
+  tt <- head(model$Lpar[[1]]$trend_par$tt, ix-1)
+  yyv <- yy[which(tt>0)]
+  llm <- lm(yyv ~ c(1:length(yyv)))
+  c(yyv, tail(yyv, 1) + llm$coef[2]) 
+}
+plot(impute_baseline_linear(8, fit_mod))
+```
+
+```{r}
+projected <- .802930 + .0372*c(7:9)
+projected
+```
+
+```{r}
+fit_mod1 <- fit_mod
+fit_mod1$Lpar[[1]]$trend_par$yy[8:10] <- projected
+fit_mod1$Lpar[[1]]$F_trend <- 
+      make_function(fit_mod1$Lpar[[1]]$trend_par)
+fit_mod1 <- xds_solve(fit_mod1, 2550, 10)
+
+fit_mod2 <- fit_mod
+fit_mod2$Lpar[[1]]$trend_par$yy[8:10] <- 
+  mean(fit_mod$Lpar[[1]]$trend_par$yy[2:7])
+fit_mod2$Lpar[[1]]$F_trend <- 
+  make_function(fit_mod2$Lpar[[1]]$trend_par)
+fit_mod2 <- xds_solve(fit_mod2, 2550, 10)
+
+xds_plot_PR(fit_mod1, clrs = "darkred")
+xds_plot_PR(fit_mod2, clrs = "darkblue", add=TRUE)
+xds_plot_PR(fit_mod, add=TRUE)
+segments(2175, 0, 2175, 1)
+segments(2540, 0, 2540, 1, lty = 2)
+```
+
+If we used the linear model value for the baseline, the PBO net distribution would need to explain a 20% reduction in *Pf*PR (darkred). If we assume regression to the mean from the previous six years (darkblue), the reduction was about 6%; the observed value in the seventh year is close to the average value observed in the previous six.
+
+```{r}
+fit_mod1$Lpar[[1]]$trend_par$yy[8]/
+  fit_mod$Lpar[[1]]$trend_par$yy[8]
+mean(fit_mod$Lpar[[1]]$trend_par$yy[2:7])/
+  fit_mod$Lpar[[1]]$trend_par$yy[8]
+```
+
+We need to make a decision, now, about how to handle the effect size of `PBO 2` on malaria prevalence. This history already assumes that `PBO 1` had no effect, and a 6% change in *Pf*PR is not outside the normal variability. A reasonable conclusion is thus that it had no effect.
+
+## Flu Fu
+
+686 days after `PBO 2`, on day 2,861, the district got IRS with Fludora Fusion. Once again, we create a baseline by setting the values from the previous 7 years, we simulate forward one year and we get this picture (blue is the putative baseline).
+
+```{r}
+fit_mod3 <- fit_mod
+fit_mod3$Lpar[[1]]$trend_par$yy[9:10] <- 
+  mean(fit_mod$Lpar[[1]]$trend_par$yy[2:8])
+fit_mod3$Lpar[[1]]$F_trend <- 
+  make_function(fit_mod3$Lpar[[1]]$trend_par)
+fit_mod3 <- xds_solve(fit_mod3, 3230, 10)
+xds_plot_PR(fit_mod3, clrs = "darkblue") 
+xds_plot_PR(fit_mod, clrs = grey(0.9), add=TRUE) 
+segments(2861, 0, 2861, 1)
+segments(3226, 0, 3226, 1)
+```
+
+## ACT 1 + RG
+
+In the last step, In modeling the effect sizes of the interfNow, we have a different problem. We have a massive change in malaria following the implementation of two kinds of vector control, but we are not certain about which one did the work.
+
+## Act 2
+
+While there are no data, we can make a forecast of the effects of the actellic IRS round, `Act 2`, that could help us to resolve some of our open questions raised by the concurrence of `RG` and `Act 1.` With these data, at least, we will not be able to evaluate `Act 2`. Maybe next year.
+
+# Algorithm
+
+We want to write an algorithm that implements, in some reasonable ways, all the steps described above:
+
+## Pseudocode
+
+**INPUTS**
+
+-   We pass a *Pf*PR time series;
+
+-   We pass a list of the vector control interventions:
+
+    -   IRS rounds by type, timing, and coverage;
+
+    -   Bed Net rounds by type, timing, and coverage;
+
+**ALGORITHM**
+
+-   We set up a base model and fit it to the time series, a *history* of malaria;
+
+-   We reconstruct the history of malaria as a changing baseline modified by control;
+
+**OUTPUTS**
+
+We return two models:
+
+-   A *counterfatual baseline* model. This is the counterfactual baseline -- what would have happened with no interventions;
+
+-   A full model, including the *counterfactual baseline* plus a configured set of interventions with effect sizes. The full model should fit the data about as well as the *history* model.
+
+------------------------------------------------------------------------
+
+The algorithm works like this:
+
+1.  Fit a model to the data: the *history* model.
+
+2.  Set up a model with multiple rounds of control, setting coverage to 0.
+
+3.  For every intervention, in order modify the *history* model:
+
+    -   Replace the knot that follows the mass distribution
+
+    -   Set coverage to the observed value
+
+    -   Fit the contact parameter
+
+4.  Return the two models:
+
+    -   the *baseline, modified by control* model, as fitted in 3
+
+    -   the *baseline* with *no* interventions.
+
+## Flexibility and Constraints
+
+The algorithm works like the process we described, but we should acknowledge two concerns:
+
+-   There are usually several reasonable ways to reconstruct the baseline. The replacement knot value is:
+
+    -   the mean of the previous $n$ knots
+
+    -   the median of the previous $n$ knots
+
+    -   a linear projection of the previous $n$ knots
+
+    -   subsampled from the previous $n$ knots
+
+    -   drawn from a distribution fitted to the previous $n$ knots
+
+    -   done in some other reasonable way.
+
+-   When two or more modes of vector control are implemented at the same time, we can not estimate the effect sizes for the individual interventions, so we estimate a *joint* effect size.
+
+## Example
+
+We have already fitted a model, so now we set up:
+
+The model fitting was described in \[History\]
+
+```{r}
+fit_mod <- readRDS("fit_mod.rds")
+```
+
+```{r}
+fit_mod$Lpar[[1]]$trend_par
+```
+
+We do only two rounds of IRS. The last one is too late to be evaluated.
+
+```{r}
+get_irs_jdates(dname)
+```
+
+```{r}
+make_irs_rounds(dname)
+```
+
+Jinja District never had any IRS rounds, so `make_irs_rounds` returns a null object.
+
+```{r}
+make_irs_rounds("Jinja District")
+```
+
+Apac District had some IRS rounds, but all of them happened before our evaluation period, so `make_irs_rounds` returns a null object.
+
+```{r}
+make_irs_rounds("Apac District")
+```
+
+```{r}
+irs_rounds <- make_irs_rounds(dname)
+irs_rounds
+```
+
+```{r}
+work_mod <- setup_irs(fit_mod, coverage_name="multiround", coverage_opts=irs_rounds, effect_sizes_name = "simple")
+```
+
+```{r}
+get_itn_jdates(dname)
+```
+
+```{r}
+make_bednet_rounds(dname) -> itn_rounds
+itn_rounds
+```
+
+```{r}
+work_mod <- setup_bednets(work_mod, coverage_name = "multiround", coverage_opts = itn_rounds, effect_sizes_name = "lemenach")
+```
+
+```{r}
+work_mod <- make_vc_event_list(work_mod)
+work_mod$vc_events$summary
+```
+
+```{r recon, eval=F}
+recon <- reconstruct_baseline(work_mod, prts$pfpr, prts$jdate, irs_rounds, itn_rounds, "mean")
+saveRDS(recon, "recon.RDS")
+```
+
+```{r}
+recon <- readRDS("recon.rds")
+```
+
+```{r, echo=F, eval=F}
+recon1 <- fit_mod
+recon1 <- setup_irs(recon1, coverage_name="multiround", coverage_opts=irs_rounds, effect_sizes_name = "simple")
+recon1 <- setup_bednets(recon1, coverage_name = "multiround", coverage_opts = itn_rounds, effect_sizes_name = "lemenach")
+recon1 <- make_vc_event_list(recon1)
+```
+
+```{r, echo=F, eval=F}
+recon1$vc_events$summary
+```
+
+```{r, echo=F, eval=F}
+recon2 <- recon1
+for(i in 1:4) {
+  ix <- recon1$vc_events$events[[i]]$ix
+  recon1 = impute_baseline("mean", recon1, ix)
+  recon2 = impute_baseline("subsamp", recon2, ix)
+}
+```
+
+```{r, echo=F, eval=F}
+kk0 <- fit_mod$Lpar[[1]]$trend_par$yy
+kk1 <- recon1$Lpar[[1]]$trend_par$yy
+kk2 <- recon2$Lpar[[1]]$trend_par$yy
+plot(kk0 )
+lines(kk1, col = "darkred")
+lines(kk2, col = "darkblue")
+
+```
+
+```{r, echo=F, eval=F}
+tt <- seq(0, 3650, by = 10)
+yy1 <- recon$Lpar[[1]]$F_trend(tt)
+yy2 <- fit_mod$Lpar[[1]]$F_trend(tt)
+plot(tt, yy1, type = "l")
+lines(tt, yy2, col = "red")
+```
+
+```{r}
+baseline <- setup_irs(recon, coverage_name="multiround", coverage_opts=irs_rounds, effect_sizes_name = "simple")
+baseline <- setup_bednets(baseline, coverage_name = "multiround", coverage_opts = itn_rounds, effect_sizes_name = "lemenach")
+baseline <- xds_solve(baseline, times = c(-365, 0, prts$jdate))
+```
+
+```{r}
+recon <- xds_solve(recon, times = c(-365, 0, prts$jdate))
+profile_pr(recon, prts)
+```
+
+```{r}
+xds_plot_PR(recon)
+xds_plot_PR(baseline, clrs="darkblue", add=TRUE)
+```

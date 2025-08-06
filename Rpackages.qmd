@@ -1,46 +1,52 @@
 ---
 title: "R packages"
-bibliography: ../refs/refs.bib
-csl: ../refs/plos.csl
+subtitle: "Modular Computation for Simulation-Based Analytics"
+editor:
+  mode: source
+bibliography: data/refs.bib
+csl: data/plos.csl 
+format: html
+html-math-method:
+  method: mathjax
+  url: "https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
 ---
 
-**RAMP** stands for **R**obust **A**nalytics for **M**alaria **P**olicy. RAMP is a set of workflows and concepts that rely on **SimBA** software to develop robust analytics for Adaptive Malaria Control.
+**RAMP** (**R**obust **A**nalytics for **M**alaria **P**olicy) is an organized way of translating evidence into robust policy advice and support [Adaptive Malaria Control](https://faculty.washington.edu/smitdave/ramp/index.html). RAMP relies on simulation-based analytics implemented through **SimBA** software. Using **SimBA,** it is easy to develop site-specific dynamical systems models of malaria epidemiology, transmission dynamics, and control for scenario planning to support sub-national tailoring, monitoring and evaluation, and strategic planning.
 
-SimBA includes 5 software packages that do core computation built around [ramp.xds](ramp.xds.html) that implement a modular framework for model building describe in *Spatial Dynamics of Malaria Transmission* [@WuSL2023SpatialDynamics]. We also describe two supplementary packages that handle some aspects of malaria epidemiology and microsimulation, as well as some older software packages that are deprecated.   
+SimBA includes sevaral software packages. Six packages implement simulation-based analytics: core computation in [`ramp.xds`](ramp.xds.html) is supported by five satellite packages. Altogether, these R packages implement a modular framework for model building describe in *Spatial Dynamics of Malaria Transmission* [@WuSL2023SpatialDynamics]. We have also included two packages to explore concepts at the cutting edge of malaria epidemiology and microsimulation. Meanwhile, some older software packages -- predecessors to **`ramp.xds`** -- have been [deprecated](deprecated.html).
 
-## Core Computation 
+## Core Computation
 
--   [ramp.xds](ramp.xds.html) includes core computation to build and solve dynamical systems models for the epidemiology, transmission dynamics, and control of malaria and other mosquito-transmitted pathogens.
+-   [ramp.xds](ramp.xds.html) handles core computational and analysis. It was developed to build and solve dynamical systems models for the epidemiology, transmission dynamics, and control of malaria and other mosquito-transmitted pathogens based on a well-defined mathematical framework [@WuSL2023SpatialDynamics].
 
-    - all packages are `ramp` branded
-    
-    - `xds` stands for *e**X**tensible **D**ynamical **S**ystems*
+    -   all packages are `ramp` branded
 
--   [**`ramp.library`**](ramp.library.html) is a code library for **`ramp.xds`** that has encoded model families or modules for the core dynamical components.
+    -   `xds` stands for *e**X**tensible **D**ynamical **S**ystems*
 
--   [**`ramp.control`**](ramp.control.html) is a code library for **`ramp.xds`** that holds a set of algorithms to implement various models of malaria control, including vector control, mass drug administration, *etc.*
+-   [**`ramp.library`**](ramp.library.html) is a supplementary model library for **`ramp.xds`** that has additional modules for the core dynamical components.
 
--   [**`ramp.forcing`**](ramp.forcing.html) is a set of algorithms to implement exogenous forcing by weather and other factors
+-   [**`ramp.control`**](ramp.control.html) is a supplementary code library for **`ramp.xds`** that holds algorithms to implement various models of malaria control, including vector control, mass vaccination, mass drug administration, *etc.*
 
--   [**`ramp.work`**](ramp.work.html) is a set of algorithms and functions to apply the models to various tasks
+-   [**`ramp.forcing`**](ramp.forcing.html) is is a supplementary code library for **`ramp.xds`** that holds algorithms to implement exogenous forcing by weather and other factors.
 
-## Microsimulation
+-   [**`ramp.demog`**](ramp.demog.html) is is a supplementary code library for **`ramp.xds`** that handles human demography and stratification, including vital dynamics and age structure.
 
-Two packages have been developed by our team for behavioral state models for mosquitoes and microsimulation: 
+-   [**`ramp.work`**](ramp.work.html) is a set of algorithms and functions to compute scaling relationships, to fit models to data, and to apply malaria models in context.
 
-+ [`ramp.micro`](ramp.micro.html) was developed to explore complexity in mosquito ecology through the development and analysis of simulation models describing mosquito behavioral & spatial dynamics on point sets representing resources, which we call micro-simulation [@PerkinsTA2013HeterogeneityMixing;@CastellanosHMS2025MosquitoDispersal]
+## Deep Dives
 
-+ [`MBITES`](https://github.com/dd-harp/MBITES) is an individual-based simulation model developed to explore mosquito behavioral states [@WuSL2020MBITES]. 
+### Microsimulation
 
+Two packages have been developed by our team for behavioral state models for mosquitoes and microsimulation:
 
-## Malaria Epidemiology  
+-   [`ramp.micro`](ramp.micro.html) was developed to explore complexity in mosquito ecology through the development and analysis of simulation models describing mosquito behavioral & spatial dynamics on point sets representing resources, which we call micro-simulation [@PerkinsTA2013HeterogeneityMixing; @CastellanosHMS2025MosquitoDispersal]
 
-In [`ramp.falciparum`](ramp.falciparum.html), we explore malaria epidemiology, defined in the narrow sense to describe human exposure to malaria and infection, immunity, disease, drug taking, diagnostics and detection, and infectiousness [@HenryJM2025ProbabilisticSynthesis]. 
+-   [`MBITES`](https://github.com/dd-harp/MBITES) is an individual-based simulation model developed to explore mosquito behavioral states [@WuSL2020MBITES].
+
+### Malaria Epidemiology
+
+In [`ramp.falciparum`](ramp.falciparum.html), we explore malaria epidemiology, defined in the narrow sense to describe human exposure to malaria and infection, immunity, disease, drug taking, diagnostics and detection, and infectiousness [@HenryJM2025ProbabilisticSynthesis].
 
 ## Deprecated
 
-Before [`ramp.xds`](ramp.xds.html), the basic development was happening in two other packages: 
-
--   [exDE](exDE.html)
-
--   [MicroMoB](MicroMoB.html)
+**`ramp.xds`** was preceded by two packages that have since been deprecated (See [Deprecated](deprecated.html)).

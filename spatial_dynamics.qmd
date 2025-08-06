@@ -1,0 +1,6 @@
+---
+title: "Spatial Dynamics"
+format: html
+bibliography: data/refs.bib
+csl: data/plos.csl 
+---

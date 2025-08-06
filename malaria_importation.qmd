@@ -1,0 +1,6 @@
+---
+title: "Malaria Importation"
+format: html
+---
+
+Malaria can be imported by traveling residents or mosquitoes blood feeding on infectious residents.

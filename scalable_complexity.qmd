@@ -1,0 +1,6 @@
+---
+title: "Scalable Complexity"
+format: html
+bibliography: "./data/refs.bib"
+csl: "./data/plos.csl" 
+---

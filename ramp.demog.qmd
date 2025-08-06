@@ -1,0 +1,17 @@
+---
+title: "`ramp.demog`"
+subtitle: "Demography & Principled Stratification for `ramp.xds`"
+---
+
+*** 
+
+[**`ramp.demog`**](https://dd-harp.github.io/ramp.demog/) is an R-package available from github. It is a satellite of [**`ramp.xds`**](ramp.xds.html) containing utilities to set up models with human demography and age structure. It includes utilities to stratify populations in an organized way to deal with other epidemiologically relevant sources of heterogeneity. 
+
+To install the latest version of **`ramp.demog`** from GitHub, run the following lines of code in an R session.
+
+```{r, eval=F}
+demog(devtools)
+devtools::install_github("dd-harp/ramp.demog")
+```
+
+**`ramp.demog`** depends on [**`ramp.xds`**](ramp.xds.html)

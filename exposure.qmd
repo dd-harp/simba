@@ -1,0 +1,27 @@
+---
+title: "Exposure"
+format: html
+---
+
+In `ramp.xds,` exposure is handled as a very general concept. 
+
++ Each stratum has its own local daily EIR, $E_\ell(t)$:  
+  
+    - The number of infective bites, per patch, is called `fqZ`
+    
+    - Each human population stratum has a vector describing *time at risk*  
+    
+    - Each human population stratum has a *blood feeding search weight* to model 
+    [**heterogeneous biting**](heterogeneous_biting.qmd), including differences in exposure by age; 
+    
+    - The *blood feeding search weight* is used to compute *availability,* and that modifies exposure relative to other strata, all else equal.  
+    
+    - The blood feeding model computes a matrix, $\beta,$ that uses *availability* and *time at risk* to allocate infectious bites in patches to humans spending time in those patches. 
+    
++ The local EIR is translated into a force of infection: 
+
+    - Each **X** component model must supply a function describing the fraction of infectous bites that cause an infection, including effects of [**pre-erythrocytic immunity**](pe_immunity.qmd) 
+    
+    - A local FoI is computed under a model of [**environmental heterogeneity**](environmental_heterogeneity.qmd), which is based on a model for the distribution of the mean in a homogeneous population stratum. For example, most mosquito catch counts data suggest the distribution of bites per person is *negative binomial* rather than *Poisson*. 
+    
+    - The total FoI is the local FoI combined with a travel FoI. The model for [**travel malaria**](travel_malaria.qmd) is set up later. 

@@ -1,0 +1,40 @@
+---
+title: "Cohort Dynamics"
+format: html
+---
+
+In some cases, it's useful to explore the relationship between exposure and malaria epidemiology by comparing different cohorts in the same population. For this, we developed some utilities for cohort dynamics that gete set up by `xds_setup_cohort().` Models returned by `xds_setup_cohort()` lack the **MYZ** and **L** components.
+
+The function `xds_setup_cohort()` differs from other trace functions in **`ramp.xds`** in several ways. The function is defined with respect to age ($a$) for a cohort born on day $\tau$, but average exposure is evaluated at time $t=a+\tau$, so:
+
+$$F_E(a, \tau) = E \times \omega(a) \times F_S(t=a+\tau) \times F_T(t=a+\tau)$$ + $E$ is the mean daily EIR:
+
+-   $\omega(a)$ is a function that modifies the daily EIR with respect to age;
+
+-   $F_S(t)$ is a seasonal pattern;
+
+-   $F_T(t)$ is a trend.
+
+Since the return value is a product, the defaults return $1.$
+
+If you read [Trace Functions](trace.qmd), then you already know, in principle, how to configure $F_S$ and $F_T$ using `make_function`. Configuration of $\omega(a)$ works in the same way. Using `xds_setup`, these are passed from setup:
+
+-   `F_season` is a function of time;
+
+-   `season_par` is a parameter list for `make_function`
+
+-   `F_trend` is a function of time;
+
+-   `trend_par` is a parameter list for `make_function`
+
+-   `F_age` is a function of age;
+
+-   `age_par` is a parameter list for `make_function`
+
+If `season_par` or `trend_par` or `age_par` is not an empty list, then the resulting functions get set up by `make_function`.
+
+```{r, eval=F}
+?xds_setup_cohort
+```
+
+The function can be configured with a seasonal pattern (over time, $t$), an inter-annual trend (over time, $t$), an age weight (over age, $a$), and a scaling term for the mean. Since a person's age is $a = t-\tau,$ where $\tau$ is the birth date,

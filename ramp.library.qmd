@@ -1,8 +1,11 @@
 ---
 title: "`ramp.library`"
+subtitle: "Modules for the Dynamical Components of `ramp.xds`"
 ---
 
-[**`ramp.library`**](https://dd-harp.github.io/ramp.library/) is an R-package available from github. It is a satellite package for [**`ramp.xds`**](ramp.xds.html) containing other modules for the dynamical components.
+*** 
+
+[**`ramp.library`**](https://dd-harp.github.io/ramp.library/) is an R-package available from github. It is a satellite of [**`ramp.xds`**](ramp.xds.html) containing other modules for the dynamical components.
 
 To install the latest version of **`ramp.library`** from GitHub, run the following lines of code in an R session.
 
@@ -13,7 +16,7 @@ devtools::install_github("dd-harp/ramp.library")
 
 **`ramp.library`** depends on [**`ramp.xds`**](ramp.xds.html)
 
-## Dynamic Module Catalogue 
+## Dynamic Module Catalogue
 
 **XH** Component modules include a set of models for human malaria infection and immunity and compartmental models and other associated models for arbovirus infections of humans and other vertebrate animals.
 

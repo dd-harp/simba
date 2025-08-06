@@ -1,0 +1,14 @@
+---
+title: "Core Algorithms"
+format: html
+---
+
+To quantify malaria transmission and *evaluate* malaria control, we have developed algorithms for core tasks. All of them involve fitting models to data and interpreting the results, but we found it useful to do this in steps. In the following, we provide some background about the algorithms.
+
+-   [Model Fitting](fitting.qmd) -- We discuss fitting dynamical systems models to malaria data as a kind of time series analysis;
+
+-   [Exogenous Forcing](forcing.qmd) -- We discuss forcing for model fitting as a set of linked analyses.
+
+-   [Transmission History](history.qmd) -- Given a time series, we fit models of exposure and emergence.
+
+-   [Effect Sizes](effect_size_estimation.qmd) -- We discuss the challenge of effect size estimation.

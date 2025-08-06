@@ -1,0 +1,78 @@
+---
+title: "Vector Control"
+format: html
+---
+
+***
+
+*In broad terms, SimBA was developed to model malaria transmission as a **changing baseline** that is **modified by control.***
+
+*In SimBA, the way to build a model with vector control is to first build a model of transmission and then add vector control.*
+
+***
+
+In `ramp.xds,` vector control is understood through modification of bionomic parameters in relation to coverage; but these parameters can be modified by something else. There are many ways to do this, so the software was designed to implement effects in order (see below). 
+
+Each mode of vector control works differently, corresponding to the way vector control is implemented. These are discussed in: 
+
++ [Bed Nets](itn.qmd) with or without insecticides 
+
++ [Indoor Residual Spraying (IRS)](irs.qmd) 
+
++ [Area Spray](area_spray.qmd)
+
++ [Sugar Baits](sugar_baits.qmd) including attractive, toxic sugar baits
+
++ [Larval Source Management](lsm.qmd)
+
+Other interventions are planned for future releases of `ramp.control`
+
++ Auto-disseminated Larvicides (planned) 
+
++ Endectocides (planned) 
+
+## Software Notes
+
+An empty port for vector control is set up in `ramp.xds` that calls two functions. First, `VectorControl` and then, after calling several other functions,  `VectorControlEffectSizes`. The function blocks are called in an order: `VectorControl` describes something that gets done
+
+```
+pars <- VectorControl(t, y, pars)
+pars <- Resources(t, pars)
+pars <- BloodFeeding(t, pars)
+pars <- BaselineBionomics(t, y, pars)
+pars <- BloodFeeding(t, y, pars)
+pars <- EggLaying(t, y, pars)
+pars <- VectorControlEffectSizes(t, y, pars)
+pars <- Bionomics(t, y, pars)
+``` 
+
+These functions are set up to do nothing in `ramp.xds`. To implement vector control, you must load `ramp.control.` 
+
+In `VectorControl.dynamic`, functions are turned on to implement vector control:   
+
+```
+pars = BedNet(t, pars)
+pars = IRS(t, pars)
+pars = AreaSpray(t, pars)
+pars = SugarBaits(t, pars)
+pars = LSM(t, pars)
+```
+
+In `VectorControlEffectSizes.dynamic`
+
+```
+pars <- BedNetCoverage(t, pars)
+pars <- IRSCoverage(t, pars)
+pars <- AreaSprayCoverage(t, pars)
+pars <- SugarBaitCoverage(t, pars)
+pars <- LSMCoverage(t, pars)
+
+for(s in 1:pars$nVectors){
+  pars <- BedNetEffectSizes(t, pars, s)
+  pars <- IRSEffectSizes(t, pars, s)
+  pars <- AreaSprayEffectSizes(t, pars, s)
+  pars <- SugarBaitEffectSizes(t, pars, s)
+  pars <- LSMEffectSizes(t, pars, s)
+}
+```
+

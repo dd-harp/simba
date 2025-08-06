@@ -1,0 +1,93 @@
+---
+title: "Advanced Setup"
+format: html
+bibliography: data/refs.bib
+csl: data/plos.csl 
+---
+
+Advanced setup handles a large set of model features to add *realism* or implement *malaria control.* This is an overview. The topics are covered in detail in separate vignettes that are also accessible from the sidebar menu. 
+
+## Heterogeneity 
+
+In developing a framework for simulation-based analytics, we were concerned about heterogeneity in traits affect outcomes, especially age, care seeking, and drug taking. We wanted a framework that could handle heterogeneity of all sorts. Unfortunately, there is no simple way of describing heterogeneity nor a single way of handling it.    
+
+To paraphrase the opening line of Tolstoy's novel, *Anna Karenina,* 
+
+> *All homogeneous models are alike; each heterogeneous model is heterogeneous in its own way.*
+
+Heterogeneity for human populations was developed around a set of issues that had been identified in the literature. 
+
++ **Heterogeneous Exposure:** In their analysis of data collected from households in Nagongera Subcounty, Tororo District, Uganda, Cooper *et al.* described three kinds of heterogeneity [@CooperL2019ParetoRules]:
+
+    + **Seasonality** describes differences in exposure over a year. This can caused by mosquito populations, but it could also be due to human behavioral differences. 
+    
+    + **Heterogeneous biting** is a difference in the *average* rate of exposure. It is incorporated into the model as a multiplicative factor modifying exposure. It is a kind of *epidemiological heterogeneity.* In `ramp.xds`  it is handled by *stratifying* a population. 
+
+    + **Environmental Heterogeneity** describes variability in exposure for a homogeneous population stratum. 
+
++ **Epidemiological Heterogeneity** describes differences in traits in a population that affect malaria outcomes, including age, *heterogeneous biting,* differences in travel habits, care seeking, and drug taking . 
+
+
+## Human Demography 
+
+The default model is set up with no births and no deaths. Models for human demography can include: 
+
++ Births & Deaths
+
++ Migration 
+
++ Age Structure
+
+## Principled Stratification
+
+Models that stratify a human population are handled through a system called *principled stratification,* including time spent, heterogeneous biting, age structure, or any other epidemiological traits.  
+
+## Spatial Dynamics 
+
+Any model with `nPatches`$>1$ is considered to have *spatial dynamics.* The patch structure describes mosquito activities, while humans are stratified by time spent. 
+
+### Time Spent 
+
+In spatial models, each population stratum must define a vector that describes the fraction of time spent in every patch. The resulting matrix is called the **Time Spent** matrix. Functions to construct these matrices are described in [Time Spent](time_spent.qmd).
+
+### Mosquito Dispersal 
+
+## Exposure 
+
+The module for [`Exposure`](exposure.qmd) in `ramp.xds` translates the daily local EIR for a set of homogeneous population strata into their daily FoI. 
+
+*Heterogeneous biting* is one part of *heterogeneous exposure.* It affects  *heterogeneous mixing* -- blood feeding and transmission -- so it is handled through stratification and the blood feeding interface. 
+
+In Exposure, we handle *environmental heterogeneity,* exposure to malaria during *travel,* and *pre-erythrocytic immunity.* 
+
+See [Exposure](exposure.qmd) for an overview, and 
+
++ [*Heterogeneous Biting*](heterogeneous_biting.qmd)
+
++ [*Environmental Heterogeneity*](environmental_heterogeneity.qmd)
+
++ [*Travel Malaria*](travel_malaria.qmd)
+
++ [*Pre-Erythrocytic Immunity*](travel_malaria.qmd)
+
+## Malaria Importation 
+
+Each population stratum can travel away from the spatial domain represented by the model and get exposed to malaria. In addition, malaria can be imported by infectious *visitors.*  
+
++ [*Travel Malaria*](travel_malaria.qmd)
+
++ [*Visitors*](visitors.qmd)
+
+## Vector Control 
+
+## Malaria Therapeutics 
+
+## Weather 
+
+## Habitat Dynamics 
+
+## Species *vs.* Strata
+
+### Multiple Vector Species 
+
+### Multiple Host Species 

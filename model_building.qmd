@@ -1,7 +1,120 @@
 ---
 title: "Model Building"
+subtitle: "How To Set Up Models with `ramp.xds`"
+format: html
+html-math-method:
+  method: mathjax
+  url: "https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
 ---
 
-For our purposes, a *model* is an abstract representation of something. A *statistical model* is any
+------------------------------------------------------------------------
 
-a *matheamtical model* is a model that
+*This document is a starting point for learning how to build models with SimBA. Some of this material duplicates the vignettes that accompany each R package. In explaining model building in SimBA, this section takes a circuitous route, so it can serve as an introduction for both analysts and developers. After reading this, a developer should be able to read the code and understand it well enough to add new algorithms to the code base. At the same time, an analyst should understand how to write a function to run a task that has never been done before.*
+
+*If you learn by examples, jump to the **Zoo,** where we present several models.*
+
+------------------------------------------------------------------------
+
+**What do we mean by *model building*?** The term *model building* is overloaded and badly in need of *disambiguation.* In the last section, we offer some terminology to clarify what we mean by *model building* in general, so that we can help users put model bulding with SimBA into context. In the framework below, we call this activity *tertiary model building.*
+
+## Model Building with SimBA
+
+We assume that the malaria analyst has a well-defined reason for building a model, including a question and a set of features they want to include. Any analyst *could* build and run the model on their own -- starting with a set of equations and then writing code using basic tools -- but the task set is onerous. Each developer would need to replicate the same process that has gone into developing SimBA or one of the individual-based simulation models for malaria: the complexity of malaria (and other mosquito-borne pathogens) can become overwhelming; each feature that gets added to a model can create *conflicts* with other features, some of which are inapparent; any code would need verification to ensure that it does what it claims to do; and the challenge of *modifying* or *extending* the model to answer new questions or address concerns. Doing so could force an analyst to start from scratch.
+
+We developed SimBA for *nimble model building,* to lower the costs of building and implementing models malaria with arbitrary levels of complexity. Our goal was to provide a tool for *simulation-based malaria analytics* that would be easy for an analyst in a malaria program to use. SimBA was designed to help the end user construct models to do a *robust* analysis -- the analysis has gone to great lengths to characterize, quantify, and propagate uncertainty. In this section, we describe how to use SimBA to apply an existing framework and build models of malaria for malaria research and analytics. In the framework below, we call it *tertiary model building.*
+
+Like all frameworks, SimBA makes a set of design choices that impose some constraints. In developing the mathematical framework, a goal for SimBA was a modular design that was flexible and extensible. We wanted to maximize the set of features it could handle. The goal was to develop a system for model building based on the principle of *scalable complexity* -- the framework was designed to start with simple models and add complexity through elaboration, one step at a time. While it is comparatively easy to do some of this with individual-based simulation models, depending on how the model was coded, our goal was to do this with deterministic dynamical systems.
+
+**SimBA** models, developed with **`ramp.xds`,** come with a system for setting up models that include a large set of features (see Figure) that are handled in two phases: basic and advanced setup.
+
+-   [**Basic Setup**](basic_setup.qmd) uses `xds_setup()` from **`ramp.xds`**, or one of the related setup functions to build a model and set some options (the first columns in the Figure below);
+
+-   [**Advanced Setup**](advanced_setup.qmd) modifies an **`xds`** model object to develop a new model with realism, malaria control, or other enhanced features.
+
+------------------------------------------------------------------------
+
+![**Figure:** A schematic representation of model building in SimBA. The first two columns are handled by *basic setup.* Features further to the right are handled by *advanced setup.*](Figures/ScalableComplexity.png)
+
+------------------------------------------------------------------------
+
+## Basic Setup
+
+-   Choose the model famlies for each one of the dynamical components;
+
+-   Fix some of the basic structural elements of a model: the number of habitats, the number of patches, and the a basic stratification for the human / host population;
+
+-   Set up blood feeding and egg laying.
+
+## Advanced Setup
+
+-   Set up human demography, including births, deaths, aging, and migration;
+
+-   Stratify the human population on some heterogeneous trait, such as care seeking; housing quality; and heterogeneous biting;
+
+-   Spatial Dynamics
+
+    -   Modify the model for *time spent* and *time at risk*
+
+    -   Modify the model for *mosquito dispersal*
+
+    -   Set up models with indoor / outdoor spaces and house entering
+
+-   Set up a model for exposure with *environmental heterogeneity*
+
+-   Set up a model for *travel malaria* or *infectious visitors*
+
+-   Set up a model in which mosquito *resources* are hetergeneous over time
+
+-   Malaria Control
+
+    -   Set up a model for *vector control* or *entomological surveillance* including bed nets, indoor residual spraying, larval source management, attractive toxic sugar baits, or CDC light traps
+
+    -   Set up a model with mass medical or therapeutic interventions, including vaccines, mass treatment, etc.
+
+-   Set up a model with *weather* and modification of mosquito bionomics
+
+-   Set up a model with *hydrology,* where there is some intermediate variable (*e.g.* water level) to help set up habitat dynamics
+
+-   Add host *species,* defined by a biological difference (*e.g.* bird species as hosts for West Nile Virus) or by the method that handles time spent / time at risk;
+
+-   Add vector *species* defined as distinct *types* or by a population dynamic process with genetics.
+
+The guiding principle is that *some* features build on others, so there is a natural order to follow to make things easier.
+
+## Disambiguating *Model Building*
+
+When people describe *model building* as an activity, they could mean many different kinds of activities. To be clear, model building with SimBA is one particular kind of model building. We think of it like this:
+
+-   **Primary** model building starts with nothing and ends up with a family of dynamical systems. The process goes something like this:
+
+    -   start with a basic concept or a phenomenon that needs explaining;
+
+    -   doodle on a chalkboard or with pencil and paper to construct a basic flow diagram that translates nebulous concept into something more coherent;
+
+    -   translate a flow diagram into a set of states and parameters, and write down the model as a system of differential equations;
+
+    -   check the model formulation for internal consistency;
+
+    -   do qualitative analysis or numerical analysis; and
+
+    -   prove things or visualize things.
+
+-   **Model Testing** involves model building, but the purpose is to translate a model family into a description of something specific.
+
+    -   translate the state variables into observable quantities through a model of the *observational process*
+
+    -   develop a method to estimate the parameters in a model;
+
+    -   compare a model to data and evaluate it.
+
+-   **Secondary** model building starts with a model family and ends up with a calibrated model or another model family:
+
+    -   start with a model family and develop a new mathematical model that is simpler or that has enhanced features;
+
+    -   develop a framework for model building;
+
+-   **Tertiary** model building starts with a defined framework for model building and ends with a model to understand some aspect of malaria, done as scientific research, including parameter estimation;
+
+    -   Develop a model of malaria using one of the comprehensive individual-based simulation packages: *OpenMalaria* or *eMod* or *Malaria Tools*
+
+    -   Build a model using `ramp.xds`

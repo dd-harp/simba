@@ -1,0 +1,44 @@
+---
+title: "Structural Parameters"
+format: html
+---
+
+Some elements of model structure can be configured in `xds_setup`
+
+**Basic Setup** with `xds_setup()`
+
+## Patch Dynamics
+
+The number of patches is set by passing
+
+-   *Default:* `nPatches=1`
+
+-   *e.g.* `xds_setup(nPatches=2)`
+
+-   *Note:* if `nPatches` $> 1$ then it is necessary to configure [**Spatial Dynamics**](spatial_dynamics.html) including matrices describing mosquito dispersal and a matrix for humans describing time spent / time at risk
+
+## Aquatic Habitats
+
+-   `nHabitats` -- aquatic habitats are located in a patch, so they are set up by passing a `membership` vector, a vector of integers indexing the patch where the habitat is found and `nHabitats` $= \mbox{length}($ `membership` $)$.
+
+    -   *Trivial:* By default, `Lname = "trivial"`. If `nPatches` $>1$ then the function must return a vector of length `nPatches`
+
+    -   *Default:* `membership=c(1)`
+
+        -   *e.g.* `membership=c(1,1,2,2,2)` sets up 2 habitats in patch 1, and 3 habitats in patch 2
+
+        -   *Constraint:* Each habitat must belong to a patch, so $\mbox{max}($`membership`$)\; \leq$ `nPatches`
+
+        -   *Note:* Some patches can have no habitats
+
+## Human Population Strata
+
+-   `nStrata` --
+
+## 
+
+```         
++ `nHosts` $(=1)$  
+
++ `nVectors` $(=1)$  
+```

@@ -1,0 +1,94 @@
+---
+title: "Bed Nets"
+format: html
+bibliography: data/refs.bib
+csl: data/plos.csl 
+---
+
+***
+
+*There are two ways to model bed nets in SimBA.*
+
+***
+
+In developing SimBA, we wanted to be able to implement bed net effects in two classes of models: Macdonald-like models, without behavioral structure; and behavioral state models. 
+
+In the former, the model for mosquito ecology has just one state with infection dynamics. In these models, we compute effect sizes for each vector intervention independently. If there are other interventions, the total effect size from all interventions is the product of the individual effect sizes from the individual interventions. While this is a reasonable way to get started, there are many good reasons to want a different approach. 
+
+In behavioral state models, the behaviors affected during one part of mosquito feeding cycle can be modified using *functional responses.*
+
+We had this in mind when we developed SimBA. Models for bed nets call six functions. These were developed for flexibility: depending on the situation, analysis of bed net distribution programs might want to contrast mass distribution with continuous distribution, to consider separate functions describing ownership and use.  
+
+## Independent Effect Sizes 
+
+One non-trivial model for independent effect sizes of vector control was published in 2007, led by Arnaud Le Menach and anchored by  [DLS](contributors.qmd), one of SimBA's creators [@LeMenachA2007ElaboratedFeeding].
+
+## Modeling Effects 
+
+## Software Notes 
+
+The function `BedNet` calls five functions:
+
+```
+BedNet.dynamic <- function(t, pars) {
+   pars <- DistributeBedNets(t, pars)
+   pars <- OwnBedNets(t, pars)
+   pars <- UseBedNets(t, pars)
+   pars <- BedNetEffects(t, pars)
+   return(pars)
+}
+```
+
+Later `VectorControlEffectSizes` calls
+
+```
+pars <- BedNetCoverage(t, pars)
+``` 
+
+and then 
+
+```
+for(s in 1:pars$nVectors){
+  pars <- BedNetEffectSizes(t, pars, s)
+  ...
+}
+```
+
+### `DistributeBedNets`  
+
+A model for ITN distribution, including mass distribution. 
+
+### `OwnBedNets` 
+
+A model for bed net ownership. 
+
+### `UseBedNets`  
+
+Model bed net use, given ownership 
+
+### `BedNetCoverage` 
+
+Set bednet coverage, either by function or from a model of bednet ownership and use, as defined above.
+
++ `BedNetCoverage.func` implements a standard [*trace function*](trace.qmd), where the value is constrained to be between 0 and 1. An easy way to   
+
+### `BedNetEffects` 
+
+In some models, bed nets modify bionomic parameters.
+
+### `BedNetEffectSizes` 
+
+In other models, the effect size of bed net is computed from coverage. 
+  
+- `BedNetEffectSizes.lemenach` implements a model developed by Le Menach A, *et al.* 2007 [@LeMenachA2007ElaboratedFeeding].
+
+
+
+## Examples
+
+```{r}
+
+```
+
+
+## References

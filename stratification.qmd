@@ -1,0 +1,7 @@
+---
+title: "Stratification"
+subtitle: "Methods for Epidemiological Heterogeneity"
+format: html
+---
+
+Stratification is handled by `ramp.demog`

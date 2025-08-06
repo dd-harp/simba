@@ -1,0 +1,18 @@
+---
+title: "Basic Models"  
+format: html
+bibliography: data/refs.bib
+csl: data/plos.csl 
+---
+
+Several basic mathematical models of malaria transmission have been published across the years [@SmithDL2012RossMacdonald;@ReinerRC2013SystematicReview]. In the following, we walk through several of them:
+
++ In 1908, Ross wrote *Report on the Prevention of Malaria in Mauritius* and presented the first mathematical model of malaria transmission [@RossR1908]. In 1910, it was reviewed by Waite [@WaiteH1910MosquitoesMalaria]. In 1923, Lotka analyzed this model in some detail [@LotkaAJ1923part1;@LotkaAJ1923part2]. This model is discussed an implemented in SimBA (**To Do**). 
+
++ In 1911, Ross published his second model of malaria transmission. It appeared in the $2^{nd}$ edition of *The Prevention of Malaria* [@RossR1911Book] and in an article in Nature [@RossR1911Nature]. In 1912, Lotka published a closed form solution in Nature [@LotkaAJ1912Nature]. In 1923, Lotka analyzed this model in some detail [@LotkaAJ1923part1;@LotkaAJ1923part2;@LotkaAJ1923part3;@LotkaAJ1923part5]. This model is discussed an implemented in SimBA (**To Do**). 
+
++ In 1923, Sharpe and Lotka extended Ross's model to consider delays for latency in both the mosquito and human hosts [@LotkaAJ1923part4]. This model is discussed an implemented in SimBA (**To Do**). 
+
++ Macdonald published a set of articles in 1950 [@MacdonaldG1950Epidemiology;@MacdonaldG1950Superinfection] and 1952 [@MacdonaldG1952Sporozoite;@MacdonaldG1952Ro]. Macdonald's models have been implemented in SimBA (**To Do**). 
+
++ In 1982, Aron & May presented a new model for malaria transmission dynamics and control in a form that is more extensible [@AronJL1982PopulationDynamics]. That model has been implemented in SimBA (**To Do**). 

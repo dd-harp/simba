@@ -1,0 +1,53 @@
+---
+title: "Malaria Analytics"
+subtitle: "Simulation-based Analytics for Malaria Programs"
+format: html
+bibliography: data/refs.bib
+csl: data/plos.csl 
+---
+
+*** 
+
+*Malaria analytics in SimBA was designed to support **evaluation,** **scenario planning,** and **sub-national tailoring.** To accomplish these major tasks, we need a suite of supporting algorithms. Here, we present an overview.*  
+
+*** 
+
+SimBA was developed to support robust analytics for malaria policy (RAMP). What do we mean by robust analytics? 
+
+**Malaria analytics** are defined herein as the systematic analysis of data for malaria decision support for malaria programs. 
+In analyzing data to give advice, we will often need data that we don't have.
+Since we will rarely have all the data that would be required to fully develop a quantitative understanding of malaria transmission in a set of management units, we will be giving advice in the face of great uncertainty.
+To give *robust* advice, we go to great lengths to characterize and quantify uncertainty, and then to fully propagate the uncertainty through analytis, up to and including development of advice.
+The advice we develop is designed to robust in the sense that it is highly unlikely to change if we had done the uncertainty in another reasonable way.
+Ideally, robust advice comes with a recommended course of action, an assessment of the alternatives, a recommendation about how to adapt malaria surveillance to reduce uncertainty in the future.
+
+In designing the software and the core algorithms for malaria analytics, our goal has been to start with simple models, develop algorithms to fit models to data, to evaluate malaria in context as a *changing baseline* that has been *modified by control.* 
+The retrospective analysis is translated into advice about the future through a *forecast,* to set expectations about what is likely to happen. Using the evaluation and forecast, we do *scenario planning.* 
+
+
+
+After 145 years of malaria epidemiology (counting from Laveran to the present day, 2025), it's possible to set reasonable expectations about the sorts of data that we will be able to use for malaria analytics. We will use the metrics that are collected as part of malaria research and routine surveillance. While there are many metrics available  [@HaySI2008MeasuringMalaria;@SmithDL2009MeasuringMalaria;@TustingLS2014MeasuringChanges], malaria programs need timely data from every management unit to give a quantitative assessment of malaria in a form that can be used to support malaria policies -- we call this **malaria intelligence.** We have thus based our algorithms around the following expectations:  
+
++ Most malaria program decisions will need to use facility data to manage malaria from routine health management information systems (HMIS); specifically, data from health facilities will be the primary source for malaria policies;   
+
++ Since facility data are collected passively and with large concerns about data quality, there is a need to validate the data through some algorithm that can relates HMIS data to research data. The metric most commonly used in malaria research is the *Pf*PR, so we have developed algorithms that predict *Pf*PR from facility data.  
+
++ The output of HMIS data processing and analysis pipelines will thus be a *Pf*PR time series. 
+
++ The *Pf*PR in any population in an area varies by age, sex, and time of year. To predict *Pf*PR by location, age, sex, and time of year, we have developed simulation-based algorithms that estimate average population expsure as a *Pf*EIR time series. 
+
+The algorithms that we present in the following sections are thus designed to estimate malaria exposure and transmission from *Pf*PR time series. With these data, we will want to do the following: 
+
++ First, we discuss model fitting for malaria analytics. 
+
++ Next, we fit models to get a [history](history.qmd). We do it two ways: first, we fit the average, seasonal patterns, and inter-annual variability in the *Pf*EIR to get *Pf*PR;  next, we fit the  average, seasonal patterns, and inter-annual variability in the mosquito emergence rate, $\Lambda,$ to fit the *Pf*PR. 
+
++ The models that we have fitted to the data are purely descriptive, but we would like to *evaluate* malaria control and do *scenario planning.* We thus assemble a history of vector control, and do a set of linked activities: 
+
+    + From a reconstructed history of exposure, we [Evaluate Vector Control](evaluation.qmd) from the *Pf*PR time series and the timing of vector control;  
+    
+    + We describe how to [Estimate Effect Sizes](effect_size_esimation.qmd)
+    
+    + Next, we reconstruct a history of malaria as a [Changing Baseline](baseline.qmd) that has been modified by vector control. 
+
++ We need to [*Forecast*](forecasting.qmd) the baseline as a basis for [Scenario Planning](scenario_planning.qmd); 

@@ -1,0 +1,52 @@
+---
+title: "Skill Sets"
+subtitle: "Model Limitations in Defining States and Observational Processes for Non-Linear Dynamics"
+bibliography: ./data/refs.bib
+csl: ./data/plos.csl
+---
+
+------------------------------------------------------------------------
+
+*We define the **skill set** for a mathematical model as the set of natural quantities that are naturally represented by the latent states.*
+
+------------------------------------------------------------------------
+
+We have developed mechanistic models for malaria because we are interested in understanding the non-linear dynamic relationships driving malaria epidemiology, transmission dynamics and control. These models vary in complexity. One way to understand the models is to characterize a *skill set,* usually defined with respect to observed variables that involve some *non-linear, dynamic* computation.
+
+Mechanistic models for malaria epidemiology, transmission dynamics, and control are designed to represent a reality that we know about through an observational process. These mechanistic models are formulated from a set of quantitative and qualitative observations, usually combining mathematics, statistics, and basic logic. The models are all approximating reality, which is extremely complex and messy, with some degree of fidelity. We engage in model building as a way of understanding reality through analysis that can help us to identify relevant detail and make good decisions. One of the questions we must grapple with is what level of detail is required of models that are used in policy?
+
+As we compare mechanistic models to each other, and as we challenge models with data, we note some important differences or limitations in how much various models can do for us. Each model represents the *state* of a system to varying degrees of detail and abstraction. In developing *state space* models to compare models to data, we add models for the observational process to the mechanistic model.
+
+For example, models of malaria epidemiology are generically defined by a set of state variables, generically denoted $\cal X$, with dynamics,
+
+$$d {\cal X}/dt = F_{\cal X} ({\cal X}).$$
+
+If we want to fit models to data, we embed our mechanistic model in a state space modeling framework by defining an observational process model that translates the states of the mechanistic model onto a set of metrics through an observational process model, $O$, where:
+
+$$O({\cal X}, \ldots) \rightarrow \vec X.$$
+
+We define the **scope** of a state space model as the full set of defined observable quantities -- it is represented by the vector $\vec X.$
+
+In discussions of mechanistic models, we can simply discuss the *states* of the system, but in a state space modeling framework, we need to be more careful about using the term "states":
+
+-   In a state-space modeling framework, the variables in $\cal X$ are called *latent states.* Within the universe defined by the model, they are *putatively true,* but they can't be observed directly and (with the exception of making ourselves omniscient when we conduct simulation studies) are thus only knowable through an observational process.
+
+-   The observational process model translates the latent states into *observable states*, $\vec X$.
+
+As we compare the mechanistic models that we use within our fully-defined state-space models, we need to be able to discuss the capabilities of the mechanistic models in relation to the scope of a state-space model.
+
+> The ***skill set*** of a mechanistic model is defined as the set of observable quantities that are naturally represented by the latent states such that they can be computed without requiring extraneous information.
+
+In some models, some observable quantities, or observable *states* can not be computed naturally from the latent variables without adding substantial additional information. If we have defined a minimal *scope* for our study, it might be possible to augment the observational process model with other information to define a useful function $O({\cal X}, \ldots).$
+
+## Examples
+
+As we build models, it is useful to understand skill sets of various models used in malaria epidemiology, dynamics, and control, and we illustrate through examples how models with limited skill sets have been extended their scope.
+
+An observation can fall outside the skill set of a model in several ways:
+
+-   the model makes no predictions about a quantity of interest;
+
+-   the model makes predictions about the mean values for a collection of things;
+
+-   the skill set of a model is inadequate if it is only capable of making linear predictions when the true relationship is non-linear and dynamic;

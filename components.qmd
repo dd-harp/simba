@@ -1,0 +1,66 @@
+---
+title: "Dynamical System Components"
+format: html
+---
+
+```{r}
+library(ramp.xds)
+```
+
+In developing a modular framework for model building, we identified five core processes. 
+In `ramp.xds`, these are handled in three chunks, called ***COMPONENTS.*** 
+
+-   **XH** -- Human / Vertebrate Hosts (see [The **XH** Component](XHcomponent.qmd))
+
+    -   $\cal X$ -- a state space for infection dynamics, immunity, disease, and related processes;
+
+    -   $\cal H$ -- a set of processes to represent host demographic processes, including births, deaths and aging
+
+-   **MY** -- Adult mosquitoes (see [The **MY** Component](MZ))
+
+    -   $\cal Y$ -- a state space describing infection dynamics
+
+    -   $\cal M$ -- a state space describing mosquito ecology
+
+-   **L** -- Aquatic mosquitoes (see [The **L** Component](Lcomponent.qmd))
+
+    -   $\cal L$ -- a state space describing aquatic mosquito ecology
+
+The first step in setting up a model is to determine what module to use for each component. 
+
+Each chunk handles its own tasks, such as setting up and indexing variables, computing the derivatives, and parsing outputs. 
+Each *COMPONENT* has its own design elements to handle a specific set of challenges associated with model building to serve the needs of malaria analysts. 
+Some of these functions are also useful for research on malaria and other mosquito-transmitted pathogens. 
+
+
+### **XH** Component
+
+The **X** Component is specified by setting `Xname =` *`model_name`*, where *`model_name`* is a string that defines the `class` for S3 methods.
+
+For example:
+
+```{r}
+sis_mod <- xds_setup(Xname = "SIS")
+```
+
+In basic setup, the **H** component is set to a trivial model with no births and no deaths. 
+
+### **MY** Component
+
+The **MY** Component is specified by setting `MYZname =` *`model_name`*, where *`model_name`* is a string that defines the `class` for S3 methods, or equivalently, a model family in **`ramp.xds`** or **`ramp.library`**
+
+For example:
+
+```{r}
+macdonald_mod <- xds_setup(MYZname = "macdonald")
+```
+
+### **L** Component
+
+The **L** Component is specified by setting `Lname =` *`model_name`*, where *`model_name`* is a string that defines the `class` for S3 methods.
+
+For example:
+
+```{r}
+aqua_mod <- xds_setup(Lname = "basicL")
+```

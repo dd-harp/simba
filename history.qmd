@@ -1,0 +1,23 @@
+---
+title: "History"
+subtitle: "A Descriptive History of Malaria"
+format: html
+---
+
+***
+
+We present algorithms that *fit* mechanistic malaria models to time series data. 
+
+***
+
+We have developed methods to fit models to *Pf*PR time series data. The two algorithms we describe herein are *forced* at different points: 
+
++ **History of Exposure** -- Let $E(t)$ denote the population average daily entomological inoculation rate;  
+
++ **History of Emergence** -- Let $\Lambda(t)$ denote the average daily emergence rate of adult mosquitoes;  
+
+# History of Exposure 
+
+
+
+# History of Transmission 

@@ -1,0 +1,10 @@
+---
+title: "Connectivity"
+format: html
+---
+
+Connectivity describes the spatial flow of parasites
+
+-   within a defined *spatial domain*
+
+-   in and out of a spatial domain

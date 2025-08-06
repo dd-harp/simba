@@ -1,8 +1,8 @@
 ---
 title: "Demo"
 format: revealjs
-bibliography: ../refs/refs.bib
-csl: ../refs/plos.csl
+bibliography: "./data/refs.bib"
+csl: "./data/plos.csl" 
 ---
 
 
@@ -93,7 +93,7 @@ The `trivial` module is a function that emergence rate of adult mosquitoes, $\La
 demo_mod$Lpar[[1]]$Lambda
 ```
 
-## Trivial modules & Forcing
+'## Trivial modules & Forcing
 
 To implement plug-and-play modularity, each component has a `trivial` module. All `trivial` modules return a function of time:
 

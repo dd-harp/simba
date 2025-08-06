@@ -1,7 +1,8 @@
 ---
 title: "Scaling Relationships"
 subtitle: "Studying Malaria Metrics Across the Spectrum of Transmission Intensity"
-bibliography: ../refs/refs.bib
+bibliography: data/refs.bib
+csl: data/plos.csl 
 ---
 
 ***

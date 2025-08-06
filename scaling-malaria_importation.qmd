@@ -1,6 +1,8 @@
 ---
 title: "Scaling Relationships"
 subtitle: "Travel Malaria"
+bibliography: "./data/refs.bib"
+csl: "./data/plos.csl" 
 ---
 
 ```{r}
@@ -10,6 +12,9 @@ library(ramp.work)
 
 ```{r sis}
 load("../models/sis.rda")
+sis$nHostSpecies <- 1
+sis$nVectorSpecies <- 1
+sis <- setup_other_variables(sis)
 ```
 
 ```{r}

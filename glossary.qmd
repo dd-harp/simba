@@ -1,0 +1,12 @@
+---
+title: "Glossary"
+format: html
+---
+
+We have developed some terminology that is
+
+- **component** --
+
+- `xds` model object --
+
+- **module** -- in SimBA, a module is a  

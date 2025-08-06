@@ -1,0 +1,11 @@
+---
+title: "Zoo"
+subtitle: "SimBA Models"
+format: html
+bibliography: data/refs.bib
+csl: data/plos.csl 
+---
+
+-   Basic Models
+
+-   The 5-3-4 model
