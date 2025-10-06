@@ -1,13 +1,18 @@
 ---
 title: "Macdonald's Models"
 format: html
+editor:
+  mode: source
 bibliography: data/refs.bib
 csl: data/plos.csl 
+html-math-method:
+  method: mathjax
+  url: "https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
 ---
 
 From 1950 to 1956, George Macdonald published ten papers about malaria transmission dynamics and control [@MacdonaldG1950Epidemiology; @MacdonaldG1950Superinfection; @MacdonaldG1951CommunityAspects; @MacdonaldG1952Sporozoite; @MacdonaldG1952Ro; @MacdonaldG1953AnalysisMalaria; @MacdonaldG1955NewApproach; @MacdonaldG1955MeasurementMalaria; @MacdonaldG1956EpidemiologicalBasis; @MacdonaldG1956TheoryEradication], and a couple of other papers on related topics. In 1957, he was rapporteur for the *Sixth WHO Expert Committee Report*, which established a the basic plan for the Global Malaria Eradication Programme [@WHOExpertCommitteeonMalaria1957ExpertCommittee] and published his book *The Epidemiology and Control of Malaria* [@MacdonaldG1957Book]. By any measure, it was a highly productive period for Macdonald and it had a lasting effect on malaria.
 
-Macdonald also played an important role in the GMEP, but he was playing a minor role.  The larger drama revolved around Fred Soper [@DobsonMJ2000MalariaControl]. Because of Soper, the GMEP aimed to *completely interrupt transmission.* To put it another way, the goal of the GMEP (using modern language) was to get an adjusted reproductive number that was approximately zero, $R_C \approx 0$. Macdonald's ideas about thresholds would lead to a different goal: $R_C <1.$ In any case, the idea of a threshold concept goes back to Ross. Macdonald's formula reframed the discussion of thrresholds and emphasized that transmission was sensitive to mosquito survival. This probablychanged some people's minds about the GMEP, but the frame around the design of the GMEP should be understood through a study of Fred Soper and not George Macdonald.
+Macdonald also played an important role in the GMEP, but he was playing a minor role. The larger drama revolved around Fred Soper [@DobsonMJ2000MalariaControl]. Because of Soper, the GMEP aimed to *completely interrupt transmission.* To put it another way, the goal of the GMEP (using modern language) was to get an adjusted reproductive number that was approximately zero, $R_C \approx 0$. Macdonald's ideas about thresholds would lead to a different goal: $R_C <1.$ In any case, the idea of a threshold concept goes back to Ross. Macdonald's formula reframed the discussion of thrresholds and emphasized that transmission was sensitive to mosquito survival. This probablychanged some people's minds about the GMEP, but the frame around the design of the GMEP should be understood through a study of Fred Soper and not George Macdonald.
 
 Here, we want to focus on Macdonald's mathematical models; in fact, he published two. First, Macdonald published a model for superinfection in 1950 [@MacdonaldG1950Superinfection]. Nowadays, it is rarely used (see the excellent discussion by Paul Fine [@FinePEM1975SuperinfectionProblem]). In a nutshell, the model advertised it was doing one thing -- the model that is more commonly used today -- but it actually did another. Second, Macdonald published a model for mosquito infection dynamics. Macdonald's *Mosquito Model* can be found in three journal articles published in 1952-1953. In 1952, George Macdonald published the mosquito model in *The analysis of the sporozoite rate* [@MacdonaldG1952Sporozoite].
 
@@ -47,17 +52,17 @@ To generate the formula for $R_0,$ we need another equation, coupled to the firs
 
 The fraction of infected and infectious humans, $x,$ is given by the equation:
 
-$$\frac{dx}{dt} = m a b  z (1-y) - r x.$$ 
+$$\frac{dx}{dt} = m a b  z (1-y) - r x.$$
 
-Notably, this model assumes that everyone who is infected is fully infectious (*i.e.* the fraction of mosquitoes becoming infected after blood feeding on a human is $x.$) 
+Notably, this model assumes that everyone who is infected is fully infectious (*i.e.* the fraction of mosquitoes becoming infected after blood feeding on a human is $x.$)
 
-### Superinfection 
+### Superinfection
 
-As an aside, we walk quickly through Macdonald's math.  A generalized formulation that handles *superinfection* might have looked more like this:
+As an aside, we walk quickly through Macdonald's math. A generalized formulation that handles *superinfection* might have looked more like this:
 
 $$\frac{dx}{dt} = m a b  z (1-y) - F_r(r,h) x.$$
 
-where $h=mabz$ is called the force of infection (FoI, but Ross called it the *happenings* rate, $h$), and $r$ is the rate of clearance of a simple infection. Macdonald's model was: 
+where $h=mabz$ is called the force of infection (FoI, but Ross called it the *happenings* rate, $h$), and $r$ is the rate of clearance of a simple infection. Macdonald's model was:
 
 $$
 F_r(r, h) = 
@@ -65,24 +70,25 @@ F_r(r, h) =
 r-h & \mbox{ if } h < r \\
 0 & \mbox{ otherwise.} 
 \end{cases}
-$$
-The model he intended to publish has this solution (explained in this [`ramp.falciparum` Vignette](https://dd-harp.github.io/ramp.falciparum/articles/MoI.html)). 
+$$ 
+
+The model he intended to publish has this solution (explained in this [`ramp.falciparum` Vignette](https://dd-harp.github.io/ramp.falciparum/articles/MoI.html)).
 
 $$
 F_r(r, h) = r \ln (1-x) \frac{1-x}x
 $$
 
-Once again, we encourage interested folks to read Paul Fine's essay  on the topic [@FinePEM1975SuperinfectionProblem]. 
+Once again, we encourage interested folks to read Paul Fine's essay on the topic [@FinePEM1975SuperinfectionProblem].
 
-We note that in Macdonald's formula for $R_0$, which is only relevant when $h=0$, he lets $F_r(r, h)=r.$ So our equations are not exactly what Macdonald would have written down. We hope this brief diversion sets the record straight. 
+We note that in Macdonald's formula for $R_0$, which is only relevant when $h=0$, he lets $F_r(r, h)=r.$ So our equations are not exactly what Macdonald would have written down. We hope this brief diversion sets the record straight.
 
 ## $R_0$
 
 The formula for $R_0$ in this system is: $$R_0 = \frac{m b a^2}{gr} e^{-g\tau} = \frac{m b a^2}{(-\ln p)r} e^{-p\tau}$$
 
-## SimBA 
+## SimBA
 
-In SimBA, we think of Macdonald's model as a starting point. In `ramp.xds,` we implemented a model described by Aron and May's model [@AronJL1982PopulationDynamics]. Those equations are: 
+In SimBA, we think of Macdonald's model as a starting point. In `ramp.xds,` we implemented a model described by Aron and May's model [@AronJL1982PopulationDynamics]. Those equations are:
 
 $$
 \begin{array}{rl} 
@@ -95,48 +101,43 @@ $$
 
 To get Macdonald's model, we do the following:
 
-+ Set $\Lambda$ to a constant value and $M$ to the steady state, $\bar M = \Lambda/g,$  and $m = \bar M/H$. In other words, we set $\Lambda$ and treat $m$ as if it were a parameter. 
+-   Set $\Lambda$ to a constant value and $M$ to the steady state, $\bar M = \Lambda/g,$ and $m = \bar M/H$. In other words, we set $\Lambda$ and treat $m$ as if it were a parameter.
 
-+ Set $H=1$ 
+-   Set $H=1$
 
-+ Change the variables: 
+-   Change the variables:
 
-    - $x = \kappa = X/H$
-    
-    - $M = \Lambda/g$ 
+    -   $x = \kappa = X/H$
 
-    - $m = M/H$
-    
-    - $y = Y/M$ 
-    
-    - $z = Z/M$ 
-    
-    - $a = fq$ 
-    
-    - $h = m a b z$ 
+    -   $M = \Lambda/g$
 
-With $HPop=1$, we get the equations above, we can now set up the model.   
+    -   $m = M/H$
+
+    -   $y = Y/M$
+
+    -   $z = Z/M$
+
+    -   $a = fq$
+
+    -   $h = m a b z$
+
+With $HPop=1$, we get the equations above, we can now set up the model.
 
 ```{r}
 library(ramp.xds)
-macmod <- xds_setup(HPop=1, Lopts = list(Lambda=0.1))
+macmod <- xds_setup(HPop=1, Loptions = list(Lambda=0.1))
 macmod <- xds_solve(macmod, 3650, 3650) 
 macmod <- last_to_inits(macmod)
 ```
 
-Having set the initial values to the steady state, the solutions would look quite boring. So we reset some of the values: 
+Having set the initial values to the steady state, the solutions would look quite boring. So we reset some of the values:
 
 ```{r}
-macmod <- set_Xinits(macmod, 1, list(X=.01))
-M <- get_inits(macmod)$MYZ$M
-P <- get_inits(macmod)$MYZ$P
-macmod <- set_MYZinits(macmod, 1, list(M=M, P=P, Y=.01, Z=0))
+macmod <- change_XH_inits(macmod, 1, list(X=.01))
+M <- get_MY_inits(macmod)$M
+P <- get_MY_inits(macmod)$P
+macmod <- change_MY_inits(macmod, 1, list(M=M, P=P, Y=.01, Z=0))
 macmod <- xds_solve(macmod, 90, 1) 
 xds_plot_Y(macmod)
 xds_plot_Z(macmod, add=TRUE)
 ```
-
-
-
-
-

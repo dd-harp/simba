@@ -1,8 +1,14 @@
 ---
 title: "Scaling Relationships"
 subtitle: "Travel Malaria"
-bibliography: "./data/refs.bib"
-csl: "./data/plos.csl" 
+editor:
+  mode: source
+bibliography: data/refs.bib
+csl: data/plos.csl 
+format: html
+html-math-method:
+  method: mathjax
+  url: "https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
 ---
 
 ```{r}
@@ -11,23 +17,22 @@ library(ramp.work)
 ```
 
 ```{r sis}
-load("../models/sis.rda")
-sis$nHostSpecies <- 1
-sis$nVectorSpecies <- 1
-sis <- setup_other_variables(sis)
+sis <- readRDS("./models/sis.rds") 
 ```
 
-```{r}
+**Broken** 
+
+```{r, eval=F}
 sis_trv <- sis 
 sis_trv <- setup_travel_eir(sis_trv, 5/365)
 sis_trv <- setup_static_travel(sis_trv, 0.05, 1) 
 ```
 
-```{r}
-xde_scaling_eir(sis_trv, 25) -> sis_trv
+```{r, eval=F}
+xds_scaling(sis_trv, 25) -> sis_trv
 ```
 
-```{r}
+```{r, eval=F}
 plot_eirpr(sis, grey(.8))
 lines_eirpr(sis_trv, "darkgreen")
 ```

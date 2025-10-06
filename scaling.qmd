@@ -1,19 +1,25 @@
 ---
 title: "Scaling Relationships"
 subtitle: "Studying Malaria Metrics Across the Spectrum of Transmission Intensity"
+editor:
+  mode: source
 bibliography: data/refs.bib
 csl: data/plos.csl 
+format: html
+html-math-method:
+  method: mathjax
+  url: "https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
 ---
 
-***
+------------------------------------------------------------------------
 
 Also see:
 
-+ [**ramp.work**:: Scaling for Malaria Metrics](https://dd-harp.github.io/ramp.work/articles/Scaling.html) -- the algorithms explained here are documented in a vignette on the software website. 
+-   [**ramp.work**:: Scaling for Malaria Metrics](https://dd-harp.github.io/ramp.work/articles/Scaling.html) -- the algorithms explained here are documented in a vignette on the software website.
 
-+ [**Malaria Theory:: Scaling**](https://faculty.washington.edu/smitdave/theory/scaling.html) -- the algorithms explained here were used to illustrate basic scaling relationships for malaria theory.
+-   [**Malaria Theory:: Scaling**](https://faculty.washington.edu/smitdave/theory/scaling.html) -- the algorithms explained here were used to illustrate basic scaling relationships for malaria theory.
 
-*** 
+------------------------------------------------------------------------
 
 Load the required packages:
 
@@ -31,20 +37,20 @@ library(graphics)
 The function `xde_scaling()` defines the relationship between the EIR and the PR, and it outputs stable orbits for each value of aEIR in a mesh from $10^{-1}$ up to $10^{3}$
 
 ```{r sis, eval=F}
-xds_setup_cohort(Xname = "SIS") -> sis
+xds_setup_eir(Xname = "SIS") -> sis
 ```
 
 ```{r scaling, eval=F}
-xde_scaling_eir(sis, 25) -> sis
+xds_scaling(sis, 25) -> sis
 ```
 
 ```{r sis scaling, echo=F}
-if(file.exists("sis.rda")){
-  load("sis.rda")
+if(file.exists("./models/sis.rds")){
+  sis <- readRDS("./models/sis.rds")
 } else {
-  sis <- xds_setup_cohort(Xname = "SIS")
-  xde_scaling_eir(sis, 25) -> sis 
-  save(sis, file="sis.rda")
+  sis <- xds_setup_eir(Xname = "SIS")
+  xds_scaling(sis, 25) -> sis 
+  saveRDS(sis, file="./models/sis.rds")
 }
 ```
 

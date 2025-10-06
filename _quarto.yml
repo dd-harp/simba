@@ -58,6 +58,7 @@ website:
     search: true
     collapse-level: 1
     contents:
+      - simba_demo.qmd
       - section: Rpackages.qmd
         contents:
         - ramp.xds.qmd 
@@ -189,7 +190,8 @@ website:
           - ross1911.qmd
           - macdonald1952.qmd
           - aron1982.qmd
-        - model534.qmd 
+        - text: The 5-3-4 Example
+          href: https://dd-harp.github.io/ramp.xds/articles/ex_534.html 
         - itn_lemenach.qmd 
         - mda.qmd 
           

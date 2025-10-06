@@ -7,8 +7,7 @@ format: html
 library(ramp.xds)
 ```
 
-In developing a modular framework for model building, we identified five core processes. 
-In `ramp.xds`, these are handled in three chunks, called ***COMPONENTS.*** 
+In developing a modular framework for model building, we identified five core processes. In `ramp.xds`, these are handled in three chunks, called ***COMPONENTS.***
 
 -   **XH** -- Human / Vertebrate Hosts (see [The **XH** Component](XHcomponent.qmd))
 
@@ -26,12 +25,9 @@ In `ramp.xds`, these are handled in three chunks, called ***COMPONENTS.***
 
     -   $\cal L$ -- a state space describing aquatic mosquito ecology
 
-The first step in setting up a model is to determine what module to use for each component. 
+The first step in setting up a model is to determine what module to use for each component.
 
-Each chunk handles its own tasks, such as setting up and indexing variables, computing the derivatives, and parsing outputs. 
-Each *COMPONENT* has its own design elements to handle a specific set of challenges associated with model building to serve the needs of malaria analysts. 
-Some of these functions are also useful for research on malaria and other mosquito-transmitted pathogens. 
-
+Each chunk handles its own tasks, such as setting up and indexing variables, computing the derivatives, and parsing outputs. Each *COMPONENT* has its own design elements to handle a specific set of challenges associated with model building to serve the needs of malaria analysts. Some of these functions are also useful for research on malaria and other mosquito-transmitted pathogens.
 
 ### **XH** Component
 
@@ -43,16 +39,16 @@ For example:
 sis_mod <- xds_setup(Xname = "SIS")
 ```
 
-In basic setup, the **H** component is set to a trivial model with no births and no deaths. 
+In basic setup, the **H** component is set to a trivial model with no births and no deaths.
 
 ### **MY** Component
 
-The **MY** Component is specified by setting `MYZname =` *`model_name`*, where *`model_name`* is a string that defines the `class` for S3 methods, or equivalently, a model family in **`ramp.xds`** or **`ramp.library`**
+The **MY** Component is specified by setting `MYname =` *`model_name`*, where *`model_name`* is a string that defines the `class` for S3 methods, or equivalently, a model family in **`ramp.xds`** or **`ramp.library`**
 
 For example:
 
 ```{r}
-macdonald_mod <- xds_setup(MYZname = "macdonald")
+macdonald_mod <- xds_setup(MYname = "macdonald")
 ```
 
 ### **L** Component

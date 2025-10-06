@@ -1,6 +1,14 @@
 ---
 title: "Scaling Relationships"
 subtitle: "Environmental Heterogeneity"
+editor:
+  mode: source
+bibliography: data/refs.bib
+csl: data/plos.csl 
+format: html
+html-math-method:
+  method: mathjax
+  url: "https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
 ---
 
 ```{r}
@@ -8,20 +16,27 @@ library(ramp.xds)
 library(ramp.work)
 ```
 
-
 ```{r sis}
-load("../models/sis.rda")
-sis$nHostSpecies <- 1
-sis$nVectorSpecies <- 1
-sis <- setup_other_variables(sis)
+sis <- readRDS("./models/sis.rds")
 ```
 
-```{r}
-sis_het <- setup_exposure_nb(sis, 1/50)
+```{r, eval=F}
+sis_het <- setup_exposure("nb", sis, i=1, list(sz=1/50))
+sis_het <- xds_scaling(sis_het)
+```
+
+```{r sip scaling, echo=F}
+if(file.exists("./models/sis_het.rds")){
+  sis_het <- readRDS("./models/sis_het.rds")
+} else {
+  sis_het <- setup_exposure("nb", sis, i=1, list(sz=1/50))
+  sis_het <- xds_scaling(sis_het)
+  saveRDS(sis_het, file="./models/sis_het.rds")
+}
 ```
 
 ```{r scaling}
-xde_scaling_eir(sis_het, 25) -> sis_het
+xds_scaling(sis_het, 25) -> sis_het
 ```
 
 ```{r}
@@ -29,9 +44,4 @@ plot_eirpr(sis)
 lines_eirpr(sis_het, "darkblue")
 ```
 
-```{r, eval=F, echo=F}
-load("../models/sis.rda")
-sis$Xpar[[1]]$F_treat = F_zero
-save(sis, file = "../models/sis.rda")
-```
 

@@ -33,11 +33,11 @@ By calling it this way, the function that gets configured describes the capacity
 In the SIS model, implemented in a generalized form with demographic change, setup creates a function $\xi(t)$ to simulate mass treatment, but then sets it equal to zero (*i.e.* the function `F_zero`).
 
 ```{r}
-model <- xds_setup_cohort(Xname = "SIS", eir=1/365, 
+model <- xds_setup_eir(Xname = "SIS", eir=1/365, 
                           season_par = makepar_F_sin()) 
-model <- xds_solve_cohort(model, A=5)
+model <- xds_solve(model, times = c(3650, 3650))
 model <- last_to_inits(model) 
-model <- xds_solve_cohort(model, A=2)
+model <- xds_solve(model,Tmax=730)
 xds_plot_PR(model)
 ```
 
@@ -69,8 +69,8 @@ We want to compare our model with mda to the model without, so we clone the base
 
 ```{r}
 mda_model <- model
-mda_model$Xpar[[1]]$F_treat = mda
-mda_model <- xds_solve_cohort(mda_model, A=2)
+mda_model$XH_obj[[1]]$F_treat = mda
+mda_model <- xds_solve(mda_model, Tmax=730)
 ```
 
 Now, we can compare the two models. The orbit for MDA is in `darkred`:
@@ -140,8 +140,8 @@ Now we can set up a new model:
 mda_par <- makepar_F_sharkfin(D = 90, L = 7, uk = 1, dk=1, mx = 306)
 mda <- make_function(mda_par)
 mda_model1 <- model
-mda_model1$Xpar[[1]]$F_treat = mda
-mda_model1 <- xds_solve_cohort(mda_model1, A=2)
+mda_model1$XH_obj[[1]]$F_treat = mda
+mda_model1 <- xds_solve(mda_model1, Tmax=730)
 ```
 
 ...and we can visualize all three models:

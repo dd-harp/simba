@@ -1,0 +1,124 @@
+---
+title: "SimBA: A Demo"
+editor:
+  mode: source
+bibliography: data/refs.bib
+csl: data/plos.csl 
+format: html
+html-math-method:
+  method: mathjax
+  url: "https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
+---
+
+**SimBA** was designed to support malaria analytics by facilitating human interactions about malaria that rely on dynamical systems describing malaria. To accomplish this, **SimBA** has developed functions and algorithms that make it easy to setup, solve, visualize, analyze, fit, and use the models. **SimBA** lowers the human and computing costs of model building, computation, and analysis.  
+
+To illustrate the capabilities of **SimBA,** we do the following: 
+
+1. **Build** a dynamical system to describe malaria
+
+2. **Solve** it 
+
+3. **Visualize** the outputs 
+
+4. **Fit** the model to data 
+
+5. Compute the **burden** of malaria and the avertible burden 
+
+6. Compute **thresholds** 
+
+7. Analyze **scaling** relationships 
+
+8. Add a **forecast** to the fitted model 
+
+9. **Predict** malaria prevalence by diagnostic, age, and time of year 
+
+10. Make a **plan** by evaluating and comparing the likely outcome of interventions 
+
+11. **Adapt** 
+
+A feature of **SimBA** is its capacity to scale complexity. The software is modular, flexible, and extensible making it possible to build models that are more complex and replicate some of these processes. The exception to this rule is model fitting, which has its own set of perils and pitfalls. 
+
+# Build
+
+We assume our audience knows something about mathematical models for malaria. **SimBA** handles models for malaria epidemiology, transmission dynamics, and control that were formulated as dynamical systems. The software is capable of supporting systems of differential equations or discrete time systems. To build models, we need two packages:  
+
+```{r}
+library(ramp.xds)
+library(ramp.library)
+```
+
+These two software packages have several published models for malaria and mosquito ecology. For the purposes of this demonstration, we will start with a compartmental model for malaria called the `SIP` model. For mosquitoes, we use the `SI` model.  Setting up a model is as easy as calling `xds_setup` and passing the names of the modules:  
+
+```{r}
+model <- xds_setup(Xname = "SIP", MYname = "SI")
+```
+
+The object that was returned, `model,` is called a **`ramp.xds`** model object. The object has been set up to handle a lot of complexity that we may not need.   
+
+```{r}
+names(model) 
+```
+
+
+If we type the name, it will tell us the basic features of the model:  
+
+```{r}
+model
+```
+
+
+# Solve
+
+```{r}
+model <- xds_solve(model, Tmax=180) 
+```
+
+# Visualize
+
+```{r, fig.height=7, fig.width=7}
+par(mfrow = c(2,1))
+xds_plot_EIR(model)
+xds_plot_PR(model)
+```
+
+# Fit
+
++ Forcing and functions in SimBA
+
++ Time series
+
++ Set up Forcing 
+
+```{r, eval=F}
+model <- xds_fit_model(model) 
+```
+
+# Burden 
+
+# Scaling 
+
+```{r}
+library(ramp.work)
+```
+
+```{r, eval=F}
+model <- xds_scaling(model) 
+```
+
+# Thresholds 
+
+```{r, eval=F}
+model <- xds_thresholds(model) 
+```
+
+
+# Forecast
+
+```{r, eval=F}
+model <- xds_forecast(model) 
+```
+
+# Plan
+
+
+# Adapt 

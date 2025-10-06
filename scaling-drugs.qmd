@@ -1,6 +1,14 @@
 ---
 title: "Scaling Relationships"
 subtitle: "Antimalarial Drugs"
+editor:
+  mode: source
+bibliography: data/refs.bib
+csl: data/plos.csl 
+format: html
+html-math-method:
+  method: mathjax
+  url: "https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
 ---
 
 ```{r}
@@ -10,7 +18,7 @@ library(ramp.work)
 ```
 
 ```{r sis}
-load("sis.rda")
+sis <- readRDS("./models/sis.rds")
 ```
 
 ```{r}
@@ -18,36 +26,36 @@ Xo = list(xi=2/365, rho=0.1)
 ```
 
 ```{r, eval=F}
-sip <- xds_setup_cohort(Xname = "SIP", Xopts=Xo)
+sip <- xds_setup_eir(Xname = "SIP", Xopts=Xo)
 ```
 
 ```{r, eval=F}
-sip <- xds_setup_cohort(Xname = "SIP", Xopts=Xo)
-xde_scaling_eir(sip, 25) -> sip 
+sip <- xds_setup_eir(Xname = "SIP", Xopts=Xo)
+xd_scaling(sip, 25) -> sip 
 ```
 
 ```{r sip scaling, echo=F}
-if(file.exists("sip.rda")){
-  load("sip.rda")
+if(file.exists("./models/sip.rds")){
+  sip <- readRDS("./models/sip.rds")
 } else {
-  sip <- xds_setup_cohort(Xname = "SIP", Xopts=Xo)
-  xde_scaling_eir(sip, 25) -> sip 
-  save(sip, file="sip.rda")
+  sip <- xds_setup_eir(Xname = "SIP")
+  xds_scaling(sip, 25) -> sip 
+  saveRDS(sip, file="./models/sip.rds")
 }
 ```
 
 ```{r, eval=F}
-sipd <- xds_setup_cohort(Xname = "SIPd", Xopts=Xo)
-xde_scaling_eir(sipd, 25) -> sipd 
+sipd <- xds_setup_eir(Xname = "SIPd", Xopts=Xo)
+xds_scaling(sipd, 25) -> sipd 
 ```
 
 ```{r sipd scaling, echo=F}
-if(file.exists("sipd.rda")){
-  load("sipd.rda")
+if(file.exists("./models/sipd.rds")){
+  sipd <- readRDS("./models/sipd.rds")
 } else {
-  sipd <- xds_setup_cohort(Xname = "SIPd", Xopts=Xo)
-  xde_scaling_eir(sipd, 25) -> sipd 
-  save(sipd, file="sipd.rda")
+  sipd <- xds_setup_eir(Xname = "SIPd")
+  xds_scaling(sipd, 25) -> sipd 
+  saveRDS(sipd, file="./models/sipd.rds")
 }
 ```
 

@@ -1,7 +1,14 @@
 ---
 title: "Trace Functions"
 subtitle: "Configuring"
+editor:
+  mode: source
+bibliography: data/refs.bib
+csl: data/plos.csl 
 format: html
+html-math-method:
+  method: mathjax
+  url: "https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
 ---
 
 ```{r}
@@ -29,25 +36,25 @@ The name of the scaling parameter depends on context:
 -   `Lambda` or $\Lambda$ for the emergence rate, passed from the **L** component when it is `trivial.` The setup function is
 
 ```{r, eval=F}
-?make_Lpar_trivial
+?make_L_obj_trivial
 ```
 
 -   `fqZ` or $fqZ$ (from `F_fqZ`) for the net human blood feeding rate, per patch, passed from the **MYZ** component when it is 'trivial\` and **X** is non-trivial. The setup function is
 
 ```{r, eval=F}
-?make_MYZpar_trivial
+?make_MY_obj_trivial
 ```
 
 -   `eggs` (from `F_eggs`) for the egg laying rate in each patch, net human blood feeding rate, per patch, passed from the **MYZ** component when it is 'trivial\` and **L** is non-trivial. The setup function is
 
 ```{r, eval=F}
-?make_MYZpar_trivial
+?make_MY_obj_trivial
 ```
 
 -   `kappa` (from `F_X`) to compute net infectiousness, or $\kappa$ passed from the **X** component when it is 'trivial\` and **MYZ** is non-trivial. The setup function is
 
 ```{r, eval=F}
-?make_Xpar_trivial
+?make_XH_obj_trivial
 ```
 
 ## Seasonality
@@ -56,29 +63,29 @@ To configure the seasonality function, either define a function and pass it as `
 
 ```{r}
 Lo = list(season_par = makepar_F_sin()) 
-sin_mod <- xds_setup(Lopts = Lo)
+sin_mod <- xds_setup(Loptions = Lo)
 ```
 
 Now, the function can be evaluated:
 
 ```{r}
 tt <- 0:365
-Fs <- sin_mod$Lpar[[1]]$F_season
+Fs <- sin_mod$L_obj[[1]]$F_season
 plot(tt, Fs(tt), type ="l")
 ```
 
 As a side note, if you use `<-` instead of `=` when you define the list, the damn thing doesn't work. Note that the phase parameter is defined:
 
 ```{r}
-sin_mod$Lpar[[1]]$season_par$phase
+sin_mod$L_obj[[1]]$season_par$phase
 ```
 
 but this doesn't set anything:
 
 ```{r}
 Lo = list(season_par <- makepar_F_sin()) 
-sin_mod1 <- xds_setup(Lopts = Lo)
-sin_mod1$Lpar[[1]]$season_par
+sin_mod1 <- xds_setup(Loptions = Lo)
+sin_mod1$L_obj[[1]]$season_par
 ```
 
 ## Trend
@@ -87,13 +94,13 @@ To configure a trend function, either define a function and pass it as `F_trend`
 
 ```{r}
 Lo = list(trend_par = makepar_F_spline(tt = c(0:5)*365, yy= c(1, 1.5, .75, .8, 1.2, 1))) 
-trend_mod <- xds_setup(Lopts = Lo)
+trend_mod <- xds_setup(Loptions = Lo)
 ```
 
 Now, the function can be evaluated:
 
 ```{r}
 tt <- seq(0, 5*365, by = 10)
-Ft <- trend_mod$Lpar[[1]]$F_trend
+Ft <- trend_mod$L_obj[[1]]$F_trend
 plot(tt, Ft(tt), type ="l")
 ```

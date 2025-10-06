@@ -16,7 +16,7 @@ html-math-method:
 
 *During **basic setup,** the user also sets up the basic structure of the model. The user configures a **malaria landscape,** a set of patches and (if relevant) aquatic habitats that structure the mosquito population.*
 
-***Basic setup** can configure some basic human population strata, but it leaves setup for human demography, stratification by age, and other issues requiring stratification to [**advanced setup.**](advanced_setup.qmd) (see [Stratification](strafication.qmd))*
+***Basic setup** can configure some basic human population strata, but it leaves setup for human demography, stratification by age, and other issues requiring stratification to [**advanced setup.**](advanced_setup.qmd) (see [Stratification](stratification.qmd))*
 
 ------------------------------------------------------------------------
 
@@ -63,7 +63,7 @@ sis_mod <- xds_setup(Xname = "SIS")
 -   A model for the adult mosquito ecology and infection dynamics, called the **MY** component, is specified by passing an argument to `MYZname`. For example:
 
 ```{r}
-macdonald_mod <- xds_setup(MYZname = "macdonald")
+macdonald_mod <- xds_setup(MYname = "macdonald")
 ```
 
 -   A model for the aquatic mosquito ecology, called the **L** component, is specified by passing an argument to `Lname`. For example:
@@ -155,10 +155,10 @@ class(xds_setup_mosy()$frame)
 class(xds_setup_aquatic()$frame)
 ```
 
--   `xds_setup_cohort()` -- this model sets up the **XH** component, but it lacks an **MY** component and an **L** component. Instead, it configures a function $F_E(a,t, \tau)$ that computes the daily EIR for a cohort of humans born on day $\tau$ as it ages ($a$) over time ($t$). For more, see [Cohort Dynamics](cohort_dynamics.qmd).
+-   `xds_setup_eir()` -- this model sets up the **XH** component, but it lacks an **MY** component and an **L** component. Instead, it configures a function $F_E(a,t, \tau)$ that computes the daily EIR. 
 
 ```{r}
-class(xds_setup_cohort()$frame)
+class(xds_setup_eir()$frame)
 ```
 
 All of the following explain the options for `xds_setup().` With some minor exceptions for `xds_setup_cohort(),` all setup functions follow the same conventions.
