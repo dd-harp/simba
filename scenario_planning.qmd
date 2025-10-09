@@ -10,29 +10,44 @@ html-math-method:
   url: "https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
 ---
 
-In the following vignette, we use a model for scenario planning, which involves several steps:
+Suppose we have a model that has been used to evaluate the history of malaria control. We have already done the following: 
 
-1.  Set up a *model*
+1.  Set up a model and fitting
 
-2.  Fit it to data --
+2.  Fit it to data 
 
-3.  Knowing the timing of vector control, we want to evaluate its impact:
+3.  Evaluate the impact of major events:
 
-    -   What was the effect of ITNs?
+    -   What was the effect of mass bed net distributions?
 
     -   What was the effect of IRS?
 
-4.  To evaluate plans for the future, we need a business-as-usual forecast
+In a nutshell, all this is an assessment of the past. Scenario planning is an attempt to set rational expectations about what would be likely to happen in the future under various scenarios.  To do this, we need to do the following: 
 
-5.  Against that BaU scenario, we can now evaluate:
+1. Make a forecast of malaria in the absence of control.  
 
-    -   What should we expect from ITNs?
+2. Using realistic estimates of the effects of vector control after evaluation:  
 
-    -   What should we expect from IRS?
+    - What should we expect to observe from bed nets?
 
-    -   What should we expect from mass drug administration?
+    - What should we expect from IRS?
 
-# Set up a model
+    - What should we expect from mass drug administration?
+    
+    - What other interventions / modes of delivery are possible?  
+    
+    - How much should be allocated to malaria outbreak control?  
+
+3. Given the costs of doing all these, what suite of interventions would save the most lives? 
+
+##  
+
+Here, we start with the model we fitted to data in the [Evaluation vignette](evaluation.qmd). 
+
+```{r}
+
+```
+
 
 The first step is to set up a model.
 
