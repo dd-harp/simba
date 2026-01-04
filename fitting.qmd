@@ -1,38 +1,42 @@
 ---
 title: "Model Fitting: Nuts & Bolts"
 subtitle: "Fitting a Dynamical System to a *Pf*PR Time Series"
+editor:
+  mode: source
+bibliography: data/refs.bib
+csl: data/plos.csl 
 format: html
+html-math-method:
+  method: mathjax
+  url: "https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
 ---
 
-In malaria, we want to use mechanistic models to understand patterns in malaria data. For most of the analyses we do, the starting point will be a *Pf*PR time series, $x(t)$. Our task is thus to fit a dynamical system to a time series. Here, we discuss the *nuts-and-bolts* of model fitting using SimBA. 
+In malaria, we want to use mechanistic models to understand patterns in malaria data. For most of the analyses we do, the starting point will be a *Pf*PR time series, $x(t)$. Our task is thus to fit a dynamical system to a time series. Here, we discuss the *nuts-and-bolts* of model fitting using SimBA.
 
-# Decomposing Pattern 
+# Decomposing Pattern
 
 We want to think about the features of a time series in an ordered way:
 
-+ The time series has a long-term average or mean, $m$; 
+-   The time series has a long-term average or mean, $m$;
 
-+ The time series has a seasonal pattern, $S(t);$
+-   The time series has a seasonal pattern, $S(t);$
 
-+ The time series has an inter-annual component, $T(t);$ 
+-   The time series has an inter-annual component, $T(t);$
 
-+ After fitting, we have additive residual error, $\epsilon(t)$  
+-   After fitting, we have additive residual error, $\epsilon(t)$
 
-Conceptually, at least, we can think of pattern in data as the sum of a time series model giving a signal, $m S(t) T(t)$ and residual error: 
+Conceptually, at least, we can think of pattern in data as the sum of a time series model giving a signal, $m S(t) T(t)$ and residual error:
 
-$$x(t) = m S(t) T(t) + \epsilon(t)$$ 
-In model fitting, we fit the shapes of functions specifying the signal to minimize the residual error. 
+$$x(t) = m S(t) T(t) + \epsilon(t)$$ In model fitting, we fit the shapes of functions specifying the signal to minimize the residual error.
 
-## Seasonality  
+## Seasonality
 
 In SimBA, we have developed a trigonometry-based function family to model seasonality.
 
-## Interannual Variability 
+## Interannual Variability
 
-We use spline functions with knots and control points. 
+We use spline functions with knots and control points.
 
-# Initial Conditions 
+# Initial Conditions
 
-#  
-
-
+# 

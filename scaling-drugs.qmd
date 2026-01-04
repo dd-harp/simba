@@ -60,7 +60,7 @@ if(file.exists("./models/sipd.rds")){
 ```
 
 ```{r}
-plot_eirpr(sis, grey(.8))
+xds_plot_eirpr(sis, grey(.8))
 lines_eirpr(sip, "darkviolet")
 lines_eirpr(sipd, "darkblue")
 ```

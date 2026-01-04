@@ -55,7 +55,7 @@ To add a bed net model, we need to use `setup_bednets`. That function is simple 
 In this case, we configure a [*trace function*](trace.qmd) describing coverage. We pick a `sharkfin` function. To do this, we configure the options
 
 ```{r}
-cover_par <- list(trend_par = makepar_F_sharkfin())
+cover_par <- list(trend_par = makepar_F_sharkfin(D=90))
 ```
 
 ```{r}
@@ -79,6 +79,7 @@ itn_mod <- xds_solve(itn_mod, 5*365, 10)
 xds_plot_EIR(model)
 xds_plot_EIR(itn_mod, clrs = "red", add=TRUE)
 ```
+
 
 ```{r}
 xds_plot_PR(model)

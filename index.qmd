@@ -1,6 +1,6 @@
 ---
-title: "The SimBA Project"
-subtitle: "Nimble Model Building for Malaria and other Mosquito-Transmitted Pathogens"
+title: "SimBA (SIMulation-Based Analytics)"
+subtitle: "Nimble Model Building and Robust Analytics for Malaria Policy"
 editor:
   mode: source
 bibliography: data/refs.bib
@@ -20,19 +20,50 @@ html-math-method:
 
 + *Use models to develop robust policy advice for malaria programs.*
 
-*This software was designed with features to improve simulation-based analytics while lowering costs, including time spent by humans building models, computational requirements, and human time required post-processing to interpret the output of the models.*
+*This software was designed with features to improve simulation-based analytics while lowering the amount of human effort required to build models fit for purpose; to lower the computational costs; and reduce the human effort required post-processing to interpret the output of the models.*
 
 ------------------------------------------------------------------------
 
-This website supports development and dissemination of several GitHub R packages to support **Sim**ulation-**B**ased **A**nalytics (**SimBA**) for malaria and other mosquito-transmitted pathogens. Core computation is handled in [**`ramp.xds`**](ramp.xds.html), which is supplemented by five satellite packages. There are also two supplementary stand-alone packages [(see R packages)](Rpackages.html).
+This website supports development and dissemination of several R Packages, available from github, that support **Sim**ulation-**B**ased **A**nalytics (**SimBA**) for malaria and other mosquito-transmitted pathogens. **SimBA** was designed to support **R**obust **A**nalytics for **M**alaria **P**olicy (**RAMP**) and adaptive malaria control. 
 
-The software implements a rigorous mathematical framework for building models that is modular, flexible, and extensible [@WuSL2023SpatialDynamics]. It was designed to lower the costs of building and analyzing models for malaria research and analytics. The guiding design principles were [*nimble model building*](nimble.qmd) and [*scalable complexity.*](scalable_complexity.qmd)
+## RAMP 
 
-The material on this site is designed around the topics needed to support model building for malaria research and analytics: mosquito ecology and malaria epidemiology, transmission dynamics and control. The sidebar presents an organized set of vignettes describing concepts and algorithms to support nimble model building. Many of the vignettes have examples with working code. The navigation bar (at the top) has some quick links, including a guide to some models.
+RAMP is short way of describing a big idea about how to do malaria analytics. 
+
+Malaria analytics is the systematic analysis of data for decision support or to guide malaria policies. Simulation-based malaria analytics uses mathematical models -- usually some sort of dynamical system describing malaria in populations --  or individual-based simulation models (IBMs). RAMP is short acronym for a big idea about how to use simulation based analytics to support iterative malaria analytics and adaptive malaria control.
+
+A practical challenge for management is that malaria is a complex adaptive system. Malaria involves non-linear interactions among humans, mosquitoes, parasites, and malaria managers that are constantly changing in response to control. Lewis Hackett compared malaria to a game of chess:
+
+> …malaria is so moulded and altered by local conditions that it becomes a thousand different diseases and epidemiological puzzles. Like chess, it is played with a few pieces, but is capable of an infinite variety of situations.
+
+In other words, each malaria systems has some features that are locally peculiar: small differences in the behaviors of local humans and mosquitoes can affect blood feeding patterns, transmission, and the responses to control; features of the local malaria landscape shape heterogeneous exposure and heterogeneous transmission; care seeking in response to malaria differs; or the local populations of parasites or mosquitoes have evolved some level of resistance to anti-malarial drugs or public health pesticides. 
+
+Malaria complexity, local peculiarity, and systematic changes in response to control create enormous needs for information to inform policy, but our ability to fill those needs is limited. Malaria analytics must make the most of limited data. Malaria research & analytics need a systematic way of dealing with complexity, local peculariaty, and uncertainty. We can’t wish away the uncertainty, but we can do our best to characterize and quantify uncertainty and propagate the uncertainty through analytics pipelines we use to develop policy.This was the seed crystal for RAMP.
+
+RAMP is an inferential system developed for malaria analytics.
+A core idea is that malaria analytics needs a way of handling uncertainty that is fundamentally different from research.
+Since decisions will be made with or without evidence-based advice, malaria analytics must be set up to give good answers with short turnaround times, even if the evidence is weak. 
+Ideally, malaria analysts are engaging with a malaria program continuously, with a reasonable expectation that the interventions can be designed to gather information and strengthen the evidence. 
+Iterative malaria analytics involves setting up stable systems to manage **malaria intelligence,** information about malaria in local systems in a form that facilitates malaria analytics and advice that is robust to uncertainty.  
+Robust advice -- it would be unlikely not change if the analysis had been done in some other reasonable way -- must be based on robust analytics.  
+In practical terms, this means that analysts have gone to great lengths to characterize and quantify uncertainty, and to fully propagate the uncertainty through the development of advice. 
+
+SimBA was developed to enable nimble model building and robust analytics.
+Developing malaria intelligence involves a large set of linked activities, and some of these come with a heavy computational or quantitative load: data processing and curation; conventional statistical analysis; scenario planning; and strategic planning.
+A malaria intelligence system must be designed to enable malaria analytics.
+Simulation based analytics – the application of dynamical systems models of malaria transmission dynamics and control in malaria analytics – play a key role in robust analytics. Through simulation, analysts can integrate retrospective data analysis, real-time decision support, and evidence-based approaches to setting rational expectations about the future. This software, called SimBA (short for Simulation-Based Analytics), was designed to handle these tasks in a way that could handle uncertainty.
+
+## The Software 
+
+SimBA implements a mathematical framework for building models that is modular, flexible, and extensible [@WuSL2023SpatialDynamics]. The guiding design principles were [*nimble model building*](nimble.qmd) and [*scalable complexity.*](scalable_complexity.qmd)
+
+Core computation is handled in [**`ramp.xds`**](ramp.xds.html), which is supplemented by five satellite packages. There are also two supplementary stand-alone packages [(see R packages)](Rpackages.html). Each one of these packages is well-documented. 
+
+The SimBA Project website is designed around the topics needed to support model building for malaria research and analytics: mosquito ecology and malaria epidemiology, transmission dynamics and control. The sidebar presents an organized set of vignettes describing concepts and algorithms to support nimble model building. Many of the vignettes have examples with working code. The navigation bar (at the top) has some quick links, including a guide to some models.
 
 The website assumes a familiarity with mathematical epidemiology and mathematical ecology for malaria. To keep a focus on model building here, some critical background material has been organized in a companion website on [**Malaria Theory,**](https://faculty.washington.edu/smitdave/theory/) Similarly, topics related to the application of these models has presented in a website, [**Robust Analytics for Adaptive Malaria Control**](https://faculty.washington.edu/smitdave/ramp/).
 
-## The Software
+### R packages 
 
 The **SimBA** software suite was developed around an R package called [**`ramp.xds`**](ramp.xds.html):
 
@@ -48,13 +79,13 @@ The **SimBA** software suite includes five satellite packages for **`ramp.xds`**
 
 -   [**`ramp.forcing`**](ramp.forcing.html) is a code library for **`ramp.xds`** with algorithms to implement exogenous forcing by weather
 
--   [**`ramp.demog`**](ramp.demog.html) is is a supplementary code library for **`ramp.xds`** that handles human demography and stratification, including vital dynamics and age structure
+-   [**`ramp.demog`**](ramp.demog.html) is a supplementary code library for **`ramp.xds`** that handles human demography and stratification, including vital dynamics and age structure
 
 -   [**`ramp.work`**](ramp.work.html) is a set of algorithms and functions to apply the models to various tasks
 
 Each one of the R packages documents its own code, and some vignettes have been written that describe each individual software package. This website, **SimBA,** extends the package-specific documentation to demonstrate the capabilities of the whole package. The website also discusses some related [R packages](Rpackages.html) and other software that were developed by some of us over the years that are not part formally of **SimBA.**
 
-## Design
+### Design
 
 The **SimBA** software is based on a rigorous mathematical framework for modular model building for mosquito-transmitted pathogens, published as [*Spatial Dynamics of Malaria Transmission*](https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1010684). **`ramp.xds`** inherits its code base and core ideas from `exDE` (see below).
 

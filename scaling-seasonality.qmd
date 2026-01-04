@@ -35,7 +35,7 @@ clrs = turbo(25)
 ```
 
 ```{r, fig.height=3.5, fig.width=5}
-plot_eirpr(sis, grey(0.5))
+xds_plot_eirpr(sis, grey(0.5))
 lines_eirpr(sis_seas1, "darkblue")
-add_eirpr_seasonal_profile(c(5,10,15,20), sis_seas1, clrs)  
+add_eirpr_orbits(c(5,10,15,20), sis_seas1, clrs)  
 ```
