@@ -48,7 +48,9 @@ xds_setup_eir(Xname = "SIS") -> sis
 xds_scaling(sis, 25) -> sis
 ```
 
-```{r sis scaling, echo=F}
+```{r sis scaling, echo=F, eval=F}
+#| eval: false
+
 if(file.exists("./models/sis.rds")){
   sis <- readRDS("./models/sis.rds")
 } else {
@@ -59,5 +61,6 @@ if(file.exists("./models/sis.rds")){
 ```
 
 ```{r plot, fig.height=3.5, fig.width=5}
+#| eval: false
 xds_plot_eirpr(sis)
 ```

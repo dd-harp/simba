@@ -1,77 +1,234 @@
 ---
-title: "The `macdonald` Module"
+title: "Macdonald's Model"
+editor:
+  mode: source
+bibliography: data/refs.bib
+csl: data/plos.csl 
+format: html
+html-math-method:
+  method: mathjax
+  url: "https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
 ---
 
-The module called `macdonald` in `ramp.xds` was included for several reasons. 
+*** 
 
-+ It implements a version of Macdonald's model, attributable to Aron & May [@AronJL1982PopulationDynamics]
+*This is one version of Macdonald's model.* 
 
-## The `macdonald` Module
+*** 
 
-The module called `macdonald` has been extended beyond the Aron & May formulation to include spatial dynamics and parity. To formulate the spatial model, a spatial domain is sub-divided into a set of patches. Variable and parameter names do not change, but they can now represent vectors of length $n_p.$ To formulate the *demographic matrix,* denoted $\Omega,$ that describes mosquito mortality, emigration, and other loss from the system. We let $\sigma$ denote the emigration rate and $\cal K$ the mosquito dispersal matrix. We also introduce a parameter, $\mu$ to model the fraction of mosquitoes that are lost to emigration from each patch. $$\Omega = \mbox{diag} \left(g\right) + \left(\mbox{diag} \left(1-\mu\right)  - \cal K\right) \cdot \mbox{diag} \left(\sigma\right) 
+In the paper where Macdonald presented the formula for $R_0,$ he used notation from two other papers: 
+in 1950, he had published a model for parasite clearance with superinfection [@MacdonaldG1950Superinfection]; and earlier in 1952, he published a mdoel for the sporozoite rate [@MacdonaldG1952Sporozoite]. 
+
+Here, we present a slightly expanded version of Macdonald's model and we present an analysis with the updated and classic notation. 
+
+# The Dynamical System 
+
+## Variables 
+
++ Let $x$ denote the fraction of humans that are infected. 
+
++ Let $w$ denote the fraction of mosquioes that are parous. 
+
++ Let $y$ denote the fraction of mosquioes that are infected. 
+
++ Let $z$ denote the fraction of mosquioes that are infected and infectious. In simple notation, this is the *sporozoite rate.*
+
+## Parameters 
+
++  $m$ - the ratio of mosquitoes to humans
+
++  $f$ - the blood feeding rate 
+
++  $q$ - the human fraction
+
++  $a$ - the human blood feeding rate, $a=fq.$ 
+
++  $g$ - the per-capita mosquito death rate. Macdonald presented his model using the fraction of mosquitoes surviving one day, $p,$  where $p=e^{-g}.$ In the model, the average mosquito lifespan is $1/g$ days. Macdonald made a substitution: $g = -\ln p.$  
+
++  $n$ - the length of the EIP in days  
+
++  $r$ - the waiting time to clear a simple infection  
+
++  $b$ - the fraction of bites by infectious mosquitoes that cause an infection in a human 
+
++  $c$ - the fraction of bites that result in a blood meal 
+
+## Terms
+
++ HBR the human biting rate is $mfq.$ 
+
++ $s$ is called the *stability index.*
+$$s= \frac{\textstyle{fq}}{\textstyle{g}}$$
+
+
++ $\kappa$ - the net infectiousness is defined as the fraction of bites on humans that cause an infection. In this model, $\kappa = fqx$
+
++ $E$ - the entomological inoculation rate. It is the product of the HBR ($ma$) and the sporozoite rate, so $E = maz.$
+
++ $h$ - the FoI. In this model, $h=bE$.
+
+## Mosquito Parity 
+
+The model makes very simple assumptions about parity. Since it takes a blood meal to infect a mosquito: 
+
+$$ 
+\frac{\textstyle{dw}}{\textstyle{dt}}  = fc (m-w) - g w 
 $$
 
-### Dynamics
+## Mosquito Infection Dynamics 
 
-$$\begin{array}{rl}
-\dot{M} & = \Lambda - \Omega\cdot M  \\
-\dot{P} & = \mbox{diag}(f) \cdot (M-P) -  \Omega \cdot P\\ 
-\dot{Y} & = \mbox{diag}(fq\kappa) \cdot (M-Y) - \Omega \cdot Y \\
-\dot{Z} & = 
-\dot{Z} = e^{-\Omega \tau} \cdot \mbox{diag}(fq\kappa_{t-\tau}) \cdot (M_{t-\tau}-Y_{t-\tau}) - \Omega \cdot Z
+The dynamics of parity and infection are described by: 
+
+$$ 
+\frac{\textstyle{dy}}{\textstyle{dt}}  = fqc \kappa (m-y) - g y 
+$$
+
+We let the subscript $n$ denote the value of a variable or term at time $t-n$: for example, $y_n = y(t-n).$  Using this notation, the 
+
+$$
+\frac{\textstyle{dz}}{\textstyle{dt}}
+=  f q c \kappa_n \left(m-y_n \right) e^{-gn}- g y \\
+$$
+
+## Human Infection Dynamics
+
+We let $h = bE.$ In Macdonald's model for superinfection, the clearance rate was: 
+
+\begin{equation}
+F_r(h) =
+\begin{cases}
+h-r & \mbox{if } h<r \\
+0 &  \mbox{if }  h \geq r
+\end{cases}
+\end{equation}
+
+We note that in the limit as $h$ becomes small, that $F_r(h) \approx r.$ 
+
+For the purposes of this essay, we make the simplifying assumption that infections clear at the rate $r,$ so we are using the **SIS** model, so 
+the dynamics of infection are given by: 
+
+\begin{equation}
+\frac{\textstyle{dx}}{\textstyle{dt}} = h (1-x) - r x  
+\end{equation}
+
+## In Classic Form
+
+The equations above favor the modular forms we have adopted. To get the same model in classic form, we substitute the formulas for the terms, and we let $F_r = r.$ (In this form, we have reverted to the classic **SIS** model.) The dynamics are: 
+
+\begin{equation}
+\begin{array}{rl}
+\dot x &= mabz (1-x) - rx \\
+\dot y &= cfqx(m-y) - g y  \\
+\dot z &= cfqx_n(m-y_n) e^{-gn} - g z  \\
 \end{array}
+\end{equation}
+
+
+# Steady States 
+
+## Mosquito Infection 
+
+The fraction infected here includes the prevalence of infection at the steady state: 
+
+$$\bar y = \frac{\textstyle{cfq\bar x}}{\textstyle{g + fqc\bar x}} = 
+\frac{\textstyle{cs \bar x}}{\textstyle{1 + cs \bar x}}
+$$ 
+The relationship can be understood as having two parts:
+
++ the numerator is a measure of the risk of infection: $cs$ the expected number of human blood meals a mosquito would take over its life, so $csx$ is the number of times it would get exposed.
+
++ The denominator discounts reinfection 
+
+The fraction infectious is:
+
+$$\bar z = e^{-gn} \bar y$$
+It is the probability of becoming infected and survivng the EIP. 
+
+At this point, we turn our attention back to *exposure.* In this model, at the steady state, the EIR is 
 $$
-
-## Ordinary Differential Equations
-
-We note that the module `SI` provides a reasonably simple approximating model that has no delay, but in computing $fqZ,$ it includes mortality and dispersal that would have occurred during the EIP: $$
-Z = e^{-\Omega \tau} \cdot Y 
-$$ The implementation of `SI` is similar in spirit to the simple model presented in Smith & McKenzie (2004)[^5]. in that mortality and dispersal over the EIP is accounted for, but the time lag is not. While transient dynamics of the ODE model will not equal the DDE model, they have the same equilibrium values, and so for numerical work requiring finding equilibrium points, the faster ODE model can be safely substituted.
-
-[^5]: Smith, D.L., Ellis McKenzie, F. Statics and dynamics of malaria infection in Anopheles mosquitoes. Malar J 3, 13 (2004). [online](https://doi.org/10.1186/1475-2875-3-13){target="_blank"}
-
-## Steady States
-
-There are two logical ways to begin solving the non-trivial equilibrium. The first assumes $\Lambda$ is known, which implies good knowledge of mosquito ecology. The second assumes $Z$ is known, which implies knowledge of the biting rate on the human population. We show both below.
-
-### Starting with $\Lambda$
-
-Given $\Lambda$ we can solve:
-
+E =  mfqz =  mc \frac{f^2 q^2}{g} e^{-gn} \frac{\bar x}{1+cs \bar x}
 $$
-M = \Omega^{-1} \cdot \Lambda
-$$ Then given $M$ we set $\dot{Y}$ to zero and factor out $Y$ to get:
+We let $V$ denote *vectorial capacity* (see below) and
 
-$$
-Y = (\mbox{diag}(fq\kappa) + \Omega)^{-1} \cdot \mbox{diag}(fq\kappa) \cdot M
-$$ We set $\dot{Z}$ to zero to get:
+$$ 
+V = m c \frac{f^2 q^2}{g} e^{-gn} 
+$$ 
 
-$$
-Z = \Omega^{-1} \cdot e^{-\Omega \tau} \cdot \mbox{diag}(fq\kappa) \cdot (M-Y)
-$$
-
-Because the dynamics of $P$ are independent of the infection dynamics, we can solve it given $M$ as:
-
-$$
-P = (\Omega + \mbox{diag}(f))^{-1} \cdot \mbox{diag}(f) \cdot M
-$$
-
-### Starting with $Z$
-
-It is more common that we start from an estimate of $Z$, perhaps derived from an estimated EIR (entomological inoculation rate). Given $Z$, we can calculate the other state variables and $\Lambda$. For numerical implementation, note that $(e^{-\Omega\tau})^{-1} = e^{\Omega\tau}$.
+and at the steady state: 
 
 $$
-M-Y = \mbox{diag}(1/fq\kappa) \cdot (e^{-\Omega\tau})^{-1} \cdot \Omega \cdot Z
+E = V  \frac{\bar x}{1+cs \bar x} 
 $$
 
-$$
-Y = \Omega^{-1} \cdot \mbox{diag}(fq\kappa) \cdot (M-Y)
-$$
+At this point, we can understand vectorial capacity as a limit:
+$$ \lim_{x \rightarrow 0} E(x) = V$$ 
+
+## Human Infection 
+
+If we substitute the formula for $\bar z$ into the equation for $\dot x,$ and rearrange a little bit, we get: 
 
 $$
-M = (M - Y) + Y
+\dot x = b V  \frac{\textstyle \bar x}{\textstyle{1 + c s \bar x}} (1-\bar x) - r \bar x 
 $$
 
+Clearly, if $\bar x=0$ then $\dot x = 0$, so it is a steady state.  If $\bar x >0$, we set $\dot x = 0,$ canccel $rx,$ and find another steady state by solving:  
 $$
-\Lambda = \Omega \cdot M
-$$ We can use the same equation for $P$ as above.
+R_0 (1-x) = 1 + c s \bar x
+$$
+or 
+$$
+\bar x = \frac{\textstyle{R_0 -1}} {\textstyle{R_0 + c s}}
+$$
+which works as long as $R_0 > 1$
+
+
+## Macdonald's Formulas 
+
+In Macdonald's papers, the formulas are slightly different.To get Macdonald's formula for the sporozoite rate [@MacdonaldG1952Sporozoite]:
+
++ Let $c=1$ 
++ Let $a=fq$ 
++ We use $p$ insted of $g$ (and $g = -\ln p$)
+
+If we do this, we get:
+
+$$\bar z = \frac{\textstyle{a \bar x}}{\textstyle{a \bar x - \ln p}} p^n$$ 
+and the formula for $R_0$ is: 
+
+$$ 
+R_0 = \frac{m a^2 b}{(-\ln p) r} p^n 
+$$
+
+
+# Notes
+
+## Parity  
+
+In 1952, Macdonald had emphasized the importance of mosquito longevity for transmission. In the years that followed, two of Macdonald's colleagues used parity to measure mosquito longevity [@DavidsonG1953parity;@Davidson1954parity]. The motivation for those studies comes from the observation that: 
+
+$$ \bar w = \frac{\textstyle{f c}}{\textstyle{g + f c}}$$
+
+so at the steady state, the odds of being parous are:  
+
+$$ \frac{\textstyle{\bar w}}{\textstyle{1-w}} = \frac{\textstyle{f c}}{\textstyle{g}} $$
+In other words, the odds of being parous gives a formula for the expected number of blood meals a mosquito would take over its lifespan.  
+ 
+## Vectorial Capacity 
+
+In 1964, Garrett-Jones isolated the mosquito-specific components of Macdonald's forula for $R_0$ and named the formula *vectorial capacity*  
+
+$$V = \frac{m a^2}{(-\ln p)} p^n $$
+Using Macdonald's notation, this is equivalent to the formula we presented above. 
+
+In 2004, Smith and McKenzie [@SmithDL2004Statics] proposed a slightly modified version that further emphasized the importance of mosquito longevity. Let $\lambda$ denote the number of adult female mosquitoes emerging from aquatic habitats, per human, per day. The number of mosquitoes per human would thus be described by an equation:
+
+$$\dot m = \lambda - gm$$ 
+
+and at the steady state, 
+
+$$\bar m = \frac{\textstyle{\lambda}}{\textstyle{g}}$$ 
+
+If we substitute this back into the formula for $R_0,$ we can write vectorial capacity in a form that 
+
+$$V = \lambda \frac{cf^2q^2}{g^2} e^{-gn} = \lambda cs^2 e^{-gn} $$
+After emerging ($\lambda$), a human must get infected from a human blood meal ($cs$) then survive the EIP ($e^{-gn}$) and then bite more humans to transmit ($s$). 

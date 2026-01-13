@@ -58,6 +58,7 @@ library(ramp.xds)
 ```
 
 ```{r, eval=F}
+#| eval: false
 model <- xds_setup_eir(Xname = "SIS", 
                           eir = 2/365, 
                           season_par = makepar_F_sin(), 
@@ -72,12 +73,14 @@ saveRDS(model, "./models/scenario_planning.rds")
 ```
 
 ```{r, echo=F}
+#| eval: false
 model <- readRDS("./models/scenario_planning.rds")
 ```
 
 At this point, some of the parameter values have been chosen arbitrarily, just to set up the structures we want to fit. Even so, we can visualize the outputs:
 
 ```{r}
+#| eval: false
 model <- xds_solve(model, 730, 10)
 xds_plot_PR(model) 
 ```
@@ -89,6 +92,7 @@ xds_plot_PR(model)
 We have done this in Uganda. Here, we do some analysis using a time series of imputed *Pf*PR data for Terego District, West Nile, Uganda.
 
 ```{r}
+#| eval: false
 library(ramp.uganda)
 prts <- get_district_pfpr("Terego District")
 with(prts, {
@@ -100,6 +104,7 @@ with(prts, {
 The next step we do is to develop a basic understanding of *malaria prevalence* over time by fitting a model of *exposure.* We use set up an EIR-forced model for population dynamics:
 
 ```{r}
+#| eval: false
 library(ramp.work)
 ```
 
@@ -112,6 +117,7 @@ The model that we fit for the EIR:
 -   an interannual pattern;
 
 ```{r, eval=F}
+#| eval: false
 fit_model <- setup_fitting(model, prts$pfpr, prts$jdate)
 fit_model <- pr2history(fit_model)
 fit_model <- xds_solve(fit_model, 
@@ -120,12 +126,14 @@ saveRDS(fit_model, "./models/sp_fit_model.rds")
 ```
 
 ```{r, echo=F}
+#| eval: false
 fit_model <- readRDS("./models/sp_fit_model.rds")
 ```
 
 Now, we visualize the results:
 
 ```{r}
+#| eval: false
 show_fit(fit_model)
 ```
 
