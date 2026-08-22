@@ -57,3 +57,6 @@ rsconnect/
 /_site/*
 /_site/*.html
 
+
+**/*.quarto_ipynb
+.positai

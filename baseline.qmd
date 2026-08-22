@@ -3,8 +3,8 @@ title: "Counterfactual Baseline"
 subtitle: "A Changing Baseline Modified by Vector Control"
 editor:
   mode: source
-bibliography: data/refs.bib
-csl: data/plos.csl 
+bibliography: ../refs/refs.bib
+csl: ../refs/plos.csl
 format: html
 ---
 

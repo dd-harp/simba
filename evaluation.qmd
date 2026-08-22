@@ -4,7 +4,7 @@ subtitle: "Routine Evaluation of Vector Control"
 format: html
 editor:
   mode: source
-bibliography: data/refs.bib
-csl: data/plos.csl 
+bibliography: ../refs/refs.bib
+csl: ../refs/plos.csl
 ---
 

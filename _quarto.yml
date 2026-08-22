@@ -1,7 +1,10 @@
 project:
   type: website
   output-dir: ../UW/simba
-  
+  render:
+    - "*.qmd"
+    - "!pipeline_tutorial.qmd"
+
 website:
   title: "SimBA"
   navbar:
@@ -35,9 +38,18 @@ website:
           href: ramp.html
       - text: "Getting Started" 
         menu: 
-        - text: "Demo (Slideshow)"
-          href: demo.html
-        - href: setup.qmd
+        - demo_install.qmd 
+        - demo_build.qmd 
+        - demo_solve.qmd
+        - demo_viz.qmd
+      - text: Code Design
+        menu: 
+        - components.qmd 
+        - XHcomponent.qmd
+        - MYcomponent.qmd
+        - Lcomponent.qmd
+        - Vcomponent.qmd
+        - interface.qmd 
       - text: "Concepts" 
         menu:
         - concept_cloud.qmd 
@@ -58,15 +70,17 @@ website:
     search: true
     collapse-level: 1
     contents:
-      - simba_demo.qmd
       - section: Rpackages.qmd
         contents:
-        - ramp.xds.qmd 
-        - ramp.library.qmd
-        - ramp.demog.qmd
-        - ramp.control.qmd
-        - ramp.forcing.qmd
-        - ramp.work.qmd
+        - section: robust_analytics.qmd
+          contents:
+          - ramp.xds.qmd 
+          - ramp.library.qmd
+          - ramp.trace.qmd
+          - ramp.forcing.qmd 
+          - ramp.demog.qmd
+          - ramp.work.qmd
+          - ramp.qa.qmd
         - section: deep_dives.qmd
           contents:
           - ramp.micro.qmd
@@ -75,60 +89,63 @@ website:
           contents:
           - exDE.qmd
           - MicroMoB.qmd
+      - section: demo_simba.qmd
+        contents:
+        - demo_install.qmd
+        - demo_build.qmd 
+        - demo_solve.qmd
+        - demo_viz.qmd
+        - demo_trivial.qmd
+        - demo_fitting.qmd
       - section: model_building.qmd 
         contents:
-          - section: basic_setup.qmd 
-            contents:
-            - section: components.qmd 
-              contents:
-              - XHcomponent.qmd
-              - MYcomponent.qmd
-              - Lcomponent.qmd
-              - Vcomponent.qmd
-            - interface.qmd 
-          - section: advanced_setup.qmd 
-            contents:
-            - egg_laying.qmd
-            - blood_feeding.qmd
-            - demography.qmd
-            - section: stratification.qmd
-              contents:
-              - migration.qmd
-              - heterogeneity.qmd
-              - aging.qmd
-            - section: spatial_dynamics.qmd
-              contents:
-              - time_spent.qmd
-              - mosquito_dispersal.qmd
-              - indoors.qmd
-            - section: exposure.qmd
-              contents:
-              - heterogeneous_biting.qmd
-              - environmental_heterogeneity.qmd
-              - travel_malaria.qmd
-              - pe_immunity.qmd
-            - section: malaria_importation.qmd
-              contents:
-              - travel_malaria.qmd
-              - visitors.qmd
-            - section: vector_control.qmd
-              contents:
-              - itn.qmd
-              - irs.qmd
-              - lsm.qmd
-            - ento_surveillance.qmd 
-            - section: malaria_control.qmd
-              contents:
-              - mass_treat.qmd
-              - vaccines.qmd
-              - other_vaccines.qmd
-            - section: exogenous.qmd
-              contents: 
-              - weather.qmd
-              - resources.qmd
-            - host_species.qmd
-            - vector_species.qmd
-            - transmission.qmd
+        - basic_setup.qmd
+        - advanced_setup.qmd
+        - exogenous.qmd 
+        - trace.qmd
+      - section: human_ecology.qmd 
+        contents:
+        - heterogeneity.qmd
+        - stratification.qmd
+        - time_spent.qmd
+        - demography.qmd
+        - aging.qmd
+        - migration.qmd
+        - travel_malaria.qmd
+        - host_species.qmd
+      - section: mosquito_ecology.qmd 
+        contents:
+        - blood_feeding.qmd
+        - mosquito_dispersal.qmd
+        - mosquito_demography.qmd
+        - indoors.qmd
+        - weather.qmd
+        - resources.qmd
+        - circadian.qmd
+        - egg_laying.qmd
+        - regulation.qmd
+        - habitat_dynamics.qmd
+        - ento_surveillance.qmd 
+        - vector_species.qmd
+      - section: transmission.qmd 
+        contents:
+        - spatial_dynamics.qmd
+        - exposure.qmd
+        - heterogeneous_biting.qmd
+        - environmental_heterogeneity.qmd
+        - travel_malaria.qmd
+        - visitors.qmd
+      - section: vector_control.qmd
+        contents:
+        - itn.qmd
+        - irs.qmd
+        - lsm.qmd
+        - sugar.qmd
+      - section: malaria_control.qmd
+        contents:
+        - mass_treat.qmd
+        - vaccines.qmd
+        - other_vaccines.qmd
       - section: model_library.qmd 
         contents:
         - section: trace.qmd 
@@ -158,7 +175,7 @@ website:
             contents:
           - section: itn.qmd 
             contents:
-        - section: weather.qmd 
+        - section: 
           contents:
           - rainfall.qmd
           - temperature.qmd
@@ -200,7 +217,8 @@ format:
     theme: spacelab 
     css: styles.css
     toc: true
-    toc-depth: 2 
+    toc-depth: 3 
+    toc-expand: 1 
     grid: 
       sidebar-width: 350px 
       margin-width: 300px 

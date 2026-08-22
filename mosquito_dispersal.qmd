@@ -1,8 +1,297 @@
 ---
-title: "Mosquito Dispersal & Demography"
-format: html
+title: "Mosquito Dispersal"
+editor:
+  mode: source
+author: 
+  - name:  "David L Smith"  
+    url: https://faculty.washington.edu/smitdave/
+    orcid: "0000-0003-4367-3849" 
+    email: "smitdave@uw.edu"
+    affiliations: "University of Washington"
+bibliography: ../refs/refs.bib
+csl: ../refs/plos.csl
 ---
 
-A matrix describing mosquito demography 
+In **`ramp.xds`**, mosquito dispersal can be configured as part of [**basic setup**](basic_setup.qmd), or it can be changed later using `setup_K_matrix`, which handles setup for models with minimal ecology as well as behavioral state models. 
 
-## 
+This vignette covers:
+
++ [Dispersal Kernels](@sec-kernel) --- the standard implementation of dispersal kernels across all **MY** modules
+
++ [`setup_K_matrix()`](@sec-setup) --- a discussion of `setup_K_matrix()` and its methods:
+
+    - `matrix` --- set up $K$ by passing an $N_p \times N_p$ matrix with the proper form
+    
+    - `herethere` --- disperse evenly to all other patches 
+    
+    - `xy` --- use the $x,y$ locations and a spatial kernel
+    
+    - `zero` --- set the matrix to all zeros
+    
+    - `N` --- for behavioral state models, set up multiple kernels
+
++ [`xds_setup()`](@sec-basic) --- how `xds_setup()` handles dispersal kernels
+
++ [Examples](@sec-examples)
+
+Inline help is available:
+```{r}
+#| eval: false
+?xds_info_mosquito_dispersal
+?setup_K_matrix
+```
+
+# Dispersal Kernels {#sec-kernel}
+
+Let $k_{i,j}$ describe the fraction of mosquitoes emigrating from each patch that land on another patch: ${k}_{i,j} (t) \in K(t)$ is the fraction of mosquitoes leaving patch $j$ that end up in patch $i$. Each column in the matrix describes mosquitoes leaving *from* $j.$ 
+
+Emigration rates and population *loss* associated with dispersal are handled separately (see [Mosquito Demography](mosquito_demography.qmd)), so by convention, each column sums up to zero. 
+
+\begin{equation}
+K = 
+\left[
+\begin{array}{ccccc}
+j=1&j=2&j=3&\cdots&j=p \\ 
+\boxed{
+\begin{array}{c}
+-1 \\
+{k}_{2,1} \\
+{k}_{3,1} \\
+\vdots \\
+{k}_{p,1} \\
+\end{array}}  
+&
+\boxed{
+\begin{array}{c}
+{k}_{1,2} \\
+-1 \\
+{k}_{3,2} \\
+\vdots \\
+{k}_{p,2} \\
+\end{array}} 
+&
+\boxed{
+\begin{array}{c}
+{k}_{1,3} \\
+{k}_{3,2} \\
+-1 \\
+\vdots \\
+{k}_{p,3} \\
+\end{array}} 
+&
+\boxed{
+\begin{array}{c}
+\cdots \\
+\cdots \\
+\cdots \\
+\ddots \\
+\cdots 
+\end{array}}
+&
+\boxed{
+\begin{array}{c}
+{k}_{1,p} \\
+{k}_{2,p} \\
+{k}_{3,p} \\
+\vdots \\
+-1 \\
+\end{array}} 
+\end{array}
+\right]
+\end{equation}
+
+
+Behavioral state models often have two or more dispersal matrices. 
+
+
+
+
+# `setup_K_matrix` {#sec-setup}
+
+```{r}
+library(ramp.xds)
+```
+
+The function is called as:
+
+```{r}
+#| eval: false 
+setup_K_matrix(name, xds_obj, options=list(), s=1)
+``` 
+
+The function `setup_K_matrix` dispatches on `options` but before function is dispatched, a block of code is run that makes it possible to pass arguments in several ways. 
+
+but `class(name)` is checked and changed before the function call: 
+
++ The function was designed to be called by passing a string called `name`, the name of the S3 method: 
+  - if `name` is a string, then `class(options) <- 'name'`
+  - `options` is a named list with arguments for `setup_K_matrix.name`
++ Matrix 
+    - if `name` is a matrix, then `class(options) <- 'as_matrix'`
+    - it is equivalent to calling `setup_K_matrix("as_matrix", options = )
++ 
++ if `name` is a list with an item called `name`  then `class(options) <- 'name$name'`
+
++ a string: 
+
+
+## `as_matrix`
+
+```{r}
+M = matrix(c(-1, .97, .03, 
+             .95, -1, .05, 
+             0.02, .98, -1), 3, 3)
+M
+```
+
+```{r}
+colSums(M)< 1e-10
+```
+
+If the matrix is passed to `setup_K` then (after passing checks) it becomes the time spent matrix. 
+
+```{r}
+model <- xds_setup(nPatches = 3)
+model <- setup_K_matrix(M, model)
+get_K_matrix(model)
+```
+
+## herethere
+
+If `name = "herethere"` then the fraction moving to every other patch is equal.  
+```{r}
+model <- setup_K_matrix("herethere", model)
+get_K_matrix(model)
+```
+
+## xy 
+
+The `setup_timspent.xy` option grabs the residence vector and then calls `make_timespent_xy` with options: 
+
++ `xy` --- the $x$ and $y$ coordinates of each patch
+
++ `kern` --- a function to weight patches by distance, any information on the `xds` model object (*e.g.* human population density), or any options passed to the function. The form of the function is:
+$$F_k(d, M, O)$$ where `M` is the model object and `O` is `options` is a named list. 
+
++ k_opts --- options, passed as a named list (to `setup_timepent(name = "xy", ...)`).
+
+In the following example, we generate 10 random  patch locations, as $x,y$ coordinates, in a $10 \times 10$ box centered at 0. The human population has 10 strata: one for each patch.  Individuals spend, on average, around 80% of their time at home (drawn from a `beta` distribution). The remaining time is allocated to points by a distance function: $$F_K(d) = e^{-(d-3)^2}.$$
+
+## Behavioral State Models
+ 
+The dispersal kernels for **behavioral state models** are the result of searching for different resources. For *basic ecology* models, the dispersal kernel is called `K_matrix`, but *behavioral state models* can have two or more kernels, each with different names. 
+
+To handle this, the functions `get_K_matrix` and `change_K_matrix` have an extra argument `which_K`. By default, for basic ecology, the default is set to "K" and it can be ignored. It can not be ignored when working with behavioral state models. 
+
+The behavioral state models are in `ramp.library` so we load it. 
+
+```{r}
+library(ramp.library)
+```
+
+The `BQ` module is a behavioral state module. We'll set one up to work with: 
+
+```{r}
+modBQ <- xds_setup(MYname = "BQ", nPatches=3)
+```
+
+To look at the $K_b$ matrix (for blood searching), we use `get_K_matrix` with the second argument, `Kb`
+
+```{r}
+get_K_matrix(modBQ, "Kb")
+```
+We can call `setup_K_matrix` to change it, but we must add `which_K = "Kb"` to the options list: 
+
+```{r}
+modBQ <- setup_K_matrix("herethere", modBQ, options=list(which_K = "Kb"))
+get_K_matrix(modBQ, "Kb")
+```
+A method for `setup_K_matrix` was written for behavioral state models. The method name is "N", and the argument must say now many kernels it will be setting up: $N=2$. The options must also have an argument called `opts` which is a list of length $N$: each one describes how to set up the kernel. For example:  
+
+```{r}
+Kopts = list(name = "N", N=2, opts = list()) 
+Kopts$opts[[1]] = list(name = "herethere", which_K = "Kb")
+Kopts$opts[[2]] = list(name = "herethere", which_K = "Kq")
+```
+
+Now, we can set up a model and then modify both kernels at the same time. After basic setup, the kernels are both set to $0$ matrices. 
+
+```{r}
+modBQ4 <- xds_setup(MYname = "BQ", nPatches=4)
+get_K_matrix(modBQ4, "Kq")
+```
+Now, we pass the options, and we get: 
+
+```{r}
+modBQ4 <- setup_K_matrix("N", modBQ4, Kopts)
+get_K_matrix(modBQ4, "Kq")
+```
+
+```{r}
+get_K_matrix(modBQ4, "Kb")
+```
+Note that we could also pass `Kopts` to `xds_setup`
+
+```{r}
+modBQ5 <- xds_setup(MYname = "BQ", nPatches=5, Koptions=Kopts)
+get_K_matrix(modBQ5, "Kb")
+```
+# Basic Setup {#sec-basic}
+
+The time spent matrix can be configured in basic setup.  
+
+
+## Defaults
+
+The default setting for `xds_setup` is that mosquitoes don't move. If $N_p=1$ then the time spent matrix for one patch is:
+
+```{r}
+
+model <- xds_setup()
+get_K_matrix(model)
+```
+
+For multiple strata: 
+
+```{r}
+model <- xds_setup(nPatches=3)
+get_K_matrix(model)
+```
+
+At setup, a parameter list called `Koptions` can be passed that calls `setup_K_matrix`.  Any list of options that would set up a kernel using `setup_K_matrix` will work here. For example: 
+
+```{r}
+model <- xds_setup(nPatches=3, Koptions = list(name="herethere"))
+get_K_matrix(model)
+```
+
+# Examples {#sec-examples}
+
+## A Spatial Kernel
+
+The example is meant to be illustrative, not realistic. 
+
+
+```{r, fig.height=8, fig.width=8}
+#| eval: false
+set.seed(2302)
+x = runif(10, -5, 5)
+y = runif(10, -5, 5)
+xy = data.frame(x=x, y=y)
+kern = function(d, model, options){exp(-(d-3)^2)}
+options = list(name="xy", xy=xy, ker=kern)
+model <- xds_setup(nPatches=10, HPop = sample(2^c(1:10)), 
+                   residence = 1:10,
+                   membership = 1:10,
+                   Loptions = list(Lambda = sample(2^c(1:10))), 
+                   Koptions=options)
+#model <- setup_K_matrix("xy", model, options)
+model <- xds_solve(model)
+model <- last_to_inits(model)
+model <- xds_analyze(model)
+model <- make_VC(model)
+VC <- get_VC_matrix(model)
+
+plot_connectivity_graph(VC, xy, mn=0.01, clrs = viridisLite::turbo(10),
+                        arr.pos=0.8, scl=.1)
+```

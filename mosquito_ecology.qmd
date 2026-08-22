@@ -1,4 +1,71 @@
 ---
-title: "Mosquito Ecology"
-format: html
+title: "Mosquito Ecology & Infection"
+editor:
+  mode: source
+author: 
+  - name:  "David L Smith"  
+    url: https://faculty.washington.edu/smitdave/
+    orcid: "0000-0003-4367-3849" 
+    email: "smitdave@uw.edu"
+    affiliations: "University of Washington"
+bibliography: ../refs/refs.bib
+csl: ../refs/plos.csl
 ---
+
+Mosquito behavior and ecology plays a core role in malaria epidemiology, but it has played only a minor role in modeling. 
+
+# Overview
+
+In George Macdonald's model, mosquito infection dynamics were summarized by a few core parameters: the ecology part was never spelled out [@MacdonaldG1952Sporozoite;@SmithDL2004Statics]. That parameter set was codified in formulas for $R_0$ and vectorial capacity (VC) [@MacdonaldG1952Ro;@Garrett-JonesC1964VC;@SmithDL2004Statics]. While the original formala for the VC was derived from a very specific set of assumptions, the formula for VC has taken on a life of its own [@DyeC1986VectorialCapacity;@KiszewskiA2004GlobalIndex;@MordecaiEA2019ThermalBiology].
+
+In developing **`ramp.xds`**, we recognized several major types of models describing mosquito ecology:
+
++ In **basic** models, the compartments subdivide a population by infection states. Macdonald's mosquito models were not extensible. The base model for **`ramp.xds`** development was published by Joan Aron and Bob May [@AronJL1982PopulationDynamics].
+
++ In **behavioral state** models, the compartments subdivide a population by behavioral states as well as infection states.
+
+In mosquito ecology, there has been a long-standing interest in using parity to measure the reproductive age of a mosquito. 
+
+## Basic Adult Ecology
+
+In 1982, Joan Aron and Bob May published a model that made that implicit model explicit and then extended it. In that model $M$ is a variable describing adult mosquito density, $\Lambda(t)$ the emergence rate of adult mosquitoes, and $g$ the death rate [@AronJL1982PopulationDynamics]. In this model, an equation described mosquito population dynamics: 
+$$
+\frac{dM}{dt} = \Lambda(t) - g M 
+$$
+
+## Basic Infection Dynamics
+
+To model infection dynamics, we let $f$ be the overall feeding rate, $q$ the human fraction, and $\kappa$ the net infectiousness (NI). Letting $Y$ denote the density of infected mosquitoes, we get:
+$$\frac{dY}{dt}= fq\kappa(M-Y)-g Y$$
+To get the density of infecious mosquitoes, $Z,$ Aron & May use a fixed delay to model the latent period, commonly known as the extrinsic incubation period (EIP). If mosquitoes become infected $\tau$ days after they became infected, then they survive the EIP with probability $e^{-g\tau}$, and we introduce the subscript $\tau$ to denote the lagged value of a term of variable:
+$$\frac{dZ}{dt}= fq\kappa_\tau(M_\tau-Y_\tau) e^{-g\tau} -g Z$$
+The net infectious biting rate is $fqZ$
+
+## Spatial Dynamics 
+
+In **`ramp.xds`**, we established a convention for modeling mosquito spatial ecology using a [demographic matrix](mosquito_demography.qmd) for both survival and dipsersal, $\Omega.$ In a spatial model with $N_p$ patches, $\Lambda(t)$ is a vector of length $N_p$, $M$ a vector of state variables of length $N_p$, $\Omega$ a $N_p \times N_p$ matrix, and 
+$$
+\frac{dM}{dt} = \Lambda(t) - \Omega \cdot M 
+$$
+If $\Lambda$ is a constant, then mosquito population density will come to a steady state $$ \bar M = \Omega^{-1} \cdot \Lambda.$$
+and we can expand the definition of vectorial capacity for spatial models. Vectorial capacity is the number of infectious bites arising from all the mosquitoes blood feeding on a single available human in a single patch on a single day. 
+
+The classic formula is problematic, for various reasons, and software development was based on two formulas (using either $\Lambda$ or $\bar M$) that are equivalent (under Macdonald's assumptions): 
+$$V = \frac {\bar M} H \frac{f^2 q^2}{g} e^{-g\tau} = \frac \Lambda H \frac{f^2 q^2}{g^2} e^{-g\tau}$$ 
+
+
+
+## Aquatic Ecology
+
+A model for adult mosquito population dynamics can be coupled to a model for aquatic mosquito population dynamics if we model egg laying by adult mosquitoes. 
+
++ 
+
+## Non-Autonomous Dynamics
+
+ To get a model that is equivalent to the one used by George Macdonald, we set $N_p=1$, and if we let $m=\bar M/H,$ $a=fq$, $y = Y/M,$ and $z=Z/M.$ 
+
+## Behavioral States
+
+Behavioral state models for mosquito ecology consider the *physiological status* of a mosquito and its associated behaviors [@LeMenachA2005Oviposition;@WuSL2020MBITES]. Gravid mosquitoes will tend to be seeking water to lay eggs, but after laying eggs, the mosquito will seek blood or perhaps sugar. Compartmental models consider both **behavioral states** and **infection states,** so they are more complex than basic models. In **`ramp.library`**
+

@@ -1,8 +1,8 @@
 ---
 title: "Basic Models"  
 format: html
-bibliography: data/refs.bib
-csl: data/plos.csl 
+bibliography: ../refs/refs.bib
+csl: ../refs/plos.csl
 ---
 
 Several basic mathematical models of malaria transmission have been published across the years [@SmithDL2012RossMacdonald;@ReinerRC2013SystematicReview]. In the following, we walk through several of them:

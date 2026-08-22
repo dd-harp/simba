@@ -1,0 +1,11 @@
+---
+title: "Model Fitting"
+subtitle: "Fitting Demo: Vignette 2"
+editor:
+  mode: source
+bibliography: ../refs/refs.bib
+csl: ../refs/plos.csl
+html-math-method:
+  method: mathjax
+  url: "https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
+---

@@ -1,0 +1,534 @@
+---
+title: "The `ramp.xds` Pipeline"
+subtitle: "An interactive tutorial: setup → solve → visualize"
+format: html
+server: shiny
+---
+
+------------------------------------------------------------------------
+
+*This tutorial walks through the three-step **`ramp.xds`** pipeline interactively. Choose modules, adjust parameters, and watch the model update in real time.*
+
+------------------------------------------------------------------------
+
+```{r}
+#| context: setup
+#| include: false
+library(ramp.xds)
+has_lib <- requireNamespace("ramp.library", quietly = TRUE)
+if (has_lib) library(ramp.library)
+
+# --- Module choices (canonical lists from *-modules.R) ------------------------
+
+# XH: human-modules.R
+xh_choices <- c("SIS", "hMoI")
+if (has_lib) xh_choices <- c(xh_choices,
+  "garki", "SIP", "SIPd",
+  "SIR", "SIRS", "SEIR", "SEIRV",
+  "SEIS", "SEISd")
+xh_choices <- c(xh_choices, "trivial")
+
+# MY: adult-modules.R
+my_choices <- c("SI", "macdonald", "GeM", "basicM", "RMdts")
+if (has_lib) my_choices <- c(my_choices, "SEI", "BQ", "BQm", "BQRS")
+my_choices <- c(my_choices, "trivial")
+
+# L: aquatic-modules.R
+l_choices <- c("trivial", "basicL")
+```
+
+## Overview
+
+Every **`ramp.xds`** workflow follows three steps:
+
+1.  **Setup** — `xds_setup()` configures a model: choose dynamical modules and set parameters.
+2.  **Solve** — `xds_solve()` integrates the system of differential equations.
+3.  **Visualize** — built-in plotting functions display the results.
+
+------------------------------------------------------------------------
+
+## The XH Component — Human Infection Dynamics
+
+Choose a module for the **XH** component, which describes infection dynamics and immunity in the human (or vertebrate host) population.
+
+```{r}
+#| echo: false
+fluidRow(
+  column(4,
+    selectInput("Xname", "Xname:", choices = xh_choices, selected = "SIS")
+  ),
+  column(8, uiOutput("xh_params"))
+)
+```
+
+------------------------------------------------------------------------
+
+## The MY Component — Adult Mosquito Ecology & Infection
+
+Choose a module for the **MY** component, which describes adult mosquito ecology and infection dynamics.
+
+```{r}
+#| echo: false
+fluidRow(
+  column(4,
+    selectInput("MYname", "MYname:", choices = my_choices, selected = "macdonald")
+  ),
+  column(8, uiOutput("my_params"))
+)
+```
+
+------------------------------------------------------------------------
+
+## The L Component — Aquatic Mosquito Ecology
+
+Choose a module for the **L** component, which describes aquatic-stage mosquito ecology.
+
+```{r}
+#| echo: false
+fluidRow(
+  column(4,
+    selectInput("Lname", "Lname:", choices = l_choices, selected = "trivial")
+  ),
+  column(8, uiOutput("l_params"))
+)
+```
+
+------------------------------------------------------------------------
+
+## Solve
+
+Configure the human population and simulation duration, then solve.
+
+```{r}
+#| echo: false
+fluidRow(
+  column(4,
+    sliderInput("HPop", HTML("<em>H</em> — human population size:"),
+                min = 100, max = 5000, value = 1000, step = 100)
+  ),
+  column(4,
+    sliderInput("Tmax",
+                HTML("<em>T</em><sub>max</sub> — simulation duration (days):"),
+                min = 60, max = 3650, value = 365, step = 30)
+  )
+)
+```
+
+**Generated code:**
+
+```{r}
+#| echo: false
+verbatimTextOutput("setup_code")
+```
+
+------------------------------------------------------------------------
+
+## Visualize
+
+```{r}
+#| echo: false
+tabsetPanel(id = "plots",
+  tabPanel("Prevalence (PR)",
+    br(), plotOutput("pr_plot", height = "320px"),
+    tags$p(tags$small(HTML(
+      "Parasite rate (<em>I/H</em>) over time &mdash;
+       <code>xds_plot_PR()</code>.")))
+  ),
+  tabPanel("EIR",
+    br(), plotOutput("eir_plot", height = "320px"),
+    tags$p(tags$small(HTML(
+      "Entomological Inoculation Rate (infectious bites per person per year)
+       &mdash; <code>xds_plot_EIR()</code>.")))
+  ),
+  tabPanel("Mosquito Density (M)",
+    br(), plotOutput("M_plot", height = "320px"),
+    tags$p(tags$small(HTML(
+      "Total adult mosquito density &mdash;
+       <code>xds_plot_M()</code>.")))
+  ),
+  tabPanel("Infected Mosquitoes (Y)",
+    br(), plotOutput("Y_plot", height = "320px"),
+    tags$p(tags$small(HTML(
+      "Infected mosquitoes (pre-EIP) &mdash;
+       <code>xds_plot_Y()</code>.")))
+  ),
+  tabPanel("Infective Mosquitoes (Z)",
+    br(), plotOutput("Z_plot", height = "320px"),
+    tags$p(tags$small(HTML(
+      "Infective mosquitoes (sporozoite-positive) &mdash;
+       <code>xds_plot_Z()</code>.")))
+  )
+)
+```
+
+------------------------------------------------------------------------
+
+```{r}
+#| context: server
+
+# =============================================================================
+# Helper: common XH sliders (b, r, c) shared by most human modules
+# =============================================================================
+xh_brc <- function(label) {
+  tagList(
+    tags$h5(tags$strong("XH"), tags$code(paste0(" — ", label))),
+    sliderInput("xh_b", HTML("<em>b</em> — prob. infection per bite:"),
+                min = 0.1, max = 0.9, value = 0.55, step = 0.05),
+    sliderInput("xh_r_inv", HTML("1/<em>r</em> — infection duration (days):"),
+                min = 30, max = 365, value = 180, step = 10),
+    sliderInput("xh_c", HTML("<em>c</em> — infectiousness to mosquitoes:"),
+                min = 0.05, max = 0.50, value = 0.15, step = 0.05)
+  )
+}
+
+# =============================================================================
+# XH parameter UI
+# =============================================================================
+output$xh_params <- renderUI({
+  xname <- input$Xname
+  switch(xname,
+    # --- ramp.xds modules ---
+    "SIS"   = xh_brc("SIS"),
+    "hMoI"  = tagList(
+      tags$h5(tags$strong("XH"), tags$code(" — hMoI")),
+      sliderInput("xh_b", HTML("<em>b</em> — prob. infection per bite:"),
+                  min = 0.1, max = 0.9, value = 0.55, step = 0.05),
+      sliderInput("xh_r1_inv", HTML("1/<em>r</em><sub>1</sub> — clearance rate 1 (days):"),
+                  min = 30, max = 365, value = 180, step = 10),
+      sliderInput("xh_r2_inv", HTML("1/<em>r</em><sub>2</sub> — clearance rate 2 (days):"),
+                  min = 30, max = 365, value = 70, step = 5),
+      sliderInput("xh_c1", HTML("<em>c</em><sub>1</sub> — infectiousness (single):"),
+                  min = 0.001, max = 0.1, value = 0.015, step = 0.001),
+      sliderInput("xh_c2", HTML("<em>c</em><sub>2</sub> — infectiousness (multiple):"),
+                  min = 0.01, max = 0.5, value = 0.15, step = 0.01)
+    ),
+    "trivial" = tagList(
+      tags$h5(tags$strong("XH"), tags$code(" — trivial")),
+      sliderInput("xh_kappa", HTML("<em>&kappa;</em> — net infectiousness:"),
+                  min = 0.01, max = 0.5, value = 0.1, step = 0.01)
+    ),
+    # --- ramp.library: compartmental models ---
+    "SIR"   = xh_brc("SIR"),
+    "SIRS"  = tagList(xh_brc("SIRS"),
+      sliderInput("xh_gamma", HTML("<em>&gamma;</em> — rate of immunity loss:"),
+                  min = 0.01, max = 2.0, value = 0.5, step = 0.01)
+    ),
+    "SEIS"  = tagList(xh_brc("SEIS"),
+      sliderInput("xh_nu_inv", HTML("1/<em>&nu;</em> — latent period (days):"),
+                  min = 5, max = 60, value = 14, step = 1)
+    ),
+    "SEISd" = tagList(xh_brc("SEISd"),
+      sliderInput("xh_nu_d", HTML("<em>&nu;</em> — intrinsic incubation (days):"),
+                  min = 5, max = 60, value = 14, step = 1)
+    ),
+    "SEIR"  = tagList(xh_brc("SEIR"),
+      sliderInput("xh_tau", HTML("<em>&tau;</em> — rate E &rarr; I:"),
+                  min = 0.01, max = 2.0, value = 0.5, step = 0.01)
+    ),
+    "SEIRV" = tagList(xh_brc("SEIRV"),
+      sliderInput("xh_alpha", HTML("<em>&alpha;</em> — vaccination rate:"),
+                  min = 0.01, max = 1.0, value = 0.1, step = 0.01),
+      sliderInput("xh_tau", HTML("<em>&tau;</em> — rate E &rarr; I:"),
+                  min = 0.01, max = 2.0, value = 0.5, step = 0.01),
+      sliderInput("xh_varepsilon", HTML("<em>&epsilon;</em> — vaccine efficacy:"),
+                  min = 0.01, max = 1.0, value = 0.5, step = 0.01),
+      sliderInput("xh_gamma", HTML("<em>&gamma;</em> — rate of immunity loss:"),
+                  min = 0.01, max = 2.0, value = 0.5, step = 0.01)
+    ),
+    # --- ramp.library: malaria models ---
+    "SIP"   = tagList(xh_brc("SIP"),
+      sliderInput("xh_rho", HTML("<em>&rho;</em> — treatment probability:"),
+                  min = 0.0, max = 1.0, value = 0.1, step = 0.01),
+      sliderInput("xh_eta_inv", HTML("1/<em>&eta;</em> — chemoprotection duration (days):"),
+                  min = 5, max = 60, value = 25, step = 1),
+      sliderInput("xh_xi_inv", HTML("1/<em>&xi;</em> — prophylaxis waning (days):"),
+                  min = 30, max = 730, value = 365, step = 10)
+    ),
+    "SIPd"  = tagList(xh_brc("SIPd"),
+      sliderInput("xh_rho", HTML("<em>&rho;</em> — treatment probability:"),
+                  min = 0.0, max = 1.0, value = 0.1, step = 0.01),
+      sliderInput("xh_eta_d", HTML("<em>&eta;</em> — chemoprotection duration (days):"),
+                  min = 5, max = 60, value = 25, step = 1),
+      sliderInput("xh_xi_inv", HTML("1/<em>&xi;</em> — prophylaxis waning (days):"),
+                  min = 30, max = 730, value = 365, step = 10)
+    ),
+    "garki" = tagList(
+      tags$h5(tags$strong("XH"), tags$code(" — garki")),
+      sliderInput("xh_b", HTML("<em>b</em> — prob. infection per bite:"),
+                  min = 0.1, max = 0.9, value = 0.55, step = 0.05),
+      sliderInput("xh_r1", HTML("<em>r</em><sub>1</sub> — clearance rate 1:"),
+                  min = 0.0001, max = 0.01, value = 0.0023, step = 0.0001),
+      sliderInput("xh_r2", HTML("<em>r</em><sub>2</sub> — clearance rate 2:"),
+                  min = 0.001, max = 0.1, value = 0.023, step = 0.001),
+      sliderInput("xh_garki_nu_inv", HTML("1/<em>&nu;</em> — latent period (days):"),
+                  min = 5, max = 30, value = 15, step = 1),
+      sliderInput("xh_alpha1", HTML("<em>&alpha;</em><sub>1</sub> — immunity acquisition 1:"),
+                  min = 0.0001, max = 0.01, value = 0.002, step = 0.0001),
+      sliderInput("xh_alpha2", HTML("<em>&alpha;</em><sub>2</sub> — immunity acquisition 2:"),
+                  min = 0.00001, max = 0.001, value = 0.00019, step = 0.00001)
+    )
+  )
+})
+
+
+# =============================================================================
+# MY parameter UI
+# =============================================================================
+output$my_params <- renderUI({
+  myname <- input$MYname
+  if (myname == "trivial") {
+    return(tagList(
+      tags$h5(tags$strong("MY"), tags$code(" — trivial")),
+      sliderInput("my_Z", HTML("<em>Z</em> — infective mosquitoes:"),
+                  min = 0.1, max = 20, value = 1, step = 0.1),
+      sliderInput("my_f_triv", HTML("<em>f</em> — blood feeding rate:"),
+                  min = 0.1, max = 1.0, value = 0.3, step = 0.05)
+    ))
+  }
+  if (myname == "basicM") {
+    return(tagList(
+      tags$h5(tags$strong("MY"), tags$code(" — basicM")),
+      sliderInput("my_f", HTML("<em>f</em> — blood feeding rate (per day):"),
+                  min = 0.1, max = 1.0, value = 0.3, step = 0.05),
+      sliderInput("my_g_inv", HTML("1/<em>g</em> — mosquito lifespan (days):"),
+                  min = 3, max = 30, value = 12, step = 1)
+    ))
+  }
+  # Shared parameters for SI, macdonald, GeM, RMdts, SEI, BQ, BQm, BQRS
+  f_default <- if (myname %in% c("BQ", "BQm", "BQRS")) 0.5 else 0.3
+  common <- tagList(
+    tags$h5(tags$strong("MY"), tags$code(paste0(" — ", myname))),
+    sliderInput("my_f", HTML("<em>f</em> — blood feeding rate (per day):"),
+                min = 0.1, max = 1.0, value = f_default, step = 0.05),
+    sliderInput("my_g_inv", HTML("1/<em>g</em> — mosquito lifespan (days):"),
+                min = 3, max = 30, value = 12, step = 1),
+    sliderInput("my_eip", HTML("EIP — extrinsic incubation period (days):"),
+                min = 5, max = 25, value = 12, step = 1)
+  )
+  extra <- NULL
+  if (myname %in% c("BQ", "BQm", "BQRS")) {
+    extra <- tagList(
+      sliderInput("my_sigma_b",
+                  HTML("<em>&sigma;<sub>b</sub></em> — emigration (blood-feeding):"),
+                  min = 0, max = 0.5, value = 1/8, step = 0.01),
+      sliderInput("my_sigma_q",
+                  HTML("<em>&sigma;<sub>q</sub></em> — emigration (egg-laying):"),
+                  min = 0, max = 0.5, value = 1/8, step = 0.01)
+    )
+  }
+  tagList(common, extra)
+})
+
+
+# =============================================================================
+# L parameter UI
+# =============================================================================
+output$l_params <- renderUI({
+  lname <- input$Lname
+  switch(lname,
+    "trivial" = tagList(
+      tags$h5(tags$strong("L"), tags$code(" — trivial")),
+      sliderInput("l_Lambda", HTML("&Lambda; — emergence rate (per day):"),
+                  min = 100, max = 5000, value = 1000, step = 100)
+    ),
+    "basicL" = tagList(
+      tags$h5(tags$strong("L"), tags$code(" — basicL")),
+      sliderInput("l_psi", HTML("<em>&psi;</em> — maturation rate:"),
+                  min = 0.01, max = 0.5, value = 1/8, step = 0.01),
+      sliderInput("l_phi", HTML("<em>&phi;</em> — mortality rate:"),
+                  min = 0.01, max = 0.5, value = 1/8, step = 0.01),
+      sliderInput("l_theta", HTML("<em>&theta;</em> — density-dependent mortality:"),
+                  min = 0.001, max = 0.1, value = 1/100, step = 0.001)
+    )
+  )
+})
+
+
+# =============================================================================
+# Build XH options from current inputs
+# =============================================================================
+xh_opts <- reactive({
+  xname <- input$Xname
+
+  # Modules with shared (b, r, c) base
+  brc_modules <- c("SIS", "SIR", "SIRS", "SEIR", "SEIRV",
+                    "SEIS", "SEISd", "SIP", "SIPd")
+  if (xname %in% brc_modules) {
+    req(input$xh_b, input$xh_r_inv, input$xh_c)
+    opts <- list(b = input$xh_b, r = 1/input$xh_r_inv, c = input$xh_c)
+    # Module-specific extras
+    if (xname == "SIRS")  { req(input$xh_gamma); opts$gamma <- input$xh_gamma }
+    if (xname == "SEIS")  { req(input$xh_nu_inv); opts$nu <- 1/input$xh_nu_inv }
+    if (xname == "SEISd") { req(input$xh_nu_d); opts$nu <- input$xh_nu_d }
+    if (xname == "SEIR")  { req(input$xh_tau); opts$tau <- input$xh_tau }
+    if (xname == "SEIRV") {
+      req(input$xh_alpha, input$xh_tau, input$xh_varepsilon, input$xh_gamma)
+      opts$alpha     <- input$xh_alpha
+      opts$tau       <- input$xh_tau
+      opts$varepsilon <- input$xh_varepsilon
+      opts$gamma     <- input$xh_gamma
+    }
+    if (xname == "SIP") {
+      req(input$xh_rho, input$xh_eta_inv, input$xh_xi_inv)
+      opts$rho <- input$xh_rho
+      opts$eta <- 1/input$xh_eta_inv
+      opts$xi  <- 1/input$xh_xi_inv
+    }
+    if (xname == "SIPd") {
+      req(input$xh_rho, input$xh_eta_d, input$xh_xi_inv)
+      opts$rho <- input$xh_rho
+      opts$eta <- input$xh_eta_d
+      opts$xi  <- 1/input$xh_xi_inv
+    }
+    return(opts)
+  }
+
+  # hMoI
+  if (xname == "hMoI") {
+    req(input$xh_b, input$xh_r1_inv, input$xh_r2_inv, input$xh_c1, input$xh_c2)
+    return(list(b = input$xh_b,
+                r1 = 1/input$xh_r1_inv, r2 = 1/input$xh_r2_inv,
+                c1 = input$xh_c1, c2 = input$xh_c2))
+  }
+
+  # garki
+  if (xname == "garki") {
+    req(input$xh_b, input$xh_r1, input$xh_r2,
+        input$xh_garki_nu_inv, input$xh_alpha1, input$xh_alpha2)
+    return(list(b = input$xh_b,
+                r1 = input$xh_r1, r2 = input$xh_r2,
+                nu = 1/input$xh_garki_nu_inv,
+                alpha1 = input$xh_alpha1, alpha2 = input$xh_alpha2))
+  }
+
+  # trivial
+  if (xname == "trivial") {
+    req(input$xh_kappa)
+    return(list(kappa = input$xh_kappa))
+  }
+
+  list()
+})
+
+
+# =============================================================================
+# Build MY options from current inputs
+# =============================================================================
+my_opts <- reactive({
+  myname <- input$MYname
+
+  if (myname == "trivial") {
+    req(input$my_Z, input$my_f_triv)
+    return(list(Z = input$my_Z, f = input$my_f_triv))
+  }
+  if (myname == "basicM") {
+    req(input$my_f, input$my_g_inv)
+    return(list(f = input$my_f, g = 1/input$my_g_inv))
+  }
+
+  # All other MY modules share f, g, eip
+  req(input$my_f, input$my_g_inv, input$my_eip)
+  opts <- list(f = input$my_f, g = 1/input$my_g_inv, eip = input$my_eip)
+  if (myname %in% c("BQ", "BQm", "BQRS")) {
+    req(input$my_sigma_b, input$my_sigma_q)
+    opts$sigma_b <- input$my_sigma_b
+    opts$sigma_q <- input$my_sigma_q
+  }
+  opts
+})
+
+
+# =============================================================================
+# Build L options from current inputs
+# =============================================================================
+l_opts <- reactive({
+  lname <- input$Lname
+  switch(lname,
+    "trivial" = {
+      req(input$l_Lambda)
+      list(Lambda = input$l_Lambda)
+    },
+    "basicL" = {
+      req(input$l_psi, input$l_phi, input$l_theta)
+      list(psi = input$l_psi, phi = input$l_phi, theta = input$l_theta)
+    },
+    list()
+  )
+})
+
+
+# =============================================================================
+# Build and solve the model
+# =============================================================================
+
+mod <- reactive({
+  req(input$Xname, input$MYname, input$Lname, input$HPop)
+  tryCatch(
+    xds_setup(
+      Xname     = input$Xname,
+      MYname    = input$MYname,
+      Lname     = input$Lname,
+      HPop      = input$HPop,
+      XHoptions = xh_opts(),
+      MYoptions = my_opts(),
+      Loptions  = l_opts()
+    ),
+    error = function(e) { showNotification(paste("Setup error:", e$message), type = "error"); NULL }
+  )
+})
+
+solved_mod <- reactive({
+  req(mod(), input$Tmax)
+  tryCatch(
+    xds_solve(mod(), Tmax = input$Tmax, dt = 1),
+    error = function(e) { showNotification(paste("Solve error:", e$message), type = "error"); NULL }
+  )
+})
+
+
+# =============================================================================
+# Generated code
+# =============================================================================
+output$setup_code <- renderText({
+  req(input$Xname, input$MYname, input$Lname, input$HPop)
+  xo <- tryCatch(xh_opts(), error = function(e) list())
+  mo <- tryCatch(my_opts(), error = function(e) list())
+  lo <- tryCatch(l_opts(),  error = function(e) list())
+  fmt <- function(lst) {
+    if (length(lst) == 0) return("")
+    items <- mapply(function(n, v) paste0(n, " = ", signif(v, 4)),
+                    names(lst), lst, USE.NAMES = FALSE)
+    paste(items, collapse = ", ")
+  }
+  paste0(
+    'model <- xds_setup(\n',
+    '  Xname     = "', input$Xname, '",\n',
+    '  MYname    = "', input$MYname, '",\n',
+    '  Lname     = "', input$Lname, '",\n',
+    '  HPop      = ', input$HPop, ',\n',
+    '  XHoptions = list(', fmt(xo), '),\n',
+    '  MYoptions = list(', fmt(mo), '),\n',
+    '  Loptions  = list(', fmt(lo), ')\n',
+    ')\n',
+    'model <- xds_solve(model, Tmax = ', input$Tmax, ')'
+  )
+})
+
+
+# =============================================================================
+# Plots — wrapped in tryCatch for robustness
+# =============================================================================
+safe_plot <- function(expr) {
+  tryCatch(expr, error = function(e) {
+    plot.new()
+    text(0.5, 0.5, paste("Not available:\n", e$message),
+         cex = 1.1, col = "grey50")
+  })
+}
+
+output$pr_plot  <- renderPlot({ req(solved_mod()); safe_plot(xds_plot_PR(solved_mod(), y01 = TRUE)) })
+output$eir_plot <- renderPlot({ req(solved_mod()); safe_plot(xds_plot_EIR(solved_mod())) })
+output$M_plot   <- renderPlot({ req(solved_mod()); safe_plot(xds_plot_M(solved_mod())) })
+output$Y_plot   <- renderPlot({ req(solved_mod()); safe_plot(xds_plot_Y(solved_mod())) })
+output$Z_plot   <- renderPlot({ req(solved_mod()); safe_plot(xds_plot_Z(solved_mod())) })
+```

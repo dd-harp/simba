@@ -1,8 +1,8 @@
 ---
 title: "The Interfaces"
 format: html
-bibliography: data/refs.bib
-csl: data/plos.csl 
+bibliography: ../refs/refs.bib
+csl: ../refs/plos.csl
 ---
 
 In `ramp.xds`, interactions among dynamical components are highly structured. There are two interfaces: one for blood feeding and parasite transmission; and a second one for egg laying and emergence. We describe these as *interfaces,* and they are very rigid.

@@ -3,8 +3,8 @@ title: "An ITN Model"
 subtitle: "Modeling "
 editor:
   mode: source
-bibliography: data/refs.bib
-csl: data/plos.csl 
+bibliography: ../refs/refs.bib
+csl: ../refs/plos.csl
 format: html
 html-math-method:
   method: mathjax
@@ -31,7 +31,8 @@ We load `ramp.xds` and the satellite library that implements control, `ramp.cont
 
 ```{r}
 library(ramp.xds)
-library(ramp.control)
+library(ramp.func)
+library(ramp.forcing)
 ```
 
 Next, we set up the default model:

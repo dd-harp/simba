@@ -1,0 +1,13 @@
+---
+title: "Mosquito Demography"
+editor:
+  mode: source
+author: 
+  - name:  "David L Smith"  
+    url: https://faculty.washington.edu/smitdave/
+    orcid: "0000-0003-4367-3849" 
+    email: "smitdave@uw.edu"
+    affiliations: "University of Washington"
+bibliography: ../refs/refs.bib
+csl: ../refs/plos.csl
+---

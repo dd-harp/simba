@@ -1,0 +1,55 @@
+---
+title: "Install SimBA"
+subtitle: "Getting Started: Vignette 1"
+editor:
+  mode: source
+bibliography: ../refs/refs.bib
+csl: ../refs/plos.csl
+html-math-method:
+  method: mathjax
+  url: "https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
+---
+
+**SimBA** is a suite of [R packages](Rpackages.qmd) on github. At some point, we will make them available on CRAN, but for now you will need to install them directly from github using an R package called [devtools](https://cran.r-project.org/web/packages/devtools/index.html).
+
+> NOTE: When you install R packages, you might have to install some additional packages that they depend on. This can take some time, so please be patient.
+
+# devtools
+
+This code will install and load devtools.
+
+```{r}
+#| eval: false
+install.packages("devtools")
+library(devtools)
+```
+
+# ramp.xds
+
+Core computation for SimBA is done by ramp.xds.
+
+If you’ve installed and loaded `devtools`. These commands download and install `ramp.xds`.
+
+```{r}
+#| eval: false
+devtools::install_github("dd-harp/ramp.xds")
+library(ramp.xds)
+```
+
+# The Rest
+
+This will install (but not load) the other packages:
+
+```{r}
+#| eval: false
+devtools::install_github("dd-harp/ramp.library")
+devtools::install_github("dd-harp/ramp.func")
+devtools::install_github("dd-harp/ramp.forcing")
+devtools::install_github("dd-harp/ramp.demog")
+devtools::install_github("dd-harp/ramp.work")
+devtools::install_github("dd-harp/ramp.qa")
+```
+
+# Next
+
+After installing the software, we recommend the next vignette: [Build a Model](demo_build.qmd)

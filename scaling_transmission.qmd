@@ -1,6 +1,6 @@
 ---
 title: "Scaling for Heterogeneous Transmission"
 subtitle: "Modeling Heterogeneous"
-bibliography: data/refs.bib
-csl: data/plos.csl 
+bibliography: ../refs/refs.bib
+csl: ../refs/plos.csl
 ---

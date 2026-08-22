@@ -1,0 +1,30 @@
+---
+title: "Basic Demo"
+editor:
+  mode: source
+bibliography: ../refs/refs.bib
+csl: ../refs/plos.csl
+html-math-method:
+  method: mathjax
+  url: "https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
+---
+
+**SimBA** was designed to support malaria analytics by facilitating human interactions about malaria that make use of dynamical systems describing malaria. To accomplish this, SimBA has developed functions and algorithms that make it easy to setup, solve, visualize, analyze, fit, and use the models. **SimBA** lowers the human and computing costs of model building, computation, and analysis.
+
+To illustrate the capabilities of SimBA, we have prepared six basic vignettes:
+
+- **Getting Started** (also, see the `nav` bar, above)
+
+  1.  Install the software
+
+  2.  Build a dynamical system model for malaria
+
+  3.  Solve the dynamical system
+
+  4.  Visualize the outputs
+
+- **Demo**
+
+  1.  Set up basic forcing
+
+  2.  Fit a model to data

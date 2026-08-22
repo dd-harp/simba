@@ -3,8 +3,8 @@ title: "Trace Functions"
 subtitle: "Configuring"
 editor:
   mode: source
-bibliography: data/refs.bib
-csl: data/plos.csl 
+bibliography: ../refs/refs.bib
+csl: ../refs/plos.csl
 format: html
 html-math-method:
   method: mathjax
@@ -13,6 +13,7 @@ html-math-method:
 
 ```{r}
 library(ramp.xds)
+library(ramp.func)
 ```
 
 We have been using the term *trace function* to describe a function that sets the value of the quantity that is passed *from* each component, in place of a fully defined dynamical component. To build in some flexibility in a way that is easy for users to work with, all trace functions are colled in the same way.

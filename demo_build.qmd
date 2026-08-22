@@ -1,0 +1,92 @@
+---
+title: "Build a Model"
+subtitle: "Getting Started: Vignette 2"
+editor:
+  mode: source
+bibliography: ../refs/refs.bib
+csl: ../refs/plos.csl
+html-math-method:
+  method: mathjax
+  url: "https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
+---
+
+This vignette assumes:
+
+you have learned about mathematical models for malaria;
+
+you know how to use R and RStudio;
+
+you have [installed](demo_install.qmd) **`ramp.xds`** and **`ramp.library`**.
+
+# Basic Setup
+
+SimBA has a basic utility called xds_setup that handles the first stage of setup – we call it basic setup – for models for malaria epidemiology, transmission dynamics, and control that were formulated as dynamical systems. The software is capable of supporting systems of differential equations or discrete time systems.
+
+To build this model, we need two packages:
+
+```{r}
+library(ramp.xds)
+library(ramp.library)
+```
+
+## `xds_setup()`
+
+These two software packages have modules that implement published models for malaria and mosquito ecology.
+
+For the purposes of this demonstration, we will start with a compartmental model for malaria called the SIP model. For mosquitoes, we use the SI model.
+
+Setting up a model is as easy as calling xds_setup using the names of the modules:
+
+```{r}
+model <- xds_setup(Xname = "SIP", MYname = "SI")
+```
+
+If you want to know more about xds_setup you can ask for help:
+
+```{r}
+#| eval: false
+?xds_setup
+```
+
+You can also read more about it in [Basic Setup](basic_setup.qmd).
+
+## The xds Model Object
+
+The object that was returned by xds_setup, here called model, is called an xds model object. In R, it is a list:
+
+```{r}
+typeof(model) 
+```
+
+In fact, is a structured list with a defined set of elements, many of which are also lists. The class of the xds object is xds_obj
+
+```{r}
+#| eval: false
+class(model) 
+```
+
+When you type the name of an object, the default behavior for R is to call print, which dispatches on the class of the object. print.xds_obj is defined in ramp.xds.It returns a description of the model and its structure:
+
+```{r}
+model
+```
+
+Notice that the model has a trivial **L** module. How did that happen? `xds_setup` has defined default. In this case, `xds_setup` used the default option because we did not tell it what to do.
+
+The `xds` object has is set up to handle a lot of complexity, including structures that will not get used unless we choose to do it. It’s there in case we want to add a feature to the model. To see how it is constructed, we can examine the names of objects attached to model:
+
+```{r}
+names(model) 
+```
+
+From the user’s perspective, it won’t be necessary to know most of this. Feel free to poke around, but it’s probably easier to use built-in functions to change parameters, get outputs, change initial values, etc. We suggest tucking the information away in case there come a time when it might be useful.
+
+# Next
+
+After learning how to build a model, we recommend:
+
+- The `ramp.xds` vignette [Getting Started](https://dd-harp.github.io/ramp.xds/articles/GettingStarted.html); or
+
+- the next vignette in the Basics series: [Solve a Model](demo_solve.qmd); or
+
+- take a deeper dive into [Basic Setup](basic_setup.qmd) to figure out how to set up a model with the features you want.

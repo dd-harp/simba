@@ -1,7 +1,64 @@
 ---
 title: "Stratification"
-subtitle: "Methods for Epidemiological Heterogeneity"
+editor:
+  mode: source
+bibliography: ../refs/refs.bib
+csl: ../refs/plos.csl
 format: html
+html-math-method:
+  method: mathjax
+  url: "https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
 ---
 
+In **SimBA,** *stratification* almost always describes a process of segmenting (or subdividing) a population. 
+
+Simple models of malaria assume that everyone is alike, but populations can be heterogeneous in various ways: 
+
++ heterogeneous exposure and transmission
+
+    - location
+    
+    - housing quality
+
++ heterogeneous behaviors
+
+    - care seeking
+    
+    - drug taking or adherance
+
++ age and immunity  
+
++ heterogeneity created by malaria control
+
+    - vaccination
+
+Basic setup asks the user to develop a basic 
+
 Stratification is handled by `ramp.demog`
+
+
+# Residency
+
+An important aspect of human population strata for most models is the location of home. In spatial models, we make a distinction between where things happen and where things get counted. Information about malaria in humans is often aggregated by the location of home. 
+
+
+For an ordered list of population strata, the residence vector is a list of patch indices for those strata:
+$$\left[i, j, k, ..., y, z \right]$$
+The residence matrix, $J,$ is a $N_p \times N_h$ matrix where the $i,j^{th}$ entry is 1 if the $i^{th}$ stratum lives in the $j^{th}$ patch. 
+
+
+
+For example, if there are four strata, two live in patch 1 and two in patch 2, then the residence vector is: 
+$$\left[1, 1, 2, 2 \right]$$
+and the residence matrix is: 
+
+```{r}
+library(ramp.xds)
+J = make_residence_matrix(3, c(1,1,2,2))
+J
+```
+If $H = \left[10, 100, 20, 200 \right]$ is a column vector describing the size of the strata, then $J\cdot H$ is a vector of length $N_p$ that is the resident population size for all three patches: 
+
+```{r}
+J %*% matrix(c(10, 100, 20, 200), 4, 1)
+```

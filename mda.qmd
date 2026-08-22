@@ -5,46 +5,45 @@ format: html
 
 ```{r}
 library(ramp.xds)
-library(ramp.control)
+library(ramp.forcing)
+library(ramp.func)
 ```
 
-Malaria models in SimBA are set up to handle mass treatment. Unlike many other interventions, treating malaria modifies the state space describing infection, so the effects of mass treatement are implemented in the **XH** component. 
+Malaria models in SimBA are set up to handle mass treatment. Unlike many other interventions, treating malaria modifies the state space describing infection, so the effects of mass treatement are implemented in the **XH** component.
 
 Each **X** module handles treatment differently, but many of them have a port to handle mass treatment. By convention, the ports are called
 
-+ `mda` for mass drug administration (MDA). The population is treated without testing. 
+- `mda` for mass drug administration (MDA). The population is treated without testing.
 
-+ `msat` for mass screen and treat (MSAT), which involves testing (usually with an RDT) and treating those who test positive. 
+- `msat` for mass screen and treat (MSAT), which involves testing (usually with an RDT) and treating those who test positive.
 
-If the port exists, then it is in the skill set.  For example, we can check and see if `mda` is in the skill set of the `SIS` model:
+If the port exists, then it is in the skill set. For example, we can check and see if `mda` is in the skill set of the `SIS` model:
 
 ```{r}
 skill_set_XH("SIS")$mda
 ```
 
-Similarly for MSAT: 
+Similarly for MSAT:
 
 ```{r}
 skill_set_XH("SIS")$msat
 ```
 
-To understand how the `mda` ports works, we can take a look at the `SIS` model.  The relevant lines in `dXHdt.SIS` are these:
+To understand how the `mda` ports works, we can take a look at the `SIS` model. The relevant lines in `dXHdt.SIS` are these:
 
-```
+```         
 r_t <- r + mda(t) + msat(t)
 dI <- foi*(H-I) - r_t*I + D_matrix %*% I 
-``` 
+```
 
-During set up, the functions `mda` and `msat` are assigned the same values. 
+During set up, the functions `mda` and `msat` are assigned the same values.
 
 In the `SIS` **X** module, mass treatment clears infections, but since there is no chemo-protected class, treated people become susceptible. The SIS implementation, in math notation, looks like this:
 
-$$
-\begin{array}{rl}
+$$\begin{array}{rl}
 \frac{\textstyle{dH}}{\textstyle{dt}} &= B(t) - {\cal H}  \cdot H \\
 \frac{\textstyle{dI}}{\textstyle{dt}} &= h S - (r + \xi(t)) I - {\cal H}  \cdot I
-\end{array}
-$$
+\end{array}$$
 
 The function call to $\xi(t)$ is called `mda`. To see the actual function call, look at `dXdt.SIS` in `human-SIS.R` in `ramp.xds`.
 
@@ -54,7 +53,7 @@ In the SIS model, implemented in a generalized form with demographic change, set
 
 ```{r}
 model <- xds_setup_eir(Xname = "SIS", eir=1/365, 
-                          season_par = makepar_F_sin()) 
+                          season_par = makepar_F_sin())
 model <- xds_solve(model, times = c(3650, 3650))
 model <- last_to_inits(model) 
 model <- xds_solve(model,Tmax=730)
@@ -65,7 +64,7 @@ xds_plot_PR(model)
 
 There is no basic setup option that would allow a user to configure mass treatment at setup: it must be done through *advanced setup.* In a nutshell, a model gets modified after basic setup.
 
-We do this by calling `setup_mass_treat_events` and passing the start time (`start` - a Julian date), the number of days it will take to treat (`span`), the fraction treated (`frac_treated`) and whether screening is required before testing (`test`). 
+We do this by calling `setup_mass_treat_events` and passing the start time (`start` - a Julian date), the number of days it will take to treat (`span`), the fraction treated (`frac_treated`) and whether screening is required before testing (`test`).
 
 ```{r}
 start = 180
@@ -74,10 +73,6 @@ frac_treated = 0.9
 test = FALSE 
 model <- setup_mass_treat_events(model, start, span, frac_treated, test)
 ```
-
-
-
-
 
 The function `F_treat(t)` should return a function that describes the number of people treated each day over a simulation. This enforces a kind of discipline for malaria analysts for whom mass treatment must be costed. The question it begs is how much does it cost to send out a team for some number of days with the capacity to treat some number of people each day, and how many people they actually treat.
 

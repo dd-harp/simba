@@ -1,8 +1,8 @@
 ---
 title: "Bed Nets"
 format: html
-bibliography: data/refs.bib
-csl: data/plos.csl 
+bibliography: ../refs/refs.bib
+csl: ../refs/plos.csl
 ---
 
 ***

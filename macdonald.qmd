@@ -2,8 +2,8 @@
 title: "Macdonald's Model"
 editor:
   mode: source
-bibliography: data/refs.bib
-csl: data/plos.csl 
+bibliography: ../refs/refs.bib
+csl: ../refs/plos.csl 
 format: html
 html-math-method:
   method: mathjax
@@ -204,7 +204,7 @@ $$
 
 ## Parity  
 
-In 1952, Macdonald had emphasized the importance of mosquito longevity for transmission. In the years that followed, two of Macdonald's colleagues used parity to measure mosquito longevity [@DavidsonG1953parity;@Davidson1954parity]. The motivation for those studies comes from the observation that: 
+In 1952, Macdonald had emphasized the importance of mosquito longevity for transmission. In the years that followed, two of Macdonald's colleagues used parity to measure mosquito longevity [@DraperCC1953Survival;@DavidsonG1954Parity]. The motivation for those studies comes from the observation that: 
 
 $$ \bar w = \frac{\textstyle{f c}}{\textstyle{g + f c}}$$
 

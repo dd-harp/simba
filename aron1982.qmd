@@ -1,8 +1,8 @@
 ---
 title: "Aron's Malaria Model (1982)"
 format: html
-bibliography: data/refs.bib
-csl: data/plos.csl 
+bibliography: ../refs/refs.bib
+csl: ../refs/plos.csl
 ---
 
 The mosquito module in **`ramp.xds`** called `macdonald` is based on a model first published in 1982 by Joan Aron and Robert May [@AronJL1982PopulationDynamics][^1]

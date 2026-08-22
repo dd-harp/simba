@@ -1,8 +1,8 @@
 ---
 title: "Aquatic Mosquito: Model Library"
 format: html
-bibliography: data/refs.bib
-csl: data/plos.csl 
+bibliography: ../refs/refs.bib
+csl: ../refs/plos.csl
 ---
 
 The library of models for immature mosquitoes: 

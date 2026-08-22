@@ -1,0 +1,225 @@
+---
+title: "The `ramp.xds` Pipeline"
+subtitle: "An interactive tutorial: setup → solve → visualize"
+format: html
+server: shiny
+---
+
+------------------------------------------------------------------------
+
+*This tutorial walks through the three-step **`ramp.xds`** pipeline interactively. Adjust parameters using the controls below and watch the model update in real time.*
+
+------------------------------------------------------------------------
+
+```{r}
+#| context: setup
+#| include: false
+library(ramp.xds)
+```
+
+## Overview
+
+Every **`ramp.xds`** workflow follows the same three steps:
+
+1.  **Setup** — `xds_setup()` configures a model object by choosing dynamical modules and setting parameters.
+2.  **Solve** — `xds_solve()` integrates the system of differential equations and stores outputs.
+3.  **Visualize** — plotting functions like `xds_plot_PR()` display results from the solved model.
+
+------------------------------------------------------------------------
+
+## Step 1 — Setup
+
+`xds_setup()` returns an **`xds` model object**: a fully configured model ready to solve. Every argument has a default, so `xds_setup()` with no arguments immediately returns a working model. The three **dynamic components** are each chosen by name:
+
+- **XH** — human demography, infection dynamics & immunity: `Xname` (default `"SIS"`)
+- **MY** — adult mosquito ecology & infection dynamics: `MYname` (default `"SI"`)
+- **L** — aquatic mosquito ecology: `Lname` (default `"trivial"`)
+
+This tutorial uses the classic **Ross–Macdonald** formulation: `Xname = "SIS"` paired with `MYname = "macdonald"`.
+
+Adjust parameters below. The live `xds_setup()` call reflects your choices.
+
+```{r}
+#| echo: false
+fluidRow(
+  column(4,
+    wellPanel(
+      h4(HTML("<b>Human Infection (XH)</b> &mdash; <code>SIS</code>")),
+      sliderInput("b",
+                  HTML("<em>b</em> &mdash; probability of infection per infectious bite:"),
+                  min = 0.1, max = 0.9, value = 0.55, step = 0.05),
+      sliderInput("r_inv",
+                  HTML("1/<em>r</em> &mdash; mean infection duration (days):"),
+                  min = 30, max = 365, value = 180, step = 10),
+      sliderInput("cc",
+                  HTML("<em>c</em> &mdash; human infectiousness to mosquitoes:"),
+                  min = 0.05, max = 0.50, value = 0.15, step = 0.05),
+      sliderInput("HPop",
+                  HTML("<em>H</em> &mdash; human population size:"),
+                  min = 100, max = 5000, value = 1000, step = 100)
+    )
+  ),
+  column(4,
+    wellPanel(
+      h4(HTML("<b>Adult Mosquitoes (MY)</b> &mdash; <code>macdonald</code>")),
+      sliderInput("f",
+                  HTML("<em>f</em> &mdash; blood feeding rate (per day):"),
+                  min = 0.1, max = 1.0, value = 0.3, step = 0.05),
+      sliderInput("g_inv",
+                  HTML("1/<em>g</em> &mdash; mean mosquito lifespan (days):"),
+                  min = 3, max = 30, value = 12, step = 1),
+      sliderInput("eip",
+                  HTML("EIP &mdash; extrinsic incubation period (days):"),
+                  min = 5, max = 25, value = 12, step = 1)
+    )
+  ),
+  column(4,
+    wellPanel(
+      h4(HTML("<b>Aquatic Mosquitoes (L)</b> &mdash; <code>trivial</code>")),
+      sliderInput("Lambda",
+                  HTML("&Lambda; &mdash; adult mosquito emergence rate (per day):"),
+                  min = 100, max = 5000, value = 1000, step = 100),
+      hr(),
+      h4(HTML("<b>Solver</b>")),
+      sliderInput("Tmax",
+                  HTML("<em>T</em><sub>max</sub> &mdash; simulation duration (days):"),
+                  min = 60, max = 3650, value = 365, step = 30)
+    )
+  )
+)
+```
+
+**Generated `xds_setup()` call:**
+
+```{r}
+#| echo: false
+verbatimTextOutput("setup_code")
+```
+
+------------------------------------------------------------------------
+
+## Step 2 — Solve
+
+`xds_solve()` integrates the dynamical system using `deSolve` and attaches outputs to the model object. The call is straightforward:
+
+```{r}
+#| echo: false
+verbatimTextOutput("solve_code")
+```
+
+The output stores time series for all state variables and computed terms (EIR, force of infection, kappa, etc.) in `model$outputs$orbits`.
+
+------------------------------------------------------------------------
+
+## Step 3 — Visualize
+
+After solving, **`ramp.xds`** plotting functions display each component of the system. Select a tab to explore the outputs.
+
+```{r}
+#| echo: false
+tabsetPanel(id = "plots",
+  tabPanel("Prevalence (PR)",
+    br(),
+    plotOutput("pr_plot", height = "320px"),
+    p(HTML("<small>Parasite rate (PR) &mdash; the fraction of the human population
+           that is infected (<em>I/H</em>) &mdash; over time. Plotted using
+           <code>xds_plot_PR()</code>.</small>"))
+  ),
+  tabPanel("EIR",
+    br(),
+    plotOutput("eir_plot", height = "320px"),
+    p(HTML("<small>Entomological Inoculation Rate (EIR) &mdash; the number of
+           infectious bites per person per year &mdash; over time. Plotted using
+           <code>xds_plot_EIR()</code>.</small>"))
+  ),
+  tabPanel("Mosquito Density (M)",
+    br(),
+    plotOutput("M_plot", height = "320px"),
+    p(HTML("<small>Total adult mosquito density over time. Plotted using
+           <code>xds_plot_M()</code>.</small>"))
+  ),
+  tabPanel("Infected Mosquitoes (Y)",
+    br(),
+    plotOutput("Y_plot", height = "320px"),
+    p(HTML("<small>Density of mosquitoes that have been infected but have
+           not yet completed the extrinsic incubation period. Plotted using
+           <code>xds_plot_Y()</code>.</small>"))
+  ),
+  tabPanel("Infective Mosquitoes (Z)",
+    br(),
+    plotOutput("Z_plot", height = "320px"),
+    p(HTML("<small>Density of infective mosquitoes &mdash; those carrying
+           sporozoites and capable of transmitting malaria. Plotted using
+           <code>xds_plot_Z()</code>.</small>"))
+  )
+)
+```
+
+------------------------------------------------------------------------
+
+```{r}
+#| context: server
+
+# --- Reactive: build the model -----------------------------------------------
+mod <- reactive({
+  r <- 1 / input$r_inv
+  g <- 1 / input$g_inv
+  xds_setup(
+    Xname     = "SIS",
+    MYname    = "macdonald",
+    Lname     = "trivial",
+    HPop      = input$HPop,
+    XHoptions = list(b = input$b, r = r, c = input$cc),
+    MYoptions = list(f = input$f, g = g, eip = input$eip),
+    Loptions  = list(Lambda = input$Lambda)
+  )
+})
+
+# --- Reactive: solve the model -----------------------------------------------
+solved_mod <- reactive({
+  xds_solve(mod(), Tmax = input$Tmax, dt = 1)
+})
+
+# --- Show the generated xds_setup() call -------------------------------------
+output$setup_code <- renderText({
+  r_val <- signif(1 / input$r_inv, 4)
+  g_val <- signif(1 / input$g_inv, 4)
+  paste0(
+    'model <- xds_setup(\n',
+    '  Xname     = "SIS",\n',
+    '  MYname    = "macdonald",\n',
+    '  Lname     = "trivial",\n',
+    '  HPop      = ', input$HPop,    ',\n',
+    '  XHoptions = list(b = ', input$b,   ', r = ', r_val,  ', c = ', input$cc,  '),\n',
+    '  MYoptions = list(f = ', input$f,   ', g = ', g_val,  ', eip = ', input$eip, '),\n',
+    '  Loptions  = list(Lambda = ', input$Lambda, ')\n',
+    ')'
+  )
+})
+
+# --- Show the generated xds_solve() call -------------------------------------
+output$solve_code <- renderText({
+  paste0('model <- xds_solve(model, Tmax = ', input$Tmax, ', dt = 1)')
+})
+
+# --- Plots -------------------------------------------------------------------
+output$pr_plot <- renderPlot({
+  xds_plot_PR(solved_mod(), y01 = TRUE)
+})
+
+output$eir_plot <- renderPlot({
+  xds_plot_EIR(solved_mod())
+})
+
+output$M_plot <- renderPlot({
+  xds_plot_M(solved_mod())
+})
+
+output$Y_plot <- renderPlot({
+  xds_plot_Y(solved_mod())
+})
+
+output$Z_plot <- renderPlot({
+  xds_plot_Z(solved_mod())
+})
+```

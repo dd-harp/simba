@@ -1,8 +1,8 @@
 ---
 title: "Skill Sets"
 subtitle: "Model Limitations in Defining States and Observational Processes for Non-Linear Dynamics"
-bibliography: ./data/refs.bib
-csl: ./data/plos.csl
+bibliography: ../refs/refs.bib
+csl: ../refs/plos.csl
 ---
 
 ------------------------------------------------------------------------
