@@ -1,5 +1,5 @@
 ---
-title: "Mosquito Dispersal"
+title: "Mosquito Dispersal Kernels"
 editor:
   mode: source
 author: 
@@ -12,7 +12,21 @@ bibliography: ../refs/refs.bib
 csl: ../refs/plos.csl
 ---
 
-In **`ramp.xds`**, mosquito dispersal can be configured as part of [**basic setup**](basic_setup.qmd), or it can be changed later using `setup_K_matrix`, which handles setup for models with minimal ecology as well as behavioral state models. 
+*** 
+
+*This vignette discusses how to set up a matrix describing mosquito dispersal.*
+
+***
+
+Mosquito dispersal is understood as the outcome of *flight bouts* and *searching* for resources [@ServiceMW1997LongShort;@WuSL2020MBITES;@SanchezCHM2026MosquitoDispersal]. In SimBA's patch-based framework, mosquito dispersal has two parts: emigration rates and dispersal kernels. 
+
+The mathematical framework was developed to model emigration rates in relation to the *local availability* of resources [@WuSL2023SpatialDynamics] --- mosquitoes will tend to stay in patches where all the resources are readily available [@SanchezCHM2026MosquitoDispersal]. Emigration and the hazards associated with dispersal are probably an important source of mosquito mortality [@SaulA2003ZooprophylaxisZoopotentiation]. Knowing that a mosquito has *left* a patch is one thing, but the models must also say where they land, which can be affected by specific features on a landscape [@BidlingmayerWL1974MosquitoFlight;@BidlingmayerWL1979MosquitoDipteral;@BidlingmayerWL1981MosquitoFlight;@BidlingmayerWL1985MeasurementAdult;@LutambiAM2013MathematicalModelling]. If mosquito dispersal is the result of a *flight bouts,* where the direction and distances traveled are affected by wind [@BidlingmayerWL1985PreliminaryStudy;@MidegaJT2012WindDirection;@PerkinsTA2013HeterogeneityMixing;@WuSL2020MBITES;@SanchezCHM2026MosquitoDispersal], then a mosquito leaving a patch could end up anywhere, not just in a neighboring patch. This calls for a general framework to model dispersal among patches. The framework thus handles mosquito dispersal in two parts: *emigration* and *emigration loss* are one part; and the destinations of emigrating mosquitoes that survive is the other. 
+
+This vignette describes **mosquito dispersal kernels** --- a matrix describing where the surviving emigrants end up.  Emigration rates and population *loss* associated with dispersal are handled separately (see [Mosquito Demography](mosquito_demography.qmd)), so by convention, each column sums up to zero. 
+
+***
+
+In **`ramp.xds`**, a mosquito dispersal kernel can be configured as part of [**basic setup**](basic_setup.qmd), or it can be changed later using `setup_K_matrix`, which handles setup for models with minimal ecology as well as behavioral state models. 
 
 This vignette covers:
 
@@ -34,18 +48,16 @@ This vignette covers:
 
 + [Examples](@sec-examples)
 
-Inline help is available:
-```{r}
-#| eval: false
-?xds_info_mosquito_dispersal
-?setup_K_matrix
-```
+# Emigration & Loss
 
-# Dispersal Kernels {#sec-kernel}
+We let $\sigma$ denote the patch emigration rate. The parameter $\mu$ describes population loss that is conditioned on emigration from a patch: a fraction $\mu$ never reaches another patch.  If $g$ is the mortality rate (in each patch), then mortality and migration terms are summarized by a single matrix, $\Omega,$ called the [mosquito demographic matrix](mosquito_demography.qmd)
 
-Let $k_{i,j}$ describe the fraction of mosquitoes emigrating from each patch that land on another patch: ${k}_{i,j} (t) \in K(t)$ is the fraction of mosquitoes leaving patch $j$ that end up in patch $i$. Each column in the matrix describes mosquitoes leaving *from* $j.$ 
+$$\Omega = \mbox{diag}\left(g + \sigma \mu\right) - K \cdot \mbox{diag}\left(\sigma \left(1-\mu\right) \right)$$
+The dispersal kernel $K$ is called the *dispersal kernel* or the `K_matrix.` For more information, see [Mosquito Demography](mosquito_demography.qmd). 
 
-Emigration rates and population *loss* associated with dispersal are handled separately (see [Mosquito Demography](mosquito_demography.qmd)), so by convention, each column sums up to zero. 
+# Dispersal Kernels {#sec-kernel} 
+
+Let $k_{i,j}$ describe the fraction of mosquitoes emigrating from each patch that land on another patch: ${k}_{i,j} (t) \in K(t)$ is the fraction of mosquitoes leaving patch $j$ that end up in patch $i$. Each column in the matrix describes mosquitoes leaving *from* $j.$ The columns of $K$ sum to 0. 
 
 \begin{equation}
 K = 
@@ -104,19 +116,24 @@ j=1&j=2&j=3&\cdots&j=p \\
 Behavioral state models often have two or more dispersal matrices. 
 
 
-
-
-# `setup_K_matrix` {#sec-setup}
+## `setup_K_matrix` {#sec-setup}
 
 ```{r}
 library(ramp.xds)
 ```
 
-The function is called as:
+The function used to configure the dispersal kernels is called `setup_K_matrix.` The function call is:
 
 ```{r}
-#| eval: false 
+#| eval: false
 setup_K_matrix(name, xds_obj, options=list(), s=1)
+``` 
+
+Inline help is available: 
+```{r}
+#| eval: false
+?xds_info_mosquito_dispersal
+?setup_K_matrix
 ``` 
 
 The function `setup_K_matrix` dispatches on `options` but before function is dispatched, a block of code is run that makes it possible to pass arguments in several ways. 
@@ -129,55 +146,115 @@ but `class(name)` is checked and changed before the function call:
 + Matrix 
     - if `name` is a matrix, then `class(options) <- 'as_matrix'`
     - it is equivalent to calling `setup_K_matrix("as_matrix", options = )
-+ 
-+ if `name` is a list with an item called `name`  then `class(options) <- 'name$name'`
 
-+ a string: 
++ if `name` is a list with an item called `name`  the function dispatches on `setup_K_matrix.list`. 
 
 
-## `as_matrix`
+
+### `as_matrix`
+
+The `as_matrix` option makes it possible to build a matrix using any method and use it as a `K_matrix`, so long as it has the right form. The matrix is checked by `check_K_matrix`
 
 ```{r}
-M = matrix(c(-1, .97, .03, 
+#| eval: false
+?check_K_matrix
+```
+
+
+```{r}
+my_M = matrix(c(-1, .97, .03, 
              .95, -1, .05, 
              0.02, .98, -1), 3, 3)
-M
+my_M
 ```
 
 ```{r}
-colSums(M)< 1e-10
+check_K_matrix(my_M, 3)
 ```
 
-If the matrix is passed to `setup_K` then (after passing checks) it becomes the time spent matrix. 
+After setting up a model, the matrix can be set up in two ways. 
 
 ```{r}
 model <- xds_setup(nPatches = 3)
-model <- setup_K_matrix(M, model)
-get_K_matrix(model)
 ```
 
-## herethere
+The call to `setup_K_matrix` using the standard syntax is:
 
-If `name = "herethere"` then the fraction moving to every other patch is equal.  
+```{r}
+model1 <- setup_K_matrix("as_matrix", model, list(K_matrix=my_M))
+get_K_matrix(model1)
+```
+An easier way is to pass the matrix instead of the name: 
+
+```{r}
+model2 <- setup_K_matrix(my_M, model)
+get_K_matrix(model2)
+```
+
+### `herethere`
+
+If `name = "herethere"` then the fraction moving to every other patch is equal. There are no parameters: 
+
 ```{r}
 model <- setup_K_matrix("herethere", model)
 get_K_matrix(model)
 ```
 
-## xy 
+### `xy` 
 
-The `setup_timspent.xy` option grabs the residence vector and then calls `make_timespent_xy` with options: 
+The `setup_timspent.xy` option grabs the residence vector and then calls `make_K_matrix_xy` with options: 
 
 + `xy` --- the $x$ and $y$ coordinates of each patch
 
-+ `kern` --- a function to weight patches by distance, any information on the `xds` model object (*e.g.* human population density), or any options passed to the function. The form of the function is:
-$$F_k(d, M, O)$$ where `M` is the model object and `O` is `options` is a named list. 
++ `F_K` --- a function to weight relative travel among patches by distance with the form
+$$F_K(d, V)$$
++ `V` --- a set of variables to pass to $F_K$ 
 
-+ k_opts --- options, passed as a named list (to `setup_timepent(name = "xy", ...)`).
 
-In the following example, we generate 10 random  patch locations, as $x,y$ coordinates, in a $10 \times 10$ box centered at 0. The human population has 10 strata: one for each patch.  Individuals spend, on average, around 80% of their time at home (drawn from a `beta` distribution). The remaining time is allocated to points by a distance function: $$F_K(d) = e^{-(d-3)^2}.$$
+For example, we generate 10 random points: 
 
-## Behavioral State Models
+```{r}
+#| echo: false 
+set.seed(2302)
+```
+
+```{r}
+nXY=20
+model_xy = xds_setup(nPatches=nXY)
+```
+
+```{r}
+xy = data.frame(x=runif(nXY, -5, 5), y=runif(nXY, -5, 5))
+```
+
+We construct a function:
+$$F_K(d,V) = e^{-(d-3)^2}.$$
+
+```{r}
+FdV = function(d, V=list()){exp(-(d-3)^2)}
+```
+
+```{r}
+K_xy <- make_K_matrix_xy(xy, FdV)
+```
+
+```{r, fig.height=5, fig.width=5}
+library(ramp.qa)
+plot_kernel_graph(K_xy, xy, mn=0.01, clrs = viridisLite::turbo(10),
+                        arr.pos=0.7, scl=2)
+```
+
+This sets up the model: 
+
+```{r}
+#| eval: false
+model_xy = setup_K_matrix("xy", model_xy, 
+                          list(xy=xy, F_K=FdV, V=list()))
+
+```
+
+
+### Behavioral State Models
  
 The dispersal kernels for **behavioral state models** are the result of searching for different resources. For *basic ecology* models, the dispersal kernel is called `K_matrix`, but *behavioral state models* can have two or more kernels, each with different names. 
 
@@ -230,18 +307,13 @@ get_K_matrix(modBQ4, "Kq")
 ```{r}
 get_K_matrix(modBQ4, "Kb")
 ```
-Note that we could also pass `Kopts` to `xds_setup`
 
-```{r}
-modBQ5 <- xds_setup(MYname = "BQ", nPatches=5, Koptions=Kopts)
-get_K_matrix(modBQ5, "Kb")
-```
-# Basic Setup {#sec-basic}
+## Basic Setup {#sec-basic}
 
 The time spent matrix can be configured in basic setup.  
 
 
-## Defaults
+### Defaults
 
 The default setting for `xds_setup` is that mosquitoes don't move. If $N_p=1$ then the time spent matrix for one patch is:
 
@@ -258,6 +330,8 @@ model <- xds_setup(nPatches=3)
 get_K_matrix(model)
 ```
 
+### `Koptions` 
+
 At setup, a parameter list called `Koptions` can be passed that calls `setup_K_matrix`.  Any list of options that would set up a kernel using `setup_K_matrix` will work here. For example: 
 
 ```{r}
@@ -265,33 +339,15 @@ model <- xds_setup(nPatches=3, Koptions = list(name="herethere"))
 get_K_matrix(model)
 ```
 
+Note that for behavioral state models, we could also pass `Kopts` to `xds_setup`
+
+```{r}
+modBQ5 <- xds_setup(MYname = "BQ", nPatches=5, Koptions=Kopts)
+get_K_matrix(modBQ5, "Kb")
+```
+
+
+
 # Examples {#sec-examples}
 
 ## A Spatial Kernel
-
-The example is meant to be illustrative, not realistic. 
-
-
-```{r, fig.height=8, fig.width=8}
-#| eval: false
-set.seed(2302)
-x = runif(10, -5, 5)
-y = runif(10, -5, 5)
-xy = data.frame(x=x, y=y)
-kern = function(d, model, options){exp(-(d-3)^2)}
-options = list(name="xy", xy=xy, ker=kern)
-model <- xds_setup(nPatches=10, HPop = sample(2^c(1:10)), 
-                   residence = 1:10,
-                   membership = 1:10,
-                   Loptions = list(Lambda = sample(2^c(1:10))), 
-                   Koptions=options)
-#model <- setup_K_matrix("xy", model, options)
-model <- xds_solve(model)
-model <- last_to_inits(model)
-model <- xds_analyze(model)
-model <- make_VC(model)
-VC <- get_VC_matrix(model)
-
-plot_connectivity_graph(VC, xy, mn=0.01, clrs = viridisLite::turbo(10),
-                        arr.pos=0.8, scl=.1)
-```

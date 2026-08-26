@@ -1,11 +1,10 @@
 ---
-title: "Carrying Capacity"
-subtitle: "Mosquito Population Regulation"
+title: "Other Disease Modules"
+subtitle: "The **XH** Component" 
 editor:
   mode: source
 bibliography: ../refs/refs.bib
 csl: ../refs/plos.csl
-format: html
 html-math-method:
   method: mathjax
   url: "https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"

@@ -1,6 +1,13 @@
 ---
-title: "Exogenous Forcing"
+title: "Forcing"
 format: html
+editor:
+  mode: source
+bibliography: ../refs/refs.bib
+csl: ../refs/plos.csl
+html-math-method:
+  method: mathjax
+  url: "https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
 ---
 
 In SimBA, we have modular software, which opens up the door to take on the question of *forcing* in a very generic way.
@@ -26,8 +33,7 @@ $$
 & {\cal Y}(t) &\rightarrow & f q Z(t) & \rightarrow & E(t)   \\
    &  \uparrow &   &&&\downarrow  \\
    &  \kappa(t) &\leftarrow & X(t) & \leftarrow  & {\cal X}(t) & \rightarrow x(t)
-\end{array}
-$$
+\end{array}$$
 
 ## Carrying Capacity - PR
 
@@ -42,5 +48,4 @@ K(t) \rightarrow &{\cal L}(t) \leftarrow & \Gamma(t) \\
 && {\cal Y}(t) &\rightarrow & f q Z(t) & \rightarrow & E(t)   \\
 &&  \uparrow &   &&&\downarrow  \\
 &   &  \kappa(t) &\leftarrow & X(t) & \leftarrow  & {\cal X}(t) & \rightarrow x(t)
-\end{array}
-$$
+\end{array}$$

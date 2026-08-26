@@ -1,5 +1,6 @@
 ---
-title: "Analytics"
+title: "SimBA"
+subtitle: "Robust **S**imulation-**B**ased **A**nalytics"
 editor:
   mode: source
 bibliography: ../refs/refs.bib
@@ -8,3 +9,7 @@ html-math-method:
   method: mathjax
   url: "https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
 ---
+
+The seven R packages that make up **SimBA** and their dependencies.
+
+![](Figures/simba_packages.drawio.html){width=749px height=456px}

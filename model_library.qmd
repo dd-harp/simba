@@ -1,26 +1,44 @@
 ---
-title: "Model Library"
+title: "Module Library"
 subtitle: "A Catalogue of Modules"
 format: html
 ---
 
-***
+------------------------------------------------------------------------
 
 *To run a module in SimBA, it must be added to the **model library.** In SimBA, a **model family** that has been encoded and added to the model library is called a **module.***
 
-*** 
+------------------------------------------------------------------------
 
 The model catalogue for SimBA
 
-## **X** Modules 
+## **X** Modules
 
+A list of the currently available **XH** modules and their locations can be accessed inline: 
 
-- [Generic Compartment Models](compartment_models.qmd)
+```{r}
+#| eval: false
+?XH_module_list
+```
 
-- [Malaria Epidemiology](malaria_epidemiology.qmd)
+These modules are classified as being either [**malaria** modules](malaria_epidemiology.qmd) or not. Modules for [**other pathogens**](other_X_modules.qmd). 
+ 
 
-- [Other](Xetc.qmd)
+## **MY** -- Adult Mosquitoes
 
-## **MY** -- Adult Mosquitoes 
+A list of the currently available **MY** modules and their locations can be accessed inline: 
 
-## **L** -- Aquatic Mosquitoes 
+```{r}
+#| eval: false
+?MY_module_list
+```
+
+## **L** -- Aquatic Mosquitoes
+
+A list of the currently available **L** modules and their locations can be accessed inline: 
+
+```{r}
+#| eval: false
+?L_module_list
+```
+

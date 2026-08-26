@@ -1,6 +1,6 @@
 ---
 title: "Trace Functions"
-subtitle: "Configuring"
+subtitle: "Basic Forcing by Trivial Modules"
 editor:
   mode: source
 bibliography: ../refs/refs.bib
@@ -11,97 +11,212 @@ html-math-method:
   url: "https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
 ---
 
+# Overview 
+
+Malaria (and other mosquito-transmitted pathogens) can be understood as *complex adaptive systems* ---non-linear interactions among humans, parasites, mosquitoes, and managers that are forced by weather, hydrology, and other factors.
+Dynamical systems have thus been developed to understand malaria epidemiology, malaria transmission dynamics, mosquito ecology, and malaria control. 
+These models are naturally modular [@WuSL2023SpatialDynamics]. 
+Given the complexity, it is sometimes useful to isolate a part of the system and reduce inputs from the rest of the system to a *trace function.*
+
+We have been using the term *trace function* to describe any function that sets the value of the a dynamical term that has been passed *from* one of the dynamical components. This makes it possible to study sub-models, to study effects of exposure, forcing by malaria control, weather, or biotic factors. 
+
+## Trivial Modules
+
+A trace function sets the value of a **dynamical term.** The *trace functions* live in the **trivial modules** in **`ramp.xds`**. Five terms can be set up as trace functions:
+
++ $\Lambda(t)$ or `Lambda` --- the emergence rate of adult, female mosquitoes, per patch is passed from the [trivial **L** module](trivialX.qmd).
+
++ $\eta(t)$ or `eta` --- eggs deposition rate, the number of eggs laid in aquatic habitats passed from the [trivial **MY** module](trivialMY.qmd).
+
++ $fqZ(t)$ or `fqZ` --- the net rate of infectious biting by the adult mosquito population, per patch is passed from the [trivial **MY** module](trivialMY.qmd).
+
++ $\kappa(t)$ or `kappa` --- the net infectiousness (NI), the probability that a mosquito will become infected after blood feeding on a human in that patch is passed from the [trivial **X** module](trivialX.qmd).
+
++ $E(t)$ or `eir` --- the daily entomological inoculation rate (EIR) for a cohort of humans (or the force of infection in a population or a cohort, FoI) is set up by `xds_setup_eir`. The EIR is passed to the **XH** module by a trace function from the EIR object.
+
+The first four terms are passed from trivial modules of the dynamical components. Examples are are documented in their vignettes. Forcing by the **EIR** is handled slightly differently. In @sec-eir: **EIR forcing** [(below)](#sec-eir), we present some fully worked examples that show how to build and use forcing functions. 
+
+## Composed Time Series 
+
+To build in some flexibility in a way that is easy for users to work with, all trace functions are called as **composed time series functions** $x(t)$ that is the product of four elements: 
+
+
+$$
+x(t) = \bar x \times F_S(t) \times F_T(t) \times F_K(t)
+$$
+
+where
+
++ $\bar x$ is a scaling parameter. It is close to the mean value of an unperturbed system. It is the mean over an interval $(t_0, t_1)$ only if $F_K(t)=1$ and $$\int_{t_0}^{t_1} F_S(t)\; F_T(t)\; dt = t_1-t_0$$
+
++ $F_S(t)>0$ is a **seasonal** pattern function, normalized over the interval such that  $$\int_{t_0}^{t_1} F_S(t) \;dt = t_1 - t_0$$  
+
++ $F_T(t)>0$ is a **trend** pattern function, normalized over the interval such that $$\int_{t_0}^{t_1} F_T(t) \; dt = t_1 - t_0$$  
+
++ $F_K(t)>0$ is a **shock** function
+
+## Seasonal Patterns
+
++ The seasonal pattern function $F_S(t,V)$ is always called `F_season`. 
+
++ A library of seasonality pattern functions is maintained as part of [`ramp.func`](https://dd-harp.github.io/ramp.func/articles/Seasonality.html)
+
+
+## Trends
++ The trend pattern function $F_T(t,V)$ is always called `F_trend`. 
+
++ A library of trend pattern functions is maintained as part of [`ramp.func`](https://dd-harp.github.io/ramp.func/articles/Trends.html)
+
+## Shocks
+
++ The shock function $F_K(t,V)$ is always called `F_shock`. 
+
++ A library of shock functions is maintained as part of [`ramp.func`](https://dd-harp.github.io/ramp.func/articles/Shock.html)
+
+
+# EIR Forcing {#sec-eir}
+
+To understand malaria epidemiology in relation to exposure, we can use [`ramp.xds::xds_setup_eir()`](https://dd-harp.github.io/ramp.xds/reference/xds_setup_eir.html) to construct a trace function. 
+
+::: {.callout-tip title = "Forcing for Cohorts" collapse="true"}
+WRITE ME. 
+:::
+
+Two ways of building trace functions are: 
+
++ **User Defined Functions:** Build a trace function and set it up: 
+
+    - Use `xds_setup_eir()`
+    
+    - Use `change_F_season()`
+
++ Use `ramp.func::make_function` 
+
++ Use `ramp.library::change_F_s`
+
 ```{r}
 library(ramp.xds)
+```
+
+## User Defined Functions 
+
+Any function can be configured by a user used for a seasonal pattern, a trend, or a shock. Function has have the form $F(t, V);$ the second variable, $V,$ is part of the flexible and extensible design. 
+
+::: {.callout-tip title = "More about F(t,V)" collapse="true"}
+In some cases, users might want to set up an exogenous forcing variable and then call a *trace functions* that uses it, so all the components of the composed time series function have the form $F(t,V).$ In the function calls that evaluate the trace function, the second variable, $V,$ is retrieved by the function `ramp.xds::get_variables` so that trace functions can use any variable stored on the `xds` model object. By default $V$ is an empty list, and `get_variables` returns an empty list
+:::
+
+If a user defined function does not need $V,$ the function must define the variable anyway and set its default value to an empty list, like this:
+
+```{r}
+F_eg = function(t, V=list()){1 + sin(2*pi*t/365)}
+```
+
+The function uses only $t,$ ignoring the second argument (even if it's Santa Claus).
+
+```{r}
+t <- c(0:730)
+plot(F_eg(t, "Santa Claus"), type = "l", 
+     xlab = "Time (Days)", 
+     ylab = expression(F[eg]))
+```
+
+Having defined `F_eg`, we can use it. In this case, we pass it as the `F_season` argument of `xds_setup_eir`. The function `show_season` plots it (by default, for two full cycles).
+
+```{r}
+mod_eg <- xds_setup_eir(F_season = F_eg)
+show_season(mod_eg)
+```
+
+## `change_F_*` 
+
+`change_F_season` | `change_F_trend`| `change_F_shock`
+
+*** 
+
+If we didn't pass `F_season` to `xds_setup_eir`, the default function is `F_one`, a function that returns the value $1$. 
+
+```{r}
+mod_eg <- xds_setup_eir()
+show_season(mod_eg)
+```
+
+We can modify the `F_season` argument using `change_F_season` 
+
+```{r}
+mod_eg <- change_F_season(F_eg, mod_eg)
+show_season(mod_eg)
+```
+
+::: {.callout-tip title = "`change_F_season`" collapse="true"}
+The function `change_F_season` dispatches on `xds_obj$forced_by`, which is set up by the trivial module. 
+
+In this case, the `trivial` **L** module is the default for `xds_setup,` and since no value for `Lname` was passed as an argument, `mod_eg` set up a trivial **L** module. No `Loptions` were passed at setup, so the function `F_season` was originally set to `F_one`.  
+:::
+
+Similarly, a user-defined trend or shock could be added using `change_F_trend` or `change_F_shock` and inspected using `show_trend` or `show_shock`  
+
+
+## `make_function` 
+
+In the function library **`ramp.func`**, [make_function](https://dd-harp.github.io/ramp.func/reference/make_function.html) returns a properly formatted trace function. To use `make_function`, the user passes a function object [`F_obj`](https://dd-harp.github.io/ramp.func/reference/F_obj.html) that was constructed by `makepar_F_methodname` where `methodname` is one of the built-in function families. 
+
+One advantage of these function families is that the functions include shape parameters, and the returned function is normalized (by default) so that it has an average value of $1,$ 
+
+```{r}
 library(ramp.func)
+par_spline <- makepar_F_spline(tt = c(0:5)*365, yy = c(.1, 1.4, 1, 1.2, 0.5, 1), X=2)
+par_sin <- makepar_F_sin(pw=2)
 ```
 
-We have been using the term *trace function* to describe a function that sets the value of the quantity that is passed *from* each component, in place of a fully defined dynamical component. To build in some flexibility in a way that is easy for users to work with, all trace functions are colled in the same way.
-
-When the `class` of any module is set to `trivial,` the quantities passed from that module are all called in the same way:
-
-$$s \times F_S(t) \times F_T(t)$$
-
-where:
-
--   $s$ is a scaling parameter;
-
--   $F_S(t)$ is a seasonal pattern;
-
--   $F_T(t)$ defines a temporal trend;
-
-## Scaling
-
-The name of the scaling parameter depends on context:
-
--   `Lambda` or $\Lambda$ for the emergence rate, passed from the **L** component when it is `trivial.` The setup function is
-
-```{r, eval=F}
-?make_L_obj_trivial
-```
-
--   `fqZ` or $fqZ$ (from `F_fqZ`) for the net human blood feeding rate, per patch, passed from the **MYZ** component when it is 'trivial\` and **X** is non-trivial. The setup function is
-
-```{r, eval=F}
-?make_MY_obj_trivial
-```
-
--   `eggs` (from `F_eggs`) for the egg laying rate in each patch, net human blood feeding rate, per patch, passed from the **MYZ** component when it is 'trivial\` and **L** is non-trivial. The setup function is
-
-```{r, eval=F}
-?make_MY_obj_trivial
-```
-
--   `kappa` (from `F_X`) to compute net infectiousness, or $\kappa$ passed from the **X** component when it is 'trivial\` and **MYZ** is non-trivial. The setup function is
-
-```{r, eval=F}
-?make_XH_obj_trivial
-```
-
-## Seasonality
-
-To configure the seasonality function, either define a function and pass it as `F_season` or pass `season_par` in the options, with parameters called by the **`xds`** utility `make_function()`
+Now we make the functions and examine them and their product:
 
 ```{r}
-Lo = list(season_par = makepar_F_sin()) 
-sin_mod <- xds_setup(Loptions = Lo)
+t5y <- seq(0, 365*5, by = 5)
+F_spline <- make_function(par_spline)
+F_sin <- make_function(par_sin)
+plot(t5y, F_spline(t5y)*F_sin(t5y), type = "l", xlab = "Time (in Days)", ylab =expression(list(F[sin], F[spline])), lwd=2)
+lines(t5y, F_sin(t5y), col = grey(0.5))
+lines(t5y, F_spline(t5y), col = grey(0.5))
 ```
 
-Now, the function can be evaluated:
+and we can set it up as before. This time, we set the scaling parameter `eir` to have an annual value of 1 infectious bite, per person, per year. 
 
 ```{r}
-tt <- 0:365
-Fs <- sin_mod$L_obj[[1]]$F_season
-plot(tt, Fs(tt), type ="l")
+mod_both <- xds_setup_eir(eir=1/365, F_trend = F_spline, F_season=F_sin)
+mod_both <- xds_solve(mod_both, times = t5y)
+xds_plot_PR(mod_both)
 ```
 
-As a side note, if you use `<-` instead of `=` when you define the list, the damn thing doesn't work. Note that the phase parameter is defined:
+## `change_*` 
+
+`change_season` | `change_trend`| `change_shock`
+
+*** 
+
+The `change_*` functions in **`ramp.forcing`** work with `F_obj,` rather than with functions. 
 
 ```{r}
-sin_mod$L_obj[[1]]$season_par$phase
+library(ramp.forcing)
+par_shock <- makepar_F_sharkbite(D=365, L=365)
+mod_new <- change_shock(par_shock, mod_both)
+show_shock(mod_new)
 ```
-
-but this doesn't set anything:
 
 ```{r}
-Lo = list(season_par <- makepar_F_sin()) 
-sin_mod1 <- xds_setup(Loptions = Lo)
-sin_mod1$L_obj[[1]]$season_par
+mod_new <- xds_solve(mod_new, times = t5y)
+xds_plot_PR(mod_both, clrs=grey(0.5))
+xds_plot_PR(mod_new, add=T)
 ```
 
-## Trend
 
-To configure a trend function, either define a function and pass it as `F_trend` or pass `trend_par` in the options, with parameters called by the **`xds`** utility `make_function()`
+# I/O
 
-```{r}
-Lo = list(trend_par = makepar_F_spline(tt = c(0:5)*365, yy= c(1, 1.5, .75, .8, 1.2, 1))) 
-trend_mod <- xds_setup(Loptions = Lo)
-```
+The **`xds`** object can be saved to a file using `saveRDS` and read from a file using `readRDS`. In some cases, the forcing functions `F_season` and `F_trend` and `F_shock` cause the size of the saved file to be very large. 
 
-Now, the function can be evaluated:
+To save space, [`saveXDS`](file:///Users/smitdave/git/ramp.xds/docs/reference/saveXDS.html) strips the functions before calling `saveRDS`. 
 
-```{r}
-tt <- seq(0, 5*365, by = 10)
-Ft <- trend_mod$L_obj[[1]]$F_trend
-plot(tt, Ft(tt), type ="l")
-```
+Alternatively, the functions can be set up as function objects `ramp.func`. In this case, the  function `ramp.forcing::readXDS` will read the object using `readRDS` and then rebuild the functions using `ramp.forcing::rebuild_forcing_functions().`
+
+
+

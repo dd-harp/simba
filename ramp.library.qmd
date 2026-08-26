@@ -3,7 +3,7 @@ title: "`ramp.library`"
 subtitle: "Modules for the Dynamical Components of `ramp.xds`"
 ---
 
-*** 
+------------------------------------------------------------------------
 
 [**`ramp.library`**](https://dd-harp.github.io/ramp.library/) is an R-package available from github. It is a satellite of [**`ramp.xds`**](ramp.xds.html) containing other modules for the dynamical components.
 
@@ -20,14 +20,14 @@ devtools::install_github("dd-harp/ramp.library")
 
 **XH** Component modules include a set of models for human malaria infection and immunity and compartmental models and other associated models for arbovirus infections of humans and other vertebrate animals.
 
--   **MYZ** Component modules for adult mosquito behavior and ecology
+- **MYZ** Component modules for adult mosquito behavior and ecology
 
--   **L** Component modules for immagure mosquito ecology in aquatic habitats
+- **L** Component modules for immagure mosquito ecology in aquatic habitats
 
 ### **XH** Component
 
--   The SIS Compartmental Model
--   The Garki Model
+- The SIS Compartmental Model
+- The Garki Model
 
 ### **MYZ** Component
 

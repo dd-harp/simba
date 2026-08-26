@@ -1,6 +1,5 @@
 ---
-title: "Carrying Capacity"
-subtitle: "Mosquito Population Regulation"
+title: "Malaria as a Complex Adaptive System"
 editor:
   mode: source
 bibliography: ../refs/refs.bib

@@ -6,37 +6,35 @@ format: html
 
 The **X** component is a model for the dynamics of infection and immunity for the parasite or pathogen's host(s). These components are
 
-## Generic Compartment Models 
-
+## Generic Compartment Models
 
 ## Dengue
 
 Dengue Virus has 4 distinct strains.
 
-
 ## Malaria Epidemiology
 
 In **`ramp.xds`**
 
--   `SIS`
+- `SIS`
 
--   `hMoI`
+- `hMoI`
 
 In **`ramp.library`**
 
--   `SIP`
+- `SIP`
 
 ### Compartmental Models
 
 **`ramp.library`**
 
--   `SIR`
+- `SIR`
 
--   `SIRS`
+- `SIRS`
 
--   `SEIR`
+- `SEIR`
 
--   `SEIRV`
+- `SEIRV`
 
 ### Arboviruses, Filariasis, ...
 

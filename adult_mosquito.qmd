@@ -1,5 +1,14 @@
 ---
-title: "Adult Mosquitoes: Model Library" 
-subtitle: "Model Families for Adult Mosquito Ecology and Infection Dynamics"
-format: html
+title: "Adult Mosquitoes"
+subtitle: "Ecology, Behavior, & Infection Dynamics" 
+editor:
+  mode: source
+author: 
+  - name:  "David L Smith"  
+    url: https://faculty.washington.edu/smitdave/
+    orcid: "0000-0003-4367-3849" 
+    email: "smitdave@uw.edu"
+    affiliations: "University of Washington"
+bibliography: ../refs/refs.bib
+csl: ../refs/plos.csl
 ---

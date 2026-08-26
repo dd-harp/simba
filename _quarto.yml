@@ -16,12 +16,14 @@ website:
           href: https://dd-harp.github.io/ramp.xds/
         - text: ramp.library
           href: https://dd-harp.github.io/ramp.library/
+        - text: ramp.func
+          href: https://dd-harp.github.io/ramp.func/
         - text: ramp.demog
           href: https://dd-harp.github.io/ramp.demog/
-        - text: ramp.control
-          href: https://dd-harp.github.io/ramp.control/
         - text: ramp.forcing
           href: https://dd-harp.github.io/ramp.forcing/
+        - text: ramp.qa
+          href: https://dd-harp.github.io/ramp.qa/
         - text: ramp.work
           href: https://dd-harp.github.io/ramp.work/
         - text: ramp.falciparum
@@ -30,19 +32,19 @@ website:
           href: https://dd-harp.github.io/ramp.micro/
       - text: Home 
         href: index.html
-      - text: "Related Content" 
-        menu: 
-        - text: "Malaria Theory"
-          href:  https://faculty.washington.edu/smitdave/theory/
-        - text: "Robust Analytics"
-          href: ramp.html
-      - text: "Getting Started" 
+      - text: "Get Started" 
         menu: 
         - demo_install.qmd 
         - demo_build.qmd 
         - demo_solve.qmd
         - demo_viz.qmd
-      - text: Code Design
+      - text: "Related" 
+        menu: 
+        - text: "Malaria Theory"
+          href:  https://faculty.washington.edu/smitdave/malaria_theory/
+        - text: "Robust Analytics"
+          href: ramp.html
+      - text: Code
         menu: 
         - components.qmd 
         - XHcomponent.qmd
@@ -52,6 +54,7 @@ website:
         - interface.qmd 
       - text: "Concepts" 
         menu:
+        - complex_adaptive_system.qmd
         - concept_cloud.qmd 
         - nimble.qmd
         - scalable_complexity.qmd
@@ -75,8 +78,8 @@ website:
         - section: robust_analytics.qmd
           contents:
           - ramp.xds.qmd 
+          - ramp.func.qmd
           - ramp.library.qmd
-          - ramp.trace.qmd
           - ramp.forcing.qmd 
           - ramp.demog.qmd
           - ramp.work.qmd
@@ -101,39 +104,58 @@ website:
         contents:
         - basic_setup.qmd
         - advanced_setup.qmd
-        - exogenous.qmd 
-        - trace.qmd
+        - spatial_dynamics.qmd
+        - forcing.qmd
+        - heterogeneity.qmd
+      - section: model_library.qmd 
+        contents:
+        - malaria_modules.qmd
+        - other_X_modules.qmd
+        - adult_modules.qmd
+        - aquatic_modules.qmd
+      - text: "---"
+      - text: "OPTIONS"
+      - text: "---"
+      - trace.qmd
+      - section: malaria_epidemiology.qmd 
+        contents:
+        - trivialX.qmd
+        - time_spent.qmd
+        - travel_malaria.qmd
+        - stratification.qmd
+        - heterogeneous_biting.qmd
+        - host_species.qmd
       - section: human_ecology.qmd 
         contents:
-        - heterogeneity.qmd
-        - stratification.qmd
-        - time_spent.qmd
+        - trivialH.qmd
         - demography.qmd
         - aging.qmd
         - migration.qmd
-        - travel_malaria.qmd
-        - host_species.qmd
+      - section: adult_mosquito.qmd
+        contents: 
+        - trivialMY.qmd
+        - blood_feeding.qmd
+        - mosquito_demography.qmd
+        - mosquito_dispersal.qmd
+        - resources.qmd
+        - weather.qmd
+        - indoors.qmd
+        - circadian.qmd
+        - ento_surveillance.qmd 
       - section: mosquito_ecology.qmd 
         contents:
-        - blood_feeding.qmd
-        - mosquito_dispersal.qmd
-        - mosquito_demography.qmd
-        - indoors.qmd
-        - weather.qmd
-        - resources.qmd
-        - circadian.qmd
+        - trivialL.qmd
+        - mosquito_landscapes.qmd
         - egg_laying.qmd
         - regulation.qmd
+        - rainfall.qmd
         - habitat_dynamics.qmd
-        - ento_surveillance.qmd 
         - vector_species.qmd
       - section: transmission.qmd 
         contents:
-        - spatial_dynamics.qmd
+        - malaria_landscapes.qmd
         - exposure.qmd
-        - heterogeneous_biting.qmd
         - environmental_heterogeneity.qmd
-        - travel_malaria.qmd
         - visitors.qmd
       - section: vector_control.qmd
         contents:
@@ -146,39 +168,9 @@ website:
         - mass_treat.qmd
         - vaccines.qmd
         - other_vaccines.qmd
-      - section: model_library.qmd 
-        contents:
-        - section: trace.qmd 
-          contents:
-          - sharkfin.qmd
-        - section: Xmodels.qmd 
-          contents:
-          - trivialX.qmd
-          - compartment_models.qmd 
-          - section: malaria_epidemiology.qmd 
-            contents:
-              - hybrid_models.qmd
-          - section: Xetc.qmd 
-            contents:
-              - dengue.qmd
-        - section: adult_mosquito.qmd 
-          contents:
-            - trivialMY.qmd
-            - macdonald.qmd
-        - section: aquatic_mosquito.qmd 
-          contents:
-            - trivialL.qmd
-            - basicL.qmd
-        - section: vector_control.qmd 
-          contents:
-          - section: irs.qmd 
-            contents:
-          - section: itn.qmd 
-            contents:
-        - section: 
-          contents:
-          - rainfall.qmd
-          - temperature.qmd
+      - text: "---"
+      - text: "Using SimBA"
+      - text: "---"
       - section: analysis.qmd 
         contents:
           - solving.qmd

@@ -1,11 +1,10 @@
 ---
-title: "Carrying Capacity"
-subtitle: "Mosquito Population Regulation"
+title: "Malaria Landscapes"
+format: html
 editor:
   mode: source
 bibliography: ../refs/refs.bib
 csl: ../refs/plos.csl
-format: html
 html-math-method:
   method: mathjax
   url: "https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"

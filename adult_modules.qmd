@@ -1,0 +1,30 @@
+---
+title: "Adult Mosquitoes"
+subtitle: "The **MY** Component" 
+editor:
+  mode: source
+bibliography: ../refs/refs.bib
+csl: ../refs/plos.csl
+html-math-method:
+  method: mathjax
+  url: "https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
+---
+
+Several of the modules in **`ramp.xds`** were included, in part, because they illustrated some feature of the code
+
++ `macdonald`  --- this is a system of delay differential equations. As written, the model can not handle exogenous forcing for mosquito surival and dispersal, including weather. We recommend using the generalized-Macdonald model **`GeM`**
+
++ [`basicM`](macdonald.qmd)  --- this is a system of delay differential equations. As written, the model can not handle exogenous forcing for mosquito surival and dispersal, including weather. We recommend using the generalized-Macdonald model **`GeM`**
+
+# Recommended 
+
+
+**Recommended ODEs** 
+
++ [`trivial`](trivialMY.qmd)
+
++ **`SI`**  --- 
+
++ **`SEI`**  --- **ode**
+
++ **`GeM`**  --- a **dde**  
