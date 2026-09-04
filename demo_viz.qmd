@@ -1,8 +1,7 @@
 ---
 title: "Visualize Outputs"
 subtitle: "Getting Started: Vignette 4"
-editor:
-  mode: source
+editor: source
 bibliography: ../refs/refs.bib
 csl: ../refs/plos.csl
 html-math-method:

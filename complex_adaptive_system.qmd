@@ -1,7 +1,6 @@
 ---
 title: "Malaria as a Complex Adaptive System"
-editor:
-  mode: source
+editor: source
 bibliography: ../refs/refs.bib
 csl: ../refs/plos.csl
 format: html

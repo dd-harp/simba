@@ -1,8 +1,7 @@
 ---
 title: "Adult Mosquitoes"
 subtitle: "Ecology, Behavior, & Infection Dynamics" 
-editor:
-  mode: source
+editor: source
 author: 
   - name:  "David L Smith"  
     url: https://faculty.washington.edu/smitdave/

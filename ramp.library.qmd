@@ -1,5 +1,7 @@
 ---
 title: "`ramp.library`"
+bibliography: ../refs/refs.bib
+csl: ../refs/plos.csl
 subtitle: "Modules for the Dynamical Components of `ramp.xds`"
 ---
 

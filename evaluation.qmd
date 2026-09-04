@@ -2,8 +2,7 @@
 title: "Evaluation"
 subtitle: "Routine Evaluation of Vector Control"
 format: html
-editor:
-  mode: source
+editor: source
 bibliography: ../refs/refs.bib
 csl: ../refs/plos.csl
 ---

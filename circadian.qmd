@@ -1,8 +1,7 @@
 ---
 title: "Circadian Rhythms"
 subtitle: "From time spent to time at risk"
-editor:
-  mode: source
+editor: source
 bibliography: ../refs/refs.bib
 csl: ../refs/plos.csl
 format: html

@@ -1,4 +1,7 @@
 ---
 title: "Vaccines for Arboviral Diseases"
+bibliography: ../refs/refs.bib
+csl: ../refs/plos.csl
 format: html
+editor: source
 ---

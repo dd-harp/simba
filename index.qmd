@@ -1,8 +1,7 @@
 ---
 title: "SimBA (SIMulation-Based Analytics)"
 subtitle: "Nimble Model Building and Robust Analytics for Malaria Policy"
-editor:
-  mode: source
+editor: source
 bibliography: ../refs/refs.bib
 csl: ../refs/plos.csl
 html-math-method:
@@ -75,7 +74,7 @@ The **SimBA** software suite includes five satellite packages for **`ramp.xds`**
 
 -   [**`ramp.library`**](ramp.library.html) is a code library for **`ramp.xds`** with model families or modules for the core dynamical components.
 
--   [**`ramp.control`**](ramp.control.html) is a code library for **`ramp.xds`** with algorithms to implement various models of vector control and health-based malaria interventions
+-   [**`ramp.forcing`**](ramp.forcing.html) is a code library for **`ramp.xds`** with algorithms to implement various models of vector control and health-based malaria interventions
 
 -   [**`ramp.forcing`**](ramp.forcing.html) is a code library for **`ramp.xds`** with algorithms to implement exogenous forcing by weather
 

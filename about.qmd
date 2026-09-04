@@ -1,5 +1,9 @@
 ---
 title: "About"
+format: html
+editor: source
+bibliography: ../refs/refs.bib
+csl: ../refs/plos.csl
 ---
 
 SimBA is maintained by [Professor David L Smith](https://faculty.washington.edu/smitdave/)

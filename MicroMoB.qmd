@@ -1,5 +1,9 @@
 ---
 title: "`MicroMoB`"
+format: html
+editor: source
+bibliography: ../refs/refs.bib
+csl: ../refs/plos.csl
 ---
 
 [`MicroMoB`](https://dd-harp.github.io/MicroMoB/) is an R-package available from github. It was the first R package that we developed with a modular design. `MicroMoB` is still available from github, but it is not under active development. 

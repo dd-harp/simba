@@ -1,8 +1,7 @@
 ---
 title: "Solve a Model"
 subtitle: "Getting Started: Vignette 3"
-editor:
-  mode: source
+editor: source
 bibliography: ../refs/refs.bib
 csl: ../refs/plos.csl
 html-math-method:

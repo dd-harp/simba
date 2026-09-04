@@ -1,8 +1,7 @@
 ---
-title: "Aquatic Ecology Modules"
-subtitle: "The **L** Component" 
-editor:
-  mode: source
+title: "**L** --- Aquatic Ecology"
+subtitle: "The dynamics of immature mosquito populations in aquatic habitats." 
+editor: source
 bibliography: ../refs/refs.bib
 csl: ../refs/plos.csl
 html-math-method:
@@ -10,11 +9,10 @@ html-math-method:
   url: "https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
 ---
 
+- **`ramp.xds`**
 
-+ **`ramp.xds`** 
+  - `trivial`
 
-    + `trivial`
+  - `basicL`
 
-    + `basicL` 
-
-+ **`ramp.library`** 
+- **`ramp.library`**

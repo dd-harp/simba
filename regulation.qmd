@@ -1,8 +1,7 @@
 ---
 title: "Carrying Capacity"
 subtitle: "Mosquito Population Regulation"
-editor:
-  mode: source
+editor: source
 bibliography: ../refs/refs.bib
 csl: ../refs/plos.csl
 format: html

@@ -1,6 +1,9 @@
 ---
 title: "Connectivity"
 format: html
+editor: source
+bibliography: ../refs/refs.bib
+csl: ../refs/plos.csl
 ---
 
 Connectivity describes the spatial flow of parasites

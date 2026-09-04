@@ -1,6 +1,9 @@
 ---
 title: "Concept Cloud"
 format: html
+editor: source
+bibliography: ../refs/refs.bib
+csl: ../refs/plos.csl
 ---
 
 In SimBA, we have developed algorithms to handle a very large set of features describing malaria and malaria modeling. The SimBA website is searchable, but this **concept cloud** is -- all in one place -- a long list of interrelated concepts that can be browsed and explored.

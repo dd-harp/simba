@@ -1,0 +1,27 @@
+---
+title: "Workflows"
+editor: source
+bibliography: ../refs/refs.bib
+csl: ../refs/plos.csl
+html-math-method:
+  method: mathjax
+  url: "https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
+---
+
+- **Design a study** --- before you build a model, make sure you've got a clear purpose.
+
+- **Build a model** ---
+
+- **Solve it** --- in [**Solving Dynamical Systems**](solving.qmd), we describe how `ramp.xds` solves systems of differential equations. The outputs are parsed, making it easy to use the dependent variables by name.
+
+- **Visualize the outputs** --- In [**Visualization**](visualization.qmd), we describe how to use built-in functions to visualize the outputs, making it easy to visualize model outputs.
+
+- **Fit the model to data** -- Each model is required to supply functions that describe how the states get translated into observable quantities. In [**Observational Processes**](observation.qmd), we introduce the concepts of *fitting* and *goodness of fit* using SimBA.
+
+- **Build a Pipeline** -- Each model is required to supply functions that describe how the states get translated into observable quantities. In [**Observational Processes**](observation.qmd), we discuss a models *skill set,* and
+
+# Design a Study
+
+# Build a Model
+
+# Build a Pipeline

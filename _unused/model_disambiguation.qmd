@@ -1,5 +1,7 @@
 ---
 title: "*Models* and *Model Building*"
+bibliography: ../refs/refs.bib
+csl: ../refs/plos.csl
 subtitle: "Disambiguation"
 ---
 
@@ -21,7 +23,7 @@ It's pretty easy to just slip into using the term *model* to mean something, but
 
     + We have developed models to compute mosquito bionomics in relation to available resources or for exogenous forcing by weather variables using *functional responses;*
     
-    + In **`ramp.control,`** we developed models for vector control distribution, durability, coverage, effects, and control effect sizes in relation to coverage. 
+    + In **`ramp.forcing,`** we developed models for vector control distribution, durability, coverage, effects, and control effect sizes in relation to coverage. 
     
 + We could use *model* to describe **`ramp.xds`** or all of `**SimBA,**  the code base we developed to set up and solve *initial value problems* for differential equations describing mosquito-transmitted pathogens, and to analyze and apply the models; in our case, we refer to a *mathematical framework* for model building that we designed, and the software that instantiates it.  
 

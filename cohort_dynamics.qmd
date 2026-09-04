@@ -1,6 +1,9 @@
 ---
 title: "Cohort Dynamics"
 format: html
+editor: source
+bibliography: ../refs/refs.bib
+csl: ../refs/plos.csl
 ---
 
 In some cases, it's useful to explore the relationship between exposure and malaria epidemiology by comparing different cohorts in the same population. For this, we developed some utilities for cohort dynamics that gete set up by `xds_setup_cohort().` Models returned by `xds_setup_cohort()` lack the **MYZ** and **L** components.

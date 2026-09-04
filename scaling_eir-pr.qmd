@@ -1,8 +1,7 @@
 ---
 title: "Scaling Exposure and Infection"
 subtitle: "Modeling the Relationship between the EIR and the PR"
-editor:
-  mode: source
+editor: source
 bibliography: ../refs/refs.bib
 csl: ../refs/plos.csl
 format: html

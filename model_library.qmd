@@ -1,5 +1,7 @@
 ---
 title: "Module Library"
+bibliography: ../refs/refs.bib
+csl: ../refs/plos.csl
 subtitle: "A Catalogue of Modules"
 format: html
 ---

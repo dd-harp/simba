@@ -1,5 +1,7 @@
 ---
 title: "The **V** Component"
+bibliography: ../refs/refs.bib
+csl: ../refs/plos.csl
 subtitle: "Other Variables"
 format: html
 ---

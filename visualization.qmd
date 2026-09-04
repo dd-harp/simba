@@ -1,4 +1,6 @@
 ---
 title: "Visualization"
+bibliography: ../refs/refs.bib
+csl: ../refs/plos.csl
 format: html
 ---

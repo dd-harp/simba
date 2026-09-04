@@ -1,5 +1,9 @@
 ---
 title: "Nimble Model Building"
+format: html
+editor: source
+bibliography: ../refs/refs.bib
+csl: ../refs/plos.csl
 ---
 
 *Nimble* model building is about making it easy to translate an idea into a well-formed mathematical model that is computable.  

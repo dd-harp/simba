@@ -1,5 +1,9 @@
 ---
 title: "`ramp.work`"
+format: html
+editor: source
+bibliography: ../refs/refs.bib
+csl: ../refs/plos.csl
 ---
 
 [**`ramp.work`**](https://dd-harp.github.io/ramp.work/) is an R-package available from github. To install the latest version of **`ramp.work`** from GitHub, run the following lines of code in an R session.

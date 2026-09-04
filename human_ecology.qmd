@@ -1,9 +1,8 @@
 ---
 title: "Human Demography"
-editor:
-  mode: source
+editor: source
 bibliography: ../refs/refs.bib
-csl: ../refs/plos.csl 
+csl: ../refs/plos.csl
 format: html
 html-math-method:
   method: mathjax

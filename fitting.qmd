@@ -1,8 +1,7 @@
 ---
 title: "Model Fitting: Nuts & Bolts"
 subtitle: "Fitting a Dynamical System to a *Pf*PR Time Series"
-editor:
-  mode: source
+editor: source
 bibliography: ../refs/refs.bib
 csl: ../refs/plos.csl
 format: html

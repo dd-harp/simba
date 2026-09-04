@@ -1,5 +1,7 @@
 ---
 title: "Other Human Disease Models"
+bibliography: ../refs/refs.bib
+csl: ../refs/plos.csl
 subtitle: "Dengue, Filariasis, *etc.*"
 format: html
 ---

@@ -1,4 +1,6 @@
 ---
 title: "Adding Vector Species"
+bibliography: ../refs/refs.bib
+csl: ../refs/plos.csl
 format: html
 ---

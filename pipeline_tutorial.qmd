@@ -1,5 +1,7 @@
 ---
 title: "The `ramp.xds` Pipeline"
+bibliography: ../refs/refs.bib
+csl: ../refs/plos.csl
 subtitle: "An interactive tutorial: setup → solve → visualize"
 format: html
 server: shiny

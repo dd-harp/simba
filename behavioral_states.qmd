@@ -1,5 +1,9 @@
 ---
 title: "Behavioral State Models"
+format: html
+editor: source
+bibliography: ../refs/refs.bib
+csl: ../refs/plos.csl
 ---
 
 The mosquito model developed by Macdonald, used by so many publications since then, reduced most of mosquito ecology to three parameters. It was a model for parasite infection dynamics in mosquitoes in a single population. In **SimBA,** we have developed several new models and algorithms, including *behavioral state models.*

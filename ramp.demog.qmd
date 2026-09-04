@@ -1,6 +1,9 @@
 ---
 title: "`ramp.demog`"
-subtitle: "Demography & Principled Stratification for `ramp.xds`"
+format: html
+editor: source
+bibliography: ../refs/refs.bib
+csl: ../refs/plos.csl
 ---
 
 *** 

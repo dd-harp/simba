@@ -1,7 +1,6 @@
 ---
 title: "Mosquito Ecology"
-editor:
-  mode: source
+editor: source
 author: 
   - name:  "David L Smith"  
     url: https://faculty.washington.edu/smitdave/

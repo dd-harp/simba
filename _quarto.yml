@@ -4,7 +4,6 @@ project:
   render:
     - "*.qmd"
     - "!pipeline_tutorial.qmd"
-
 website:
   title: "SimBA"
   navbar:
@@ -67,6 +66,8 @@ website:
         menu:
         - glossary.qmd
         - style_guide.qmd
+      - text: News
+        href: news.html
       - about.qmd
   sidebar:
     style: "docked"
@@ -110,6 +111,7 @@ website:
       - section: model_library.qmd 
         contents:
         - malaria_modules.qmd
+        - compartmental_X.qmd
         - other_X_modules.qmd
         - adult_modules.qmd
         - aquatic_modules.qmd
@@ -131,6 +133,7 @@ website:
         - demography.qmd
         - aging.qmd
         - migration.qmd
+        - cohort_dynamics.qmd
       - section: adult_mosquito.qmd
         contents: 
         - trivialMY.qmd
@@ -171,26 +174,28 @@ website:
       - text: "---"
       - text: "Using SimBA"
       - text: "---"
-      - section: analysis.qmd 
+      - section: workflows.qmd 
         contents:
           - solving.qmd
-          - cohort_dynamics.qmd
-          - observation.qmd
           - visualization.qmd
+          - observation.qmd
+          - fitting.qmd
+      - section: analysis.qmd 
+        contents:
           - thresholds.qmd
+          - connectivity.qmd
           - scaling.qmd
       - section: analytics.qmd 
         contents:
-        - section: algorithms.qmd 
-          contents:
-          - fitting.qmd
-          - forcing.qmd
-          - history.qmd
-          - effect_size_estimation.qmd
+        - history.qmd
+        - effect_size_estimation.qmd  
         - evaluation.qmd
         - baseline.qmd
         - forecasting.qmd
-        - scenario_planning.qmd 
+        - scenario_planning.qmd
+      - text: "---"
+      - text: "Examples"
+      - text: "---"
       - section: zoo.qmd 
         contents:
         - section: rossmacdonald.qmd 
@@ -203,7 +208,6 @@ website:
           href: https://dd-harp.github.io/ramp.xds/articles/ex_534.html 
         - itn_lemenach.qmd 
         - mda.qmd 
-          
 format:
   html:
     theme: spacelab 

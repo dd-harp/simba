@@ -1,5 +1,9 @@
 ---
 title: "`ramp.falciparum`"
+format: html
+editor: source
+bibliography: ../refs/refs.bib
+csl: ../refs/plos.csl
 ---
 
 Malaria epidemiology, including exposure, infection, disease, immunity, infectiousness, human behavior and genetics, and malaria diagnostics & detection comprise a difficult and set of issues. Some of this is explored in a software package that implements some ideas and algorithms developed by John Henry as part of his PhD research at the University of Washington.

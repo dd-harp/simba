@@ -1,8 +1,7 @@
 ---
 title: "Time at Risk"
 subtitle: "Time Spent, Mosquito Activity & Time at Risk"
-editor:
-  mode: source
+editor: source
 author: 
   - name:  "David L Smith"  
     url: https://faculty.washington.edu/smitdave/

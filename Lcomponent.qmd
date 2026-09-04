@@ -1,5 +1,7 @@
 ---
 title: "The **L** Component"
+bibliography: ../refs/refs.bib
+csl: ../refs/plos.csl
 subtitle: "Immature Mosquito Dynamics and Aquatic Ecology"
 format: html
 ---

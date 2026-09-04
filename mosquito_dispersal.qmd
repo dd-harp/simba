@@ -1,7 +1,6 @@
 ---
 title: "Mosquito Dispersal Kernels"
-editor:
-  mode: source
+editor: source
 author: 
   - name:  "David L Smith"  
     url: https://faculty.washington.edu/smitdave/
@@ -14,7 +13,7 @@ csl: ../refs/plos.csl
 
 *** 
 
-*This vignette discusses how to set up a matrix describing mosquito dispersal.*
+*This vignette discusses how to set up a matrix describing mosquito dispersal. The mosquito dispersal matrix. *
 
 ***
 

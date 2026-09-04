@@ -1,5 +1,7 @@
 ---
 title: "The **MY** Component"
+bibliography: ../refs/refs.bib
+csl: ../refs/plos.csl
 subtitle: "Adult Mosquito Ecology and Infection" 
 format: html
 ---

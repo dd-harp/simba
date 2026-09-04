@@ -1,5 +1,9 @@
 ---
 title: "Contributors"
+format: html
+editor: source
+bibliography: ../refs/refs.bib
+csl: ../refs/plos.csl
 ---
 
 - [Professor David L Smith](https://faculty.washington.edu/smitdave/)

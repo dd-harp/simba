@@ -1,8 +1,7 @@
 ---
 title: "An ITN Model"
 subtitle: "Modeling "
-editor:
-  mode: source
+editor: source
 bibliography: ../refs/refs.bib
 csl: ../refs/plos.csl
 format: html
@@ -27,7 +26,7 @@ In 1987, chloroquine resistance was found in Africa, and during the 1990s, chlor
 
 ## Basic Setup
 
-We load `ramp.xds` and the satellite library that implements control, `ramp.control`.
+We load `ramp.xds` and the satellite library that implements control, `ramp.forcing`.
 
 ```{r}
 library(ramp.xds)
@@ -99,7 +98,7 @@ In the case of bed nets, we imagine a bed net mass distribution campaign, where 
 
 ## Le Menach
 
-The model developed by Le Menach *et al.* has been encoded in `ramp.control` with three functions:
+The model developed by Le Menach *et al.* has been encoded in `ramp.forcing` with three functions:
 
 -   `BedNetEffectSizes.lemenach` calls the model `compute_bednet_effect_sizes_lemenach`
 

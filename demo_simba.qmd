@@ -1,7 +1,6 @@
 ---
 title: "Basic Demo"
-editor:
-  mode: source
+editor: source
 bibliography: ../refs/refs.bib
 csl: ../refs/plos.csl
 html-math-method:

@@ -1,8 +1,9 @@
 ---
 title: "Demo"
-format: revealjs
-bibliography: "../refs/refs.bib"
-csl: "../refs/plos.csl"
+format: html
+editor: source
+bibliography: ../refs/refs.bib
+csl: ../refs/plos.csl
 ---
 
 

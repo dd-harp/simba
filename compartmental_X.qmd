@@ -1,6 +1,6 @@
 ---
-title: "Basic Forcing"
-subtitle: "Fitting Demo: Vignette 1"
+title: "**XH** --- Compartmental Models"
+subtitle: "A library of compartmental models" 
 editor: source
 bibliography: ../refs/refs.bib
 csl: ../refs/plos.csl

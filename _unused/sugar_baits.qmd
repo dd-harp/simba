@@ -1,5 +1,7 @@
 ---
 title: "Sugar Baits"
+bibliography: ../refs/refs.bib
+csl: ../refs/plos.csl
 format: html
 ---
 

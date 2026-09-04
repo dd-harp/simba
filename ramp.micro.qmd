@@ -1,5 +1,9 @@
 ---
 title: "`ramp.micro`"
+format: html
+editor: source
+bibliography: ../refs/refs.bib
+csl: ../refs/plos.csl
 ---
 
 We have developed software to implement micro-simulation for mosquitoes and transmission. It is available from github: [dd-harp/ramp.micro](https://dd-harp.github.io/ramp.micro/)

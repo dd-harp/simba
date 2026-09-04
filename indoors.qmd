@@ -1,6 +1,9 @@
 ---
 title: "Indoor Spaces"
 format: html
+editor: source
+bibliography: ../refs/refs.bib
+csl: ../refs/plos.csl
 ---
 
 We can create a model with indoor/outdoor spaces.

@@ -1,8 +1,7 @@
 ---
 title: "Malaria Epidemiology"
 subtitle: "Exposure, Infection, Disease, Immunity, Infectiousness, Diagnostics & Detection"
-editor:
-  mode: source
+editor: source
 bibliography: ../refs/refs.bib
 csl: ../refs/plos.csl
 html-math-method:

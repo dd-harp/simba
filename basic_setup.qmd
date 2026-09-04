@@ -1,7 +1,8 @@
 ---
 title: "Basic Setup"
-editor:
-  mode: source
+bibliography: ../refs/refs.bib
+csl: ../refs/plos.csl
+editor: source
 format: html
 html-math-method:
   method: mathjax

@@ -1,1 +1,8 @@
+---
+title: "Behavioral State Models"
+format: html
+editor: source
+bibliography: ../refs/refs.bib
+csl: ../refs/plos.csl
+---
 

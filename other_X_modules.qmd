@@ -1,11 +1,20 @@
 ---
-title: "Other Disease Modules"
-subtitle: "The **XH** Component" 
-editor:
-  mode: source
+title: "**XH** --- Bespoke Disease Models"
+subtitle: "Dengue, Filariasis, ..." 
+editor: source
 bibliography: ../refs/refs.bib
 csl: ../refs/plos.csl
 html-math-method:
   method: mathjax
   url: "https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
 ---
+
+The epidemiology of some mosquito-transmitted diseases is complex enough to warrant development of bespoke models.
+
+# Dengue
+
+There is some interest in the strain structure of dengue, and differences in the risk of severe disease that result from getting exposed to multiple strains in a different order.
+
+No dengue models are currently included, but some have been planned.
+
+# Filariasis

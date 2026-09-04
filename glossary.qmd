@@ -1,6 +1,9 @@
 ---
 title: "Glossary"
 format: html
+editor: source
+bibliography: ../refs/refs.bib
+csl: ../refs/plos.csl
 ---
 
 We have developed some terminology that is

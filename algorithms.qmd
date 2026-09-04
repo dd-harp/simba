@@ -1,6 +1,9 @@
 ---
 title: "Core Algorithms"
 format: html
+editor: source
+bibliography: ../refs/refs.bib
+csl: ../refs/plos.csl
 ---
 
 To quantify malaria transmission and *evaluate* malaria control, we have developed algorithms for core tasks. All of them involve fitting models to data and interpreting the results, but we found it useful to do this in steps. In the following, we provide some background about the algorithms.

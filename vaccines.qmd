@@ -1,5 +1,8 @@
 ---
 title: "Malaria Vaccines"
+bibliography: ../refs/refs.bib
+csl: ../refs/plos.csl
+editor: source
 format: html
 ---
 

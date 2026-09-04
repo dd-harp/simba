@@ -1,5 +1,7 @@
 ---
 title: "Vector Control"
+bibliography: ../refs/refs.bib
+csl: ../refs/plos.csl
 format: html
 ---
 
@@ -25,7 +27,7 @@ Each mode of vector control works differently, corresponding to the way vector c
 
 + [Larval Source Management](lsm.qmd)
 
-Other interventions are planned for future releases of `ramp.control`
+Other interventions are planned for future releases of `ramp.forcing`
 
 + Auto-disseminated Larvicides (planned) 
 
@@ -46,7 +48,7 @@ pars <- VectorControlEffectSizes(t, y, pars)
 pars <- Bionomics(t, y, pars)
 ``` 
 
-These functions are set up to do nothing in `ramp.xds`. To implement vector control, you must load `ramp.control.` 
+These functions are set up to do nothing in `ramp.xds`. To implement vector control, you must load `ramp.forcing.` 
 
 In `VectorControl.dynamic`, functions are turned on to implement vector control:   
 

@@ -1,8 +1,7 @@
 ---
 title: "Scaling Relationships"
 subtitle: "Studying Malaria Metrics Across the Spectrum of Transmission Intensity"
-editor:
-  mode: source
+editor: source
 bibliography: ../refs/refs.bib
 csl: ../refs/plos.csl
 format: html
@@ -23,11 +22,12 @@ This vignette is an overview of **scaling relationships** for SimBA users. Two c
 
 Load the required packages:
 
-```{r, messge=FALSE}
+```{r, message=FALSE}
 library(MASS)
 library(ramp.xds)
 library(ramp.library)
-library(ramp.control)
+library(ramp.forcing)
+library(ramp.qa)
 library(ramp.work)
 library(deSolve)
 library(rootSolve)

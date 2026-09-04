@@ -1,6 +1,9 @@
 ---
 title: "Births and Deaths"
 format: html
+editor: source
+bibliography: ../refs/refs.bib
+csl: ../refs/plos.csl
 ---
 
 ## Births

@@ -1,8 +1,7 @@
 ---
-title: "ramp.func"
+title: "`ramp.func`"
 subtitle: "A Trace Model Library for RAMP"
-editor:
-  mode: source
+editor: source
 bibliography: ../refs/refs.bib
 csl: ../refs/plos.csl
 html-math-method:

@@ -1,5 +1,9 @@
 ---
 title: "`exDE`"
+format: html
+editor: source
+bibliography: ../refs/refs.bib
+csl: ../refs/plos.csl
 ---
 
 [`exDE`](https://dd-harp.github.io/exDE/) is the R-package that was released with [Wu SL, *et al.* (2023) Spatial Dynamics of Malaria Transmission. PLoS Computational Biology 19(6):e1010684.](https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1010684)

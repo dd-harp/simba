@@ -1,5 +1,7 @@
 ---
 title: "Epidemiology: Model Library"
+bibliography: ../refs/refs.bib
+csl: ../refs/plos.csl
 subtitle: "The SimBA Model Library for Human / Host Epidemiology" 
 format: html
 ---

@@ -1,5 +1,9 @@
 ---
 title: "Heterogeneous Biting"
+format: html
+editor: source
+bibliography: ../refs/refs.bib
+csl: ../refs/plos.csl
 ---
 
 Heterogeneous biting, in `ramp.xds,` is computed from *search weights.* The concept of a search weight is given meaning through *functional responses.*

@@ -1,5 +1,9 @@
 ---
 title: "Model Zoo"
+format: html
+editor: source
+bibliography: ../refs/refs.bib
+csl: ../refs/plos.csl
 ---
 
 + dogs

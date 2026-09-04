@@ -1,6 +1,9 @@
 ---
 title: "Exposure"
 format: html
+editor: source
+bibliography: ../refs/refs.bib
+csl: ../refs/plos.csl
 ---
 
 In `ramp.xds,` exposure is handled as a very general concept. 

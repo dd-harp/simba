@@ -1,0 +1,86 @@
+<mxfile host="Electron">
+  <diagram name="Page-1" id="8saU78AynIq9e-HllGto">
+    <mxGraphModel dx="1094" dy="688" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" math="1" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="asHJMLVBGH_p8SG_GM9B-16" edge="1" parent="1" source="asHJMLVBGH_p8SG_GM9B-1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="asHJMLVBGH_p8SG_GM9B-22">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="520" y="173" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="asHJMLVBGH_p8SG_GM9B-45" edge="1" parent="1" source="asHJMLVBGH_p8SG_GM9B-1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;startArrow=classic;startFill=1;" target="asHJMLVBGH_p8SG_GM9B-11">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="asHJMLVBGH_p8SG_GM9B-1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;align=center;horizontal=1;" value="\(M\) -&amp;nbsp;Adult Moquito Ecology&lt;div&gt;&lt;hr&gt;&lt;div style=&quot;line-height: 110%;&quot;&gt;\(\frac{d {M}}{dt} = F_{M}(\Lambda, {M}) \)&amp;nbsp;&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="86" width="220" x="264.385" y="130" as="geometry" />
+        </mxCell>
+        <mxCell id="asHJMLVBGH_p8SG_GM9B-10" edge="1" parent="1" source="asHJMLVBGH_p8SG_GM9B-2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="asHJMLVBGH_p8SG_GM9B-4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="asHJMLVBGH_p8SG_GM9B-2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;align=center;spacing=0;" value="&lt;p style=&quot;line-height: 110%;&quot;&gt;\(Y\) - Mosquito Infections&lt;/p&gt;&lt;hr&gt;&lt;p style=&quot;line-height: 110%;&quot;&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;\( \frac{d {Y}}{dt} = F_{Y} (\kappa, {M}, {Y} )\)&amp;nbsp;&lt;/span&gt;&lt;br&gt;&lt;/p&gt;" vertex="1">
+          <mxGeometry height="86" width="220" x="264.385" y="216" as="geometry" />
+        </mxCell>
+        <mxCell id="asHJMLVBGH_p8SG_GM9B-41" edge="1" parent="1" source="asHJMLVBGH_p8SG_GM9B-4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="asHJMLVBGH_p8SG_GM9B-40">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="asHJMLVBGH_p8SG_GM9B-4" parent="1" style="rounded=1;whiteSpace=wrap;html=1;align=center;" value="&lt;div style=&quot;line-height: 110%;&quot;&gt;Infectious Biting&lt;/div&gt;&lt;div style=&quot;line-height: 110%;&quot;&gt;&lt;hr&gt;&lt;/div&gt;\(fqZ =F_Z({Y})\)&amp;nbsp;" vertex="1">
+          <mxGeometry height="67" width="120.86" x="519.14" y="225.5" as="geometry" />
+        </mxCell>
+        <mxCell id="asHJMLVBGH_p8SG_GM9B-50" edge="1" parent="1" source="asHJMLVBGH_p8SG_GM9B-5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="asHJMLVBGH_p8SG_GM9B-1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="asHJMLVBGH_p8SG_GM9B-5" parent="1" style="rounded=1;whiteSpace=wrap;html=1;align=center;spacing=1;fontSize=13;" value="&lt;div&gt;&lt;span style=&quot;font-size: 12px;&quot;&gt;Emergence&lt;/span&gt;&lt;div style=&quot;font-size: 12px; line-height: 13.2px;&quot;&gt;&lt;hr&gt;\(\Lambda\)&amp;nbsp;&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="67" width="120" x="110" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="asHJMLVBGH_p8SG_GM9B-51" edge="1" parent="1" source="asHJMLVBGH_p8SG_GM9B-6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="asHJMLVBGH_p8SG_GM9B-2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="asHJMLVBGH_p8SG_GM9B-6" parent="1" style="rounded=1;whiteSpace=wrap;html=1;align=center;" value="Net Infectiousness&lt;div style=&quot;line-height: 110%;&quot;&gt;&lt;hr&gt;\(\kappa\)&amp;nbsp;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="67" width="120" x="120" y="330.0000000000001" as="geometry" />
+        </mxCell>
+        <mxCell id="asHJMLVBGH_p8SG_GM9B-28" edge="1" parent="1" source="asHJMLVBGH_p8SG_GM9B-11" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="asHJMLVBGH_p8SG_GM9B-47">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="536.6299999999999" y="80" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="asHJMLVBGH_p8SG_GM9B-11" parent="1" style="rounded=1;whiteSpace=wrap;html=1;align=center;spacing=1;" value="Available Habitats, \(Q\)" vertex="1">
+          <mxGeometry height="35" width="140.87" x="303.95" y="62.5" as="geometry" />
+        </mxCell>
+        <mxCell id="asHJMLVBGH_p8SG_GM9B-29" edge="1" parent="1" source="asHJMLVBGH_p8SG_GM9B-22" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" target="asHJMLVBGH_p8SG_GM9B-47">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="579.5699999999999" y="100" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="asHJMLVBGH_p8SG_GM9B-22" parent="1" style="rounded=1;whiteSpace=wrap;html=1;align=center;" value="Egg Laying&lt;div style=&quot;line-height: 110%;&quot;&gt;&lt;hr&gt;&lt;u style=&quot;background-color: initial;&quot;&gt;\(G = F_G(M) \)&lt;/u&gt;&amp;nbsp;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="67" width="120" x="519.5699999999999" y="139.5" as="geometry" />
+        </mxCell>
+        <mxCell id="asHJMLVBGH_p8SG_GM9B-42" edge="1" parent="1" source="asHJMLVBGH_p8SG_GM9B-37" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="asHJMLVBGH_p8SG_GM9B-40">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="asHJMLVBGH_p8SG_GM9B-46" edge="1" parent="1" source="asHJMLVBGH_p8SG_GM9B-37" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;startArrow=classic;startFill=1;" target="asHJMLVBGH_p8SG_GM9B-2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="asHJMLVBGH_p8SG_GM9B-37" parent="1" style="rounded=1;whiteSpace=wrap;html=1;align=center;spacing=1;" value="Available Hosts, \(W\)" vertex="1">
+          <mxGeometry height="35" width="140.87" x="303.95" y="330" as="geometry" />
+        </mxCell>
+        <mxCell id="asHJMLVBGH_p8SG_GM9B-48" edge="1" parent="1" source="asHJMLVBGH_p8SG_GM9B-40" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="680" y="348" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="asHJMLVBGH_p8SG_GM9B-40" parent="1" style="rounded=1;whiteSpace=wrap;html=1;align=center;" value="&lt;div style=&quot;line-height: 110%;&quot;&gt;EIR&lt;/div&gt;&lt;div style=&quot;line-height: 110%;&quot;&gt;&lt;hr&gt;&lt;/div&gt;\(Z =\beta \cdot fqZ \)&amp;nbsp;" vertex="1">
+          <mxGeometry height="67" width="120.86" x="519.14" y="314" as="geometry" />
+        </mxCell>
+        <mxCell id="asHJMLVBGH_p8SG_GM9B-49" edge="1" parent="1" source="asHJMLVBGH_p8SG_GM9B-47" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="680" y="80" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="asHJMLVBGH_p8SG_GM9B-47" parent="1" style="rounded=1;whiteSpace=wrap;html=1;align=center;" value="Egg Deposition&lt;div style=&quot;line-height: 110%;&quot;&gt;&lt;hr&gt;&lt;u style=&quot;background-color: initial;&quot;&gt;\( \eta = Q \cdot G \)&lt;/u&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="67" width="120" x="519.14" y="46.5" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

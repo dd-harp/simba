@@ -1,4 +1,7 @@
 ---
-title: "Medical Interventions"
+title: "Malaria Control"
+bibliography: ../refs/refs.bib
+csl: ../refs/plos.csl
 format: html
+editor: source
 ---

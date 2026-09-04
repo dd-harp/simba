@@ -1,8 +1,7 @@
 ---
 title: "Macdonald's Models"
 format: html
-editor:
-  mode: source
+editor: source
 bibliography: ../refs/refs.bib
 csl: ../refs/plos.csl
 html-math-method:

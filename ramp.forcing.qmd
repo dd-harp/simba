@@ -1,11 +1,13 @@
 ---
 title: "`ramp.forcing`"
+bibliography: ../refs/refs.bib
+csl: ../refs/plos.csl
 subtitle: "Models with Forcing (including Weather) for `ramp.xds`"
 ---
 
 ------------------------------------------------------------------------
 
-[**`ramp.forcing`**](https://dd-harp.github.io/ramp.forcing/) is an R-package available from github. It supports models for effects of weather affecting mosquito bionomic and ecology, and other parameters affecting malaria transmission. Malaria control, including vector control, is implemented in [**`ramp.control`**](https://dd-harp.github.io/ramp.control/)
+[**`ramp.forcing`**](https://dd-harp.github.io/ramp.forcing/) is an R-package available from github. It supports models for effects of weather affecting mosquito bionomic and ecology, and other parameters affecting malaria transmission. Malaria control, including vector control, is implemented in [**`ramp.forcing`**](https://dd-harp.github.io/ramp.forcing/)
 
 To install the latest version of **`ramp.forcing`** from GitHub, run the following lines of code in an R session.
 

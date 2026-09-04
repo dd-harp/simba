@@ -1,8 +1,7 @@
 ---
-title: "ramp.qa"
+title: "`ramp.qa`"
 subtitle: "Qualitative Analysis for RAMP"
-editor:
-  mode: source
+editor: source
 bibliography: ../refs/refs.bib
 csl: ../refs/plos.csl
 html-math-method:

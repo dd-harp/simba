@@ -1,8 +1,7 @@
 ---
-title: "Malaria Modules"
+title: "**XH** --- Malaria Epidemiology"
 subtitle: "The **XH** Component" 
-editor:
-  mode: source
+editor: source
 bibliography: ../refs/refs.bib
 csl: ../refs/plos.csl
 html-math-method:
@@ -10,3 +9,4 @@ html-math-method:
   url: "https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
 ---
 
+Malaria epidemiology is

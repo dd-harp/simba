@@ -1,6 +1,5 @@
 ---
-title: "Basic Forcing"
-subtitle: "Fitting Demo: Vignette 1"
+title: "SimBA News"
 editor: source
 bibliography: ../refs/refs.bib
 csl: ../refs/plos.csl
@@ -8,3 +7,6 @@ html-math-method:
   method: mathjax
   url: "https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
 ---
+
+# 
+**Sep 4, 2026** -- SimBA News was added to the project! 

@@ -1,8 +1,9 @@
 ---
 title: "`ramp.xds`"
+bibliography: ../refs/refs.bib
+csl: ../refs/plos.csl
 subtitle: "eXtensible Dynamical Systems"
-editor:
-  mode: source
+editor: source
 ---
 
 *** 

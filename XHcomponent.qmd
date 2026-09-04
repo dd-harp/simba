@@ -1,5 +1,7 @@
 ---
 title: "The **XH** Component"
+bibliography: ../refs/refs.bib
+csl: ../refs/plos.csl
 subtitle: "Human / Host Epidemiology and Demography" 
 format: html
 ---

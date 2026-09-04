@@ -1,7 +1,6 @@
 ---
 title: "Mass Treatment"
-editor:
-  mode: source
+editor: source
 bibliography: ../refs/refs.bib
 csl: ../refs/plos.csl
 format: html

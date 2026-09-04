@@ -1,8 +1,7 @@
 ---
 title: "Trace Functions"
 subtitle: "Basic Forcing by Trivial Modules"
-editor:
-  mode: source
+editor: source
 bibliography: ../refs/refs.bib
 csl: ../refs/plos.csl
 format: html
@@ -32,9 +31,9 @@ A trace function sets the value of a **dynamical term.** The *trace functions* l
 
 + $\kappa(t)$ or `kappa` --- the net infectiousness (NI), the probability that a mosquito will become infected after blood feeding on a human in that patch is passed from the [trivial **X** module](trivialX.qmd).
 
-+ $E(t)$ or `eir` --- the daily entomological inoculation rate (EIR) for a cohort of humans (or the force of infection in a population or a cohort, FoI) is set up by `xds_setup_eir`. The EIR is passed to the **XH** module by a trace function from the EIR object.
++ $E(t)$ or `eir` --- the daily entomological inoculation rate (EIR) for a cohort of humans (or the force of infection in a population or a cohort, FoI) is set up by `xds_setup_eir`. The EIR is passed to the **XH** module by a trace function from the EIR object, which is functionally equivalent to an **MY** module. 
 
-The first four terms are passed from trivial modules of the dynamical components. Examples are are documented in their vignettes. Forcing by the **EIR** is handled slightly differently. In @sec-eir: **EIR forcing** [(below)](#sec-eir), we present some fully worked examples that show how to build and use forcing functions. 
+The first four terms are passed from trivial modules of the dynamical components. Examples are are documented in their vignettes. Since forcing by the **EIR** is handled slightly differently, it is the focus of @sec-eir: **EIR forcing** [(below)](#sec-eir), which presents some code to illustrate how setup for trace functions works. 
 
 ## Composed Time Series 
 
@@ -71,7 +70,7 @@ where
 
 + The shock function $F_K(t,V)$ is always called `F_shock`. 
 
-+ A library of shock functions is maintained as part of [`ramp.func`](https://dd-harp.github.io/ramp.func/articles/Shock.html)
++ A library of shock functions is maintained as part of [`ramp.func`](https://dd-harp.github.io/ramp.func/articles/Shocks.html)
 
 
 # EIR Forcing {#sec-eir}

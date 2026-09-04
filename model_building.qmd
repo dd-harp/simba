@@ -1,5 +1,7 @@
 ---
 title: "Model Building"
+bibliography: ../refs/refs.bib
+csl: ../refs/plos.csl
 subtitle: "How To Set Up Models with `ramp.xds`"
 format: html
 html-math-method:
